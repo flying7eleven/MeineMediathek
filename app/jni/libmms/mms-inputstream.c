@@ -76,6 +76,7 @@ JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStr
 }
 
 
+
 /*
  * Class:     com_spoledge_aacplayer_MMSInputStream
  * Method:    nativeRead
@@ -112,6 +113,15 @@ JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStr
     return n;
 }
 
+
+JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeGetLength( JNIEnv *env, jobject thiz, jint jminfo ) {
+	ALOG_TRACE( "nativeGetLength() start" );
+	MMSInfo *minfo = (MMSInfo*) jminfo;
+	int len = mmsx_get_length( minfo->mms );
+	ALOG_TRACE( "nativeGetLength() got a length of %d bytes", len );
+	ALOG_TRACE( "nativeGetLength() end" );
+	return len;
+}
 
 /*
  * Class:     com_spoledge_aacplayer_MMSInputStream

@@ -49,6 +49,11 @@ public class MMSInputStream extends InputStream {
      */
     private int mms;
 
+    /**
+     * 
+     */
+    private int len;
+
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -57,13 +62,18 @@ public class MMSInputStream extends InputStream {
     public MMSInputStream( String url ) throws IOException {
         ensureLibLoaded();
 
-        mms = nativeConnect( url );
+        this.mms = nativeConnect( url );
+        this.len = nativeGetLength( this.mms );
     }
 
 
     ////////////////////////////////////////////////////////////////////////////
     // Public - InputStream
     ////////////////////////////////////////////////////////////////////////////
+    
+    public int length() {
+    	return this.len;
+    }
 
     /**
      * Please do not use this method - this is not efficient !
@@ -146,5 +156,6 @@ public class MMSInputStream extends InputStream {
     private native int nativeConnect( String url ) throws IOException;
     private native int nativeRead( int mms, byte[] b, int off, int len ) throws IOException;
     private native void nativeClose( int mms ) throws IOException;
+    private native int nativeGetLength( int mms ) throws IOException;
 
 }
