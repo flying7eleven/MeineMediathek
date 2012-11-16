@@ -1,5 +1,7 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Fragment;
@@ -18,6 +20,14 @@ public class MovieSearchFragment extends Fragment {
 
 	private Button btn = null;
 
+	private File file = null;
+	private FileOutputStream out = null;
+	
+    private void createOutput() throws IOException {
+        file = File.createTempFile( "streamer-downloading", ".wmv");
+        out = new FileOutputStream( file );   
+    }
+	
 	@Override
 	public View onCreateView( final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState ) {
 		View v = inflater.inflate( R.layout.fragment_moviesearch, container );
@@ -28,6 +38,15 @@ public class MovieSearchFragment extends Fragment {
 			public void onClick( View v ) {
 				try {
 					MMSInputStream st = new MMSInputStream( "mms://a1014.v1252931.c125293.g.vm.akamaistream.net/7/1014/125293/v0001/wm.od.origin.zdf.de.gl-systemhaus.de/none/zdf/12/10/121019_brand_lied_mau_1592k_p24v10.wmv" );
+					MovieSearchFragment.this.createOutput();
+					byte[] buffer = new byte[ 4096 ];
+					int i = 0;
+					while( i < 500) {
+						int readB = st.read( buffer, 0, buffer.length );
+						out.write( buffer, 0, readB );
+						++i;
+					}
+					out.close();
 				} catch( IOException e ) {
 					Log.e( "SearchMoveFragment", e.getMessage() );
 				}
