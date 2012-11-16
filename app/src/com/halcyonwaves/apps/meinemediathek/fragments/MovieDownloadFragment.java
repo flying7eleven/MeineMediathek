@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.halcyonwaves.apps.meinemediathek.R;
-import com.halcyonwaves.apps.meinemediathek.worker.DownloadStream;
+import com.halcyonwaves.apps.meinemediathek.worker.DownloadStreamTask;
 
 public class MovieDownloadFragment extends Fragment {
 
@@ -31,7 +31,7 @@ public class MovieDownloadFragment extends Fragment {
 			@Override
 			public void onClick( final View v ) {
 
-				final DownloadStream dst = new DownloadStream( MovieDownloadFragment.this.pb, MovieDownloadFragment.this.tv );
+				final DownloadStreamTask dst = new DownloadStreamTask( MovieDownloadFragment.this.pb, MovieDownloadFragment.this.tv );
 				dst.execute( "mms://a1014.v1252931.c125293.g.vm.akamaistream.net/7/1014/125293/v0001/wm.od.origin.zdf.de.gl-systemhaus.de/none/zdf/12/08/120827_trailer_staffel13_kio_sok4_vh.wmv" );
 
 			}

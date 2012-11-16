@@ -17,12 +17,12 @@ import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
  * 
  * @author Tim Huetz <tim@huetz.biz>
  */
-public class DownloadStream extends AsyncTask< String, Integer, Void > {
+public class DownloadStreamTask extends AsyncTask< String, Integer, Void > {
 
 	private TextView bytesDownloadedField = null;
 	private ProgressBar progressbarToUpdate = null;
 
-	public DownloadStream( final ProgressBar pb, final TextView tv ) {
+	public DownloadStreamTask( final ProgressBar pb, final TextView tv ) {
 		this.progressbarToUpdate = pb;
 		this.bytesDownloadedField = tv;
 		this.progressbarToUpdate.setMax( 100 );
