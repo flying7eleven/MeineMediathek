@@ -81,7 +81,7 @@ JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStr
  * Method:    nativeRead
  * Signature: (I[BII)I
  */
-JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeRead
+JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeRead
   (JNIEnv *env, jobject thiz, jint jminfo, jbyteArray jbuf, jint off, jint len)
 {
     ALOG_TRACE( "nativeRead() start" );
@@ -118,7 +118,7 @@ JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeRead
  * Method:    nativeClose
  * Signature: (I)I
  */
-JNIEXPORT void JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeClose
+JNIEXPORT void JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeClose
   (JNIEnv *env, jobject thiz, jint jminfo)
 {
     ALOG_TRACE( "nativeClose() start" );
