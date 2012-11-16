@@ -16,7 +16,9 @@
 bin/
 gen/
 obj/
-*abi*
+*abi*/
+x86/
+mips/
 
 # Local configuration file (sdk path, etc)
 local.properties
