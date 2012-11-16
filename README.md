@@ -15,14 +15,21 @@ For building the application by yourself follow the following steps:
 
           cd MeineMediathek
 
-  3. Create an Android project for each submodule using the `Android Project from Existing Code` function of Eclipse
-  4. Create an Android project for the actual application (using the `Android Project from Existing Code` function of Eclipse)
-  5. Build the application :)
+  3. Change into the app directory and run the native build process (you need the [Android NDK][3]):
+
+          cd app
+          $NDK_ROOT_DIR/ndk-build
+
+  4. Create an Android project for each submodule using the `Android Project from Existing Code` function of Eclipse
+  5. Create an Android project for the actual application (using the `Android Project from Existing Code` function of Eclipse)
+  6. Build the application :)
 
 ## Changelog
 
 ### Version 0.0.1 *(2012-XX-XX)*
-* Initial version which is available in the Google Play Store
+* First version which is able to download a stream from [ZDF Mediathek][4]
 
  [1]: https://play.google.com/store/apps/details?id=com.halcyonwaves.apps.meinemediathek
  [2]: http://www.eclipse.org/
+ [3]: http://developer.android.com/tools/sdk/ndk/index.html
+ [4]: http://www.zdf.de/ZDFmediathek/hauptnavigation/startseite?flash=off
