@@ -15,14 +15,15 @@
             android:id="@+id/pb_download_progress_pct"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="5dp" />
 
         <TextView
-            android:id="@+id/tv_download_progress_pct"
+            android:id="@+id/tv_download_progress_bytes"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="000 %"
+            android:text="Initializing..."
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
