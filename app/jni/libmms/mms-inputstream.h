@@ -32,7 +32,7 @@ extern "C" {
  * Method:    nativeConnect
  * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeConnect
+JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeConnect
   (JNIEnv *, jobject, jstring);
 
 /*
@@ -40,7 +40,7 @@ JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeConnect
  * Method:    nativeRead
  * Signature: (I[BII)I
  */
-JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeRead
+JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeRead
   (JNIEnv *, jobject, jint, jbyteArray, jint, jint);
 
 /*
@@ -48,7 +48,7 @@ JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeRead
  * Method:    nativeClose
  * Signature: (I)I
  */
-JNIEXPORT void JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeClose
+JNIEXPORT void JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeClose
   (JNIEnv *, jobject, jint);
 
 #ifdef __cplusplus

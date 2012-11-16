@@ -37,7 +37,7 @@ typedef struct MMSInfo {
  * Method:    nativeConnect
  * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT jint JNICALL Java_com_spoledge_aacplayer_MMSInputStream_nativeConnect
+JNIEXPORT jint JNICALL Java_com_halcyonwaves_apps_meinemediathek_ndk_MMSInputStream_nativeConnect
   (JNIEnv *env, jobject thiz, jstring jurl)
 {
     ALOG_TRACE( "nativeConnect() start" );
