@@ -21,6 +21,10 @@
 
 #include <android/log.h>
 
+#define AACD_LOGLEVEL_TRACE 1
+#define AACD_LOGLEVEL_DEBUG 1
+#define AACD_LOGLEVEL_INFO 1
+#define ALOG_LOGLEVEL_WARN 1
 #define AACD_LOGLEVEL_ERROR 1
 
 #ifndef ANDROID_LOG_MODULE
