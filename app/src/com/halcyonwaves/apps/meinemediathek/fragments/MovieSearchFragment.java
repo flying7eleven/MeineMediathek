@@ -37,7 +37,7 @@ public class MovieSearchFragment extends Fragment {
 			@Override
 			public void onClick( View v ) {
 				try {
-					MMSInputStream st = new MMSInputStream( "mms://a1014.v1252931.c125293.g.vm.akamaistream.net/7/1014/125293/v0001/wm.od.origin.zdf.de.gl-systemhaus.de/none/zdf/12/10/121019_brand_lied_mau_1592k_p24v10.wmv" );
+					MMSInputStream st = new MMSInputStream( "mms://a1014.v1252931.c125293.g.vm.akamaistream.net/7/1014/125293/v0001/wm.od.origin.zdf.de.gl-systemhaus.de/none/zdf/12/08/120827_trailer_staffel13_kio_sok4_vh.wmv" );
 					MovieSearchFragment.this.createOutput();
 					byte[] buffer = new byte[ 4096 ];
 					int i = 0;
