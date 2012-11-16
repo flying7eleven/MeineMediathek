@@ -39,12 +39,15 @@ public class MovieSearchFragment extends Fragment {
 				try {
 					MMSInputStream st = new MMSInputStream( "mms://a1014.v1252931.c125293.g.vm.akamaistream.net/7/1014/125293/v0001/wm.od.origin.zdf.de.gl-systemhaus.de/none/zdf/12/08/120827_trailer_staffel13_kio_sok4_vh.wmv" );
 					MovieSearchFragment.this.createOutput();
-					byte[] buffer = new byte[ 4096 ];
-					int i = 0;
-					while( i < 500) {
+					byte[] buffer = new byte[ 8192 ];
+					int comReadB  = 0;
+					while( comReadB < st.length() ) {
 						int readB = st.read( buffer, 0, buffer.length );
+						if( readB <= 0 ) {
+							break;
+						}
 						out.write( buffer, 0, readB );
-						++i;
+						comReadB += readB;
 					}
 					out.close();
 				} catch( IOException e ) {
