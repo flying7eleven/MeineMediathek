@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">Meine Mediathek</string>
+    <string name="btn_search">Search</string>
+    <string name="et_hint_searchfortitle">Search for movie title</string>
 
 </resources>
