@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/fragment_moviesearch"
-        android:name="com.halcyonwaves.apps.meinemediathek.fragments.MovieDownloadFragment"
+        android:name="com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_moviedownload" />
+        tools:layout="@layout/fragment_moviesearch" />
 
 </LinearLayout>
