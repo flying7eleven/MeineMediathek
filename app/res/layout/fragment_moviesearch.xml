@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/et_hint_searchfortitle" >
+        android:hint="@string/et_hint_searchfortitle"
+        android:inputType="text" >
 
         <requestFocus />
     </EditText>
