@@ -1,7 +1,12 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
+import java.io.File;
+
 import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +36,18 @@ public class MovieDownloadFragment extends Fragment {
 		super.onViewCreated( view, savedInstanceState );
 
 		//
-		final DownloadStreamTask dst = new DownloadStreamTask( MovieDownloadFragment.this.pb, MovieDownloadFragment.this.tv );
+		File storagePath = this.getActivity().getExternalFilesDir( Environment.DIRECTORY_MOVIES );
+		File movieFile = new File( storagePath, "test.wmv" );
+
+		//
+		final DownloadStreamTask dst = new DownloadStreamTask( MovieDownloadFragment.this.pb, MovieDownloadFragment.this.tv, movieFile );
 		dst.execute( "mms://a1014.v1252931.c125293.g.vm.akamaistream.net/7/1014/125293/v0001/wm.od.origin.zdf.de.gl-systemhaus.de/none/zdf/12/08/120827_trailer_staffel13_kio_sok4_vh.wmv" );
 
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		this.getActivity().sendBroadcast( new Intent( Intent.ACTION_MEDIA_MOUNTED, Uri.parse( "file://" + this.getActivity().getExternalFilesDir( Environment.DIRECTORY_MOVIES ) ) ) );
 	}
 }

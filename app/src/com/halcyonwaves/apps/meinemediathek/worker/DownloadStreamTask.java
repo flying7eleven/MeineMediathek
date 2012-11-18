@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,10 +23,12 @@ public class DownloadStreamTask extends AsyncTask< String, Integer, Void > {
 
 	private TextView bytesDownloadedField = null;
 	private ProgressBar progressbarToUpdate = null;
+	private File localMovieFile = null;
 
-	public DownloadStreamTask( final ProgressBar pb, final TextView tv ) {
+	public DownloadStreamTask( final ProgressBar pb, final TextView tv, final File movieFile ) {
 		this.progressbarToUpdate = pb;
 		this.bytesDownloadedField = tv;
+		this.localMovieFile = movieFile;
 		this.progressbarToUpdate.setMax( 100 );
 		this.bytesDownloadedField.setText( "Initializing..." );
 	}
@@ -36,8 +40,8 @@ public class DownloadStreamTask extends AsyncTask< String, Integer, Void > {
 	protected Void doInBackground( final String... streamUrlToDownload ) {
 		try {
 			//
-			final File file = File.createTempFile( "streamer-downloading", ".wmv" );
-			final FileOutputStream out = new FileOutputStream( file );
+			//final File file = File.createTempFile( "streamer-downloading", ".wmv" );			
+			final FileOutputStream out = new FileOutputStream( this.localMovieFile );
 
 			//
 			final MMSInputStream st = new MMSInputStream( streamUrlToDownload[ 0 ] );
