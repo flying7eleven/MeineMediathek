@@ -59,6 +59,7 @@ public class DownloadStreamTask extends AsyncTask< String, Integer, Void > {
 			}
 
 			//
+			st.close();
 			out.close();
 			buffer = null;
 		} catch( final IOException e ) {
