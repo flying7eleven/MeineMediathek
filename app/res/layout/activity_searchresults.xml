@@ -6,10 +6,10 @@
     android:orientation="vertical" >
 
     <fragment
-        android:id="@+id/fragment_moviesearch"
-        android:name="com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment"
+        android:id="@+id/fragment_earchresults"
+        android:name="com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_moviesearch" />
+        tools:layout="@layout/fragment_searchresults" />
 
 </LinearLayout>
