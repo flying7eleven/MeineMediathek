@@ -2,6 +2,7 @@ package com.halcyonwaves.apps.meinemediathek.loaders;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -56,13 +57,35 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 		// try to download the response of the webpage to the search query
 		try {
+			// create a list with the URLs we have to visit
+			List< String > linksToVisit = new ArrayList< String >();
+
 			// query for the results and get a handle to the returned HTML code
 			Document fetchedResults = Jsoup.connect( SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword ).get();
 			Elements foundLinks = fetchedResults.select( "a[href]" );
 			for( Element currentLink : foundLinks ) {
-				if( currentLink.attr( "abs:href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
-					foundTitles.add( new SearchResultEntry( currentLink.text(), "TODO" ) );
+				if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
+					linksToVisit.add( currentLink.attr( "abs:href" ) );
 				}
+			}
+
+			// TODO: we have to check if there are more pages
+
+			// remove link duplicates
+			HashSet< String > uniqueURLs = new HashSet< String >( linksToVisit );
+
+			// after we fetched the links for all of our episodes, start fetching information about the episodes
+			for( String currentURL : uniqueURLs ) {
+
+				// download the website for the selected URL
+				Document currentEpisodeDoc = Jsoup.connect( currentURL ).get();
+
+				Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
+				Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
+				Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
+
+				foundTitles.add( new SearchResultEntry( epoisodeTitle.first().text(), episodeDescription.first().text() ) );
+
 			}
 
 		} catch( IOException e ) {

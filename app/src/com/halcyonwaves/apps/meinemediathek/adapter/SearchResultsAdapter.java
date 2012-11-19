@@ -16,7 +16,7 @@ public class SearchResultsAdapter extends ArrayAdapter< SearchResultEntry > {
 	private final LayoutInflater mInflater;
 
 	public SearchResultsAdapter( Context context ) {
-		super( context, android.R.layout.simple_list_item_1 );
+		super( context, android.R.layout.simple_list_item_2 );
 		this.mInflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 	}
 
@@ -32,13 +32,14 @@ public class SearchResultsAdapter extends ArrayAdapter< SearchResultEntry > {
 		View view;
 
 		if( convertView == null ) {
-			view = this.mInflater.inflate( android.R.layout.simple_list_item_1, parent, false );
+			view = this.mInflater.inflate( android.R.layout.simple_list_item_2, parent, false );
 		} else {
 			view = convertView;
 		}
 
 		SearchResultEntry item = getItem( position );
 		((TextView) view.findViewById( android.R.id.text1 )).setText( item.title );
+		((TextView) view.findViewById( android.R.id.text2 )).setText( item.description );
 
 		return view;
 	}
