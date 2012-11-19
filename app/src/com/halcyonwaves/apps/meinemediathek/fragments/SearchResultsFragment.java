@@ -2,6 +2,7 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import java.util.List;
 
+import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
 import com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader;
 
@@ -11,7 +12,7 @@ import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
 
-public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< String > > {
+public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > > {
 
 	private SearchResultsAdapter searchResultsAdapter = null;
 	private final static String TAG = "SearchResultsFragment";
@@ -32,7 +33,7 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 	}
 
 	@Override
-	public Loader< List< String >> onCreateLoader( int id, Bundle args ) {
+	public Loader< List< SearchResultEntry > > onCreateLoader( int id, Bundle args ) {
 
 		// get the supplied information from the intent which started this fragment
 		final String searchFor = this.getActivity().getIntent().getExtras().getString( "searchFor" );
@@ -43,7 +44,7 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 	}
 
 	@Override
-	public void onLoadFinished( Loader< List< String >> loader, List< String > data ) {
+	public void onLoadFinished( Loader< List< SearchResultEntry > > loader, List< SearchResultEntry > data ) {
 		// set the new data in the adapter and show the list
 		this.searchResultsAdapter.setData( data );
 		if( this.isResumed() ) {
@@ -54,7 +55,7 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 	}
 
 	@Override
-	public void onLoaderReset( Loader< List< String >> loader ) {
+	public void onLoaderReset( Loader< List< SearchResultEntry > > loader ) {
 		this.searchResultsAdapter.setData( null ); // clear the data in the adapter.
 	}
 }

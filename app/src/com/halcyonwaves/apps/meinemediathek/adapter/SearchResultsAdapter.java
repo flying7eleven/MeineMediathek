@@ -2,6 +2,8 @@ package com.halcyonwaves.apps.meinemediathek.adapter;
 
 import java.util.List;
 
+import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class SearchResultsAdapter extends ArrayAdapter< String > {
+public class SearchResultsAdapter extends ArrayAdapter< SearchResultEntry > {
 
 	private final LayoutInflater mInflater;
 
@@ -18,10 +20,10 @@ public class SearchResultsAdapter extends ArrayAdapter< String > {
 		this.mInflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 	}
 
-	public void setData( List< String > data ) {
-		clear();
+	public void setData( List< SearchResultEntry > data ) {
+		this.clear();
 		if( data != null ) {
-			addAll( data );
+			this.addAll( data );
 		}
 	}
 
@@ -35,8 +37,8 @@ public class SearchResultsAdapter extends ArrayAdapter< String > {
 			view = convertView;
 		}
 
-		String item = getItem( position );
-		((TextView) view.findViewById( android.R.id.text1 )).setText( item );
+		SearchResultEntry item = getItem( position );
+		((TextView) view.findViewById( android.R.id.text1 )).setText( item.title );
 
 		return view;
 	}
