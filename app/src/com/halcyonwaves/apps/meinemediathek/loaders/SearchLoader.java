@@ -70,19 +70,30 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 			// create a list with the URLs we have to visit
 			List< String > linksToVisit = new ArrayList< String >();
 
-			// query for the results and get a handle to the returned HTML code
-			Document fetchedResults = Jsoup.connect( SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword ).get();
-			Elements foundLinks = fetchedResults.select( "a[href]" );
-			for( Element currentLink : foundLinks ) {
-				if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
-					linksToVisit.add( currentLink.attr( "abs:href" ) );
-				}
-			}
+			// loop throgh all search result pages
+			String oldForwardLink = "";
+			String currentForwardLink = SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword;
+			while( !oldForwardLink.equalsIgnoreCase( currentForwardLink ) ) {
+				Log.e( SearchLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
-			// TODO: we have to check if there are more pages
+				// query for the results and get a handle to the returned HTML code
+				Document fetchedResults = Jsoup.connect( currentForwardLink ).get();
+				Elements foundLinks = fetchedResults.select( "a[href]" );
+				for( Element currentLink : foundLinks ) {
+					if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
+						linksToVisit.add( currentLink.attr( "abs:href" ) );
+					}
+				}
+
+				// we have to check if there are more pages, and if there are more, we have to collect the links too
+				Elements forwardLink = fetchedResults.select( "a[href].forward" );
+				oldForwardLink = new String( currentForwardLink );
+				currentForwardLink = new String( forwardLink.attr( "abs:href" ) );
+			}
 
 			// remove link duplicates
 			HashSet< String > uniqueURLs = new HashSet< String >( linksToVisit );
+			Log.e( SearchLoader.TAG, String.format( "Searching for links finished. After removing duplicates we end with %d movies pages to parse.", uniqueURLs.size() ) );
 
 			// after we fetched the links for all of our episodes, start fetching information about the episodes
 			for( String currentURL : uniqueURLs ) {
@@ -100,7 +111,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				if( eposiodeImagePreviewNameMatcher.find() ) {
 					episodeImageName = "preview_" + eposiodeImagePreviewNameMatcher.group( 1 ) + ".jpg";
 				} else {
-					episodeImageName = UUID.randomUUID().toString() + ".jpg"; 
+					episodeImageName = UUID.randomUUID().toString() + ".jpg";
 				}
 
 				// combine the extracted episode image name with the storage path
