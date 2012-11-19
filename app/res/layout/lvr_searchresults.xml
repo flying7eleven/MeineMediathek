@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:mode="twoLine"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_episode_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
+        android:layout_marginTop="8dip"
+        android:textAppearance="?android:attr/textAppearanceListItem" />
+
+    <TextView
+        android:id="@+id/tv_episode_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>

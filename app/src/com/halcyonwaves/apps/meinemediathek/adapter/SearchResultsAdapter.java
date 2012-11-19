@@ -2,6 +2,7 @@ package com.halcyonwaves.apps.meinemediathek.adapter;
 
 import java.util.List;
 
+import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 
 import android.content.Context;
@@ -16,7 +17,7 @@ public class SearchResultsAdapter extends ArrayAdapter< SearchResultEntry > {
 	private final LayoutInflater mInflater;
 
 	public SearchResultsAdapter( Context context ) {
-		super( context, android.R.layout.simple_list_item_2 );
+		super( context, R.layout.lvr_searchresults );
 		this.mInflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 	}
 
@@ -32,14 +33,14 @@ public class SearchResultsAdapter extends ArrayAdapter< SearchResultEntry > {
 		View view;
 
 		if( convertView == null ) {
-			view = this.mInflater.inflate( android.R.layout.simple_list_item_2, parent, false );
+			view = this.mInflater.inflate( R.layout.lvr_searchresults, parent, false );
 		} else {
 			view = convertView;
 		}
 
 		SearchResultEntry item = getItem( position );
-		((TextView) view.findViewById( android.R.id.text1 )).setText( item.title );
-		((TextView) view.findViewById( android.R.id.text2 )).setText( item.description );
+		((TextView) view.findViewById( R.id.tv_episode_title )).setText( item.title );
+		((TextView) view.findViewById( R.id.tv_episode_description )).setText( item.description );
 
 		return view;
 	}
