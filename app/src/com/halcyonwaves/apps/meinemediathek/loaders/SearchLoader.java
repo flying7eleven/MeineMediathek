@@ -1,9 +1,17 @@
 package com.halcyonwaves.apps.meinemediathek.loaders;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
@@ -15,6 +23,7 @@ import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -84,14 +93,32 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
 				Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
 
-				foundTitles.add( new SearchResultEntry( epoisodeTitle.first().text(), episodeDescription.first().text() ) );
+				File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
+				File pictureFile = new File( storagePath, UUID.randomUUID().toString() + ".jpg" );
+				FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
+
+				URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
+				URLConnection imageUrlConnection = imageUrl.openConnection();
+				BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
+
+				byte[] buf = new byte[ 1024 ];
+				int n = 0;
+				while( (n = in.read( buf )) >= 0 ) {
+					pictureOutputStream.write( buf, 0, n );
+				}
+
+				pictureOutputStream.flush();
+				pictureOutputStream.close();
+				in.close();
+
+				foundTitles.add( new SearchResultEntry( epoisodeTitle.first().text(), episodeDescription.first().text(), pictureFile ) );
 
 			}
 
 		} catch( IOException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
 		}
-
+		
 		// return the list of found items
 		return foundTitles;
 	}

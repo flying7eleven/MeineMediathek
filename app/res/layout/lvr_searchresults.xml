@@ -3,22 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:mode="twoLine"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/tv_episode_title"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_episode_image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
         android:layout_marginTop="8dip"
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:src="@drawable/ic_launcher" />
 
-    <TextView
-        android:id="@+id/tv_episode_description"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:mode="twoLine"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_episode_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:layout_marginTop="8dip"
+            android:textAppearance="?android:attr/textAppearanceListItem" />
+
+        <TextView
+            android:id="@+id/tv_episode_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
 
 </LinearLayout>
