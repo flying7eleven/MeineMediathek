@@ -10,10 +10,12 @@ import android.util.Log;
 public class SearchLoader extends AsyncTaskLoader< List< String > > {
 
 	private List< String > searchResults = null;
+	private String searchFor = null;
 	private static final String TAG = "SearchLoader";
 
-	public SearchLoader( Context context ) {
+	public SearchLoader( Context context, String searchFor ) {
 		super( context );
+		this.searchFor = searchFor;
 	}
 
 	@Override
@@ -31,11 +33,12 @@ public class SearchLoader extends AsyncTaskLoader< List< String > > {
 
 	@Override
 	public List< String > loadInBackground() {
+		Log.v( SearchLoader.TAG, "Starting to load data for the following search query: " + this.searchFor );
+
 		List< String > returnList = new ArrayList< String >();
 		returnList.add( "First" );
 		returnList.add( "Second" );
 		returnList.add( "Third" );
-		Log.v( SearchLoader.TAG, "Loading the data in background was finished." );
 		return returnList;
 	}
 
@@ -43,7 +46,6 @@ public class SearchLoader extends AsyncTaskLoader< List< String > > {
 	public void deliverResult( List< String > results ) {
 		// a async query came in while the loader is stopped. We don't need the result.
 		if( this.isReset() ) {
-
 			if( results != null ) {
 				this.onReleaseResources( results );
 			}
@@ -54,7 +56,6 @@ public class SearchLoader extends AsyncTaskLoader< List< String > > {
 		// if the Loader is currently started, we can immediately deliver its results.
 		if( this.isStarted() ) {
 			super.deliverResult( results );
-			Log.v( SearchLoader.TAG, "The search results were delivered to the client!" );
 		}
 
 		// at this point we can release the resources associated with old object

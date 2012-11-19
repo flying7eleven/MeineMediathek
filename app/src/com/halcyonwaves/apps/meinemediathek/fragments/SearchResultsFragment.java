@@ -13,19 +13,14 @@ import android.util.Log;
 
 public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< String > > {
 
-	private final static String TAG = "SearchResultsFragment";
-	private String searchFor = "";
 	private SearchResultsAdapter searchResultsAdapter = null;
+	private final static String TAG = "SearchResultsFragment";
 
 	@Override
 	public void onActivityCreated( Bundle savedInstanceState ) {
 		super.onActivityCreated( savedInstanceState );
 
-		// get the supplied information from the intent which started this fragment
-		this.searchFor = this.getActivity().getIntent().getExtras().getString( "searchFor" );
-		Log.v( SearchResultsFragment.TAG, "The user is searching for: " + this.searchFor );
-
-		//
+		// initialize the adapter for fetching the data
 		this.searchResultsAdapter = new SearchResultsAdapter( this.getActivity() );
 		this.setListAdapter( this.searchResultsAdapter );
 
@@ -33,12 +28,18 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 		this.setListShown( false );
 
 		// prepare the loader. Either re-connect with an existing one, or start a new one.
-		this.getLoaderManager().initLoader( 0, null, this );
+		this.getLoaderManager().initLoader( 0, this.getActivity().getIntent().getExtras(), this );
 	}
 
 	@Override
 	public Loader< List< String >> onCreateLoader( int id, Bundle args ) {
-		return new SearchLoader( this.getActivity() ); // gets just called if there is no existing loader
+
+		// get the supplied information from the intent which started this fragment
+		final String searchFor = this.getActivity().getIntent().getExtras().getString( "searchFor" );
+		Log.v( SearchResultsFragment.TAG, "The user is searching for: " + searchFor );
+
+		// return the requested loader
+		return new SearchLoader( this.getActivity(), searchFor );
 	}
 
 	@Override
