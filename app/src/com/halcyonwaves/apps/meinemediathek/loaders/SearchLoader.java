@@ -4,14 +4,14 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
@@ -34,6 +34,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 	private static final String TAG = "SearchLoader";
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
+	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 
 	public SearchLoader( Context context, String searchFor ) {
 		super( context );
@@ -93,32 +94,49 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
 				Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
 
-				File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
-				File pictureFile = new File( storagePath, UUID.randomUUID().toString() + ".jpg" );
-				FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
-
-				URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
-				URLConnection imageUrlConnection = imageUrl.openConnection();
-				BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
-
-				byte[] buf = new byte[ 1024 ];
-				int n = 0;
-				while( (n = in.read( buf )) >= 0 ) {
-					pictureOutputStream.write( buf, 0, n );
+				// extract the unique name for the episode preview image
+				String episodeImageName = "preview_000000.jpg"; // TODO
+				Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
+				if( eposiodeImagePreviewNameMatcher.find() ) {
+					episodeImageName = "preview_" + eposiodeImagePreviewNameMatcher.group( 1 ) + ".jpg";
+				} else {
+					episodeImageName = UUID.randomUUID().toString() + ".jpg"; 
 				}
 
-				pictureOutputStream.flush();
-				pictureOutputStream.close();
-				in.close();
+				// combine the extracted episode image name with the storage path
+				File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
+				File pictureFile = new File( storagePath, episodeImageName );
 
+				// just download the preview image if it is not already cached
+				if( !pictureFile.exists() ) {
+					FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
+
+					URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
+					URLConnection imageUrlConnection = imageUrl.openConnection();
+					BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
+
+					byte[] buf = new byte[ 1024 ];
+					int n = 0;
+					while( (n = in.read( buf )) >= 0 ) {
+						pictureOutputStream.write( buf, 0, n );
+					}
+
+					pictureOutputStream.flush();
+					pictureOutputStream.close();
+					in.close();
+				}
+
+				// add all extracted information to our result entry representation
 				foundTitles.add( new SearchResultEntry( epoisodeTitle.first().text(), episodeDescription.first().text(), pictureFile ) );
 
 			}
 
+		} catch( SocketTimeoutException e ) {
+			Log.e( SearchLoader.TAG, "Failed to fetch the search results as a socket timedout.", e );
 		} catch( IOException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
 		}
-		
+
 		// return the list of found items
 		return foundTitles;
 	}
