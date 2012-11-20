@@ -3,5 +3,6 @@
     <string name="app_name">Meine Mediathek</string>
     <string name="btn_search">Search</string>
     <string name="et_hint_searchfortitle">Search for movie title</string>
+    <string name="acra_dialog_text">Unfortunately the application crashed. Please help me to fix this bug and report the error to me. Thank you!</string>
 
 </resources>
