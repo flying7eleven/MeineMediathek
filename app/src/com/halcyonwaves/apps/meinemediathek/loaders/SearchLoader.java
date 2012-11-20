@@ -37,7 +37,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
-	
+
 	private final int usedTimeoutInSeconds = 10;
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 
@@ -116,6 +116,17 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
 				Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
 				Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
+				Elements downloadLinks = currentEpisodeDoc.select( "a[href]" );
+
+				// try to extract the first ASX link
+				String downloadLinkText = "";
+				for( Element currentDownloadLinkElement : downloadLinks ) {
+					if( currentDownloadLinkElement.attr( "href" ).endsWith( ".asx" ) ) {
+						downloadLinkText = currentDownloadLinkElement.attr( "abs:href" );
+						Log.e( SearchLoader.TAG, "Download link: " + downloadLinkText );
+						break;
+					}
+				}
 
 				// extract the unique name for the episode preview image
 				String episodeImageName = "preview_000000.jpg"; // TODO
@@ -151,7 +162,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				}
 
 				// add all extracted information to our result entry representation
-				foundTitles.add( new SearchResultEntry( epoisodeTitle.first().text(), episodeDescription.first().text(), pictureFile ) );
+				foundTitles.add( new SearchResultEntry( epoisodeTitle.first().text(), episodeDescription.first().text(), pictureFile, downloadLinkText ) );
 
 			}
 
