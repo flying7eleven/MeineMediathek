@@ -4,9 +4,11 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +63,14 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 		Log.v( SearchLoader.TAG, "Starting to load data for the following search query: " + this.searchFor );
 
 		// be sure that the search keyword is well-formed
-		final String preparedSearchKeyword = TextUtils.htmlEncode( this.searchFor ); // TODO: i think its not working as expected
+		String preparedSearchKeyword = "";
+		try {
+			preparedSearchKeyword = URLEncoder.encode( this.searchFor, "utf-8" );
+		} catch( UnsupportedEncodingException e ) {
+			Log.e( SearchLoader.TAG, "Failed to to a proper URL encoding of the search keywords.", e );
+			ACRA.getErrorReporter().handleException( e );
+		}
+		Log.v( SearchLoader.TAG, "The keywords were URL encoded and are now represented as: " + preparedSearchKeyword );
 
 		// create the list we want to return
 		List< SearchResultEntry > foundTitles = new ArrayList< SearchResultEntry >();
