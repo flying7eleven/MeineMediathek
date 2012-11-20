@@ -27,7 +27,6 @@ import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.util.Log;
 
 public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
@@ -37,6 +36,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 	private static final String TAG = "SearchLoader";
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
+	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 
 	public SearchLoader( Context context, String searchFor ) {
@@ -87,7 +87,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				Log.e( SearchLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
 				// query for the results and get a handle to the returned HTML code
-				Document fetchedResults = Jsoup.connect( currentForwardLink ).get();
+				Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).get();
 				Elements foundLinks = fetchedResults.select( "a[href]" );
 				for( Element currentLink : foundLinks ) {
 					if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
@@ -109,7 +109,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 			for( String currentURL : uniqueURLs ) {
 
 				// download the website for the selected URL
-				Document currentEpisodeDoc = Jsoup.connect( currentURL ).get();
+				Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).get();
 
 				Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
 				Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
@@ -134,6 +134,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 					URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
 					URLConnection imageUrlConnection = imageUrl.openConnection();
+					imageUrlConnection.setRequestProperty( "User-Agent", SearchLoader.DESKTOP_USER_AGENT );
 					BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
 
 					byte[] buf = new byte[ 1024 ];
