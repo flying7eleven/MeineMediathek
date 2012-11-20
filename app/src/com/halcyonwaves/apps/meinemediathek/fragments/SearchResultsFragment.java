@@ -2,15 +2,19 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import java.util.List;
 
+import com.halcyonwaves.apps.meinemediathek.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
 import com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader;
 
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
 public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > > {
 
@@ -57,5 +61,21 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 	@Override
 	public void onLoaderReset( Loader< List< SearchResultEntry > > loader ) {
 		this.searchResultsAdapter.setData( null ); // clear the data in the adapter.
+	}
+
+	@Override
+	public void onListItemClick( ListView l, View v, int position, long id ) {
+		super.onListItemClick( l, v, position, id );
+
+		// get the item the user has selected
+		SearchResultEntry selectedResults = (SearchResultEntry) this.getListAdapter().getItem( position );
+
+		// open the activity which shows the details about the selected entry
+		Intent intent = new Intent( SearchResultsFragment.this.getActivity(), MovieOverviewActivity.class );
+		intent.putExtra( "title", selectedResults.title );
+		intent.putExtra( "description", selectedResults.description );
+		intent.putExtra( "downloadLink", selectedResults.downloadLink );
+		intent.putExtra( "previewImage", selectedResults.previewImage.getAbsolutePath() );
+		SearchResultsFragment.this.startActivity( intent );
 	}
 }

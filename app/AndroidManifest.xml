@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchResultsActivity" />
+        <activity android:name=".MovieOverviewActivity" />
         <activity
             android:name="org.acra.CrashReportDialog"
             android:excludeFromRecents="true"
