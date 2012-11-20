@@ -67,9 +67,9 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_download_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Download episode" />
-    
+        android:text="Download movie" />
+
 </LinearLayout>
