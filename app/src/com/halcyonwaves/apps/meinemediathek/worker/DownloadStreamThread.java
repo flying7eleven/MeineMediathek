@@ -15,6 +15,7 @@ import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class DownloadStreamThread extends Thread {
 	private String movieTitle = null;
 	private File outputFile = null;
 	private int usedTimeoutInSeconds = 10;
+	private Context threadContext = null;
 
 	private static final int NOTIFICATION_ID = 1;
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
@@ -36,6 +38,7 @@ public class DownloadStreamThread extends Thread {
 	public DownloadStreamThread( Context context, String downloadLink, String movieTitle ) {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
+		this.threadContext = context;
 		this.outputFile = context.getExternalFilesDir( Environment.DIRECTORY_MOVIES );
 
 		// prepare the notification for the download
@@ -124,6 +127,9 @@ public class DownloadStreamThread extends Thread {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
 			ACRA.getErrorReporter().handleException( e );
 		}
+
+		// ensure that the mediascanner sees the file we have added
+		MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
 
 		// we finished download the movie, change the notification again
 		this.notificationBuilder.setContentText( "Download complete" ).setProgress( 0, 0, false );
