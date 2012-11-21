@@ -2,8 +2,13 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import com.halcyonwaves.apps.meinemediathek.R;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +38,7 @@ public class MovieOverviewFragment extends Fragment {
 		this.tvMovieDescription = (TextView) v.findViewById( R.id.tv_movie_description_content );
 		this.ivPreviewImage = (ImageView) v.findViewById( R.id.iv_movie_preview_image );
 		this.btnDownloadMoview = (Button) v.findViewById( R.id.btn_download_movie );
-		
+
 		// set the download link we want to use
 		this.downloadLink = passedInformation.getString( "downloadLink" );
 
@@ -47,7 +52,31 @@ public class MovieOverviewFragment extends Fragment {
 
 			@Override
 			public void onClick( View v ) {
-				// TODO Auto-generated method stub
+				ConnectivityManager cm = (ConnectivityManager) MovieOverviewFragment.this.getActivity().getSystemService( Context.CONNECTIVITY_SERVICE );
+				NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+				if( activeNetwork.getType() != ConnectivityManager.TYPE_WIFI ) { // TODO: we have to deal with WiMAX too
+					// prepare a dialog asking the user he or she really wants to do the download on a mobile connection
+					AlertDialog.Builder builder = new AlertDialog.Builder( getActivity() );
+					builder.setMessage( R.string.dialog_msg_download_on_mobile ).setTitle( R.string.dialog_title_download_on_mobile ).setPositiveButton( android.R.string.yes, new DialogInterface.OnClickListener() {
+
+						public void onClick( DialogInterface dialog, int id ) {
+							// the user decided to start the download even on the mobile network, so do it
+							// TODO this
+						}
+					} ).setNegativeButton( android.R.string.no, new DialogInterface.OnClickListener() {
+
+						public void onClick( DialogInterface dialog, int id ) {
+							// the user said no, so do nothing here
+						}
+					} );
+
+					// show the dialog to the user
+					AlertDialog askUserDialog = builder.create();
+					askUserDialog.show();
+				} else {
+					// as the user is using Wifi, we can start the download without asking again
+					// TODO this
+				}
 
 			}
 		} );
