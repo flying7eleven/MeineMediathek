@@ -95,7 +95,7 @@ public class DownloadStreamThread extends Thread {
 			this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
 
 			// allocate a buffer we can use to store the movie data we've read
-			byte[] downloadBuffer = new byte[ 4096 ];
+			byte[] downloadBuffer = new byte[ 8192 ];
 			int comReadB = 0;
 
 			// read the whole movie
