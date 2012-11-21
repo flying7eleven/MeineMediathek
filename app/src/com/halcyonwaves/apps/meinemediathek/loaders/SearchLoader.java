@@ -123,7 +123,6 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				for( Element currentDownloadLinkElement : downloadLinks ) {
 					if( currentDownloadLinkElement.attr( "href" ).endsWith( ".asx" ) ) {
 						downloadLinkText = currentDownloadLinkElement.attr( "abs:href" );
-						Log.e( SearchLoader.TAG, "Download link: " + downloadLinkText );
 						break;
 					}
 				}

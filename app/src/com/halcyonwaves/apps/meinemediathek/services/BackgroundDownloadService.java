@@ -1,9 +1,12 @@
 package com.halcyonwaves.apps.meinemediathek.services;
 
+import java.io.File;
+
 import com.halcyonwaves.apps.meinemediathek.worker.DownloadStreamThread;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -29,7 +32,9 @@ public class BackgroundDownloadService extends Service {
 		// TODO: this
 
 		// do the actual download in a separate thread
-		new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle ).start();
+		File storagePath = this.getApplicationContext().getExternalFilesDir( Environment.DIRECTORY_MOVIES );
+		File movieFile = new File( storagePath, "test.wmv" );
+		new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle, movieFile.getAbsolutePath() ).start();
 
 		//
 		return START_STICKY;
