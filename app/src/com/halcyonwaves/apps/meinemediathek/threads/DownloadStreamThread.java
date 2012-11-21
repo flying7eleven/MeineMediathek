@@ -27,6 +27,7 @@ public class DownloadStreamThread extends Thread {
 	private File outputFile = null;
 	private int usedTimeoutInSeconds = 10;
 	private Context threadContext = null;
+	private static final int DOWNLOAD_BUFFER_SIZE = 1024 * 1024 * 2; // 2 MiB
 
 	private static final int NOTIFICATION_ID = 1;
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
@@ -95,7 +96,7 @@ public class DownloadStreamThread extends Thread {
 			this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
 
 			// allocate a buffer we can use to store the movie data we've read
-			byte[] downloadBuffer = new byte[ 8192 ];
+			byte[] downloadBuffer = new byte[ DownloadStreamThread.DOWNLOAD_BUFFER_SIZE ];
 			int comReadB = 0;
 
 			// read the whole movie
