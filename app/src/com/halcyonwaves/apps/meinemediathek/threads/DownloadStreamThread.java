@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 import android.app.NotificationManager;
@@ -27,7 +26,6 @@ public class DownloadStreamThread extends Thread {
 	private File outputFile = null;
 	private int usedTimeoutInSeconds = 10;
 	private Context threadContext = null;
-	private static final int DOWNLOAD_BUFFER_SIZE = 1024 * 1024 * 1; // 1 MiB
 
 	private static final int NOTIFICATION_ID = 1;
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
@@ -95,11 +93,18 @@ public class DownloadStreamThread extends Thread {
 			this.notificationBuilder.setProgress( movieFullLength, 0, false );
 			this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
 
-			// allocate a buffer we can use to store the movie data we've read
-			byte[] downloadBuffer = new byte[ DownloadStreamThread.DOWNLOAD_BUFFER_SIZE ];
-			int comReadB = 0;
+			// select the buffer which is the best for the estimated file size
+			byte[] downloadBuffer = null;
+			if( movieFullLength < (1024 * 1024 * 10) ) { // if the file is smaller than 10 MB,
+				downloadBuffer = new byte[ 1024 * 256 ]; // use a 256k buffer
+			} else if( movieFullLength < (1024 * 1024 * 100) ) { // if the file is smaller than 100 MB,
+				downloadBuffer = new byte[ 1024 * 512 ]; // use a 512k buffer
+			} else { // if the file is bigger than 100MB
+				downloadBuffer = new byte[ 1024 * 1024 * 1 ]; // use a 1MB buffer
+			}
 
 			// read the whole movie
+			int comReadB = 0;
 			while( comReadB < movieFullLength ) {
 				// get a data chunk
 				final int readB = mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
