@@ -1,11 +1,13 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import com.halcyonwaves.apps.meinemediathek.R;
+import com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -25,6 +27,13 @@ public class MovieOverviewFragment extends Fragment {
 	private ImageView ivPreviewImage = null;
 	private Button btnDownloadMoview = null;
 	private String downloadLink = "";
+
+	private void startEpisodeDownload() {
+		Intent serviceIntent = new Intent( this.getActivity(), BackgroundDownloadService.class );
+		serviceIntent.putExtra( "downloadLink", this.downloadLink );
+		serviceIntent.putExtra( "movieTitle", this.tvMovieTitle.getText().toString() );
+		this.getActivity().startService( serviceIntent );
+	}
 
 	@Override
 	public View onCreateView( final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState ) {
@@ -61,7 +70,7 @@ public class MovieOverviewFragment extends Fragment {
 
 						public void onClick( DialogInterface dialog, int id ) {
 							// the user decided to start the download even on the mobile network, so do it
-							// TODO this
+							MovieOverviewFragment.this.startEpisodeDownload();
 						}
 					} ).setNegativeButton( android.R.string.no, new DialogInterface.OnClickListener() {
 
@@ -75,7 +84,7 @@ public class MovieOverviewFragment extends Fragment {
 					askUserDialog.show();
 				} else {
 					// as the user is using Wifi, we can start the download without asking again
-					// TODO this
+					MovieOverviewFragment.this.startEpisodeDownload();
 				}
 
 			}

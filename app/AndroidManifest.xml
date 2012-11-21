@@ -20,6 +20,8 @@
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@android:style/Theme.Holo" >
+        <service android:name=".services.BackgroundDownloadService" />
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/app_name" >
