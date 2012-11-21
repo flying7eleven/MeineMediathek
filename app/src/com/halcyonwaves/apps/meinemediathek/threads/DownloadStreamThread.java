@@ -1,4 +1,4 @@
-package com.halcyonwaves.apps.meinemediathek.worker;
+package com.halcyonwaves.apps.meinemediathek.threads;
 
 import java.io.File;
 import java.io.FileOutputStream;

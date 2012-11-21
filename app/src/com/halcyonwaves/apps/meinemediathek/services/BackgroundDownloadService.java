@@ -2,7 +2,7 @@ package com.halcyonwaves.apps.meinemediathek.services;
 
 import java.io.File;
 
-import com.halcyonwaves.apps.meinemediathek.worker.DownloadStreamThread;
+import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
 
 import android.app.Service;
 import android.content.Intent;
