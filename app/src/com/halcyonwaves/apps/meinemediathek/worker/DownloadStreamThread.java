@@ -15,6 +15,7 @@ import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -32,10 +33,10 @@ public class DownloadStreamThread extends Thread {
 	private NotificationManager notificationManager = null;
 	private NotificationCompat.Builder notificationBuilder = null;
 
-	public DownloadStreamThread( Context context, String downloadLink, String movieTitle, String outoutFile ) {
+	public DownloadStreamThread( Context context, String downloadLink, String movieTitle ) {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
-		this.outputFile = new File( outoutFile );
+		this.outputFile = context.getExternalFilesDir( Environment.DIRECTORY_MOVIES );
 
 		// prepare the notification for the download
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
@@ -59,6 +60,16 @@ public class DownloadStreamThread extends Thread {
 				Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
 				if( currentLink.attr( "href" ).startsWith( "mms://" ) ) {
 					extractedURL = currentLink.attr( "href" );
+					String[] splittedURL = extractedURL.split( "/" );
+					if( splittedURL.length > 0 ) {
+						if( splittedURL[ splittedURL.length - 1 ].endsWith( "wmv" ) ) {
+							this.outputFile = new File( this.outputFile, splittedURL[ splittedURL.length - 1 ] );
+						} else {
+							this.outputFile = new File( this.outputFile, "test.wmv" );
+						}
+					} else {
+						this.outputFile = new File( this.outputFile, "test.wmv" );
+					}
 					break;
 				}
 			}
@@ -71,7 +82,7 @@ public class DownloadStreamThread extends Thread {
 		//
 		try {
 			final MMSInputStream mmsInputStream = new MMSInputStream( extractedURL );
-			
+
 			// get a output stream
 			FileOutputStream outputStream = new FileOutputStream( this.outputFile );
 

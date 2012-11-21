@@ -32,9 +32,7 @@ public class BackgroundDownloadService extends Service {
 		// TODO: this
 
 		// do the actual download in a separate thread
-		File storagePath = this.getApplicationContext().getExternalFilesDir( Environment.DIRECTORY_MOVIES );
-		File movieFile = new File( storagePath, "test.wmv" );
-		new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle, movieFile.getAbsolutePath() ).start();
+		new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle ).start();
 
 		//
 		return START_STICKY;
