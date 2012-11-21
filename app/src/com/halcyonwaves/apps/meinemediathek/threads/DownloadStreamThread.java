@@ -27,7 +27,7 @@ public class DownloadStreamThread extends Thread {
 	private File outputFile = null;
 	private int usedTimeoutInSeconds = 10;
 	private Context threadContext = null;
-	private static final int DOWNLOAD_BUFFER_SIZE = 1024 * 1024 * 2; // 2 MiB
+	private static final int DOWNLOAD_BUFFER_SIZE = 1024 * 1024 * 1; // 1 MiB
 
 	private static final int NOTIFICATION_ID = 1;
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
@@ -111,11 +111,9 @@ public class DownloadStreamThread extends Thread {
 				outputStream.write( downloadBuffer, 0, readB );
 				comReadB += readB;
 
-				// update the notification bar entry every 20th round
-				if( 0 == (comReadB % (downloadBuffer.length * 20)) ) {
-					this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
-					this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
-				}
+				// update the notification bar entry
+				this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
+				this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
 			}
 
 			// close all opened streams
