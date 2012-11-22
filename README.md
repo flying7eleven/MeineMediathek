@@ -25,6 +25,13 @@ For building the application by yourself follow the following steps:
   6. Build the application :)
 
 ## Changelog
+### Version 0.0.2 *(2012-11-XX)* - [Changes][100]
+* Made all texts translateable
+* An ongoing download can now be canceled
+* Added a license agreement for the first start of the application
+* The download buffer size will vary according to the estimated file size of the movie which should be downloaded
+* Removed the use of the ACRA library (since the Play Store is used now)
+* Made the application available in the Google Play Store
 
 ### Version 0.0.1 *(2012-11-20)*
 * First version which is able to download a stream from [ZDF Mediathek][4]
@@ -33,3 +40,4 @@ For building the application by yourself follow the following steps:
  [2]: http://www.eclipse.org/
  [3]: http://developer.android.com/tools/sdk/ndk/index.html
  [4]: http://www.zdf.de/ZDFmediathek/hauptnavigation/startseite?flash=off
+ [100]: https://github.com/thuetz/MeineMediathek/compare/v0.0.1...v0.0.2 
