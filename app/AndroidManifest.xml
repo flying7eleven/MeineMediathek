@@ -33,12 +33,6 @@
         </activity>
         <activity android:name=".SearchResultsActivity" />
         <activity android:name=".MovieOverviewActivity" />
-        <activity
-            android:name="org.acra.CrashReportDialog"
-            android:excludeFromRecents="true"
-            android:finishOnTaskLaunch="true"
-            android:launchMode="singleInstance"
-            android:theme="@android:style/Theme.Holo.Dialog" />
     </application>
 
 </manifest>

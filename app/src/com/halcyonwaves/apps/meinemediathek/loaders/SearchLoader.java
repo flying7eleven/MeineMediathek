@@ -16,7 +16,6 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.acra.ACRA;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -70,7 +69,6 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 			preparedSearchKeyword = URLEncoder.encode( this.searchFor, "utf-8" );
 		} catch( UnsupportedEncodingException e ) {
 			Log.e( SearchLoader.TAG, "Failed to to a proper URL encoding of the search keywords.", e );
-			ACRA.getErrorReporter().handleException( e );
 		}
 		Log.v( SearchLoader.TAG, "The keywords were URL encoded and are now represented as: " + preparedSearchKeyword );
 
@@ -167,10 +165,8 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 		} catch( SocketTimeoutException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results as a socket timedout.", e );
-			ACRA.getErrorReporter().handleException( e );
 		} catch( IOException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
-			ACRA.getErrorReporter().handleException( e );
 		}
 
 		// return the list of found items
