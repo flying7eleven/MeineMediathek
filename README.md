@@ -20,9 +20,8 @@ For building the application by yourself follow the following steps:
           cd app
           $NDK_ROOT_DIR/ndk-build
 
-  4. Create an Android project for each submodule using the `Android Project from Existing Code` function of Eclipse
-  5. Create an Android project for the actual application (using the `Android Project from Existing Code` function of Eclipse)
-  6. Build the application :)
+  4. Create an Android project for the actual application (using the `Android Project from Existing Code` function of Eclipse)
+  5. Build the application :)
 
 ## Changelog
 ### Version 0.0.2 *(2012-11-XX)* - [Changes][100]
