@@ -26,7 +26,7 @@ For building the application by yourself follow the following steps:
 
 ## Changelog
 
-### Version 0.0.2 *(2012-11-20)*
+### Version 0.0.1 *(2012-11-20)*
 * First version which is able to download a stream from [ZDF Mediathek][4]
 
  [1]: https://play.google.com/store/apps/details?id=com.halcyonwaves.apps.meinemediathek
