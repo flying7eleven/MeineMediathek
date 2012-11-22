@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.halcyonwaves.apps.meinemediathek.R;
-import com.halcyonwaves.apps.meinemediathek.SearchResultsActivity;
+import com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity;
 
 public class MovieSearchFragment extends Fragment {
 

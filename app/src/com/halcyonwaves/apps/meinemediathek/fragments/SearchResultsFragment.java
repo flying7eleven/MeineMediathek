@@ -2,8 +2,8 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import java.util.List;
 
-import com.halcyonwaves.apps.meinemediathek.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
+import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
 import com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader;
 
