@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.halcyonwaves.apps.meinemediathek.ChangeLogDialog;
 import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity;
@@ -93,6 +94,10 @@ public class MovieSearchFragment extends Fragment {
 			final AlertDialog askUserDialog = builder.create();
 			askUserDialog.show();
 		}
+
+		//
+		ChangeLogDialog changelogDlg = new ChangeLogDialog( this.getActivity() );
+		changelogDlg.show();
 
 		// return the created view for the fragment
 		return v;
