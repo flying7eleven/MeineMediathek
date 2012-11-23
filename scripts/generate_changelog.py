@@ -1,10 +1,16 @@
 import re
 import markdown2
+from bs4 import BeautifulSoup as soup
 from argparse import ArgumentParser, ArgumentTypeError, FileType
 
-htmlPrefix = '<html><head><title>Changelog</title></head><body>'
-htmlPostfix = '</body></html>'
-d = re.compile( '\#\#\ Changelog' )
+htmlPrefix = '<?xml version="1.0" encoding="utf-8"?><changelog>'
+htmlPostfix = '</changelog>'
+
+# define some required regular expressions
+changelogMarkdownIdRegEx = re.compile( '\#\#\ Changelog' )
+versionNumberRegEx = re.compile( 'Version (\d\.\d\.?\d?)' )
+versionCodeRegEx = re.compile( 'Code: \<em\>(\d*)' )
+releaseDateRegEx = re.compile( 'Released on\: \<strong\>\<em\>(\d\d\d\d\-(\d\d|XX)-(\d\d|XX))' )
 
 if __name__ == '__main__':
 	# setup the argument parser and do the parsing
@@ -23,14 +29,31 @@ if __name__ == '__main__':
 
 	# extract just the changelog information
 	try:
-		startIter = d.finditer( text ).next()	
-		changelogText = text[startIter.start():]
+		startIter = changelogMarkdownIdRegEx.finditer( text ).next()	
+		changelogText = text[startIter.end():]
 	except StopIteration:
 		print "Could not find the changelog information in the supplied file. Skipping!"
 		exit( -2 )
 
-	# convert the changelog into html and write it into the output file
-	buf = markdown2.markdown( changelogText )
+	# convert the changelog into html to get the links set correctly
+	htmlChangelog = markdown2.markdown( changelogText )
+	parsedHtml = soup( htmlChangelog )
+
+	# find the facts about the version numbers denoted in the file 
+	foundVersionNumbers = versionNumberRegEx.findall( htmlChangelog )
+	foundVersionCodes = versionCodeRegEx.findall( htmlChangelog )
+	foundReleaseDates = releaseDateRegEx.findall( htmlChangelog )
+	foundChangeLists = parsedHtml.find_all( 'ul' )
+
+	# generate the XML representation for the changelog
+	xmlChangelog = ''
+	for currentRelease in range( 0, len( foundVersionNumbers ) ):
+		xmlChangelog += '<release version="%s" versioncode="%s" releasedate="%s">' % ( foundVersionNumbers[ currentRelease ], foundVersionCodes[ currentRelease ], foundReleaseDates[ currentRelease ][ 0 ] )
+		for currentEntry in foundChangeLists[ currentRelease ].find_all( 'li' ):
+			xmlChangelog += '<change>%s</change>' % ( ''.join( currentEntry.findAll( text = True ) ) )
+		xmlChangelog += '</release>'
+
+	# write the XML file
 	parsedArguments.outputFile.write( htmlPrefix )
-	parsedArguments.outputFile.write( buf )
+	parsedArguments.outputFile.write( xmlChangelog )
 	parsedArguments.outputFile.write( htmlPostfix )
