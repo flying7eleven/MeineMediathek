@@ -9,8 +9,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
-
 import android.app.NotificationManager;
 import android.content.Context;
 import android.media.MediaScannerConnection;
@@ -18,22 +16,24 @@ import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
+
 public class DownloadStreamThread extends Thread {
 
+	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
+	private static final int NOTIFICATION_ID = 1;
+	private static final String TAG = "DownloadStreamThread";
 	private String downloadLink = null;
 	private String movieTitle = null;
-	private File outputFile = null;
-	private int usedTimeoutInSeconds = 10;
-	private Context threadContext = null;
 
-	private static final int NOTIFICATION_ID = 1;
-	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
-	private static final String TAG = "DownloadStreamThread";
-
-	private NotificationManager notificationManager = null;
 	private NotificationCompat.Builder notificationBuilder = null;
+	private NotificationManager notificationManager = null;
+	private File outputFile = null;
 
-	public DownloadStreamThread( Context context, String downloadLink, String movieTitle ) {
+	private Context threadContext = null;
+	private final int usedTimeoutInSeconds = 10;
+
+	public DownloadStreamThread( final Context context, final String downloadLink, final String movieTitle ) {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
@@ -55,13 +55,13 @@ public class DownloadStreamThread extends Thread {
 		// the first step is to parse the ASX file and to get the MMS stream URL to download the movie
 		String extractedURL = "";
 		try {
-			Document fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( DownloadStreamThread.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
-			Elements foundLinks = fetchedResults.select( "Ref[href]" );
-			for( Element currentLink : foundLinks ) {
+			final Document fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( DownloadStreamThread.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+			final Elements foundLinks = fetchedResults.select( "Ref[href]" );
+			for( final Element currentLink : foundLinks ) {
 				Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
 				if( currentLink.attr( "href" ).startsWith( "mms://" ) ) {
 					extractedURL = currentLink.attr( "href" );
-					String[] splittedURL = extractedURL.split( "/" );
+					final String[] splittedURL = extractedURL.split( "/" );
 					if( splittedURL.length > 0 ) {
 						if( splittedURL[ splittedURL.length - 1 ].endsWith( "wmv" ) ) {
 							this.outputFile = new File( this.outputFile, splittedURL[ splittedURL.length - 1 ] );
@@ -75,7 +75,7 @@ public class DownloadStreamThread extends Thread {
 				}
 			}
 
-		} catch( IOException e ) {
+		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
 		}
 
@@ -84,10 +84,10 @@ public class DownloadStreamThread extends Thread {
 			final MMSInputStream mmsInputStream = new MMSInputStream( extractedURL );
 
 			// get a output stream
-			FileOutputStream outputStream = new FileOutputStream( this.outputFile );
+			final FileOutputStream outputStream = new FileOutputStream( this.outputFile );
 
 			// since we know the length of the full movie now, we can set the progress bar to a known state
-			int movieFullLength = mmsInputStream.length();
+			final int movieFullLength = mmsInputStream.length();
 			this.notificationBuilder.setProgress( movieFullLength, 0, false );
 			this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
 
@@ -125,7 +125,7 @@ public class DownloadStreamThread extends Thread {
 			outputStream.close();
 			mmsInputStream.close();
 
-		} catch( IOException e ) {
+		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
 		}
 

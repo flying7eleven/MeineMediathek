@@ -1,10 +1,9 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
-import com.halcyonwaves.apps.meinemediathek.R;
-import com.halcyonwaves.apps.meinemediathek.R.layout;
-
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.halcyonwaves.apps.meinemediathek.R;
 
 public class MovieOverviewActivity extends Activity {
 

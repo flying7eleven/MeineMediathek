@@ -31,8 +31,8 @@ public class MovieSearchFragment extends Fragment {
 		this.btnSearch.setOnClickListener( new OnClickListener() {
 
 			@Override
-			public void onClick( View v ) {
-				Intent intent = new Intent( MovieSearchFragment.this.getActivity(), SearchResultsActivity.class );
+			public void onClick( final View v ) {
+				final Intent intent = new Intent( MovieSearchFragment.this.getActivity(), SearchResultsActivity.class );
 				intent.putExtra( "searchFor", MovieSearchFragment.this.etTitleToSearchFor.getText().toString() );
 				MovieSearchFragment.this.startActivity( intent );
 			}

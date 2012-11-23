@@ -1,29 +1,26 @@
 package com.halcyonwaves.apps.meinemediathek.services;
 
-import java.io.File;
-
-import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
-
 import android.app.Service;
 import android.content.Intent;
-import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
 
 public class BackgroundDownloadService extends Service {
 
 	private static final String TAG = "BackgroundDownloadService";
 
 	@Override
-	public IBinder onBind( Intent intent ) {
+	public IBinder onBind( final Intent intent ) {
 		return null;
 	}
 
 	@Override
-	public int onStartCommand( Intent intent, int flags, int startid ) {
+	public int onStartCommand( final Intent intent, final int flags, final int startid ) {
 		// get some required information to starting the download
-		String episodeTitle = intent.getExtras().getString( "movieTitle" );
-		String downlaodURL = intent.getExtras().getString( "downloadLink" );
+		final String episodeTitle = intent.getExtras().getString( "movieTitle" );
+		final String downlaodURL = intent.getExtras().getString( "downloadLink" );
 
 		// just log the event that we received a download request
 		Log.d( BackgroundDownloadService.TAG, "Service started with request to download following URL: " + downlaodURL );
@@ -35,7 +32,7 @@ public class BackgroundDownloadService extends Service {
 		new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle ).start();
 
 		//
-		return START_STICKY;
+		return Service.START_STICKY;
 	}
 
 }

@@ -1,16 +1,15 @@
 package com.halcyonwaves.apps.meinemediathek;
 
 import java.io.File;
-import java.util.List;
 
 public class SearchResultEntry {
 
-	public final String title;
 	public final String description;
-	public final File previewImage;
 	public final String downloadLink;
+	public final File previewImage;
+	public final String title;
 
-	public SearchResultEntry( String title, String description, File previewImage, String downloadLink ) {
+	public SearchResultEntry( final String title, final String description, final File previewImage, final String downloadLink ) {
 		this.title = title;
 		this.description = description;
 		this.previewImage = previewImage;

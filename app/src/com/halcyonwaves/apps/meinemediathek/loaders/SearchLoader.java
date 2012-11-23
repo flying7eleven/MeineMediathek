@@ -21,40 +21,49 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
-
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
+import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 
-	private List< SearchResultEntry > searchResults = null;
-	private String searchFor = null;
-	private static final String TAG = "SearchLoader";
+public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
+	private static final String TAG = "SearchLoader";
 
-	private final int usedTimeoutInSeconds = 10;
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
+	private String searchFor = null;
 
-	public SearchLoader( Context context, String searchFor ) {
+	private List< SearchResultEntry > searchResults = null;
+	private final int usedTimeoutInSeconds = 10;
+
+	public SearchLoader( final Context context, final String searchFor ) {
 		super( context );
 		this.searchFor = searchFor;
 	}
 
 	@Override
-	protected void onStartLoading() {
-		// bugfix for this issue:
-		// http://code.google.com/p/android/issues/detail?id=14944
-		// http://blog.blundell-apps.com/tut-asynctask-loader-using-support-library/
-		super.onStartLoading();
-		if( null != this.searchResults ) {
-			this.deliverResult( this.searchResults );
-		} else {
-			this.forceLoad();
+	public void deliverResult( final List< SearchResultEntry > results ) {
+		// a async query came in while the loader is stopped. We don't need the result.
+		if( this.isReset() ) {
+			if( results != null ) {
+				this.onReleaseResources( results );
+			}
+		}
+		final List< SearchResultEntry > oldResults = results;
+		this.searchResults = results;
+
+		// if the Loader is currently started, we can immediately deliver its results.
+		if( this.isStarted() ) {
+			super.deliverResult( results );
+		}
+
+		// at this point we can release the resources associated with old object
+		if( oldResults != null ) {
+			this.onReleaseResources( oldResults );
 		}
 	}
 
@@ -67,18 +76,18 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 		String preparedSearchKeyword = "";
 		try {
 			preparedSearchKeyword = URLEncoder.encode( this.searchFor, "utf-8" );
-		} catch( UnsupportedEncodingException e ) {
+		} catch( final UnsupportedEncodingException e ) {
 			Log.e( SearchLoader.TAG, "Failed to to a proper URL encoding of the search keywords.", e );
 		}
 		Log.v( SearchLoader.TAG, "The keywords were URL encoded and are now represented as: " + preparedSearchKeyword );
 
 		// create the list we want to return
-		List< SearchResultEntry > foundTitles = new ArrayList< SearchResultEntry >();
+		final List< SearchResultEntry > foundTitles = new ArrayList< SearchResultEntry >();
 
 		// try to download the response of the webpage to the search query
 		try {
 			// create a list with the URLs we have to visit
-			List< String > linksToVisit = new ArrayList< String >();
+			final List< String > linksToVisit = new ArrayList< String >();
 
 			// loop throgh all search result pages
 			String oldForwardLink = "";
@@ -87,38 +96,38 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				Log.e( SearchLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
 				// query for the results and get a handle to the returned HTML code
-				Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
-				Elements foundLinks = fetchedResults.select( "a[href]" );
-				for( Element currentLink : foundLinks ) {
+				final Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				final Elements foundLinks = fetchedResults.select( "a[href]" );
+				for( final Element currentLink : foundLinks ) {
 					if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
 						linksToVisit.add( currentLink.attr( "abs:href" ) );
 					}
 				}
 
 				// we have to check if there are more pages, and if there are more, we have to collect the links too
-				Elements forwardLink = fetchedResults.select( "a[href].forward" );
+				final Elements forwardLink = fetchedResults.select( "a[href].forward" );
 				oldForwardLink = new String( currentForwardLink );
 				currentForwardLink = new String( forwardLink.attr( "abs:href" ) );
 			}
 
 			// remove link duplicates
-			HashSet< String > uniqueURLs = new HashSet< String >( linksToVisit );
+			final HashSet< String > uniqueURLs = new HashSet< String >( linksToVisit );
 			Log.e( SearchLoader.TAG, String.format( "Searching for links finished. After removing duplicates we end with %d movies pages to parse.", uniqueURLs.size() ) );
 
 			// after we fetched the links for all of our episodes, start fetching information about the episodes
-			for( String currentURL : uniqueURLs ) {
+			for( final String currentURL : uniqueURLs ) {
 
 				// download the website for the selected URL
-				Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				final Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 
-				Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
-				Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
-				Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
-				Elements downloadLinks = currentEpisodeDoc.select( "a[href]" );
+				final Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
+				final Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
+				final Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
+				final Elements downloadLinks = currentEpisodeDoc.select( "a[href]" );
 
 				// try to extract the first ASX link
 				String downloadLinkText = "";
-				for( Element currentDownloadLinkElement : downloadLinks ) {
+				for( final Element currentDownloadLinkElement : downloadLinks ) {
 					if( currentDownloadLinkElement.attr( "href" ).endsWith( ".asx" ) ) {
 						downloadLinkText = currentDownloadLinkElement.attr( "abs:href" );
 						break;
@@ -127,7 +136,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 				// extract the unique name for the episode preview image
 				String episodeImageName = "preview_000000.jpg"; // TODO
-				Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
+				final Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
 				if( eposiodeImagePreviewNameMatcher.find() ) {
 					episodeImageName = "preview_" + eposiodeImagePreviewNameMatcher.group( 1 ) + ".jpg";
 				} else {
@@ -135,19 +144,19 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				}
 
 				// combine the extracted episode image name with the storage path
-				File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
-				File pictureFile = new File( storagePath, episodeImageName );
+				final File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
+				final File pictureFile = new File( storagePath, episodeImageName );
 
 				// just download the preview image if it is not already cached
 				if( !pictureFile.exists() ) {
-					FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
+					final FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
 
-					URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
-					URLConnection imageUrlConnection = imageUrl.openConnection();
+					final URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
+					final URLConnection imageUrlConnection = imageUrl.openConnection();
 					imageUrlConnection.setRequestProperty( "User-Agent", SearchLoader.DESKTOP_USER_AGENT );
-					BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
+					final BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
 
-					byte[] buf = new byte[ 1024 ];
+					final byte[] buf = new byte[ 1024 ];
 					int n = 0;
 					while( (n = in.read( buf )) >= 0 ) {
 						pictureOutputStream.write( buf, 0, n );
@@ -163,9 +172,9 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 			}
 
-		} catch( SocketTimeoutException e ) {
+		} catch( final SocketTimeoutException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results as a socket timedout.", e );
-		} catch( IOException e ) {
+		} catch( final IOException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
 		}
 
@@ -173,30 +182,21 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 		return foundTitles;
 	}
 
-	@Override
-	public void deliverResult( List< SearchResultEntry > results ) {
-		// a async query came in while the loader is stopped. We don't need the result.
-		if( this.isReset() ) {
-			if( results != null ) {
-				this.onReleaseResources( results );
-			}
-		}
-		List< SearchResultEntry > oldResults = results;
-		this.searchResults = results;
-
-		// if the Loader is currently started, we can immediately deliver its results.
-		if( this.isStarted() ) {
-			super.deliverResult( results );
-		}
-
-		// at this point we can release the resources associated with old object
-		if( oldResults != null ) {
-			this.onReleaseResources( oldResults );
-		}
+	protected void onReleaseResources( final List< SearchResultEntry > apps ) {
+		// for a simple List<> there is nothing to do. For something
 	}
 
-	protected void onReleaseResources( List< SearchResultEntry > apps ) {
-		// for a simple List<> there is nothing to do. For something
+	@Override
+	protected void onStartLoading() {
+		// bugfix for this issue:
+		// http://code.google.com/p/android/issues/detail?id=14944
+		// http://blog.blundell-apps.com/tut-asynctask-loader-using-support-library/
+		super.onStartLoading();
+		if( null != this.searchResults ) {
+			this.deliverResult( this.searchResults );
+		} else {
+			this.forceLoad();
+		}
 	}
 
 }
