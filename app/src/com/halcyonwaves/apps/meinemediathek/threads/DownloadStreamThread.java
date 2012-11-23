@@ -10,13 +10,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.halcyonwaves.apps.meinemediathek.R;
+import com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity;
+import com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 public class DownloadStreamThread extends Thread {
@@ -44,6 +48,12 @@ public class DownloadStreamThread extends Thread {
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
 		this.notificationBuilder = new NotificationCompat.Builder( context );
 		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) ).setContentText( context.getString( R.string.not_desc_download_of_movie ) ).setSmallIcon( android.R.drawable.stat_sys_download ).setOngoing( true );
+
+		// tell the notification what to do if it gets pressed
+		Intent notificationIntent = new Intent( context, ManageDownloadActivity.class );
+		notificationIntent.putExtra( "movieTitle", movieTitle );
+		PendingIntent contentIntent = PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
+		this.notificationBuilder.setContentIntent( contentIntent );
 
 	}
 
@@ -135,7 +145,7 @@ public class DownloadStreamThread extends Thread {
 		MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
 
 		// we finished download the movie, change the notification again
-		this.notificationBuilder.setContentText( "Download complete" ).setProgress( 0, 0, false );
+		this.notificationBuilder.setContentText( "Download complete" ).setOngoing( false ) .setProgress( 0, 0, false );
 		this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
 	}
 

@@ -32,6 +32,10 @@
         </activity>
         <activity android:name=".activities.SearchResultsActivity" />
         <activity android:name=".activities.MovieOverviewActivity" />
+        <activity
+            android:name=".activities.ManageDownloadActivity"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Dialog" />
     </application>
 
 </manifest>
