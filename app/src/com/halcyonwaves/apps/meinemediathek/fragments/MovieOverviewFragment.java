@@ -59,7 +59,7 @@ public class MovieOverviewFragment extends Fragment {
 				if( activeNetwork.getType() != ConnectivityManager.TYPE_WIFI ) { // TODO: we have to deal with WiMAX too
 					// prepare a dialog asking the user he or she really wants to do the download on a mobile connection
 					final AlertDialog.Builder builder = new AlertDialog.Builder( MovieOverviewFragment.this.getActivity() );
-					builder.setMessage( R.string.dialog_msg_download_on_mobile ).setTitle( R.string.dialog_title_download_on_mobile ).setPositiveButton( android.R.string.yes, new DialogInterface.OnClickListener() {
+					builder.setMessage( R.string.dlg_msg_download_on_mobile ).setTitle( R.string.dlg_title_download_on_mobile ).setPositiveButton( android.R.string.yes, new DialogInterface.OnClickListener() {
 
 						@Override
 						public void onClick( final DialogInterface dialog, final int id ) {
