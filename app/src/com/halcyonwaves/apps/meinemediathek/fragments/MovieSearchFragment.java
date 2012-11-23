@@ -50,7 +50,7 @@ public class MovieSearchFragment extends Fragment {
 			
 			// prepare a dialog asking the user he or she really wants to do the download on a mobile connection
 			final AlertDialog.Builder builder = new AlertDialog.Builder( MovieSearchFragment.this.getActivity() );
-			builder.setMessage( R.string.dlg_msg_download_on_mobile ).setTitle( R.string.dlg_title_download_on_mobile ).setPositiveButton( R.string.btn_agree, new DialogInterface.OnClickListener() {
+			builder.setMessage( R.string.dlg_msg_license ).setTitle( R.string.dlg_title_license ).setPositiveButton( R.string.btn_agree, new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick( final DialogInterface dialog, final int id ) {
@@ -67,11 +67,12 @@ public class MovieSearchFragment extends Fragment {
 						final Intent intent = new Intent( Intent.ACTION_VIEW );
 						intent.setData( Uri.parse( "market://details?id=com.halcyonwaves.apps.meinemediathek" ) );
 						MovieSearchFragment.this.startActivity( intent );
+						MovieSearchFragment.this.getActivity().finish();
 					} catch( final Exception e ) {
 						Log.e( MovieSearchFragment.TAG, "Failed to open the Google Play store to rate the application!" );
 					}
 				}
-			} );
+			} ).setCancelable( false );
 
 			// show the dialog to the user
 			final AlertDialog askUserDialog = builder.create();
