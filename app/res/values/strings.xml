@@ -17,4 +17,7 @@
     <string name="dlg_msg_license">This application was developed to support people watching their favorite  movies from the ZDF Mediathek while they have no internet access. It was NOT developed to download copy protected material and it is not intended to do so.\n\nThe content is provided by a third-party and you have to fulfill their license to be allowed to download their content.\n\nIf you aggree to use this app without trying to violate someones rights you are free to use it, otherwise go back to the Google Play Store and uninstall this app.</string>
     <string name="dlg_title_timeout">Timeout</string>
     <string name="dlg_msg_timeout">There was a request time out while fetching information from the content provider. Most of the time it will work if you go back and try it again.</string>
+    <string name="dlg_title_appcrash">MeineMediathek crashed</string>
+    <string name="dlg_msg_appcrash">Sorry, but it seems that there is a bug in the application which caused that it crashed right now. Please help me to fix this bug as soon as possible by sending me a crash report which (hopefully) helps me to locate the bug.\n\nWould you like to send me a bug report (via email)?</string>
+
 </resources>

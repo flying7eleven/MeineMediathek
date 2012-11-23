@@ -50,7 +50,9 @@ import android.app.Application;
 	// ReportField.USER_EMAIL
 	},
 	mode = ReportingInteractionMode.DIALOG,
-	resDialogText = R.string.app_name )
+	sendReportsInDevMode = false,
+	resDialogTitle = R.string.dlg_title_appcrash,
+	resDialogText = R.string.dlg_msg_appcrash )
 public class ApplicationEntryPoint extends Application {
 
 	@Override
