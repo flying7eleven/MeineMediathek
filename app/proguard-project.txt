@@ -10,6 +10,11 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
+# a rule prevending jsoup to crash
+-keep public class org.jsoup.** {
+public *;
+}
+
 #ACRA specifics
 # we need line numbers in our stack traces otherwise they are pretty useless
 -renamesourcefileattribute SourceFile
