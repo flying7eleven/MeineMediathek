@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".ApplicationEntryPoint"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
@@ -35,6 +36,12 @@
         <activity
             android:name=".activities.ManageDownloadActivity"
             android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity
+            android:name="org.acra.CrashReportDialog"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="true"
+            android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Holo.Dialog" />
     </application>
 
