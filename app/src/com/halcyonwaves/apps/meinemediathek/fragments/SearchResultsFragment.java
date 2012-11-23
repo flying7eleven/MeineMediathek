@@ -2,8 +2,11 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
@@ -70,6 +74,22 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 
 	@Override
 	public void onLoadFinished( final Loader< List< SearchResultEntry > > loader, final List< SearchResultEntry > data ) {
+		// if an socket exception occurred, show a message
+		if( ((SearchLoader) loader).socketTimeoutOccurred() ) {
+			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
+			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_timeout ) );
+			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_timeout ) );
+			alertDialogBuilder.setPositiveButton( android.R.string.ok, new OnClickListener() {
+
+				@Override
+				public void onClick( final DialogInterface dialog, final int which ) {
+					// nothing to do here
+
+				}
+			} );
+			alertDialogBuilder.create().show();
+		}
+
 		// set the new data in the adapter and show the list
 		this.searchResultsAdapter.setData( data );
 		if( this.isResumed() ) {

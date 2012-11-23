@@ -33,11 +33,12 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
 	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 	private static final String TAG = "SearchLoader";
-
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
-	private String searchFor = null;
 
+	private String searchFor = null;
 	private List< SearchResultEntry > searchResults = null;
+
+	private boolean socketException = false;
 	private final int usedTimeoutInSeconds = 10;
 
 	public SearchLoader( final Context context, final String searchFor ) {
@@ -174,6 +175,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 		} catch( final SocketTimeoutException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results as a socket timedout.", e );
+			this.socketException = true;
 		} catch( final IOException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
 		}
@@ -197,6 +199,10 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 		} else {
 			this.forceLoad();
 		}
+	}
+
+	public boolean socketTimeoutOccurred() {
+		return this.socketException;
 	}
 
 }
