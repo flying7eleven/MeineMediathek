@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <fragment
-        android:id="@+id/fragment_earchresults"
+        android:id="@+id/fragment_searchresults"
         android:name="com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
