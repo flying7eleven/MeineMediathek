@@ -2,8 +2,9 @@
 
     <string name="app_name">Meine Mediathek</string>
     <string name="btn_search">Search</string>
+    <string name="btn_download_movie">Download movie</string>
+    <string name="tv_movie_description">Description:</string>
     <string name="et_hint_searchfortitle">Search for movie title</string>
-    <string name="acra_dialog_text">Unfortunately the application crashed. Please help me to fix this bug and report the error to me. Thank you!</string>
     <string name="dialog_title_download_on_mobile">Are you sure?</string>
     <string name="dialog_msg_download_on_mobile">You are currently not using a WiFi connection. When downloading using a cellular connection high cost may be charged by your provider.\n\nDo you really want to download this file using a cellular connection?</string>
 </resources>
