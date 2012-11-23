@@ -27,10 +27,10 @@ import com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity;
 
 public class MovieSearchFragment extends Fragment {
 
-	private Button btnSearch = null;
-	private EditText etTitleToSearchFor = null;
-
 	private final static String TAG = "MovieSearchFragment";
+	private Button btnSearch = null;
+
+	private EditText etTitleToSearchFor = null;
 
 	@Override
 	public View onCreateView( final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState ) {
@@ -96,7 +96,7 @@ public class MovieSearchFragment extends Fragment {
 		}
 
 		//
-		ChangeLogDialog changelogDlg = new ChangeLogDialog( this.getActivity() );
+		final ChangeLogDialog changelogDlg = new ChangeLogDialog( this.getActivity() );
 		changelogDlg.show();
 
 		// return the created view for the fragment

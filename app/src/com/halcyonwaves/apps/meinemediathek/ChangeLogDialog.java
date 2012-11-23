@@ -57,9 +57,9 @@ public class ChangeLogDialog {
 
 		try {
 			//
-			XmlPullParserFactory xmlPullFactory = XmlPullParserFactory.newInstance();
+			final XmlPullParserFactory xmlPullFactory = XmlPullParserFactory.newInstance();
 			xmlPullFactory.setValidating( false );
-			XmlPullParser _xml = xmlPullFactory.newPullParser();
+			final XmlPullParser _xml = xmlPullFactory.newPullParser();
 			rawChangelog = this.rootActivity.getApplicationContext().getAssets().open( "xml/changelog.xml" );
 			_xml.setInput( rawChangelog, null );
 
@@ -80,7 +80,7 @@ public class ChangeLogDialog {
 		} finally {
 			try {
 				rawChangelog.close();
-			} catch( IOException e ) {
+			} catch( final IOException e ) {
 				// TODO: handle this
 			}
 		}
