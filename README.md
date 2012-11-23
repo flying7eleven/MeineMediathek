@@ -24,7 +24,7 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.0.2 (_2_) - *2012-11-XX* - [Changes][100]
+### Version 0.0.2 (Code: *2*, Released on: ***2012-11-XX***) - [Changes][100]
 * Made all texts translateable
 * An ongoing download can now be canceled
 * Added a license agreement for the first start of the application
@@ -32,7 +32,7 @@ For building the application by yourself follow the following steps:
 * Removed the use of the ACRA library (since the Play Store is used now)
 * Made the application available in the Google Play Store
 
-### Version 0.0.1 (_1_) - *2012-11-20*
+### Version 0.0.1 (Code: *1*, Released on: ***2012-11-20***)
 * First version which is able to download a stream from [ZDF Mediathek][4]
 
  [1]: https://play.google.com/store/apps/details?id=com.halcyonwaves.apps.meinemediathek
