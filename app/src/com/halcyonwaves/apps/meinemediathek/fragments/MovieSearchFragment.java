@@ -84,10 +84,10 @@ public class MovieSearchFragment extends Fragment {
 						final Intent intent = new Intent( Intent.ACTION_VIEW );
 						intent.setData( Uri.parse( "market://details?id=com.halcyonwaves.apps.meinemediathek" ) );
 						MovieSearchFragment.this.startActivity( intent );
-						MovieSearchFragment.this.getActivity().finish();
 					} catch( final Exception e ) {
 						Log.e( MovieSearchFragment.TAG, "Failed to open the Google Play store to rate the application!" );
 					}
+					MovieSearchFragment.this.getActivity().finish();
 				}
 			} ).setCancelable( false );
 
@@ -96,9 +96,11 @@ public class MovieSearchFragment extends Fragment {
 			askUserDialog.show();
 		}
 
-		//
-		final ChangeLogDialog changelogDlg = new ChangeLogDialog( this.getActivity() );
-		changelogDlg.show();
+		// just show the changelog if its not the first start, otherwise it wont be interesting for the user
+		else {
+			final ChangeLogDialog changelogDlg = new ChangeLogDialog( this.getActivity() );
+			changelogDlg.show();
+		}
 
 		// return the created view for the fragment
 		return v;
