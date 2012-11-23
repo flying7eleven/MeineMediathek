@@ -94,6 +94,9 @@ public class MovieSearchFragment extends Fragment {
 			// show the dialog to the user
 			final AlertDialog askUserDialog = builder.create();
 			askUserDialog.show();
+
+			// be sure that the changelog dialog won't pop up during the next application start
+			new ChangeLogDialog( this.getActivity() ).markDialogAsAlreadyDisplayed();
 		}
 
 		// just show the changelog if its not the first start, otherwise it wont be interesting for the user

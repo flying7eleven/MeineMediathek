@@ -114,16 +114,22 @@ public class ChangeLogDialog {
 		return _Result;
 	}
 
+	public void markDialogAsAlreadyDisplayed() {
+		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.rootActivity.getApplicationContext() );
+
+		//
+		Editor prefEditor = appPreferences.edit();
+		prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, this.getApplicationVersionCode() );
+		prefEditor.commit();
+		prefEditor = null;
+	}
+
 	public void show() {
 		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.rootActivity.getApplicationContext() );
 		final int lastTimeDisplayed = appPreferences.getInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, -1 );
 
 		if( lastTimeDisplayed < this.getApplicationVersionCode() ) {
-			//
-			Editor prefEditor = appPreferences.edit();
-			prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, this.getApplicationVersionCode() );
-			prefEditor.commit();
-			prefEditor = null;
+			this.markDialogAsAlreadyDisplayed();
 
 			//
 			final String changelogDialogTitle = "Changelog " + " v" + this.getApplicationVersion(); // TODO: resources
