@@ -3,5 +3,5 @@
     <issue id="HardcodedText" severity="error" />
     <issue id="IconExpectedSize" severity="warning" />
     <issue id="SdCardPath" severity="fatal" />
-    <issue id="UnusedIds" severity="warning" />
+    <issue id="UnusedIds" severity="ignore" />
 </lint>
