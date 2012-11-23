@@ -11,8 +11,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -44,6 +47,15 @@ public class ChangeLogDialog {
 			return packageInfo.versionName;
 		} catch( final NameNotFoundException e ) {
 			return "";
+		}
+	}
+
+	private int getApplicationVersionCode() {
+		try {
+			final PackageInfo packageInfo = this.rootActivity.getPackageManager().getPackageInfo( this.rootActivity.getPackageName(), 0 );
+			return packageInfo.versionCode;
+		} catch( final NameNotFoundException e ) {
+			return -1;
 		}
 	}
 
@@ -103,29 +115,41 @@ public class ChangeLogDialog {
 	}
 
 	public void show() {
-		final String changelogDialogTitle = "Changelog " + " v" + this.getApplicationVersion(); // TODO: resources
-		final String convertedHtmlChangelog = this.getHtmlChangelog();
+		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.rootActivity.getApplicationContext() );
+		final int lastTimeDisplayed = appPreferences.getInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, -1 );
 
-		// Get button strings
-		final String _Close = this.rootActivity.getString( android.R.string.ok );
+		if( lastTimeDisplayed < this.getApplicationVersionCode() ) {
+			//
+			Editor prefEditor = appPreferences.edit();
+			prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, this.getApplicationVersionCode() );
+			prefEditor.commit();
+			prefEditor = null;
 
-		// Could not load change log, message user and exit void
-		if( convertedHtmlChangelog.equals( "" ) ) {
-			Toast.makeText( this.rootActivity, "Could not load change log", Toast.LENGTH_SHORT ).show();
-			return;
-		}
+			//
+			final String changelogDialogTitle = "Changelog " + " v" + this.getApplicationVersion(); // TODO: resources
+			final String convertedHtmlChangelog = this.getHtmlChangelog();
 
-		// Create webview and load html
-		final WebView _WebView = new WebView( this.rootActivity );
-		_WebView.loadData( convertedHtmlChangelog, "text/html", "utf-8" );
-		final AlertDialog.Builder builder = new AlertDialog.Builder( this.rootActivity ).setTitle( changelogDialogTitle ).setView( _WebView ).setPositiveButton( _Close, new Dialog.OnClickListener() {
+			// Get button strings
+			final String _Close = this.rootActivity.getString( android.R.string.ok );
 
-			@Override
-			public void onClick( final DialogInterface dialogInterface, final int i ) {
-				dialogInterface.dismiss();
+			// Could not load change log, message user and exit void
+			if( convertedHtmlChangelog.equals( "" ) ) {
+				Toast.makeText( this.rootActivity, "Could not load change log", Toast.LENGTH_SHORT ).show();
+				return;
 			}
-		} );
-		builder.create().show();
+
+			// Create webview and load html
+			final WebView _WebView = new WebView( this.rootActivity );
+			_WebView.loadData( convertedHtmlChangelog, "text/html", "utf-8" );
+			final AlertDialog.Builder builder = new AlertDialog.Builder( this.rootActivity ).setTitle( changelogDialogTitle ).setView( _WebView ).setPositiveButton( _Close, new Dialog.OnClickListener() {
+
+				@Override
+				public void onClick( final DialogInterface dialogInterface, final int i ) {
+					dialogInterface.dismiss();
+				}
+			} );
+			builder.create().show();
+		}
 	}
 
 }
