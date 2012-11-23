@@ -32,7 +32,7 @@ public class ChangeLogDialog {
 
 	static final private String TAG = "ChangeLogDialog";
 
-	private final Activity rootActivity = null;
+	private Activity rootActivity = null;
 
 	public ChangeLogDialog( final Activity context ) {
 		this.rootActivity = context;
