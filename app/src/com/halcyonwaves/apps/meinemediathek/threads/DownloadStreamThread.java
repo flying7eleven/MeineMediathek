@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 public class DownloadStreamThread extends Thread {
@@ -42,7 +43,7 @@ public class DownloadStreamThread extends Thread {
 		// prepare the notification for the download
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
 		this.notificationBuilder = new NotificationCompat.Builder( context );
-		this.notificationBuilder.setContentTitle( "Download of " + this.movieTitle ).setContentText( "Download in progress" ).setSmallIcon( android.R.drawable.ic_menu_directions ); // TODO: translations
+		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) ).setContentText( context.getString( R.string.not_desc_download_of_movie ) ).setSmallIcon( android.R.drawable.ic_menu_directions );
 
 	}
 
