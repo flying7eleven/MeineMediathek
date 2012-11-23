@@ -16,6 +16,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.acra.ACRA;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -85,14 +86,16 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 		// create the list we want to return
 		final List< SearchResultEntry > foundTitles = new ArrayList< SearchResultEntry >();
 
+		//
+		String oldForwardLink = "";
+		String currentForwardLink = SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword;
+		
 		// try to download the response of the webpage to the search query
 		try {
 			// create a list with the URLs we have to visit
 			final List< String > linksToVisit = new ArrayList< String >();
 
 			// loop throgh all search result pages
-			String oldForwardLink = "";
-			String currentForwardLink = SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword;
 			while( !oldForwardLink.equalsIgnoreCase( currentForwardLink ) ) {
 				Log.v( SearchLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
@@ -178,6 +181,12 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 			this.socketException = true;
 		} catch( final IOException e ) {
 			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
+		} catch( final ExceptionInInitializerError e ) {
+			ACRA.getErrorReporter().putCustomData( "rawSearchKeyword", this.searchFor );
+			ACRA.getErrorReporter().putCustomData( "preparedSearchKeyword", preparedSearchKeyword );
+			ACRA.getErrorReporter().putCustomData( "oldForwardLink", oldForwardLink );
+			ACRA.getErrorReporter().putCustomData( "currentForwardLink", currentForwardLink );
+			ACRA.getErrorReporter().handleException( e );
 		}
 
 		// return the list of found items
