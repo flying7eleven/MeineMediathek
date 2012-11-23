@@ -27,12 +27,13 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
+import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 
 public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
-	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
+	
 	private static final String TAG = "SearchLoader";
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 
@@ -100,7 +101,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				Log.v( SearchLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
 				// query for the results and get a handle to the returned HTML code
-				final Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				final Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 				final Elements foundLinks = fetchedResults.select( "a[href]" );
 				for( final Element currentLink : foundLinks ) {
 					if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
@@ -122,7 +123,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 			for( final String currentURL : uniqueURLs ) {
 
 				// download the website for the selected URL
-				final Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( SearchLoader.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				final Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 
 				final Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
 				final Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
@@ -157,7 +158,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 					final URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
 					final URLConnection imageUrlConnection = imageUrl.openConnection();
-					imageUrlConnection.setRequestProperty( "User-Agent", SearchLoader.DESKTOP_USER_AGENT );
+					imageUrlConnection.setRequestProperty( "User-Agent", Consts.DESKTOP_USER_AGENT );
 					final BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
 
 					final byte[] buf = new byte[ 1024 ];

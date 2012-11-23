@@ -18,13 +18,13 @@ import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 public class DownloadStreamThread extends Thread {
 
-	private final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 	private static final int NOTIFICATION_ID = 1;
 	private static final String TAG = "DownloadStreamThread";
 	private String downloadLink = null;
@@ -65,7 +65,7 @@ public class DownloadStreamThread extends Thread {
 		// the first step is to parse the ASX file and to get the MMS stream URL to download the movie
 		String extractedURL = "";
 		try {
-			final Document fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( DownloadStreamThread.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+			final Document fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 			final Elements foundLinks = fetchedResults.select( "Ref[href]" );
 			for( final Element currentLink : foundLinks ) {
 				Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
