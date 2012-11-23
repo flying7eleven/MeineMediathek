@@ -1,6 +1,6 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -69,7 +69,7 @@ public class MovieSearchFragment extends Fragment {
 					// the user accepted the license, so store this in the application settings and proceed
 					Editor prefEditor = appPreferences.edit();
 					prefEditor.putBoolean( Consts.PREFERENCE_LICENSE_ACCEPTED, true );
-					prefEditor.putString( Consts.PREFERENCE_LICENSE_AGREEMENT_TIME, DateFormat.getDateTimeInstance( DateFormat.FULL, DateFormat.FULL, Locale.US ).format( new Date() ) );
+					prefEditor.putString( Consts.PREFERENCE_LICENSE_AGREEMENT_TIME, new SimpleDateFormat( "yyyy-MM-ddTHH:mm:ss.SSSZ", Locale.US ).format( new Date() ) );
 					prefEditor.commit();
 					prefEditor = null;
 
@@ -108,5 +108,4 @@ public class MovieSearchFragment extends Fragment {
 		// return the created view for the fragment
 		return v;
 	}
-
 }
