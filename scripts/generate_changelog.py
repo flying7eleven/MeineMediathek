@@ -3,7 +3,7 @@ import markdown2
 from bs4 import BeautifulSoup as soup
 from argparse import ArgumentParser, ArgumentTypeError, FileType
 
-htmlPrefix = '<?xml version="1.0" encoding="utf-8"?><changelog>'
+htmlPrefix = '<?xml version="1.0" encoding="utf-8"?>\n<changelog>\n'
 htmlPostfix = '</changelog>'
 
 # define some required regular expressions
@@ -48,10 +48,10 @@ if __name__ == '__main__':
 	# generate the XML representation for the changelog
 	xmlChangelog = ''
 	for currentRelease in range( 0, len( foundVersionNumbers ) ):
-		xmlChangelog += '<release version="%s" versioncode="%s" releasedate="%s">' % ( foundVersionNumbers[ currentRelease ], foundVersionCodes[ currentRelease ], foundReleaseDates[ currentRelease ][ 0 ] )
+		xmlChangelog += '<release version="%s" versioncode="%s" releasedate="%s">\n' % ( foundVersionNumbers[ currentRelease ], foundVersionCodes[ currentRelease ], foundReleaseDates[ currentRelease ][ 0 ] )
 		for currentEntry in foundChangeLists[ currentRelease ].find_all( 'li' ):
-			xmlChangelog += '<change>%s</change>' % ( ''.join( currentEntry.findAll( text = True ) ) )
-		xmlChangelog += '</release>'
+			xmlChangelog += '<change>%s</change>\n' % ( ''.join( currentEntry.findAll( text = True ) ) )
+		xmlChangelog += '</release>\n'
 
 	# write the XML file
 	parsedArguments.outputFile.write( htmlPrefix )
