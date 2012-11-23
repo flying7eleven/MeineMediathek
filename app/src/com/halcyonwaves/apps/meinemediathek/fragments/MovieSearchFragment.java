@@ -69,7 +69,7 @@ public class MovieSearchFragment extends Fragment {
 					// the user accepted the license, so store this in the application settings and proceed
 					Editor prefEditor = appPreferences.edit();
 					prefEditor.putBoolean( Consts.PREFERENCE_LICENSE_ACCEPTED, true );
-					prefEditor.putString( Consts.PREFERENCE_LICENSE_AGREEMENT_TIME, new SimpleDateFormat( "yyyy-MM-ddTHH:mm:ss.SSSZ", Locale.US ).format( new Date() ) );
+					prefEditor.putString( Consts.PREFERENCE_LICENSE_AGREEMENT_TIME, new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US ).format( new Date() ) );
 					prefEditor.commit();
 					prefEditor = null;
 
