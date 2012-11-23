@@ -13,4 +13,6 @@
     <string name="dlg_msg_download_on_mobile">You are currently not using a WiFi connection. When downloading using a cellular connection high cost may be charged by your provider.\n\nDo you really want to download this file using a cellular connection?</string>
     <string name="dlg_title_license">License</string>
     <string name="dlg_msg_license">This application was developed to support people watching their favorite  movies from the ZDF Mediathek while they have no internet access. It was NOT developed to download copy protected material and it is not intended to do so.\n\nThe content is provided by a third-party and you have to fulfill their license to be allowed to download their content.\n\nIf you aggree to use this app without trying to violate someones rights you are free to use it, otherwise go back to the Google Play Store and uninstall this app.</string>
+    <string name="dlg_title_timeout">Timeout</string>
+    <string name="dlg_msg_timeout">There was a request time out while fetching information from the content provider. Most of the time it will work if you go back and try it again.</string>
 </resources>
