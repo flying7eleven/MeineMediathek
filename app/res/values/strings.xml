@@ -7,6 +7,8 @@
     <string name="btn_download_movie">Download movie</string>
     <string name="tv_movie_description">Description:</string>
     <string name="et_hint_searchfortitle">Search for movie title</string>
+    <string name="btn_agree">Agree</string>
+    <string name="btn_disagree">Disagree</string>
     <string name="dialog_title_download_on_mobile">Are you sure?</string>
     <string name="dialog_msg_download_on_mobile">You are currently not using a WiFi connection. When downloading using a cellular connection high cost may be charged by your provider.\n\nDo you really want to download this file using a cellular connection?</string>
 </resources>
