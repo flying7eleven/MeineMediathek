@@ -3,6 +3,7 @@ package com.halcyonwaves.apps.meinemediathek.threads;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,6 +30,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 	private static final String TAG = "DownloadStreamThread";
 	private String downloadLink = null;
 	private String movieTitle = null;
+	private UUID DOWNLOAD_NOTIFICATION_FILE_ID = UUID.randomUUID();
 
 	private NotificationCompat.Builder notificationBuilder = null;
 	private NotificationManager notificationManager = null;
@@ -41,6 +43,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
+
 		this.outputFile = context.getExternalFilesDir( Environment.DIRECTORY_MOVIES );
 
 		// prepare the notification for the download
@@ -51,6 +54,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 		// tell the notification what to do if it gets pressed
 		final Intent notificationIntent = new Intent( context, ManageDownloadActivity.class );
 		notificationIntent.putExtra( "movieTitle", movieTitle );
+		notificationIntent.putExtra( "notificationDownloadId", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() );
 		final PendingIntent contentIntent = PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
 		this.notificationBuilder.setContentIntent( contentIntent );
 
@@ -58,9 +62,12 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 
 	@Override
 	protected Void doInBackground( Void... params ) {
+		//
+		Thread.currentThread().setName( String.format( "StreamDownloadTask(%s)", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() ) );
+
 		// since we currently don't know how big the file is, show a progress with an undefined state
 		this.notificationBuilder.setProgress( 100, 0, true );
-		this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+		this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 		// the first step is to parse the ASX file and to get the MMS stream URL to download the movie
 		String extractedURL = "";
@@ -99,7 +106,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 			// since we know the length of the full movie now, we can set the progress bar to a known state
 			final int movieFullLength = mmsInputStream.length();
 			this.notificationBuilder.setProgress( movieFullLength, 0, false );
-			this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// select the buffer which is the best for the estimated file size
 			byte[] downloadBuffer = null;
@@ -127,7 +134,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 
 				// update the notification bar entry
 				this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
-				this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+				this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 			}
 
 			// close all opened streams
@@ -145,8 +152,8 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 
 		// we finished download the movie, change the notification again
 		this.notificationBuilder.setContentText( "Download complete" ).setOngoing( false ).setProgress( 0, 0, false );
-		this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
-		
+		this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+
 		//
 		return null;
 	}

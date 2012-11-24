@@ -29,8 +29,7 @@ public class BackgroundDownloadService extends Service {
 		// TODO: this
 
 		// do the actual download in a separate thread
-		DownloadStreamAsyncTask downloadStreamTask = new DownloadStreamAsyncTask( this.getApplicationContext(), downlaodURL, episodeTitle );
-		downloadStreamTask.execute();
+		new DownloadStreamAsyncTask( this.getApplicationContext(), downlaodURL, episodeTitle ).execute();
 
 		//
 		return Service.START_STICKY;
