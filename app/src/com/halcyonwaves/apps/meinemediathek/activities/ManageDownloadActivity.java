@@ -2,11 +2,17 @@ package com.halcyonwaves.apps.meinemediathek.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.halcyonwaves.apps.meinemediathek.R;
 
 public class ManageDownloadActivity extends Activity {
+
+	private TextView movieTitle = null;
+	private Button cancelDownload = null;
 
 	@Override
 	protected void onCreate( final Bundle savedInstanceState ) {
@@ -19,8 +25,20 @@ public class ManageDownloadActivity extends Activity {
 		final Bundle intentExtras = this.getIntent().getExtras();
 
 		//
-		final TextView movieTitle = (TextView) this.findViewById( R.id.tv_movie_title_content );
-		movieTitle.setText( intentExtras.getString( "movieTitle" ) );
+		this.movieTitle = (TextView) this.findViewById( R.id.tv_movie_title_content );
+		this.movieTitle.setText( intentExtras.getString( "movieTitle" ) );
+
+		//
+		this.cancelDownload = (Button) this.findViewById( R.id.btn_cancel_download );
+		this.cancelDownload.setOnClickListener( new OnClickListener() {
+
+			@Override
+			public void onClick( View v ) {
+				// TODO: cancel the download
+				ManageDownloadActivity.this.finish();
+
+			}
+		} );
 	}
 
 }
