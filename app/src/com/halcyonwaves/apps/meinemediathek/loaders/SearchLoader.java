@@ -125,7 +125,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 				// download the website for the selected URL
 				final Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 
-				final Elements epoisodeTitle = currentEpisodeDoc.select( "div.beitrag > p.datum" );
+				final Elements epoisodeTitle = currentEpisodeDoc.select( "h1.beitragHeadline" );
 				final Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
 				final Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
 				final Elements downloadLinks = currentEpisodeDoc.select( "a[href]" );
