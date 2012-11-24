@@ -13,6 +13,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.halcyonwaves.apps.meinemediathek.ChangeLogDialog;
 import com.halcyonwaves.apps.meinemediathek.Consts;
@@ -32,6 +34,7 @@ public class MovieSearchFragment extends Fragment {
 	private Button btnSearch = null;
 
 	private EditText etTitleToSearchFor = null;
+	private TextView tvPlayerNotice = null;
 
 	@Override
 	public View onCreateView( final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState ) {
@@ -41,6 +44,10 @@ public class MovieSearchFragment extends Fragment {
 		// get the handles to the controls we have to access
 		this.btnSearch = (Button) v.findViewById( R.id.btn_search );
 		this.etTitleToSearchFor = (EditText) v.findViewById( R.id.et_searchfortitle );
+		this.tvPlayerNotice = (TextView) v.findViewById( R.id.tv_player_notice );
+
+		// make the links in the player notice clickable
+		this.tvPlayerNotice.setMovementMethod( LinkMovementMethod.getInstance() );
 
 		// set the behavior for the search button
 		this.btnSearch.setOnClickListener( new OnClickListener() {
