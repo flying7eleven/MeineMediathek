@@ -16,9 +16,14 @@ public class Consts {
 	 * This preference key stores the time when the user accepted the license (for legal purposes).
 	 */
 	public final static String PREFERENCE_LICENSE_AGREEMENT_TIME = "license.accepted.time";
-	
+
 	/**
 	 * This string is used as a user-agent string while requesting a website.
 	 */
 	public final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
+
+	/**
+	 * This constant is used to identify notifications which are used to show a onging download of a movie.
+	 */
+	public static final int NOTIFICATION_DOWNLOADING_MOVIE = 1;
 }

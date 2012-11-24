@@ -25,7 +25,6 @@ import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 public class DownloadStreamThread extends Thread {
 
-	private static final int NOTIFICATION_ID = 1;
 	private static final String TAG = "DownloadStreamThread";
 	private String downloadLink = null;
 	private String movieTitle = null;
@@ -60,7 +59,7 @@ public class DownloadStreamThread extends Thread {
 	public void run() {
 		// since we currently don't know how big the file is, show a progress with an undefined state
 		this.notificationBuilder.setProgress( 100, 0, true );
-		this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
+		this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 		// the first step is to parse the ASX file and to get the MMS stream URL to download the movie
 		String extractedURL = "";
@@ -99,7 +98,7 @@ public class DownloadStreamThread extends Thread {
 			// since we know the length of the full movie now, we can set the progress bar to a known state
 			final int movieFullLength = mmsInputStream.length();
 			this.notificationBuilder.setProgress( movieFullLength, 0, false );
-			this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
+			this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// select the buffer which is the best for the estimated file size
 			byte[] downloadBuffer = null;
@@ -127,7 +126,7 @@ public class DownloadStreamThread extends Thread {
 
 				// update the notification bar entry
 				this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
-				this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
+				this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 			}
 
 			// close all opened streams
@@ -145,7 +144,7 @@ public class DownloadStreamThread extends Thread {
 
 		// we finished download the movie, change the notification again
 		this.notificationBuilder.setContentText( "Download complete" ).setOngoing( false ).setProgress( 0, 0, false );
-		this.notificationManager.notify( this.downloadLink, DownloadStreamThread.NOTIFICATION_ID, this.notificationBuilder.build() );
+		this.notificationManager.notify( this.downloadLink, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 	}
 
 }
