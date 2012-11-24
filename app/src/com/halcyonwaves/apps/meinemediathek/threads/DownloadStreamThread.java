@@ -55,7 +55,7 @@ public class DownloadStreamThread extends Thread {
 		notificationIntent.putExtra( "movieTitle", movieTitle );
 		notificationIntent.putExtra( "notificationDownloadId", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() );
 		final PendingIntent contentIntent = PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
-		this.notificationBuilder.setContentIntent( contentIntent );
+		//this.notificationBuilder.setContentIntent( contentIntent );
 
 	}
 
