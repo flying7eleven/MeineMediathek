@@ -3,6 +3,7 @@
 <release version="0.0.3" versioncode="3" releasedate="2012-11-24">
 <change>Added the missing German translation of the application</change>
 <change>Changed the way the titles of the movies in the ZDF Mediathek are extracted</change>
+<change>The notification indicator will now stop moving as soon as the download was finished</change>
 <change>Fixed a bug which caused a crash while starting the app</change>
 </release>
 <release version="0.0.2" versioncode="2" releasedate="2012-11-23">

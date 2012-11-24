@@ -27,6 +27,7 @@ For building the application by yourself follow the following steps:
 ### Version 0.0.3 (Code: *3*, Released on: ***2012-11-24***) - [Changes][101]
 * Added the missing German translation of the application
 * Changed the way the titles of the movies in the ZDF Mediathek are extracted
+* The notification indicator will now stop moving as soon as the download was finished
 * Fixed a bug which caused a crash while starting the app
 
 ### Version 0.0.2 (Code: *2*, Released on: ***2012-11-23***) - [Changes][100]
