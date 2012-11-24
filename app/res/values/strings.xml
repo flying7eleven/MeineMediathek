@@ -4,6 +4,7 @@
     <string name="btn_search">Search</string>
     <string name="not_title_download_of_movie">Downloading %s</string>
     <string name="not_desc_download_of_movie">Downloading movie. Please wait&#8230;</string>
+    <string name="not_desc_download_of_movie_finished">Download complete!</string>
     <string name="btn_download_movie">Download movie</string>
     <string name="tv_movie_title">Title:</string>
     <string name="tv_movie_description">Description:</string>
