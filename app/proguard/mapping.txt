@@ -1,0 +1,3069 @@
+android.support.v4.app.ActivityCompatHoneycomb -> android.support.v4.app.a:
+    29:30:void invalidateOptionsMenu(android.app.Activity) -> a
+android.support.v4.app.BackStackRecord -> android.support.v4.app.b:
+    android.support.v4.app.FragmentManagerImpl mManager -> a
+    android.support.v4.app.BackStackRecord$Op mHead -> b
+    android.support.v4.app.BackStackRecord$Op mTail -> c
+    int mNumOp -> d
+    int mEnterAnim -> e
+    int mExitAnim -> f
+    int mPopEnterAnim -> g
+    int mPopExitAnim -> h
+    int mTransition -> i
+    int mTransitionStyle -> j
+    boolean mAddToBackStack -> k
+    boolean mAllowAddToBackStack -> l
+    java.lang.String mName -> m
+    boolean mCommitted -> n
+    int mIndex -> o
+    int mBreadCrumbTitleRes -> p
+    java.lang.CharSequence mBreadCrumbTitleText -> q
+    int mBreadCrumbShortTitleRes -> r
+    java.lang.CharSequence mBreadCrumbShortTitleText -> s
+    221:233:java.lang.String toString() -> toString
+    237:238:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    241:331:void dump(java.lang.String,java.io.PrintWriter,boolean) -> a
+    364:376:void addOp(android.support.v4.app.BackStackRecord$Op) -> a
+    389:390:android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment,java.lang.String) -> a
+    394:418:void doAddOp(int,android.support.v4.app.Fragment,java.lang.String,int) -> a
+    461:466:android.support.v4.app.FragmentTransaction detach(android.support.v4.app.Fragment) -> a
+    470:475:android.support.v4.app.FragmentTransaction attach(android.support.v4.app.Fragment) -> b
+    549:571:void bumpBackStackNesting(int) -> a
+    574:574:int commit() -> a
+    582:596:int commitInternal(boolean) -> a
+    600:688:void run() -> run
+    691:772:void popFromBackStack(boolean) -> b
+    775:775:java.lang.String getName() -> b
+android.support.v4.app.BackStackRecord$Op -> android.support.v4.app.c:
+    android.support.v4.app.BackStackRecord$Op next -> a
+    android.support.v4.app.BackStackRecord$Op prev -> b
+    int cmd -> c
+    android.support.v4.app.Fragment fragment -> d
+    int enterAnim -> e
+    int exitAnim -> f
+    int popEnterAnim -> g
+    int popExitAnim -> h
+    java.util.ArrayList removed -> i
+android.support.v4.app.BackStackState -> android.support.v4.app.BackStackState:
+    int[] mOps -> a
+    int mTransition -> b
+    int mTransitionStyle -> c
+    java.lang.String mName -> d
+    int mIndex -> e
+    int mBreadCrumbTitleRes -> f
+    java.lang.CharSequence mBreadCrumbTitleText -> g
+    int mBreadCrumbShortTitleRes -> h
+    java.lang.CharSequence mBreadCrumbShortTitleText -> i
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    96:138:android.support.v4.app.BackStackRecord instantiate(android.support.v4.app.FragmentManagerImpl) -> a
+    142:142:int describeContents() -> describeContents
+    146:155:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.BackStackState$1 -> android.support.v4.app.d:
+    160:160:android.support.v4.app.BackStackState createFromParcel(android.os.Parcel) -> a
+    164:164:android.support.v4.app.BackStackState[] newArray(int) -> a
+    158:158:java.lang.Object[] newArray(int) -> newArray
+    158:158:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.Fragment -> android.support.v4.app.Fragment:
+    java.util.HashMap sClassMap -> P
+    int mState -> a
+    android.view.View mAnimatingAway -> b
+    int mStateAfterAnimating -> c
+    android.os.Bundle mSavedFragmentState -> d
+    android.util.SparseArray mSavedViewState -> e
+    int mIndex -> f
+    java.lang.String mWho -> g
+    android.os.Bundle mArguments -> h
+    android.support.v4.app.Fragment mTarget -> i
+    int mTargetIndex -> j
+    int mTargetRequestCode -> k
+    boolean mAdded -> l
+    boolean mRemoving -> m
+    boolean mResumed -> n
+    boolean mFromLayout -> o
+    boolean mInLayout -> p
+    boolean mRestored -> q
+    int mBackStackNesting -> r
+    android.support.v4.app.FragmentManagerImpl mFragmentManager -> s
+    android.support.v4.app.FragmentActivity mActivity -> t
+    android.support.v4.app.FragmentManagerImpl mChildFragmentManager -> u
+    android.support.v4.app.Fragment mParentFragment -> v
+    int mFragmentId -> w
+    int mContainerId -> x
+    java.lang.String mTag -> y
+    boolean mHidden -> z
+    boolean mDetached -> A
+    boolean mRetainInstance -> B
+    boolean mRetaining -> C
+    boolean mHasMenu -> D
+    boolean mMenuVisible -> E
+    boolean mCalled -> F
+    int mNextAnim -> G
+    android.view.ViewGroup mContainer -> H
+    android.view.View mView -> I
+    android.view.View mInnerView -> J
+    boolean mDeferStart -> K
+    boolean mUserVisibleHint -> L
+    android.support.v4.app.LoaderManagerImpl mLoaderManager -> M
+    boolean mLoadersStarted -> N
+    boolean mCheckedForLoaderManager -> O
+    369:369:android.support.v4.app.Fragment instantiate(android.content.Context,java.lang.String) -> a
+    388:409:android.support.v4.app.Fragment instantiate(android.content.Context,java.lang.String,android.os.Bundle) -> a
+    416:426:void restoreViewState(android.os.Bundle) -> a
+    429:435:void setIndex(int,android.support.v4.app.Fragment) -> a
+    438:438:boolean isInBackStack() -> a
+    445:445:boolean equals(java.lang.Object) -> equals
+    452:452:int hashCode() -> hashCode
+    457:472:java.lang.String toString() -> toString
+    563:563:android.support.v4.app.FragmentActivity getActivity() -> b
+    570:573:android.content.res.Resources getResources() -> c
+    664:664:boolean isDetached() -> d
+    724:724:void onHiddenChanged(boolean) -> a
+    867:867:void onActivityResult(int,int,android.content.Intent) -> a
+    875:875:android.view.LayoutInflater getLayoutInflater(android.os.Bundle) -> b
+    921:922:void onInflate(android.app.Activity,android.util.AttributeSet,android.os.Bundle) -> a
+    929:930:void onAttach(android.app.Activity) -> a
+    936:936:android.view.animation.Animation onCreateAnimation(int,boolean,int) -> a
+    954:955:void onCreate(android.os.Bundle) -> c
+    978:978:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    992:992:void onViewCreated(android.view.View,android.os.Bundle) -> a
+    1018:1019:void onActivityCreated(android.os.Bundle) -> d
+    1033:1034:void onViewStateRestored(android.os.Bundle) -> e
+    1042:1054:void onStart() -> e
+    1063:1064:void onResume() -> f
+    1086:1086:void onSaveInstanceState(android.os.Bundle) -> f
+    1089:1090:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    1098:1099:void onPause() -> g
+    1107:1108:void onStop() -> h
+    1111:1112:void onLowMemory() -> onLowMemory
+    1124:1125:void onDestroyView() -> i
+    1132:1142:void onDestroy() -> j
+    1151:1171:void initState() -> k
+    1178:1179:void onDetach() -> l
+    1195:1195:void onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> a
+    1212:1212:void onPrepareOptionsMenu(android.view.Menu) -> a
+    1222:1222:void onDestroyOptionsMenu() -> m
+    1243:1243:boolean onOptionsItemSelected(android.view.MenuItem) -> a
+    1254:1254:void onOptionsMenuClosed(android.view.Menu) -> b
+    1274:1275:void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+    1320:1320:boolean onContextItemSelected(android.view.MenuItem) -> b
+    1333:1407:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    1420:1430:void instantiateChildFragmentManager() -> n
+    1433:1453:void performCreate(android.os.Bundle) -> g
+    1457:1460:android.view.View performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> b
+    1464:1476:void performActivityCreated(android.os.Bundle) -> h
+    1479:1495:void performStart() -> o
+    1498:1512:void performResume() -> p
+    1515:1519:void performConfigurationChanged(android.content.res.Configuration) -> a
+    1522:1526:void performLowMemory() -> q
+    1538:1548:boolean performCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> b
+    1552:1562:boolean performPrepareOptionsMenu(android.view.Menu) -> c
+    1566:1578:boolean performOptionsItemSelected(android.view.MenuItem) -> c
+    1582:1592:boolean performContextItemSelected(android.view.MenuItem) -> d
+    1596:1604:void performOptionsMenuClosed(android.view.Menu) -> d
+    1607:1614:void performSaveInstanceState(android.os.Bundle) -> i
+    1617:1626:void performPause() -> r
+    1629:1638:void performStop() -> s
+    1641:1658:void performReallyStop() -> t
+    1661:1673:void performDestroyView() -> u
+    1676:1685:void performDestroy() -> v
+android.support.v4.app.Fragment$1 -> android.support.v4.app.e:
+    android.support.v4.app.Fragment this$0 -> a
+    1424:1427:android.view.View findViewById(int) -> a
+android.support.v4.app.Fragment$InstantiationException -> android.support.v4.app.f:
+android.support.v4.app.Fragment$SavedState -> android.support.v4.app.Fragment$SavedState:
+    android.os.Bundle mState -> a
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    314:314:int describeContents() -> describeContents
+    319:320:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.Fragment$SavedState$1 -> android.support.v4.app.g:
+    325:325:android.support.v4.app.Fragment$SavedState createFromParcel(android.os.Parcel) -> a
+    329:329:android.support.v4.app.Fragment$SavedState[] newArray(int) -> a
+    323:323:java.lang.Object[] newArray(int) -> newArray
+    323:323:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentActivity -> android.support.v4.app.h:
+    android.os.Handler mHandler -> a
+    android.support.v4.app.FragmentManagerImpl mFragments -> b
+    android.support.v4.app.FragmentContainer mContainer -> c
+    boolean mCreated -> d
+    boolean mResumed -> e
+    boolean mStopped -> f
+    boolean mReallyStopped -> g
+    boolean mRetaining -> h
+    boolean mOptionsMenuInvalidated -> i
+    boolean mCheckedForLoaderManager -> j
+    boolean mLoadersStarted -> k
+    java.util.HashMap mAllLoaderManagers -> l
+    android.support.v4.app.LoaderManagerImpl mLoaderManager -> m
+    147:167:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    174:177:void onBackPressed() -> onBackPressed
+    184:186:void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    193:211:void onCreate(android.os.Bundle) -> onCreate
+    218:229:boolean onCreatePanelMenu(int,android.view.Menu) -> onCreatePanelMenu
+    237:312:android.view.View onCreateView(java.lang.String,android.content.Context,android.util.AttributeSet) -> onCreateView
+    320:328:void onDestroy() -> onDestroy
+    335:344:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    352:354:void onLowMemory() -> onLowMemory
+    361:373:boolean onMenuItemSelected(int,android.view.MenuItem) -> onMenuItemSelected
+    382:388:void onPanelClosed(int,android.view.Menu) -> onPanelClosed
+    395:402:void onPause() -> onPause
+    416:418:void onNewIntent(android.content.Intent) -> onNewIntent
+    431:435:void onResume() -> onResume
+    442:446:void onPostResume() -> onPostResume
+    455:456:void onResumeFragments() -> a
+    463:473:boolean onPreparePanel(int,android.view.View,android.view.Menu) -> onPreparePanel
+    483:518:java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    526:531:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    539:580:void onStart() -> onStart
+    587:593:void onStop() -> onStop
+    604:604:java.lang.Object onRetainCustomNonConfigurationInstance() -> b
+    623:633:void supportInvalidateOptionsMenu() -> c
+    646:670:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> dump
+    673:735:java.lang.String viewToString(android.view.View) -> a
+    739:757:void dumpViewHierarchy(java.lang.String,java.io.PrintWriter,android.view.View) -> a
+    760:766:void doReallyStop(boolean) -> a
+    776:788:void onReallyStop() -> d
+    798:798:void onAttachFragment(android.support.v4.app.Fragment) -> a
+    814:818:void startActivityForResult(android.content.Intent,int) -> startActivityForResult
+    837:844:void invalidateSupportFragment(java.lang.String) -> a
+    863:875:android.support.v4.app.LoaderManagerImpl getLoaderManager(java.lang.String,boolean,boolean) -> a
+android.support.v4.app.FragmentActivity$FragmentTag -> android.support.v4.app.i:
+    int[] Fragment -> a
+android.support.v4.app.FragmentActivity$NonConfigurationInstances -> android.support.v4.app.j:
+    java.lang.Object activity -> a
+    java.lang.Object custom -> b
+    java.util.HashMap children -> c
+    java.util.ArrayList fragments -> d
+    java.util.HashMap loaders -> e
+android.support.v4.app.FragmentContainer -> android.support.v4.app.k:
+    android.view.View findViewById(int) -> a
+android.support.v4.app.FragmentManager -> android.support.v4.app.l:
+    android.support.v4.app.FragmentTransaction beginTransaction() -> a
+    boolean executePendingTransactions() -> b
+    android.support.v4.app.Fragment findFragmentByTag(java.lang.String) -> a
+android.support.v4.app.FragmentManager$OnBackStackChangedListener -> android.support.v4.app.m:
+    void onBackStackChanged() -> a
+android.support.v4.app.FragmentManagerImpl -> android.support.v4.app.n:
+    boolean DEBUG -> a
+    boolean HONEYCOMB -> b
+    java.util.ArrayList mPendingActions -> c
+    java.lang.Runnable[] mTmpActions -> d
+    boolean mExecutingActions -> e
+    java.util.ArrayList mActive -> f
+    java.util.ArrayList mAdded -> g
+    java.util.ArrayList mAvailIndices -> h
+    java.util.ArrayList mBackStack -> i
+    java.util.ArrayList mCreatedMenus -> j
+    java.util.ArrayList mBackStackIndices -> k
+    java.util.ArrayList mAvailBackStackIndices -> l
+    java.util.ArrayList mBackStackChangeListeners -> m
+    int mCurState -> n
+    android.support.v4.app.FragmentActivity mActivity -> o
+    android.support.v4.app.FragmentContainer mContainer -> p
+    android.support.v4.app.Fragment mParent -> q
+    boolean mNeedMenuInvalidate -> r
+    boolean mStateSaved -> s
+    boolean mDestroyed -> t
+    java.lang.String mNoTransactionsBecause -> u
+    boolean mHavePendingDeferredStart -> v
+    android.os.Bundle mStateBundle -> w
+    android.util.SparseArray mStateArray -> x
+    java.lang.Runnable mExecCommit -> y
+    android.view.animation.Interpolator DECELERATE_QUINT -> z
+    android.view.animation.Interpolator DECELERATE_CUBIC -> A
+    android.view.animation.Interpolator ACCELERATE_QUINT -> B
+    android.view.animation.Interpolator ACCELERATE_CUBIC -> C
+    434:451:void throwException(java.lang.RuntimeException) -> a
+    456:456:android.support.v4.app.FragmentTransaction beginTransaction() -> a
+    461:461:boolean executePendingTransactions() -> b
+    475:477:boolean popBackStackImmediate() -> c
+    545:550:void putFragment(android.os.Bundle,java.lang.String,android.support.v4.app.Fragment) -> a
+    554:567:android.support.v4.app.Fragment getFragment(android.os.Bundle,java.lang.String) -> a
+    585:595:java.lang.String toString() -> toString
+    600:709:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    720:730:android.view.animation.Animation makeOpenCloseAnimation(android.content.Context,float,float,float,float) -> a
+    734:737:android.view.animation.Animation makeFadeAnimation(android.content.Context,float,float) -> a
+    742:796:android.view.animation.Animation loadAnimation(android.support.v4.app.Fragment,int,boolean,int) -> a
+    800:809:void performPendingDeferredStart(android.support.v4.app.Fragment) -> a
+    814:1063:void moveToState(android.support.v4.app.Fragment,int,int,int,boolean) -> a
+    1066:1067:void moveToState(android.support.v4.app.Fragment) -> b
+    1070:1071:void moveToState(int,boolean) -> a
+    1074:1104:void moveToState(int,int,int,boolean) -> a
+    1107:1115:void startPendingDeferredFragments() -> d
+    1118:1134:void makeActive(android.support.v4.app.Fragment) -> c
+    1137:1149:void makeInactive(android.support.v4.app.Fragment) -> d
+    1152:1171:void addFragment(android.support.v4.app.Fragment,boolean) -> a
+    1174:1188:void removeFragment(android.support.v4.app.Fragment,int,int) -> a
+    1191:1207:void hideFragment(android.support.v4.app.Fragment,int,int) -> b
+    1210:1226:void showFragment(android.support.v4.app.Fragment,int,int) -> c
+    1229:1245:void detachFragment(android.support.v4.app.Fragment,int,int) -> d
+    1248:1267:void attachFragment(android.support.v4.app.Fragment,int,int) -> e
+    1270:1288:android.support.v4.app.Fragment findFragmentById(int) -> a
+    1292:1310:android.support.v4.app.Fragment findFragmentByTag(java.lang.String) -> a
+    1326:1334:void checkStateLoss() -> t
+    1337:1353:void enqueueAction(java.lang.Runnable,boolean) -> a
+    1356:1372:int allocBackStackIndex(android.support.v4.app.BackStackRecord) -> a
+    1376:1398:void setBackStackIndex(int,android.support.v4.app.BackStackRecord) -> a
+    1401:1409:void freeBackStackIndex(int) -> b
+    1415:1464:boolean execPendingActions() -> e
+    1468:1473:void reportBackStackChanged() -> f
+    1476:1481:void addBackStackState(android.support.v4.app.BackStackRecord) -> b
+    1484:1543:boolean popBackStackState(android.os.Handler,java.lang.String,int,int) -> a
+    1547:1562:java.util.ArrayList retainNonConfig() -> g
+    1566:1579:void saveFragmentViewState(android.support.v4.app.Fragment) -> e
+    1582:1611:android.os.Bundle saveFragmentBasicState(android.support.v4.app.Fragment) -> f
+    1617:1727:android.os.Parcelable saveAllState() -> h
+    1733:1840:void restoreAllState(android.os.Parcelable,java.util.ArrayList) -> a
+    1844:1848:void attachActivity(android.support.v4.app.FragmentActivity,android.support.v4.app.FragmentContainer,android.support.v4.app.Fragment) -> a
+    1851:1852:void noteStateNotSaved() -> i
+    1855:1857:void dispatchCreate() -> j
+    1860:1862:void dispatchActivityCreated() -> k
+    1865:1867:void dispatchStart() -> l
+    1870:1872:void dispatchResume() -> m
+    1875:1876:void dispatchPause() -> n
+    1882:1885:void dispatchStop() -> o
+    1888:1889:void dispatchReallyStop() -> p
+    1892:1893:void dispatchDestroyView() -> q
+    1896:1902:void dispatchDestroy() -> r
+    1905:1913:void dispatchConfigurationChanged(android.content.res.Configuration) -> a
+    1916:1924:void dispatchLowMemory() -> s
+    1927:1955:boolean dispatchCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> a
+    1959:1970:boolean dispatchPrepareOptionsMenu(android.view.Menu) -> a
+    1974:1984:boolean dispatchOptionsItemSelected(android.view.MenuItem) -> a
+    1988:1998:boolean dispatchContextItemSelected(android.view.MenuItem) -> b
+    2002:2010:void dispatchOptionsMenuClosed(android.view.Menu) -> b
+    2013:2025:int reverseTransit(int) -> c
+    2037:2049:int transitToStyleIndex(int,boolean) -> b
+android.support.v4.app.FragmentManagerImpl$1 -> android.support.v4.app.o:
+    android.support.v4.app.FragmentManagerImpl this$0 -> a
+    429:430:void run() -> run
+android.support.v4.app.FragmentManagerImpl$5 -> android.support.v4.app.p:
+    android.support.v4.app.Fragment val$fragment -> a
+    android.support.v4.app.FragmentManagerImpl this$0 -> b
+    994:999:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+    1002:1002:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    1005:1005:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+android.support.v4.app.FragmentManagerState -> android.support.v4.app.FragmentManagerState:
+    android.support.v4.app.FragmentState[] mActive -> a
+    int[] mAdded -> b
+    android.support.v4.app.BackStackState[] mBackStack -> c
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    353:353:int describeContents() -> describeContents
+    357:360:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.FragmentManagerState$1 -> android.support.v4.app.q:
+    365:365:android.support.v4.app.FragmentManagerState createFromParcel(android.os.Parcel) -> a
+    369:369:android.support.v4.app.FragmentManagerState[] newArray(int) -> a
+    363:363:java.lang.Object[] newArray(int) -> newArray
+    363:363:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentState -> android.support.v4.app.FragmentState:
+    java.lang.String mClassName -> a
+    int mIndex -> b
+    boolean mFromLayout -> c
+    int mFragmentId -> d
+    int mContainerId -> e
+    java.lang.String mTag -> f
+    boolean mRetainInstance -> g
+    boolean mDetached -> h
+    android.os.Bundle mArguments -> i
+    android.os.Bundle mSavedFragmentState -> j
+    android.support.v4.app.Fragment mInstance -> k
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    89:116:android.support.v4.app.Fragment instantiate(android.support.v4.app.FragmentActivity,android.support.v4.app.Fragment) -> a
+    120:120:int describeContents() -> describeContents
+    124:134:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.FragmentState$1 -> android.support.v4.app.r:
+    139:139:android.support.v4.app.FragmentState createFromParcel(android.os.Parcel) -> a
+    143:143:android.support.v4.app.FragmentState[] newArray(int) -> a
+    137:137:java.lang.Object[] newArray(int) -> newArray
+    137:137:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentTabHost -> android.support.v4.app.FragmentTabHost:
+    java.util.ArrayList mTabs -> a
+    android.content.Context mContext -> b
+    android.support.v4.app.FragmentManager mFragmentManager -> c
+    int mContainerId -> d
+    android.widget.TabHost$OnTabChangeListener mOnTabChangeListener -> e
+    android.support.v4.app.FragmentTabHost$TabInfo mLastTab -> f
+    boolean mAttached -> g
+    181:181:void setup() -> setup
+    219:220:void setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener) -> setOnTabChangedListener
+    246:281:void onAttachedToWindow() -> onAttachedToWindow
+    285:287:void onDetachedFromWindow() -> onDetachedFromWindow
+    291:294:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    299:302:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+    306:315:void onTabChanged(java.lang.String) -> onTabChanged
+    318:349:android.support.v4.app.FragmentTransaction doTabChanged(java.lang.String,android.support.v4.app.FragmentTransaction) -> a
+android.support.v4.app.FragmentTabHost$1 -> android.support.v4.app.s:
+android.support.v4.app.FragmentTabHost$SavedState -> android.support.v4.app.FragmentTabHost$SavedState:
+    java.lang.String curTab -> a
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    104:106:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    110:110:java.lang.String toString() -> toString
+android.support.v4.app.FragmentTabHost$SavedState$1 -> android.support.v4.app.t:
+    118:118:android.support.v4.app.FragmentTabHost$SavedState createFromParcel(android.os.Parcel) -> a
+    122:122:android.support.v4.app.FragmentTabHost$SavedState[] newArray(int) -> a
+    116:116:java.lang.Object[] newArray(int) -> newArray
+    116:116:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentTabHost$TabInfo -> android.support.v4.app.u:
+    java.lang.String tag -> a
+    java.lang.Class clss -> b
+    android.os.Bundle args -> c
+    android.support.v4.app.Fragment fragment -> d
+    61:61:android.support.v4.app.Fragment access$102(android.support.v4.app.FragmentTabHost$TabInfo,android.support.v4.app.Fragment) -> a
+    61:61:android.support.v4.app.Fragment access$100(android.support.v4.app.FragmentTabHost$TabInfo) -> a
+    61:61:java.lang.String access$200(android.support.v4.app.FragmentTabHost$TabInfo) -> b
+    61:61:java.lang.Class access$300(android.support.v4.app.FragmentTabHost$TabInfo) -> c
+    61:61:android.os.Bundle access$400(android.support.v4.app.FragmentTabHost$TabInfo) -> d
+android.support.v4.app.FragmentTransaction -> android.support.v4.app.v:
+    android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment,java.lang.String) -> a
+    android.support.v4.app.FragmentTransaction detach(android.support.v4.app.Fragment) -> a
+    android.support.v4.app.FragmentTransaction attach(android.support.v4.app.Fragment) -> b
+    int commit() -> a
+android.support.v4.app.LoaderManager -> android.support.v4.app.w:
+    184:184:boolean hasRunningLoaders() -> a
+android.support.v4.app.LoaderManager$LoaderCallbacks -> android.support.v4.app.x:
+    android.support.v4.content.Loader onCreateLoader(int,android.os.Bundle) -> a
+    void onLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> a
+    void onLoaderReset(android.support.v4.content.Loader) -> a
+android.support.v4.app.LoaderManagerImpl -> android.support.v4.app.y:
+    boolean DEBUG -> a
+    android.support.v4.util.SparseArrayCompat mLoaders -> b
+    android.support.v4.util.SparseArrayCompat mInactiveLoaders -> c
+    java.lang.String mWho -> d
+    android.support.v4.app.FragmentActivity mActivity -> e
+    boolean mStarted -> f
+    boolean mRetaining -> g
+    484:485:void updateActivity(android.support.v4.app.FragmentActivity) -> a
+    701:716:void doStart() -> b
+    719:731:void doStop() -> c
+    734:747:void doRetain() -> d
+    750:758:void finishRetain() -> e
+    761:764:void doReportNextStart() -> f
+    767:770:void doReportStart() -> g
+    773:785:void doDestroy() -> h
+    789:795:java.lang.String toString() -> toString
+    800:820:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    824:830:boolean hasRunningLoaders() -> a
+android.support.v4.app.LoaderManagerImpl$LoaderInfo -> android.support.v4.app.z:
+    int mId -> a
+    android.os.Bundle mArgs -> b
+    android.support.v4.app.LoaderManager$LoaderCallbacks mCallbacks -> c
+    android.support.v4.content.Loader mLoader -> d
+    boolean mHaveData -> e
+    boolean mDeliveredData -> f
+    java.lang.Object mData -> g
+    boolean mStarted -> h
+    boolean mRetaining -> i
+    boolean mRetainingStarted -> j
+    boolean mReportNextStart -> k
+    boolean mDestroyed -> l
+    boolean mListenerRegistered -> m
+    android.support.v4.app.LoaderManagerImpl$LoaderInfo mPendingLoader -> n
+    android.support.v4.app.LoaderManagerImpl this$0 -> o
+    235:267:void start() -> a
+    270:275:void retain() -> b
+    278:300:void finishRetain() -> c
+    303:311:void reportStart() -> d
+    314:324:void stop() -> e
+    327:359:void destroy() -> f
+    418:435:void callOnLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> a
+    439:447:java.lang.String toString() -> toString
+    451:474:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+android.support.v4.app.NoSaveStateFrameLayout -> android.support.v4.app.aa:
+    32:41:android.view.ViewGroup wrap(android.view.View) -> a
+    53:54:void dispatchSaveInstanceState(android.util.SparseArray) -> dispatchSaveInstanceState
+    61:62:void dispatchRestoreInstanceState(android.util.SparseArray) -> dispatchRestoreInstanceState
+android.support.v4.app.NotificationCompat -> android.support.v4.app.ab:
+    android.support.v4.app.NotificationCompat$NotificationCompatImpl IMPL -> a
+    34:34:android.support.v4.app.NotificationCompat$NotificationCompatImpl access$000() -> a
+android.support.v4.app.NotificationCompat$Action -> android.support.v4.app.ac:
+    int icon -> a
+    java.lang.CharSequence title -> b
+    android.app.PendingIntent actionIntent -> c
+android.support.v4.app.NotificationCompat$BigPictureStyle -> android.support.v4.app.ad:
+    android.graphics.Bitmap mPicture -> a
+android.support.v4.app.NotificationCompat$BigTextStyle -> android.support.v4.app.ae:
+    java.lang.CharSequence mBigText -> a
+android.support.v4.app.NotificationCompat$Builder -> android.support.v4.app.af:
+    android.content.Context mContext -> a
+    java.lang.CharSequence mContentTitle -> b
+    java.lang.CharSequence mContentText -> c
+    android.app.PendingIntent mContentIntent -> d
+    android.app.PendingIntent mFullScreenIntent -> e
+    android.widget.RemoteViews mTickerView -> f
+    android.graphics.Bitmap mLargeIcon -> g
+    java.lang.CharSequence mContentInfo -> h
+    int mNumber -> i
+    int mPriority -> j
+    boolean mUseChronometer -> k
+    android.support.v4.app.NotificationCompat$Style mStyle -> l
+    java.lang.CharSequence mSubText -> m
+    int mProgressMax -> n
+    int mProgress -> o
+    boolean mProgressIndeterminate -> p
+    java.util.ArrayList mActions -> q
+    android.app.Notification mNotification -> r
+    241:242:android.support.v4.app.NotificationCompat$Builder setSmallIcon(int) -> a
+    265:266:android.support.v4.app.NotificationCompat$Builder setContentTitle(java.lang.CharSequence) -> a
+    273:274:android.support.v4.app.NotificationCompat$Builder setContentText(java.lang.CharSequence) -> b
+    310:313:android.support.v4.app.NotificationCompat$Builder setProgress(int,int,boolean) -> a
+    455:456:android.support.v4.app.NotificationCompat$Builder setOngoing(boolean) -> a
+    498:503:void setFlag(int,boolean) -> a
+    562:562:android.app.Notification build() -> a
+android.support.v4.app.NotificationCompat$InboxStyle -> android.support.v4.app.ag:
+    java.util.ArrayList mTexts -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImpl -> android.support.v4.app.ah:
+    android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplBase -> android.support.v4.app.ai:
+    87:94:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplHoneycomb -> android.support.v4.app.aj:
+    100:100:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplIceCreamSandwich -> android.support.v4.app.ak:
+    108:108:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplJellybean -> android.support.v4.app.al:
+    117:146:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$Style -> android.support.v4.app.am:
+    java.lang.CharSequence mBigContentTitle -> b
+    java.lang.CharSequence mSummaryText -> c
+    boolean mSummaryTextSet -> d
+android.support.v4.app.NotificationCompatHoneycomb -> android.support.v4.app.an:
+    30:52:android.app.Notification add(android.content.Context,android.app.Notification,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,android.widget.RemoteViews,int,android.app.PendingIntent,android.app.PendingIntent,android.graphics.Bitmap) -> a
+android.support.v4.app.NotificationCompatIceCreamSandwich -> android.support.v4.app.ao:
+    31:54:android.app.Notification add(android.content.Context,android.app.Notification,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,android.widget.RemoteViews,int,android.app.PendingIntent,android.app.PendingIntent,android.graphics.Bitmap,int,int,boolean) -> a
+android.support.v4.app.NotificationCompatJellybean -> android.support.v4.app.ap:
+    android.app.Notification$Builder b -> a
+    62:63:void addAction(int,java.lang.CharSequence,android.app.PendingIntent) -> a
+    67:73:void addBigTextStyle(java.lang.CharSequence,boolean,java.lang.CharSequence,java.lang.CharSequence) -> a
+    77:83:void addBigPictureStyle(java.lang.CharSequence,boolean,java.lang.CharSequence,android.graphics.Bitmap) -> a
+    87:95:void addInboxStyle(java.lang.CharSequence,boolean,java.lang.CharSequence,java.util.ArrayList) -> a
+    98:98:android.app.Notification build() -> a
+android.support.v4.app.SuperNotCalledException -> android.support.v4.app.aq:
+android.support.v4.content.Loader -> android.support.v4.a.a:
+    int mId -> a
+    android.support.v4.content.Loader$OnLoadCompleteListener mListener -> b
+    boolean mStarted -> c
+    boolean mAbandoned -> d
+    boolean mReset -> e
+    boolean mContentChanged -> f
+    129:134:void registerListener(int,android.support.v4.content.Loader$OnLoadCompleteListener) -> a
+    142:149:void unregisterListener(android.support.v4.content.Loader$OnLoadCompleteListener) -> a
+    194:198:void startLoading() -> a
+    206:206:void onStartLoading() -> b
+    242:244:void stopLoading() -> c
+    253:253:void onStopLoading() -> d
+    290:295:void reset() -> e
+    304:304:void onReset() -> f
+    341:344:java.lang.String dataToString(java.lang.Object) -> a
+    349:354:java.lang.String toString() -> toString
+    366:372:void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+android.support.v4.content.Loader$OnLoadCompleteListener -> android.support.v4.a.b:
+android.support.v4.os.ParcelableCompat -> android.support.v4.b.a:
+    36:39:android.os.Parcelable$Creator newCreator(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
+android.support.v4.os.ParcelableCompat$CompatCreator -> android.support.v4.b.b:
+    android.support.v4.os.ParcelableCompatCreatorCallbacks mCallbacks -> a
+    51:51:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    56:56:java.lang.Object[] newArray(int) -> newArray
+android.support.v4.os.ParcelableCompatCreatorCallbacks -> android.support.v4.b.c:
+    java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> a
+    java.lang.Object[] newArray(int) -> a
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2 -> android.support.v4.b.d:
+    android.support.v4.os.ParcelableCompatCreatorCallbacks mCallbacks -> a
+    36:36:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    40:40:java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> createFromParcel
+    44:44:java.lang.Object[] newArray(int) -> newArray
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub -> android.support.v4.b.e:
+    24:24:android.os.Parcelable$Creator instantiate(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
+android.support.v4.util.DebugUtils -> android.support.v4.c.a:
+    28:43:void buildShortClassTag(java.lang.Object,java.lang.StringBuilder) -> a
+android.support.v4.util.LogWriter -> android.support.v4.c.b:
+    java.lang.String mTag -> a
+    java.lang.StringBuilder mBuilder -> b
+    44:45:void close() -> close
+    48:49:void flush() -> flush
+    52:61:void write(char[],int,int) -> write
+    64:68:void flushBuilder() -> a
+android.support.v4.util.SparseArrayCompat -> android.support.v4.c.c:
+    java.lang.Object DELETED -> a
+    boolean mGarbage -> b
+    int[] mKeys -> c
+    java.lang.Object[] mValues -> d
+    int mSize -> e
+    116:138:void gc() -> c
+    197:201:int size() -> a
+    210:214:int keyAt(int) -> a
+    223:227:java.lang.Object valueAt(int) -> b
+    280:289:void clear() -> b
+    346:350:int idealByteArraySize(int) -> c
+    354:354:int idealIntArraySize(int) -> d
+android.support.v4.view.KeyEventCompat -> android.support.v4.view.a:
+    android.support.v4.view.KeyEventCompat$KeyEventVersionImpl IMPL -> a
+    139:139:boolean hasModifiers(android.view.KeyEvent,int) -> a
+    143:143:boolean hasNoModifiers(android.view.KeyEvent) -> a
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl -> android.support.v4.view.b:
+    49:61:int metaStateFilterDirectionalModifiers(int,int,int,int,int) -> a
+    67:73:int normalizeMetaState(int) -> a
+    78:83:boolean metaStateHasModifiers(int,int) -> a
+    88:88:boolean metaStateHasNoModifiers(int) -> b
+android.support.v4.view.KeyEventCompat$HoneycombKeyEventVersionImpl -> android.support.v4.view.c:
+    103:103:boolean metaStateHasModifiers(int,int) -> a
+    108:108:boolean metaStateHasNoModifiers(int) -> b
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl -> android.support.v4.view.d:
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> b
+android.support.v4.view.KeyEventCompatHoneycomb -> android.support.v4.view.e:
+    30:30:boolean metaStateHasModifiers(int,int) -> a
+    34:34:boolean metaStateHasNoModifiers(int) -> a
+android.support.v4.view.MotionEventCompat -> android.support.v4.view.f:
+    android.support.v4.view.MotionEventCompat$MotionEventVersionImpl IMPL -> a
+    191:191:int getActionIndex(android.view.MotionEvent) -> a
+    201:201:int findPointerIndex(android.view.MotionEvent,int) -> a
+    210:210:int getPointerId(android.view.MotionEvent,int) -> b
+    219:219:float getX(android.view.MotionEvent,int) -> c
+    228:228:float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$BaseMotionEventVersionImpl -> android.support.v4.view.g:
+    43:47:int findPointerIndex(android.view.MotionEvent,int) -> a
+    51:55:int getPointerId(android.view.MotionEvent,int) -> b
+    59:62:float getX(android.view.MotionEvent,int) -> c
+    66:69:float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$EclairMotionEventVersionImpl -> android.support.v4.view.h:
+    83:83:int findPointerIndex(android.view.MotionEvent,int) -> a
+    87:87:int getPointerId(android.view.MotionEvent,int) -> b
+    91:91:float getX(android.view.MotionEvent,int) -> c
+    95:95:float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$MotionEventVersionImpl -> android.support.v4.view.i:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompatEclair -> android.support.v4.view.j:
+    26:26:int findPointerIndex(android.view.MotionEvent,int) -> a
+    29:29:int getPointerId(android.view.MotionEvent,int) -> b
+    32:32:float getX(android.view.MotionEvent,int) -> c
+    35:35:float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.PagerAdapter -> android.support.v4.view.k:
+    android.database.DataSetObservable mObservable -> a
+    int getCount() -> a
+    95:96:void startUpdate(android.view.ViewGroup) -> a
+    110:110:java.lang.Object instantiateItem(android.view.ViewGroup,int) -> a
+    124:125:void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> a
+    137:138:void setPrimaryItem(android.view.ViewGroup,int,java.lang.Object) -> b
+    148:149:void finishUpdate(android.view.ViewGroup) -> b
+    159:159:void startUpdate(android.view.View) -> a
+    175:175:java.lang.Object instantiateItem(android.view.View,int) -> a
+    192:192:void destroyItem(android.view.View,int,java.lang.Object) -> a
+    207:207:void setPrimaryItem(android.view.View,int,java.lang.Object) -> b
+    219:219:void finishUpdate(android.view.View) -> b
+    boolean isViewFromObject(android.view.View,java.lang.Object) -> a
+    239:239:android.os.Parcelable saveState() -> b
+    250:250:void restoreState(android.os.Parcelable,java.lang.ClassLoader) -> a
+    268:268:int getItemPosition(java.lang.Object) -> a
+    280:281:void registerDataSetObserver(android.database.DataSetObserver) -> a
+    284:285:void unregisterDataSetObserver(android.database.DataSetObserver) -> b
+    308:308:float getPageWidth(int) -> a
+android.support.v4.view.VelocityTrackerCompat -> android.support.v4.view.l:
+    android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl IMPL -> a
+    82:82:float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl -> android.support.v4.view.m:
+    40:40:float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl -> android.support.v4.view.n:
+    54:54:float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl -> android.support.v4.view.o:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompatHoneycomb -> android.support.v4.view.p:
+    26:26:float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.ViewCompat -> android.support.v4.view.q:
+    android.support.v4.view.ViewCompat$ViewCompatImpl IMPL -> a
+    347:347:boolean canScrollHorizontally(android.view.View,int) -> a
+    371:371:int getOverScrollMode(android.view.View) -> a
+    544:545:void postInvalidateOnAnimation(android.view.View) -> b
+    576:577:void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    713:714:void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompat$BaseViewCompatImpl -> android.support.v4.view.r:
+    141:141:boolean canScrollHorizontally(android.view.View,int) -> a
+    147:147:int getOverScrollMode(android.view.View) -> a
+    172:173:void postInvalidateOnAnimation(android.view.View) -> b
+    178:179:void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    184:184:long getFrameTime() -> a
+    199:199:void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompat$GBViewCompatImpl -> android.support.v4.view.s:
+    214:214:int getOverScrollMode(android.view.View) -> a
+android.support.v4.view.ViewCompat$HCViewCompatImpl -> android.support.v4.view.t:
+    224:224:long getFrameTime() -> a
+    227:228:void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompat$ICSViewCompatImpl -> android.support.v4.view.u:
+    237:237:boolean canScrollHorizontally(android.view.View,int) -> a
+android.support.v4.view.ViewCompat$JBViewCompatImpl -> android.support.v4.view.v:
+    272:273:void postInvalidateOnAnimation(android.view.View) -> b
+    280:281:void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+android.support.v4.view.ViewCompat$JbMr1ViewCompatImpl -> android.support.v4.view.w:
+android.support.v4.view.ViewCompat$ViewCompatImpl -> android.support.v4.view.x:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+    void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompatGingerbread -> android.support.v4.view.y:
+    23:23:int getOverScrollMode(android.view.View) -> a
+android.support.v4.view.ViewCompatHC -> android.support.v4.view.z:
+    25:25:long getFrameTime() -> a
+    29:30:void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompatICS -> android.support.v4.view.aa:
+    30:30:boolean canScrollHorizontally(android.view.View,int) -> a
+android.support.v4.view.ViewCompatJB -> android.support.v4.view.ab:
+    36:37:void postInvalidateOnAnimation(android.view.View) -> a
+    45:46:void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+android.support.v4.view.ViewPager -> android.support.v4.view.ViewPager:
+    int[] LAYOUT_ATTRS -> a
+    java.util.Comparator COMPARATOR -> b
+    android.view.animation.Interpolator sInterpolator -> c
+    java.util.ArrayList mItems -> d
+    android.support.v4.view.ViewPager$ItemInfo mTempItem -> e
+    android.graphics.Rect mTempRect -> f
+    android.support.v4.view.PagerAdapter mAdapter -> g
+    int mCurItem -> h
+    int mRestoredCurItem -> i
+    android.os.Parcelable mRestoredAdapterState -> j
+    java.lang.ClassLoader mRestoredClassLoader -> k
+    android.widget.Scroller mScroller -> l
+    android.support.v4.view.ViewPager$PagerObserver mObserver -> m
+    int mPageMargin -> n
+    android.graphics.drawable.Drawable mMarginDrawable -> o
+    int mTopPageBounds -> p
+    int mBottomPageBounds -> q
+    float mFirstOffset -> r
+    float mLastOffset -> s
+    int mChildWidthMeasureSpec -> t
+    int mChildHeightMeasureSpec -> u
+    boolean mInLayout -> v
+    boolean mScrollingCacheEnabled -> w
+    boolean mPopulatePending -> x
+    int mOffscreenPageLimit -> y
+    boolean mIsBeingDragged -> z
+    boolean mIsUnableToDrag -> A
+    int mDefaultGutterSize -> B
+    int mGutterSize -> C
+    int mTouchSlop -> D
+    float mInitialMotionX -> E
+    float mLastMotionX -> F
+    float mLastMotionY -> G
+    int mActivePointerId -> H
+    android.view.VelocityTracker mVelocityTracker -> I
+    int mMinimumVelocity -> J
+    int mMaximumVelocity -> K
+    int mFlingDistance -> L
+    int mCloseEnough -> M
+    int mSeenPositionMin -> N
+    int mSeenPositionMax -> O
+    boolean mFakeDragging -> P
+    android.support.v4.widget.EdgeEffectCompat mLeftEdge -> Q
+    android.support.v4.widget.EdgeEffectCompat mRightEdge -> R
+    boolean mFirstLayout -> S
+    boolean mNeedCalculatePageOffsets -> T
+    boolean mCalledSuper -> U
+    int mDecorChildCount -> V
+    android.support.v4.view.ViewPager$OnPageChangeListener mOnPageChangeListener -> W
+    android.support.v4.view.ViewPager$OnPageChangeListener mInternalPageChangeListener -> Z
+    android.support.v4.view.ViewPager$OnAdapterChangeListener mAdapterChangeListener -> aa
+    android.support.v4.view.ViewPager$PageTransformer mPageTransformer -> ab
+    java.lang.reflect.Method mSetChildrenDrawingOrderEnabled -> ac
+    int mDrawingOrder -> ad
+    java.util.ArrayList mDrawingOrderedChildren -> ae
+    android.support.v4.view.ViewPager$ViewPositionComparator sPositionComparator -> af
+    java.lang.Runnable mEndScrollRunnable -> ag
+    int mScrollState -> ah
+    375:377:void onDetachedFromWindow() -> onDetachedFromWindow
+    380:395:void setScrollState(int) -> setScrollState
+    403:441:void setAdapter(android.support.v4.view.PagerAdapter) -> setAdapter
+    444:452:void removeNonDecorViews() -> f
+    460:460:android.support.v4.view.PagerAdapter getAdapter() -> getAdapter
+    464:465:void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener) -> setOnAdapterChangeListener
+    475:477:void setCurrentItem(int) -> setCurrentItem
+    486:488:void setCurrentItem(int,boolean) -> a
+    491:491:int getCurrentItem() -> getCurrentItem
+    495:496:void setCurrentItemInternal(int,boolean,boolean) -> a
+    499:525:void setCurrentItemInternal(int,boolean,boolean,int) -> a
+    529:554:void scrollToItem(int,boolean,int,boolean) -> a
+    563:564:void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener) -> setOnPageChangeListener
+    594:607:void setChildrenDrawingOrderEnabledCompat(boolean) -> setChildrenDrawingOrderEnabledCompat
+    611:613:int getChildDrawingOrder(int,int) -> getChildDrawingOrder
+    636:636:int getOffscreenPageLimit() -> getOffscreenPageLimit
+    657:666:void setOffscreenPageLimit(int) -> setOffscreenPageLimit
+    677:684:void setPageMargin(int) -> setPageMargin
+    692:692:int getPageMargin() -> getPageMargin
+    701:705:void setPageMarginDrawable(android.graphics.drawable.Drawable) -> setPageMarginDrawable
+    713:714:void setPageMarginDrawable(int) -> setPageMarginDrawable
+    718:718:boolean verifyDrawable(android.graphics.drawable.Drawable) -> verifyDrawable
+    723:728:void drawableStateChanged() -> drawableStateChanged
+    735:737:float distanceInfluenceForSnapDuration(float) -> a
+    758:796:void smoothScrollTo(int,int,int) -> a
+    799:808:android.support.v4.view.ViewPager$ItemInfo addNewItem(int,int) -> a
+    814:878:void dataSetChanged() -> a
+    881:882:void populate() -> b
+    885:1058:void populate(int) -> a
+    1061:1144:void calculatePageOffsets(android.support.v4.view.ViewPager$ItemInfo,int,android.support.v4.view.ViewPager$ItemInfo) -> a
+    1200:1206:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    1211:1227:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+    1231:1253:void addView(android.view.View,int,android.view.ViewGroup$LayoutParams) -> addView
+    1256:1262:android.support.v4.view.ViewPager$ItemInfo infoForChild(android.view.View) -> a
+    1267:1273:android.support.v4.view.ViewPager$ItemInfo infoForAnyChild(android.view.View) -> b
+    1277:1283:android.support.v4.view.ViewPager$ItemInfo infoForPosition(int) -> b
+    1288:1290:void onAttachedToWindow() -> onAttachedToWindow
+    1299:1385:void onMeasure(int,int) -> onMeasure
+    1389:1395:void onSizeChanged(int,int,int,int) -> onSizeChanged
+    1398:1422:void recomputeScrollPosition(int,int,int,int) -> a
+    1426:1530:void onLayout(boolean,int,int,int,int) -> onLayout
+    1534:1555:void computeScroll() -> computeScroll
+    1558:1582:boolean pageScrolled(int) -> d
+    1599:1667:void onPageScrolled(int,float,int) -> a
+    1670:1698:void completeScroll(boolean) -> a
+    1701:1701:boolean isGutterDrag(float,float) -> a
+    1705:1711:void enableLayers(boolean) -> b
+    1721:1853:boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    1858:1972:boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    1976:2019:boolean performDrag(float) -> b
+    2027:2065:android.support.v4.view.ViewPager$ItemInfo infoForCurrentScrollPosition() -> g
+    2070:2089:int determineTargetPage(int,float,int,int) -> a
+    2094:2132:void draw(android.graphics.Canvas) -> draw
+    2136:2176:void onDraw(android.graphics.Canvas) -> onDraw
+    2307:2319:void onSecondaryPointerUp(android.view.MotionEvent) -> a
+    2322:2329:void endDrag() -> h
+    2332:2344:void setScrollingCacheEnabled(boolean) -> setScrollingCacheEnabled
+    2358:2377:boolean canScroll(android.view.View,boolean,int,int,int) -> a
+    2383:2383:boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
+    2395:2417:boolean executeKeyEvent(android.view.KeyEvent) -> a
+    2421:2460:boolean arrowScroll(int) -> c
+    2464:2486:android.graphics.Rect getChildRectInPagerCoordinates(android.graphics.Rect,android.view.View) -> a
+    2490:2494:boolean pageLeft() -> c
+    2498:2502:boolean pageRight() -> d
+    2510:2547:void addFocusables(java.util.ArrayList,int,int) -> addFocusables
+    2557:2566:void addTouchables(java.util.ArrayList) -> addTouchables
+    2577:2598:boolean onRequestFocusInDescendants(int,android.graphics.Rect) -> onRequestFocusInDescendants
+    2608:2620:boolean dispatchPopulateAccessibilityEvent(android.view.accessibility.AccessibilityEvent) -> dispatchPopulateAccessibilityEvent
+    2625:2625:android.view.ViewGroup$LayoutParams generateDefaultLayoutParams() -> generateDefaultLayoutParams
+    2630:2630:android.view.ViewGroup$LayoutParams generateLayoutParams(android.view.ViewGroup$LayoutParams) -> generateLayoutParams
+    2635:2635:boolean checkLayoutParams(android.view.ViewGroup$LayoutParams) -> checkLayoutParams
+    2640:2640:android.view.ViewGroup$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
+    84:84:int[] access$400() -> e
+android.support.v4.view.ViewPager$1 -> android.support.v4.view.ac:
+    111:111:int compare(android.support.v4.view.ViewPager$ItemInfo,android.support.v4.view.ViewPager$ItemInfo) -> a
+    108:108:int compare(java.lang.Object,java.lang.Object) -> compare
+android.support.v4.view.ViewPager$2 -> android.support.v4.view.ad:
+    117:118:float getInterpolation(float) -> getInterpolation
+android.support.v4.view.ViewPager$Decor -> android.support.v4.view.ae:
+android.support.v4.view.ViewPager$ItemInfo -> android.support.v4.view.af:
+    java.lang.Object object -> a
+    int position -> b
+    boolean scrolling -> c
+    float widthFactor -> d
+    float offset -> e
+android.support.v4.view.ViewPager$LayoutParams -> android.support.v4.view.ag:
+    boolean isDecor -> a
+    int gravity -> b
+    float widthFactor -> c
+    boolean needsMeasure -> d
+    int position -> e
+    int childIndex -> f
+android.support.v4.view.ViewPager$OnAdapterChangeListener -> android.support.v4.view.ah:
+    void onAdapterChanged(android.support.v4.view.PagerAdapter,android.support.v4.view.PagerAdapter) -> a
+android.support.v4.view.ViewPager$OnPageChangeListener -> android.support.v4.view.ai:
+    void onPageScrolled(int,float,int) -> a
+    void onPageSelected(int) -> a
+    void onPageScrollStateChanged(int) -> b
+android.support.v4.view.ViewPager$PageTransformer -> android.support.v4.view.aj:
+    void transformPage(android.view.View,float) -> a
+android.support.v4.view.ViewPager$PagerObserver -> android.support.v4.view.ak:
+    android.support.v4.view.ViewPager this$0 -> a
+    2690:2691:void onChanged() -> onChanged
+    2694:2695:void onInvalidated() -> onInvalidated
+android.support.v4.view.ViewPager$SavedState -> android.support.v4.view.ViewPager$SavedState:
+    int position -> a
+    android.os.Parcelable adapterState -> b
+    java.lang.ClassLoader loader -> c
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    1163:1166:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    1170:1170:java.lang.String toString() -> toString
+android.support.v4.view.ViewPager$SavedState$1 -> android.support.v4.view.al:
+    1179:1179:android.support.v4.view.ViewPager$SavedState createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> b
+    1183:1183:android.support.v4.view.ViewPager$SavedState[] newArray(int) -> b
+    1176:1176:java.lang.Object[] newArray(int) -> a
+    1176:1176:java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> a
+android.support.v4.view.ViewPager$ViewPositionComparator -> android.support.v4.view.am:
+    2753:2758:int compare(android.view.View,android.view.View) -> a
+    2750:2750:int compare(java.lang.Object,java.lang.Object) -> compare
+android.support.v4.widget.EdgeEffectCompat -> android.support.v4.d.a:
+    java.lang.Object mEdgeEffect -> a
+    android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl IMPL -> b
+    143:144:void setSize(int,int) -> a
+    154:154:boolean isFinished() -> a
+    162:163:void finish() -> b
+    177:177:boolean onPull(float) -> a
+    189:189:boolean onRelease() -> c
+    218:218:boolean draw(android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl -> android.support.v4.d.b:
+    64:64:void setSize(java.lang.Object,int,int) -> a
+    67:67:boolean isFinished(java.lang.Object) -> a
+    71:71:void finish(java.lang.Object) -> b
+    74:74:boolean onPull(java.lang.Object,float) -> a
+    78:78:boolean onRelease(java.lang.Object) -> c
+    86:86:boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl -> android.support.v4.d.c:
+    96:97:void setSize(java.lang.Object,int,int) -> a
+    100:100:boolean isFinished(java.lang.Object) -> a
+    104:105:void finish(java.lang.Object) -> b
+    108:108:boolean onPull(java.lang.Object,float) -> a
+    112:112:boolean onRelease(java.lang.Object) -> c
+    120:120:boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl -> android.support.v4.d.d:
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompatIcs -> android.support.v4.d.e:
+    34:35:void setSize(java.lang.Object,int,int) -> a
+    38:38:boolean isFinished(java.lang.Object) -> a
+    42:43:void finish(java.lang.Object) -> b
+    46:47:boolean onPull(java.lang.Object,float) -> a
+    51:53:boolean onRelease(java.lang.Object) -> c
+    62:62:boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint -> com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint:
+    60:62:void onCreate() -> onCreate
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog -> com.halcyonwaves.apps.meinemediathek.a:
+    android.app.Activity rootActivity -> a
+    46:49:java.lang.String getApplicationVersion() -> c
+    55:58:int getApplicationVersionCode() -> d
+    63:63:java.lang.String getChangelogStyleDefinition() -> e
+    67:100:java.lang.String getHtmlChangelog() -> f
+    104:111:void markDialogAsAlreadyDisplayed() -> a
+    114:124:java.lang.String parseChangelogReleaseTag(org.xmlpull.v1.XmlPullParser) -> a
+    128:159:void show() -> b
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog$1 -> com.halcyonwaves.apps.meinemediathek.b:
+    com.halcyonwaves.apps.meinemediathek.ChangeLogDialog this$0 -> a
+    154:155:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.SearchResultEntry -> com.halcyonwaves.apps.meinemediathek.c:
+    java.lang.String description -> a
+    java.lang.String downloadLink -> b
+    java.io.File previewImage -> c
+    java.lang.String title -> d
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity -> com.halcyonwaves.apps.meinemediathek.activities.HomeActivity:
+    12:14:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity -> com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity:
+    android.widget.Button cancelDownload -> a
+    android.widget.TextView movieTitle -> b
+    19:42:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity$1 -> com.halcyonwaves.apps.meinemediathek.activities.a:
+    com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity this$0 -> a
+    38:40:void onClick(android.view.View) -> onClick
+com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity -> com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity:
+    12:14:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity -> com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity:
+    12:14:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter -> com.halcyonwaves.apps.meinemediathek.a.a:
+    android.view.LayoutInflater mInflater -> a
+    30:41:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    45:49:void setData(java.util.List) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment -> com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment:
+    android.widget.Button btnDownloadMoview -> a
+    java.lang.String downloadLink -> b
+    android.widget.ImageView ivPreviewImage -> c
+    android.widget.TextView tvMovieDescription -> d
+    android.widget.TextView tvMovieTitle -> e
+    33:89:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    93:97:void startEpisodeDownload() -> a
+    92:92:void access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.a:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment this$0 -> a
+    57:85:void onClick(android.view.View) -> onClick
+    53:53:com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1$1 -> com.halcyonwaves.apps.meinemediathek.fragments.b:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 this$1 -> a
+    67:68:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1$2 -> com.halcyonwaves.apps.meinemediathek.fragments.c:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 this$1 -> a
+    74:74:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment -> com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
+    android.widget.Button btnSearch -> a
+    android.widget.EditText etTitleToSearchFor -> b
+    39:109:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    34:34:android.widget.EditText access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.d:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment this$0 -> a
+    50:53:void onClick(android.view.View) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$2 -> com.halcyonwaves.apps.meinemediathek.fragments.e:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment this$0 -> a
+    android.content.SharedPreferences val$appPreferences -> b
+    70:76:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$3 -> com.halcyonwaves.apps.meinemediathek.fragments.f:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment this$0 -> a
+    84:91:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment -> com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment:
+    com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter searchResultsAdapter -> a
+    30:41:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    47:51:android.content.Loader onCreateLoader(int,android.os.Bundle) -> onCreateLoader
+    56:68:void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
+    72:73:void onLoaderReset(android.content.Loader) -> onLoaderReset
+    78:100:void onLoadFinished(android.content.Loader,java.util.List) -> a
+    1:1:void onLoadFinished(android.content.Loader,java.lang.Object) -> onLoadFinished
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.g:
+    com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment this$0 -> a
+    88:88:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader -> com.halcyonwaves.apps.meinemediathek.b.a:
+    java.util.regex.Pattern PreviewImagePattern -> a
+    java.lang.String searchFor -> b
+    java.util.List searchResults -> c
+    boolean socketException -> d
+    int usedTimeoutInSeconds -> e
+    54:71:void deliverResult(java.util.List) -> a
+    76:194:java.util.List loadInBackground() -> a
+    199:199:void onReleaseResources(java.util.List) -> b
+    206:212:void onStartLoading() -> onStartLoading
+    215:215:boolean socketTimeoutOccurred() -> b
+    1:1:void deliverResult(java.lang.Object) -> deliverResult
+    1:1:java.lang.Object loadInBackground() -> loadInBackground
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream -> com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
+    boolean libLoaded -> a
+    int len -> b
+    int mms -> c
+    37:41:void ensureLibLoaded() -> b
+    105:106:void close() -> close
+    109:109:int length() -> a
+    void nativeClose(int) -> nativeClose
+    int nativeConnect(java.lang.String) -> nativeConnect
+    int nativeGetLength(int) -> nativeGetLength
+    int nativeRead(int,byte[],int,int) -> nativeRead
+    125:134:int read() -> read
+    139:139:int read(byte[],int,int) -> read
+com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService -> com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
+    16:16:android.os.IBinder onBind(android.content.Intent) -> onBind
+    22:35:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyonwaves.apps.meinemediathek.c.a:
+    java.util.UUID DOWNLOAD_NOTIFICATION_FILE_ID -> a
+    java.lang.String downloadLink -> b
+    java.lang.String movieTitle -> c
+    android.support.v4.app.NotificationCompat$Builder notificationBuilder -> d
+    android.app.NotificationManager notificationManager -> e
+    java.io.File outputFile -> f
+    android.content.Context threadContext -> g
+    int usedTimeoutInSeconds -> h
+    64:155:void run() -> run
+org.acra.ACRA -> org.acra.ACRA:
+    boolean DEV_LOGGING -> DEV_LOGGING
+    java.lang.String LOG_TAG -> LOG_TAG
+    org.acra.log.ACRALog log -> log
+    java.lang.String PREF_DISABLE_ACRA -> PREF_DISABLE_ACRA
+    java.lang.String PREF_ENABLE_ACRA -> PREF_ENABLE_ACRA
+    java.lang.String PREF_ENABLE_SYSTEM_LOGS -> PREF_ENABLE_SYSTEM_LOGS
+    java.lang.String PREF_ENABLE_DEVICE_ID -> PREF_ENABLE_DEVICE_ID
+    java.lang.String PREF_USER_EMAIL_ADDRESS -> PREF_USER_EMAIL_ADDRESS
+    java.lang.String PREF_ALWAYS_ACCEPT -> PREF_ALWAYS_ACCEPT
+    java.lang.String PREF_LAST_VERSION_NR -> PREF_LAST_VERSION_NR
+    android.app.Application mApplication -> mApplication
+    org.acra.annotation.ReportsCrashes mReportsCrashes -> mReportsCrashes
+    org.acra.ErrorReporter errorReporterSingleton -> errorReporterSingleton
+    android.content.SharedPreferences$OnSharedPreferenceChangeListener mPrefListener -> mPrefListener
+    org.acra.ReportField[] DEFAULT_MAIL_REPORT_FIELDS -> DEFAULT_MAIL_REPORT_FIELDS
+    org.acra.ReportField[] DEFAULT_REPORT_FIELDS -> DEFAULT_REPORT_FIELDS
+    org.acra.ACRAConfiguration configProxy -> configProxy
+    120:171:void init(android.app.Application) -> init
+    180:183:org.acra.ErrorReporter getErrorReporter() -> getErrorReporter
+    199:206:boolean shouldDisableACRA(android.content.SharedPreferences) -> shouldDisableACRA
+    216:240:void checkCrashResources() -> checkCrashResources
+    252:256:android.content.SharedPreferences getACRASharedPreferences() -> getACRASharedPreferences
+    266:273:org.acra.ACRAConfiguration getConfig() -> getConfig
+    283:284:void setConfig(org.acra.ACRAConfiguration) -> setConfig
+    291:294:org.acra.ACRAConfiguration getNewDefaultConfig(android.app.Application) -> getNewDefaultConfig
+    328:332:boolean isDebuggable() -> isDebuggable
+    337:337:android.app.Application getApplication() -> getApplication
+    341:342:void setLog(org.acra.log.ACRALog) -> setLog
+    42:42:boolean access$000(android.content.SharedPreferences) -> access$000
+org.acra.ACRA$1 -> org.acra.a:
+    160:164:void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+org.acra.ACRA$2 -> org.acra.b:
+    int[] $SwitchMap$org$acra$ReportingInteractionMode -> a
+org.acra.ACRAConfiguration -> org.acra.c:
+    java.lang.String[] mAdditionalDropboxTags -> a
+    java.lang.String[] mAdditionalSharedPreferences -> b
+    java.lang.Integer mConnectionTimeout -> c
+    org.acra.ReportField[] mCustomReportContent -> d
+    java.lang.Boolean mDeleteUnapprovedReportsOnApplicationStart -> e
+    java.lang.Boolean mDeleteOldUnsentReportsOnApplicationStart -> f
+    java.lang.Integer mDropboxCollectionMinutes -> g
+    java.lang.Boolean mForceCloseDialogAfterToast -> h
+    java.lang.String mFormKey -> i
+    java.lang.String mFormUri -> j
+    java.lang.String mFormUriBasicAuthLogin -> k
+    java.lang.String mFormUriBasicAuthPassword -> l
+    java.lang.Boolean mIncludeDropboxSystemTags -> m
+    java.lang.String[] mLogcatArguments -> n
+    java.lang.String mMailTo -> o
+    java.lang.Integer mMaxNumberOfRequestRetries -> p
+    org.acra.ReportingInteractionMode mMode -> q
+    org.acra.annotation.ReportsCrashes mReportsCrashes -> r
+    java.lang.Integer mResDialogCommentPrompt -> s
+    java.lang.Integer mResDialogEmailPrompt -> t
+    java.lang.Integer mResDialogIcon -> u
+    java.lang.Integer mResDialogOkToast -> v
+    java.lang.Integer mResDialogText -> w
+    java.lang.Integer mResDialogTitle -> x
+    java.lang.Integer mResNotifIcon -> y
+    java.lang.Integer mResNotifText -> z
+    java.lang.Integer mResNotifTickerText -> A
+    java.lang.Integer mResNotifTitle -> B
+    java.lang.Integer mResToastText -> C
+    java.lang.Integer mSharedPreferenceMode -> D
+    java.lang.String mSharedPreferenceName -> E
+    java.lang.Integer mSocketTimeout -> F
+    java.lang.Boolean mLogcatFilterByPid -> G
+    java.lang.Boolean mSendReportsInDevMode -> H
+    java.lang.String[] mExcludeMatchingSharedPreferencesKeys -> I
+    java.lang.String mApplicationLogFile -> J
+    java.lang.Integer mApplicationLogFileLines -> K
+    java.lang.String mGoogleFormUrlFormat -> L
+    java.lang.Boolean mDisableSSLCertValidation -> M
+    486:495:java.lang.String[] additionalDropBoxTags() -> a
+    500:509:java.lang.String[] additionalSharedPreferences() -> b
+    514:514:java.lang.Class annotationType() -> annotationType
+    519:527:int connectionTimeout() -> c
+    532:541:org.acra.ReportField[] customReportContent() -> d
+    546:554:boolean deleteUnapprovedReportsOnApplicationStart() -> e
+    559:567:boolean deleteOldUnsentReportsOnApplicationStart() -> f
+    572:580:int dropboxCollectionMinutes() -> g
+    585:593:boolean forceCloseDialogAfterToast() -> h
+    598:606:java.lang.String formKey() -> i
+    611:619:java.lang.String formUri() -> j
+    624:632:java.lang.String formUriBasicAuthLogin() -> k
+    637:645:java.lang.String formUriBasicAuthPassword() -> l
+    650:658:boolean includeDropBoxSystemTags() -> m
+    663:672:java.lang.String[] logcatArguments() -> n
+    677:685:java.lang.String mailTo() -> o
+    690:698:int maxNumberOfRequestRetries() -> p
+    703:711:org.acra.ReportingInteractionMode mode() -> q
+    716:724:int resDialogCommentPrompt() -> r
+    729:737:int resDialogEmailPrompt() -> s
+    742:750:int resDialogIcon() -> t
+    755:763:int resDialogOkToast() -> u
+    768:776:int resDialogText() -> v
+    781:789:int resDialogTitle() -> w
+    794:802:int resNotifIcon() -> x
+    807:815:int resNotifText() -> y
+    820:828:int resNotifTickerText() -> z
+    833:841:int resNotifTitle() -> A
+    846:854:int resToastText() -> B
+    859:867:int sharedPreferencesMode() -> C
+    872:880:java.lang.String sharedPreferencesName() -> D
+    885:893:int socketTimeout() -> E
+    898:906:boolean logcatFilterByPid() -> F
+    911:919:boolean sendReportsInDevMode() -> G
+    924:934:java.lang.String[] excludeMatchingSharedPreferencesKeys() -> H
+    939:947:java.lang.String applicationLogFile() -> I
+    952:960:int applicationLogFileLines() -> J
+    965:973:java.lang.String googleFormUrlFormat() -> K
+    978:986:boolean disableSSLCertValidation() -> L
+org.acra.ACRAConfigurationException -> org.acra.d:
+org.acra.ACRAConstants -> org.acra.e:
+    java.lang.String SILENT_SUFFIX -> a
+org.acra.CrashReportDialog -> org.acra.CrashReportDialog:
+    android.content.SharedPreferences prefs -> b
+    android.widget.EditText userComment -> c
+    android.widget.EditText userEmail -> d
+    java.lang.String mReportFileName -> a
+    69:226:void onCreate(android.os.Bundle) -> onCreate
+    235:242:void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    248:250:void cancelNotification() -> a
+    255:258:boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
+    53:53:android.widget.EditText access$000(org.acra.CrashReportDialog) -> a
+    53:53:android.content.SharedPreferences access$100(org.acra.CrashReportDialog) -> b
+    53:53:android.widget.EditText access$200(org.acra.CrashReportDialog) -> c
+org.acra.CrashReportDialog$1 -> org.acra.f:
+    org.acra.CrashReportDialog this$0 -> a
+    155:189:void onClick(android.view.View) -> onClick
+org.acra.CrashReportDialog$2 -> org.acra.g:
+    org.acra.CrashReportDialog this$0 -> a
+    201:203:void onClick(android.view.View) -> onClick
+org.acra.CrashReportDialog$3 -> org.acra.h:
+    android.widget.ScrollView val$scroll -> a
+    org.acra.CrashReportDialog this$0 -> b
+    223:224:void run() -> run
+org.acra.CrashReportFileNameParser -> org.acra.i:
+    33:33:boolean isSilent(java.lang.String) -> a
+    50:50:boolean isApproved(java.lang.String) -> b
+org.acra.CrashReportFinder -> org.acra.j:
+    android.content.Context context -> a
+    46:66:java.lang.String[] getCrashReportFiles() -> a
+org.acra.CrashReportFinder$1 -> org.acra.k:
+    org.acra.CrashReportFinder this$0 -> a
+    62:62:boolean accept(java.io.File,java.lang.String) -> accept
+org.acra.CrashReportPersister -> org.acra.l:
+    android.content.Context context -> a
+    63:80:org.acra.collector.CrashReportData load(java.lang.String) -> a
+    95:113:void store(org.acra.collector.CrashReportData,java.lang.String) -> a
+    117:130:boolean isEbcdic(java.io.BufferedInputStream) -> a
+    162:325:org.acra.collector.CrashReportData load(java.io.Reader) -> a
+    336:373:void dumpString(java.lang.StringBuilder,java.lang.String,boolean) -> a
+org.acra.ErrorReporter -> org.acra.ErrorReporter:
+    boolean enabled -> a
+    android.content.Context mContext -> b
+    android.content.SharedPreferences prefs -> c
+    java.util.List mReportSenders -> d
+    org.acra.collector.CrashReportDataFactory crashReportDataFactory -> e
+    org.acra.CrashReportFileNameParser fileNameParser -> f
+    java.lang.Thread$UncaughtExceptionHandler mDfltExceptionHandler -> g
+    java.lang.Thread brokenThread -> h
+    java.lang.Throwable unhandledThrowable -> i
+    boolean toastWaitEnded -> j
+    164:165:void addCustomData(java.lang.String,java.lang.String) -> addCustomData
+    189:189:java.lang.String putCustomData(java.lang.String,java.lang.String) -> a
+    225:226:void addReportSender(org.acra.sender.ReportSender) -> a
+    261:262:void removeAllReportSenders() -> a
+    272:274:void setReportSender(org.acra.sender.ReportSender) -> b
+    287:315:void uncaughtException(java.lang.Thread,java.lang.Throwable) -> uncaughtException
+    321:336:void endApplication() -> f
+    349:356:void handleSilentException(java.lang.Throwable) -> handleSilentException
+    366:368:void setEnabled(boolean) -> a
+    380:382:org.acra.SendWorker startSendingReports(boolean,boolean) -> a
+    389:390:void deletePendingReports() -> b
+    400:468:void checkReportsOnApplicationStart() -> c
+    480:482:void deletePendingNonApprovedReports(boolean) -> b
+    509:510:void handleException(java.lang.Throwable) -> a
+    531:670:void handleException(java.lang.Throwable,org.acra.ReportingInteractionMode,boolean,boolean) -> a
+    681:686:void notifyDialog(java.lang.String) -> a
+    703:729:void notifySendReport(java.lang.String) -> b
+    732:736:java.lang.String getReportFileName(org.acra.collector.CrashReportData) -> a
+    757:763:void saveCrashReportFile(java.lang.String,org.acra.collector.CrashReportData) -> a
+    775:784:java.lang.String getLatestNonSilentReport(java.lang.String[]) -> a
+    802:817:void deletePendingReports(boolean,boolean,int) -> a
+    829:834:boolean containsOnlySilentOrApprovedReports(java.lang.String[]) -> b
+    842:881:void setDefaultReportSenders() -> d
+    75:75:android.content.Context access$000(org.acra.ErrorReporter) -> a
+    75:75:boolean access$102(boolean) -> c
+    75:75:boolean access$100() -> e
+    75:75:void access$200(org.acra.ErrorReporter) -> b
+org.acra.ErrorReporter$1 -> org.acra.m:
+    org.acra.ErrorReporter this$0 -> a
+    568:571:void run() -> run
+org.acra.ErrorReporter$2 -> org.acra.n:
+    org.acra.ErrorReporter this$0 -> a
+    612:628:void run() -> run
+org.acra.ErrorReporter$3 -> org.acra.o:
+    org.acra.SendWorker val$worker -> a
+    boolean val$showDirectDialog -> b
+    java.lang.String val$reportFileName -> c
+    boolean val$endApplication -> d
+    org.acra.ErrorReporter this$0 -> e
+    645:668:void run() -> run
+org.acra.ReportField -> org.acra.ReportField:
+    org.acra.ReportField REPORT_ID -> REPORT_ID
+    org.acra.ReportField APP_VERSION_CODE -> APP_VERSION_CODE
+    org.acra.ReportField APP_VERSION_NAME -> APP_VERSION_NAME
+    org.acra.ReportField PACKAGE_NAME -> PACKAGE_NAME
+    org.acra.ReportField FILE_PATH -> FILE_PATH
+    org.acra.ReportField PHONE_MODEL -> PHONE_MODEL
+    org.acra.ReportField ANDROID_VERSION -> ANDROID_VERSION
+    org.acra.ReportField BUILD -> BUILD
+    org.acra.ReportField BRAND -> BRAND
+    org.acra.ReportField PRODUCT -> PRODUCT
+    org.acra.ReportField TOTAL_MEM_SIZE -> TOTAL_MEM_SIZE
+    org.acra.ReportField AVAILABLE_MEM_SIZE -> AVAILABLE_MEM_SIZE
+    org.acra.ReportField CUSTOM_DATA -> CUSTOM_DATA
+    org.acra.ReportField STACK_TRACE -> STACK_TRACE
+    org.acra.ReportField INITIAL_CONFIGURATION -> INITIAL_CONFIGURATION
+    org.acra.ReportField CRASH_CONFIGURATION -> CRASH_CONFIGURATION
+    org.acra.ReportField DISPLAY -> DISPLAY
+    org.acra.ReportField USER_COMMENT -> USER_COMMENT
+    org.acra.ReportField USER_APP_START_DATE -> USER_APP_START_DATE
+    org.acra.ReportField USER_CRASH_DATE -> USER_CRASH_DATE
+    org.acra.ReportField DUMPSYS_MEMINFO -> DUMPSYS_MEMINFO
+    org.acra.ReportField DROPBOX -> DROPBOX
+    org.acra.ReportField LOGCAT -> LOGCAT
+    org.acra.ReportField EVENTSLOG -> EVENTSLOG
+    org.acra.ReportField RADIOLOG -> RADIOLOG
+    org.acra.ReportField IS_SILENT -> IS_SILENT
+    org.acra.ReportField DEVICE_ID -> DEVICE_ID
+    org.acra.ReportField INSTALLATION_ID -> INSTALLATION_ID
+    org.acra.ReportField USER_EMAIL -> USER_EMAIL
+    org.acra.ReportField DEVICE_FEATURES -> DEVICE_FEATURES
+    org.acra.ReportField ENVIRONMENT -> ENVIRONMENT
+    org.acra.ReportField SETTINGS_SYSTEM -> SETTINGS_SYSTEM
+    org.acra.ReportField SETTINGS_SECURE -> SETTINGS_SECURE
+    org.acra.ReportField SHARED_PREFERENCES -> SHARED_PREFERENCES
+    org.acra.ReportField APPLICATION_LOG -> APPLICATION_LOG
+    org.acra.ReportField MEDIA_CODEC_LIST -> MEDIA_CODEC_LIST
+    org.acra.ReportField THREAD_DETAILS -> THREAD_DETAILS
+    org.acra.ReportField[] $VALUES -> $VALUES
+    28:28:org.acra.ReportField[] values() -> values
+    28:28:org.acra.ReportField valueOf(java.lang.String) -> valueOf
+org.acra.ReportingInteractionMode -> org.acra.ReportingInteractionMode:
+    org.acra.ReportingInteractionMode SILENT -> SILENT
+    org.acra.ReportingInteractionMode NOTIFICATION -> NOTIFICATION
+    org.acra.ReportingInteractionMode TOAST -> TOAST
+    org.acra.ReportingInteractionMode DIALOG -> DIALOG
+    org.acra.ReportingInteractionMode[] $VALUES -> $VALUES
+    30:30:org.acra.ReportingInteractionMode[] values() -> values
+    30:30:org.acra.ReportingInteractionMode valueOf(java.lang.String) -> valueOf
+org.acra.SendWorker -> org.acra.p:
+    android.content.Context context -> a
+    boolean sendOnlySilentReports -> b
+    boolean approvePendingReports -> c
+    org.acra.CrashReportFileNameParser fileNameParser -> d
+    java.util.List reportSenders -> e
+    74:78:void run() -> run
+    85:107:void approvePendingReports() -> a
+    120:161:void checkAndSendReports(android.content.Context,boolean) -> a
+    174:195:void sendCrashReport(org.acra.collector.CrashReportData) -> a
+    198:202:void deleteFile(android.content.Context,java.lang.String) -> a
+org.acra.annotation.ReportsCrashes -> org.acra.a.a:
+    java.lang.String formKey() -> i
+    java.lang.String formUri() -> j
+    org.acra.ReportingInteractionMode mode() -> q
+    int resDialogCommentPrompt() -> r
+    int resDialogEmailPrompt() -> s
+    int resDialogIcon() -> t
+    int resDialogOkToast() -> u
+    int resDialogText() -> v
+    int resDialogTitle() -> w
+    int resNotifIcon() -> x
+    int resNotifText() -> y
+    int resNotifTickerText() -> z
+    int resNotifTitle() -> A
+    int resToastText() -> B
+    java.lang.String sharedPreferencesName() -> D
+    int sharedPreferencesMode() -> C
+    boolean includeDropBoxSystemTags() -> m
+    java.lang.String[] additionalDropBoxTags() -> a
+    int dropboxCollectionMinutes() -> g
+    java.lang.String[] logcatArguments() -> n
+    java.lang.String formUriBasicAuthLogin() -> k
+    java.lang.String formUriBasicAuthPassword() -> l
+    org.acra.ReportField[] customReportContent() -> d
+    java.lang.String mailTo() -> o
+    boolean deleteUnapprovedReportsOnApplicationStart() -> e
+    boolean deleteOldUnsentReportsOnApplicationStart() -> f
+    int connectionTimeout() -> c
+    int socketTimeout() -> E
+    int maxNumberOfRequestRetries() -> p
+    boolean forceCloseDialogAfterToast() -> h
+    java.lang.String[] additionalSharedPreferences() -> b
+    boolean logcatFilterByPid() -> F
+    boolean sendReportsInDevMode() -> G
+    java.lang.String[] excludeMatchingSharedPreferencesKeys() -> H
+    java.lang.String applicationLogFile() -> I
+    int applicationLogFileLines() -> J
+    java.lang.String googleFormUrlFormat() -> K
+    boolean disableSSLCertValidation() -> L
+org.acra.collector.Compatibility -> org.acra.b.a:
+    40:52:int getAPILevel() -> a
+    63:67:java.lang.String getDropBoxServiceName() -> b
+org.acra.collector.ConfigurationCollector -> org.acra.b.b:
+    android.util.SparseArray mHardKeyboardHiddenValues -> a
+    android.util.SparseArray mKeyboardValues -> b
+    android.util.SparseArray mKeyboardHiddenValues -> c
+    android.util.SparseArray mNavigationValues -> d
+    android.util.SparseArray mNavigationHiddenValues -> e
+    android.util.SparseArray mOrientationValues -> f
+    android.util.SparseArray mScreenLayoutValues -> g
+    android.util.SparseArray mTouchScreenValues -> h
+    android.util.SparseArray mUiModeValues -> i
+    java.util.HashMap mValueArrays -> j
+    124:143:java.lang.String toString(android.content.res.Configuration) -> a
+    162:181:java.lang.String getFieldValueName(android.content.res.Configuration,java.lang.reflect.Field) -> a
+    199:214:java.lang.String activeFlags(android.util.SparseArray,int) -> a
+    225:229:java.lang.String collectConfiguration(android.content.Context) -> a
+org.acra.collector.CrashReportData -> org.acra.b.c:
+    49:49:java.lang.String getProperty(org.acra.ReportField) -> a
+org.acra.collector.CrashReportDataFactory -> org.acra.b.d:
+    android.content.Context context -> a
+    android.content.SharedPreferences prefs -> b
+    java.util.List crashReportFields -> c
+    java.util.Map customParameters -> d
+    android.text.format.Time appStartDate -> e
+    java.lang.String initialConfiguration -> f
+    142:142:java.lang.String putCustomData(java.lang.String,java.lang.String) -> a
+    179:379:org.acra.collector.CrashReportData createCrashData(java.lang.Throwable,boolean,java.lang.Thread) -> a
+    389:397:java.lang.String createCustomInfoString() -> a
+    402:415:java.lang.String getStackTrace(java.lang.Throwable) -> a
+org.acra.collector.DeviceFeaturesCollector -> org.acra.b.e:
+    36:63:java.lang.String getFeatures(android.content.Context) -> a
+org.acra.collector.DropBoxCollector -> org.acra.b.f:
+    java.lang.String[] SYSTEM_TAGS -> a
+    62:133:java.lang.String read(android.content.Context,java.lang.String[]) -> a
+org.acra.collector.DumpSysCollector -> org.acra.b.g:
+    44:67:java.lang.String collectMemInfo() -> a
+org.acra.collector.LogCatCollector -> org.acra.b.h:
+    62:116:java.lang.String collectLogCat(java.lang.String) -> a
+org.acra.collector.LogFileCollector -> org.acra.b.i:
+    56:68:java.lang.String collectLogFile(android.content.Context,java.lang.String,int) -> a
+org.acra.collector.MediaCodecListCollector -> org.acra.b.j:
+    java.lang.String[] MPEG4_TYPES -> a
+    java.lang.String[] AVC_TYPES -> b
+    java.lang.String[] H263_TYPES -> c
+    java.lang.String[] AAC_TYPES -> d
+    java.lang.Class mediaCodecListClass -> e
+    java.lang.reflect.Method getCodecInfoAtMethod -> f
+    java.lang.Class mediaCodecInfoClass -> g
+    java.lang.reflect.Method getNameMethod -> h
+    java.lang.reflect.Method isEncoderMethod -> i
+    java.lang.reflect.Method getSupportedTypesMethod -> j
+    java.lang.reflect.Method getCapabilitiesForTypeMethod -> k
+    java.lang.Class codecCapabilitiesClass -> l
+    java.lang.reflect.Field colorFormatsField -> m
+    java.lang.reflect.Field profileLevelsField -> n
+    java.lang.reflect.Field profileField -> o
+    java.lang.reflect.Field levelField -> p
+    android.util.SparseArray mColorFormatValues -> q
+    android.util.SparseArray mAVCLevelValues -> r
+    android.util.SparseArray mAVCProfileValues -> s
+    android.util.SparseArray mH263LevelValues -> t
+    android.util.SparseArray mH263ProfileValues -> u
+    android.util.SparseArray mMPEG4LevelValues -> v
+    android.util.SparseArray mMPEG4ProfileValues -> w
+    android.util.SparseArray mAACProfileValues -> x
+    139:167:java.lang.String collecMediaCodecList() -> a
+    184:243:java.lang.String collectCapabilitiesForType(java.lang.Object,java.lang.String) -> a
+    257:279:org.acra.collector.MediaCodecListCollector$CodecType identifyCodecType(java.lang.Object) -> a
+org.acra.collector.MediaCodecListCollector$1 -> org.acra.b.k:
+    int[] $SwitchMap$org$acra$collector$MediaCodecListCollector$CodecType -> a
+org.acra.collector.MediaCodecListCollector$CodecType -> org.acra.b.l:
+    org.acra.collector.MediaCodecListCollector$CodecType AVC -> a
+    org.acra.collector.MediaCodecListCollector$CodecType H263 -> b
+    org.acra.collector.MediaCodecListCollector$CodecType MPEG4 -> c
+    org.acra.collector.MediaCodecListCollector$CodecType AAC -> d
+    org.acra.collector.MediaCodecListCollector$CodecType[] $VALUES -> e
+    35:35:org.acra.collector.MediaCodecListCollector$CodecType[] values() -> values
+    35:35:org.acra.collector.MediaCodecListCollector$CodecType valueOf(java.lang.String) -> valueOf
+org.acra.collector.ReflectionCollector -> org.acra.b.m:
+    42:57:java.lang.String collectConstants(java.lang.Class) -> a
+    67:88:java.lang.String collectStaticGettersResults(java.lang.Class) -> b
+org.acra.collector.SettingsCollector -> org.acra.b.n:
+    47:67:java.lang.String collectSystemSettings(android.content.Context) -> a
+    79:96:java.lang.String collectSecureSettings(android.content.Context) -> b
+    100:103:boolean isAuthorized(java.lang.reflect.Field) -> a
+org.acra.collector.SharedPreferencesCollector -> org.acra.b.o:
+    49:83:java.lang.String collect(android.content.Context) -> a
+    95:98:boolean filteredKey(java.lang.String) -> a
+org.acra.collector.ThreadCollector -> org.acra.b.p:
+    35:47:java.lang.String collect(java.lang.Thread) -> a
+org.acra.log.ACRALog -> org.acra.c.a:
+    int d(java.lang.String,java.lang.String) -> a
+    int w(java.lang.String,java.lang.String) -> b
+    int w(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    int e(java.lang.String,java.lang.String) -> c
+org.acra.log.AndroidLogDelegate -> org.acra.c.b:
+    20:20:int d(java.lang.String,java.lang.String) -> a
+    32:32:int w(java.lang.String,java.lang.String) -> b
+    35:35:int w(java.lang.String,java.lang.String,java.lang.Throwable) -> a
+    42:42:int e(java.lang.String,java.lang.String) -> c
+org.acra.sender.EmailIntentSender -> org.acra.d.a:
+    android.content.Context mContext -> a
+    43:53:void send(org.acra.collector.CrashReportData) -> a
+    56:67:java.lang.String buildBody(org.acra.collector.CrashReportData) -> b
+org.acra.sender.GoogleFormSender -> org.acra.d.b:
+    android.net.Uri mFormUri -> a
+    68:90:void send(org.acra.collector.CrashReportData) -> a
+    94:115:java.util.Map remap(java.util.Map) -> a
+org.acra.sender.GoogleFormSender$1 -> org.acra.d.c:
+    int[] $SwitchMap$org$acra$ReportField -> a
+org.acra.sender.HttpPostSender -> org.acra.d.d:
+    android.net.Uri mFormUri -> a
+    java.util.Map mMapping -> b
+    121:141:void send(org.acra.collector.CrashReportData) -> a
+    144:144:boolean isNull(java.lang.String) -> a
+    149:162:java.util.Map remap(java.util.Map) -> a
+org.acra.sender.ReportSender -> org.acra.d.e:
+    void send(org.acra.collector.CrashReportData) -> a
+org.acra.sender.ReportSenderException -> org.acra.d.f:
+org.acra.util.BoundedLinkedList -> org.acra.e.a:
+    int maxSize -> a
+    46:49:boolean add(java.lang.Object) -> add
+    59:63:void add(int,java.lang.Object) -> add
+    72:77:boolean addAll(java.util.Collection) -> addAll
+    93:93:boolean addAll(int,java.util.Collection) -> addAll
+    104:104:void addFirst(java.lang.Object) -> addFirst
+    114:115:void addLast(java.lang.Object) -> addLast
+    124:128:java.lang.String toString() -> toString
+org.acra.util.FakeSocketFactory -> org.acra.e.b:
+    javax.net.ssl.SSLContext sslcontext -> a
+    25:29:javax.net.ssl.SSLContext createEasySSLContext() -> a
+    34:37:javax.net.ssl.SSLContext getSSLContext() -> b
+    42:60:java.net.Socket connectSocket(java.net.Socket,java.lang.String,int,java.net.InetAddress,int,org.apache.http.params.HttpParams) -> connectSocket
+    65:65:java.net.Socket createSocket() -> createSocket
+    70:70:boolean isSecure(java.net.Socket) -> isSecure
+    75:75:java.net.Socket createSocket(java.net.Socket,java.lang.String,int,boolean) -> createSocket
+org.acra.util.HttpRequest -> org.acra.e.c:
+    java.lang.String login -> a
+    java.lang.String password -> b
+    int connectionTimeOut -> c
+    int socketTimeOut -> d
+    int maxNrRetries -> e
+    90:91:void setLogin(java.lang.String) -> a
+    94:95:void setPassword(java.lang.String) -> b
+    98:99:void setConnectionTimeOut(int) -> a
+    102:103:void setSocketTimeOut(int) -> b
+    111:112:void setMaxNrRetries(int) -> c
+    123:150:void sendPost(java.net.URL,java.util.Map) -> a
+    156:176:org.apache.http.client.HttpClient getHttpClient() -> a
+    183:187:org.apache.http.auth.UsernamePasswordCredentials getCredentials() -> b
+    192:205:org.apache.http.client.methods.HttpPost getHttpPost(java.net.URL,java.util.Map) -> b
+    217:229:java.lang.String getParamsAsString(java.util.Map) -> a
+org.acra.util.HttpRequest$1 -> org.acra.e.d:
+org.acra.util.HttpRequest$SocketTimeOutRetryHandler -> org.acra.e.e:
+    org.apache.http.params.HttpParams httpParams -> a
+    int maxNrRetries -> b
+    60:77:boolean retryRequest(java.io.IOException,int,org.apache.http.protocol.HttpContext) -> retryRequest
+org.acra.util.Installation -> org.acra.e.f:
+    java.lang.String sID -> a
+    35:50:java.lang.String id(android.content.Context) -> a
+    54:61:java.lang.String readInstallationFile(java.io.File) -> a
+    65:72:void writeInstallationFile(java.io.File) -> b
+org.acra.util.NaiveTrustManager -> org.acra.e.g:
+    34:34:java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
+    47:47:void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
+    59:59:void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
+org.acra.util.PackageManagerWrapper -> org.acra.e.h:
+    android.content.Context context -> a
+    39:49:boolean hasPermission(java.lang.String) -> a
+    57:70:android.content.pm.PackageInfo getPackageInfo() -> a
+org.acra.util.ReportUtils -> org.acra.e.i:
+    32:36:long getAvailableInternalMemorySize() -> a
+    46:50:long getTotalInternalMemorySize() -> b
+    61:65:java.lang.String getDeviceId(android.content.Context) -> a
+    70:76:java.lang.String getApplicationFilePath(android.content.Context) -> b
+    87:107:java.lang.String getDisplayDetails(android.content.Context) -> c
+org.acra.util.ToastSender -> org.acra.e.j:
+    26:30:void sendToast(android.content.Context,int,int) -> a
+org.jsoup.Connection -> org.jsoup.Connection:
+    org.jsoup.Connection url(java.net.URL) -> url
+    org.jsoup.Connection url(java.lang.String) -> url
+    org.jsoup.Connection userAgent(java.lang.String) -> userAgent
+    org.jsoup.Connection timeout(int) -> timeout
+    org.jsoup.Connection referrer(java.lang.String) -> referrer
+    org.jsoup.Connection followRedirects(boolean) -> followRedirects
+    org.jsoup.Connection method(org.jsoup.Connection$Method) -> method
+    org.jsoup.Connection ignoreHttpErrors(boolean) -> ignoreHttpErrors
+    org.jsoup.Connection ignoreContentType(boolean) -> ignoreContentType
+    org.jsoup.Connection data(java.lang.String,java.lang.String) -> data
+    org.jsoup.Connection data(java.util.Map) -> data
+    org.jsoup.Connection data(java.lang.String[]) -> data
+    org.jsoup.Connection header(java.lang.String,java.lang.String) -> header
+    org.jsoup.Connection cookie(java.lang.String,java.lang.String) -> cookie
+    org.jsoup.Connection cookies(java.util.Map) -> cookies
+    org.jsoup.Connection parser(org.jsoup.parser.Parser) -> parser
+    org.jsoup.nodes.Document get() -> get
+    org.jsoup.nodes.Document post() -> post
+    org.jsoup.Connection$Response execute() -> execute
+    org.jsoup.Connection$Request request() -> request
+    org.jsoup.Connection request(org.jsoup.Connection$Request) -> request
+    org.jsoup.Connection$Response response() -> response
+    org.jsoup.Connection response(org.jsoup.Connection$Response) -> response
+org.jsoup.Connection$Base -> org.jsoup.Connection$Base:
+    java.net.URL url() -> url
+    org.jsoup.Connection$Base url(java.net.URL) -> url
+    org.jsoup.Connection$Method method() -> method
+    org.jsoup.Connection$Base method(org.jsoup.Connection$Method) -> method
+    java.lang.String header(java.lang.String) -> header
+    org.jsoup.Connection$Base header(java.lang.String,java.lang.String) -> header
+    boolean hasHeader(java.lang.String) -> hasHeader
+    org.jsoup.Connection$Base removeHeader(java.lang.String) -> removeHeader
+    java.util.Map headers() -> headers
+    java.lang.String cookie(java.lang.String) -> cookie
+    org.jsoup.Connection$Base cookie(java.lang.String,java.lang.String) -> cookie
+    boolean hasCookie(java.lang.String) -> hasCookie
+    org.jsoup.Connection$Base removeCookie(java.lang.String) -> removeCookie
+    java.util.Map cookies() -> cookies
+org.jsoup.Connection$KeyVal -> org.jsoup.Connection$KeyVal:
+    org.jsoup.Connection$KeyVal key(java.lang.String) -> key
+    java.lang.String key() -> key
+    org.jsoup.Connection$KeyVal value(java.lang.String) -> value
+    java.lang.String value() -> value
+org.jsoup.Connection$Method -> org.jsoup.Connection$Method:
+    org.jsoup.Connection$Method GET -> GET
+    org.jsoup.Connection$Method POST -> POST
+    org.jsoup.Connection$Method[] $VALUES -> a
+    28:28:org.jsoup.Connection$Method[] values() -> values
+    28:28:org.jsoup.Connection$Method valueOf(java.lang.String) -> valueOf
+org.jsoup.Connection$Request -> org.jsoup.Connection$Request:
+    int timeout() -> timeout
+    org.jsoup.Connection$Request timeout(int) -> timeout
+    boolean followRedirects() -> followRedirects
+    org.jsoup.Connection$Request followRedirects(boolean) -> followRedirects
+    boolean ignoreHttpErrors() -> ignoreHttpErrors
+    org.jsoup.Connection$Request ignoreHttpErrors(boolean) -> ignoreHttpErrors
+    boolean ignoreContentType() -> ignoreContentType
+    org.jsoup.Connection$Request ignoreContentType(boolean) -> ignoreContentType
+    org.jsoup.Connection$Request data(org.jsoup.Connection$KeyVal) -> data
+    java.util.Collection data() -> data
+    org.jsoup.Connection$Request parser(org.jsoup.parser.Parser) -> parser
+    org.jsoup.parser.Parser parser() -> parser
+org.jsoup.Connection$Response -> org.jsoup.Connection$Response:
+    int statusCode() -> statusCode
+    java.lang.String statusMessage() -> statusMessage
+    java.lang.String charset() -> charset
+    java.lang.String contentType() -> contentType
+    org.jsoup.nodes.Document parse() -> parse
+    java.lang.String body() -> body
+    byte[] bodyAsBytes() -> bodyAsBytes
+org.jsoup.HttpStatusException -> org.jsoup.HttpStatusException:
+    int statusCode -> a
+    java.lang.String url -> b
+    19:19:int getStatusCode() -> getStatusCode
+    23:23:java.lang.String getUrl() -> getUrl
+    28:28:java.lang.String toString() -> toString
+org.jsoup.Jsoup -> org.jsoup.Jsoup:
+    31:31:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String) -> parse
+    45:45:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String,org.jsoup.parser.Parser) -> parse
+    58:58:org.jsoup.nodes.Document parse(java.lang.String) -> parse
+    73:73:org.jsoup.Connection connect(java.lang.String) -> connect
+    88:88:org.jsoup.nodes.Document parse(java.io.File,java.lang.String,java.lang.String) -> parse
+    103:103:org.jsoup.nodes.Document parse(java.io.File,java.lang.String) -> parse
+    118:118:org.jsoup.nodes.Document parse(java.io.InputStream,java.lang.String,java.lang.String) -> parse
+    135:135:org.jsoup.nodes.Document parse(java.io.InputStream,java.lang.String,java.lang.String,org.jsoup.parser.Parser) -> parse
+    148:148:org.jsoup.nodes.Document parseBodyFragment(java.lang.String,java.lang.String) -> parseBodyFragment
+    160:160:org.jsoup.nodes.Document parseBodyFragment(java.lang.String) -> parseBodyFragment
+    181:183:org.jsoup.nodes.Document parse(java.net.URL,int) -> parse
+    198:201:java.lang.String clean(java.lang.String,java.lang.String,org.jsoup.safety.Whitelist) -> clean
+    215:215:java.lang.String clean(java.lang.String,org.jsoup.safety.Whitelist) -> clean
+    231:235:java.lang.String clean(java.lang.String,java.lang.String,org.jsoup.safety.Whitelist,org.jsoup.nodes.Document$OutputSettings) -> clean
+    247:249:boolean isValid(java.lang.String,org.jsoup.safety.Whitelist) -> isValid
+org.jsoup.UnsupportedMimeTypeException -> org.jsoup.UnsupportedMimeTypeException:
+    java.lang.String mimeType -> a
+    java.lang.String url -> b
+    19:19:java.lang.String getMimeType() -> getMimeType
+    23:23:java.lang.String getUrl() -> getUrl
+    28:28:java.lang.String toString() -> toString
+org.jsoup.examples.HtmlToPlainText -> org.jsoup.examples.HtmlToPlainText:
+    26:35:void main(java.lang.String[]) -> main
+    43:47:java.lang.String getPlainText(org.jsoup.nodes.Element) -> getPlainText
+org.jsoup.examples.HtmlToPlainText$1 -> org.jsoup.examples.a:
+org.jsoup.examples.HtmlToPlainText$FormattingVisitor -> org.jsoup.examples.b:
+    int width -> b
+    java.lang.StringBuilder accum -> c
+    org.jsoup.examples.HtmlToPlainText this$0 -> a
+    58:63:void head(org.jsoup.nodes.Node,int) -> head
+    67:74:void tail(org.jsoup.nodes.Node,int) -> tail
+    78:103:void append(java.lang.String) -> a
+    106:106:java.lang.String toString() -> toString
+org.jsoup.examples.ListLinks -> org.jsoup.examples.ListLinks:
+    16:44:void main(java.lang.String[]) -> main
+    47:48:void print(java.lang.String,java.lang.Object[]) -> a
+    51:54:java.lang.String trim(java.lang.String,int) -> a
+org.jsoup.helper.DataUtil -> org.jsoup.helper.DataUtil:
+    java.util.regex.Pattern charsetPattern -> a
+    34:41:org.jsoup.nodes.Document load(java.io.File,java.lang.String,java.lang.String) -> load
+    54:55:org.jsoup.nodes.Document load(java.io.InputStream,java.lang.String,java.lang.String) -> load
+    68:69:org.jsoup.nodes.Document load(java.io.InputStream,java.lang.String,java.lang.String,org.jsoup.parser.Parser) -> load
+    76:105:org.jsoup.nodes.Document parseByteData(java.nio.ByteBuffer,java.lang.String,java.lang.String,org.jsoup.parser.Parser) -> a
+    109:118:java.nio.ByteBuffer readToByteBuffer(java.io.InputStream) -> a
+    128:136:java.lang.String getCharsetFromContentType(java.lang.String) -> a
+org.jsoup.helper.DescendableLinkedList -> org.jsoup.helper.DescendableLinkedList:
+    24:25:void push(java.lang.Object) -> push
+    32:32:java.lang.Object peekLast() -> peekLast
+    40:40:java.lang.Object pollLast() -> pollLast
+    48:48:java.util.Iterator descendingIterator() -> descendingIterator
+org.jsoup.helper.DescendableLinkedList$1 -> org.jsoup.helper.a:
+org.jsoup.helper.DescendableLinkedList$DescendingIterator -> org.jsoup.helper.b:
+    java.util.ListIterator iter -> b
+    org.jsoup.helper.DescendableLinkedList this$0 -> a
+    64:64:boolean hasNext() -> hasNext
+    72:72:java.lang.Object next() -> next
+    79:80:void remove() -> remove
+org.jsoup.helper.HttpConnection -> org.jsoup.helper.HttpConnection:
+    org.jsoup.Connection$Request req -> a
+    org.jsoup.Connection$Response res -> b
+    26:28:org.jsoup.Connection connect(java.lang.String) -> connect
+    32:34:org.jsoup.Connection connect(java.net.URL) -> connect
+    46:47:org.jsoup.Connection url(java.net.URL) -> url
+    51:57:org.jsoup.Connection url(java.lang.String) -> url
+    61:63:org.jsoup.Connection userAgent(java.lang.String) -> userAgent
+    67:68:org.jsoup.Connection timeout(int) -> timeout
+    72:73:org.jsoup.Connection followRedirects(boolean) -> followRedirects
+    77:79:org.jsoup.Connection referrer(java.lang.String) -> referrer
+    83:84:org.jsoup.Connection method(org.jsoup.Connection$Method) -> method
+    88:89:org.jsoup.Connection ignoreHttpErrors(boolean) -> ignoreHttpErrors
+    93:94:org.jsoup.Connection ignoreContentType(boolean) -> ignoreContentType
+    98:99:org.jsoup.Connection data(java.lang.String,java.lang.String) -> data
+    103:107:org.jsoup.Connection data(java.util.Map) -> data
+    111:120:org.jsoup.Connection data(java.lang.String[]) -> data
+    124:125:org.jsoup.Connection header(java.lang.String,java.lang.String) -> header
+    129:130:org.jsoup.Connection cookie(java.lang.String,java.lang.String) -> cookie
+    134:138:org.jsoup.Connection cookies(java.util.Map) -> cookies
+    142:143:org.jsoup.Connection parser(org.jsoup.parser.Parser) -> parser
+    147:149:org.jsoup.nodes.Document get() -> get
+    153:155:org.jsoup.nodes.Document post() -> post
+    159:160:org.jsoup.Connection$Response execute() -> execute
+    164:164:org.jsoup.Connection$Request request() -> request
+    168:169:org.jsoup.Connection request(org.jsoup.Connection$Request) -> request
+    173:173:org.jsoup.Connection$Response response() -> response
+    177:178:org.jsoup.Connection response(org.jsoup.Connection$Response) -> response
+org.jsoup.helper.HttpConnection$1 -> org.jsoup.helper.c:
+org.jsoup.helper.HttpConnection$Base -> org.jsoup.helper.d:
+    java.net.URL url -> a
+    org.jsoup.Connection$Method method -> b
+    java.util.Map headers -> c
+    java.util.Map cookies -> d
+    194:194:java.net.URL url() -> url
+    198:200:org.jsoup.Connection$Base url(java.net.URL) -> url
+    204:204:org.jsoup.Connection$Method method() -> method
+    208:210:org.jsoup.Connection$Base method(org.jsoup.Connection$Method) -> method
+    214:215:java.lang.String header(java.lang.String) -> header
+    219:223:org.jsoup.Connection$Base header(java.lang.String,java.lang.String) -> header
+    227:228:boolean hasHeader(java.lang.String) -> hasHeader
+    232:236:org.jsoup.Connection$Base removeHeader(java.lang.String) -> removeHeader
+    240:240:java.util.Map headers() -> headers
+    244:254:java.lang.String getHeaderCaseInsensitive(java.lang.String) -> a
+    258:263:java.util.Map$Entry scanHeaders(java.lang.String) -> b
+    267:268:java.lang.String cookie(java.lang.String) -> cookie
+    272:275:org.jsoup.Connection$Base cookie(java.lang.String,java.lang.String) -> cookie
+    279:280:boolean hasCookie(java.lang.String) -> hasCookie
+    284:286:org.jsoup.Connection$Base removeCookie(java.lang.String) -> removeCookie
+    290:290:java.util.Map cookies() -> cookies
+org.jsoup.helper.HttpConnection$KeyVal -> org.jsoup.helper.HttpConnection$KeyVal:
+    java.lang.String key -> a
+    java.lang.String value -> b
+    635:637:org.jsoup.helper.HttpConnection$KeyVal create(java.lang.String,java.lang.String) -> create
+    646:648:org.jsoup.helper.HttpConnection$KeyVal key(java.lang.String) -> key
+    652:652:java.lang.String key() -> key
+    656:658:org.jsoup.helper.HttpConnection$KeyVal value(java.lang.String) -> value
+    662:662:java.lang.String value() -> value
+    667:667:java.lang.String toString() -> toString
+    630:630:org.jsoup.Connection$KeyVal value(java.lang.String) -> value
+    630:630:org.jsoup.Connection$KeyVal key(java.lang.String) -> key
+org.jsoup.helper.HttpConnection$Request -> org.jsoup.helper.HttpConnection$Request:
+    int timeoutMilliseconds -> e
+    boolean followRedirects -> f
+    java.util.Collection data -> g
+    boolean ignoreHttpErrors -> h
+    boolean ignoreContentType -> i
+    org.jsoup.parser.Parser parser -> j
+    312:312:int timeout() -> timeout
+    316:318:org.jsoup.helper.HttpConnection$Request timeout(int) -> timeout
+    322:322:boolean followRedirects() -> followRedirects
+    326:327:org.jsoup.Connection$Request followRedirects(boolean) -> followRedirects
+    331:331:boolean ignoreHttpErrors() -> ignoreHttpErrors
+    335:336:org.jsoup.Connection$Request ignoreHttpErrors(boolean) -> ignoreHttpErrors
+    340:340:boolean ignoreContentType() -> ignoreContentType
+    344:345:org.jsoup.Connection$Request ignoreContentType(boolean) -> ignoreContentType
+    349:351:org.jsoup.helper.HttpConnection$Request data(org.jsoup.Connection$KeyVal) -> data
+    355:355:java.util.Collection data() -> data
+    359:360:org.jsoup.helper.HttpConnection$Request parser(org.jsoup.parser.Parser) -> parser
+    364:364:org.jsoup.parser.Parser parser() -> parser
+    294:294:java.util.Map cookies() -> cookies
+    294:294:boolean hasCookie(java.lang.String) -> hasCookie
+    294:294:java.lang.String cookie(java.lang.String) -> cookie
+    294:294:java.util.Map headers() -> headers
+    294:294:boolean hasHeader(java.lang.String) -> hasHeader
+    294:294:java.lang.String header(java.lang.String) -> header
+    294:294:org.jsoup.Connection$Method method() -> method
+    294:294:java.net.URL url() -> url
+    294:294:org.jsoup.Connection$Request parser(org.jsoup.parser.Parser) -> parser
+    294:294:org.jsoup.Connection$Request data(org.jsoup.Connection$KeyVal) -> data
+    294:294:org.jsoup.Connection$Request timeout(int) -> timeout
+org.jsoup.helper.HttpConnection$Response -> org.jsoup.helper.HttpConnection$Response:
+    int statusCode -> e
+    java.lang.String statusMessage -> f
+    java.nio.ByteBuffer byteData -> g
+    java.lang.String charset -> h
+    java.lang.String contentType -> i
+    boolean executed -> j
+    int numRedirects -> k
+    org.jsoup.Connection$Request req -> l
+    393:393:org.jsoup.helper.HttpConnection$Response execute(org.jsoup.Connection$Request) -> a
+    397:460:org.jsoup.helper.HttpConnection$Response execute(org.jsoup.Connection$Request,org.jsoup.helper.HttpConnection$Response) -> a
+    464:464:int statusCode() -> statusCode
+    468:468:java.lang.String statusMessage() -> statusMessage
+    472:472:java.lang.String charset() -> charset
+    476:476:java.lang.String contentType() -> contentType
+    480:484:org.jsoup.nodes.Document parse() -> parse
+    488:496:java.lang.String body() -> body
+    500:501:byte[] bodyAsBytes() -> bodyAsBytes
+    506:518:java.net.HttpURLConnection createConnection(org.jsoup.Connection$Request) -> b
+    523:539:void setupFromConnection(java.net.HttpURLConnection,org.jsoup.Connection$Response) -> a
+    542:567:void processResponseHeaders(java.util.Map) -> a
+    570:583:void writePost(java.util.Collection,java.io.OutputStream) -> a
+    586:596:java.lang.String getRequestCookieString(org.jsoup.Connection$Request) -> c
+    601:627:void serialiseRequestUrl(org.jsoup.Connection$Request) -> d
+    368:368:java.util.Map cookies() -> cookies
+    368:368:boolean hasCookie(java.lang.String) -> hasCookie
+    368:368:java.lang.String cookie(java.lang.String) -> cookie
+    368:368:java.util.Map headers() -> headers
+    368:368:boolean hasHeader(java.lang.String) -> hasHeader
+    368:368:java.lang.String header(java.lang.String) -> header
+    368:368:org.jsoup.Connection$Method method() -> method
+    368:368:java.net.URL url() -> url
+org.jsoup.helper.StringUtil -> org.jsoup.helper.StringUtil:
+    java.lang.String[] padding -> a
+    20:20:java.lang.String join(java.util.Collection,java.lang.String) -> join
+    30:42:java.lang.String join(java.util.Iterator,java.lang.String) -> join
+    51:60:java.lang.String padding(int) -> padding
+    69:77:boolean isBlank(java.lang.String) -> isBlank
+    86:94:boolean isNumeric(java.lang.String) -> isNumeric
+    103:103:boolean isWhitespace(int) -> isWhitespace
+    107:131:java.lang.String normaliseWhitespace(java.lang.String) -> normaliseWhitespace
+    135:139:boolean in(java.lang.String,java.lang.String[]) -> in
+org.jsoup.helper.Validate -> org.jsoup.helper.Validate:
+    15:17:void notNull(java.lang.Object) -> notNull
+    25:27:void notNull(java.lang.Object,java.lang.String) -> notNull
+    34:36:void isTrue(boolean) -> isTrue
+    44:46:void isTrue(boolean,java.lang.String) -> isTrue
+    53:55:void isFalse(boolean) -> isFalse
+    63:65:void isFalse(boolean,java.lang.String) -> isFalse
+    72:73:void noNullElements(java.lang.Object[]) -> noNullElements
+    81:84:void noNullElements(java.lang.Object[],java.lang.String) -> noNullElements
+    91:93:void notEmpty(java.lang.String) -> notEmpty
+    101:103:void notEmpty(java.lang.String,java.lang.String) -> notEmpty
+    110:110:void fail(java.lang.String) -> fail
+org.jsoup.nodes.Attribute -> org.jsoup.nodes.Attribute:
+    java.lang.String key -> a
+    java.lang.String value -> b
+    33:33:java.lang.String getKey() -> getKey
+    41:43:void setKey(java.lang.String) -> setKey
+    50:50:java.lang.String getValue() -> getValue
+    58:61:java.lang.String setValue(java.lang.String) -> setValue
+    69:69:java.lang.String html() -> html
+    73:78:void html(java.lang.StringBuilder,org.jsoup.nodes.Document$OutputSettings) -> a
+    85:85:java.lang.String toString() -> toString
+    95:96:org.jsoup.nodes.Attribute createFromEncoded(java.lang.String,java.lang.String) -> createFromEncoded
+    100:100:boolean isDataAttribute() -> a
+    105:113:boolean equals(java.lang.Object) -> equals
+    118:120:int hashCode() -> hashCode
+    126:128:org.jsoup.nodes.Attribute clone() -> clone
+    11:11:java.lang.Object clone() -> clone
+    11:11:java.lang.Object setValue(java.lang.Object) -> setValue
+    11:11:java.lang.Object getValue() -> getValue
+    11:11:java.lang.Object getKey() -> getKey
+org.jsoup.nodes.Attributes -> org.jsoup.nodes.Attributes:
+    java.util.LinkedHashMap attributes -> a
+    31:37:java.lang.String get(java.lang.String) -> get
+    46:48:void put(java.lang.String,java.lang.String) -> put
+    55:59:void put(org.jsoup.nodes.Attribute) -> put
+    66:70:void remove(java.lang.String) -> remove
+    78:78:boolean hasKey(java.lang.String) -> hasKey
+    86:88:int size() -> size
+    96:101:void addAll(org.jsoup.nodes.Attributes) -> addAll
+    104:104:java.util.Iterator iterator() -> iterator
+    113:120:java.util.List asList() -> asList
+    129:129:java.util.Map dataset() -> dataset
+    137:139:java.lang.String html() -> html
+    143:151:void html(java.lang.StringBuilder,org.jsoup.nodes.Document$OutputSettings) -> a
+    154:154:java.lang.String toString() -> toString
+    159:166:boolean equals(java.lang.Object) -> equals
+    171:171:int hashCode() -> hashCode
+    176:188:org.jsoup.nodes.Attributes clone() -> clone
+    247:247:java.lang.String dataKey(java.lang.String) -> b
+    17:17:java.lang.Object clone() -> clone
+    17:17:java.util.LinkedHashMap access$100(org.jsoup.nodes.Attributes) -> a
+    17:17:java.util.LinkedHashMap access$102(org.jsoup.nodes.Attributes,java.util.LinkedHashMap) -> a
+    17:17:java.lang.String access$300(java.lang.String) -> a
+org.jsoup.nodes.Attributes$1 -> org.jsoup.nodes.a:
+org.jsoup.nodes.Attributes$Dataset -> org.jsoup.nodes.b:
+    org.jsoup.nodes.Attributes this$0 -> a
+    199:199:java.util.Set entrySet() -> entrySet
+    204:208:java.lang.String put(java.lang.String,java.lang.String) -> a
+    191:191:java.lang.Object put(java.lang.Object,java.lang.Object) -> put
+org.jsoup.nodes.Attributes$Dataset$DatasetIterator -> org.jsoup.nodes.c:
+    java.util.Iterator attrIter -> b
+    org.jsoup.nodes.Attribute attr -> c
+    org.jsoup.nodes.Attributes$Dataset this$1 -> a
+    229:233:boolean hasNext() -> hasNext
+    237:237:java.util.Map$Entry next() -> a
+    241:242:void remove() -> remove
+    225:225:java.lang.Object next() -> next
+org.jsoup.nodes.Attributes$Dataset$EntrySet -> org.jsoup.nodes.d:
+    org.jsoup.nodes.Attributes$Dataset this$1 -> a
+    213:213:java.util.Iterator iterator() -> iterator
+    217:221:int size() -> size
+org.jsoup.nodes.Comment -> org.jsoup.nodes.Comment:
+    21:21:java.lang.String nodeName() -> nodeName
+    29:29:java.lang.String getData() -> getData
+    33:39:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    41:41:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+    44:44:java.lang.String toString() -> toString
+org.jsoup.nodes.DataNode -> org.jsoup.nodes.DataNode:
+    21:21:java.lang.String nodeName() -> nodeName
+    29:29:java.lang.String getWholeData() -> getWholeData
+    38:39:org.jsoup.nodes.DataNode setWholeData(java.lang.String) -> setWholeData
+    43:44:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    46:46:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+    49:49:java.lang.String toString() -> toString
+    59:60:org.jsoup.nodes.DataNode createFromEncoded(java.lang.String,java.lang.String) -> createFromEncoded
+org.jsoup.nodes.Document -> org.jsoup.nodes.Document:
+    org.jsoup.nodes.Document$OutputSettings outputSettings -> f
+    org.jsoup.nodes.Document$QuirksMode quirksMode -> g
+    37:44:org.jsoup.nodes.Document createShell(java.lang.String) -> createShell
+    52:52:org.jsoup.nodes.Element head() -> head
+    60:60:org.jsoup.nodes.Element body() -> body
+    69:70:java.lang.String title() -> title
+    79:86:void title(java.lang.String) -> title
+    94:94:org.jsoup.nodes.Element createElement(java.lang.String) -> createElement
+    103:120:org.jsoup.nodes.Document normalise() -> normalise
+    125:140:void normaliseTextNodes(org.jsoup.nodes.Element) -> a
+    144:162:void normaliseStructure(java.lang.String,org.jsoup.nodes.Element) -> a
+    166:175:org.jsoup.nodes.Element findFirstElementByTagName(java.lang.String,org.jsoup.nodes.Node) -> a
+    180:180:java.lang.String outerHtml() -> outerHtml
+    190:191:org.jsoup.nodes.Element text(java.lang.String) -> text
+    196:196:java.lang.String nodeName() -> nodeName
+    201:203:org.jsoup.nodes.Document clone() -> clone
+    336:336:org.jsoup.nodes.Document$OutputSettings outputSettings() -> outputSettings
+    345:347:org.jsoup.nodes.Document outputSettings(org.jsoup.nodes.Document$OutputSettings) -> outputSettings
+    355:355:org.jsoup.nodes.Document$QuirksMode quirksMode() -> quirksMode
+    359:360:org.jsoup.nodes.Document quirksMode(org.jsoup.nodes.Document$QuirksMode) -> quirksMode
+    17:17:org.jsoup.nodes.Element clone() -> clone
+    17:17:org.jsoup.nodes.Node clone() -> clone
+    17:17:java.lang.Object clone() -> clone
+org.jsoup.nodes.Document$OutputSettings -> org.jsoup.nodes.Document$OutputSettings:
+    org.jsoup.nodes.Entities$EscapeMode escapeMode -> a
+    java.nio.charset.Charset charset -> b
+    java.nio.charset.CharsetEncoder charsetEncoder -> c
+    boolean prettyPrint -> d
+    int indentAmount -> e
+    227:227:org.jsoup.nodes.Entities$EscapeMode escapeMode() -> escapeMode
+    236:237:org.jsoup.nodes.Document$OutputSettings escapeMode(org.jsoup.nodes.Entities$EscapeMode) -> escapeMode
+    249:249:java.nio.charset.Charset charset() -> charset
+    259:261:org.jsoup.nodes.Document$OutputSettings charset(java.nio.charset.Charset) -> charset
+    270:271:org.jsoup.nodes.Document$OutputSettings charset(java.lang.String) -> charset
+    275:275:java.nio.charset.CharsetEncoder encoder() -> a
+    284:284:boolean prettyPrint() -> prettyPrint
+    293:294:org.jsoup.nodes.Document$OutputSettings prettyPrint(boolean) -> prettyPrint
+    302:302:int indentAmount() -> indentAmount
+    311:313:org.jsoup.nodes.Document$OutputSettings indentAmount(int) -> indentAmount
+    320:327:org.jsoup.nodes.Document$OutputSettings clone() -> clone
+    209:209:java.lang.Object clone() -> clone
+org.jsoup.nodes.Document$QuirksMode -> org.jsoup.nodes.Document$QuirksMode:
+    org.jsoup.nodes.Document$QuirksMode noQuirks -> noQuirks
+    org.jsoup.nodes.Document$QuirksMode quirks -> quirks
+    org.jsoup.nodes.Document$QuirksMode limitedQuirks -> limitedQuirks
+    org.jsoup.nodes.Document$QuirksMode[] $VALUES -> a
+    350:350:org.jsoup.nodes.Document$QuirksMode[] values() -> values
+    350:350:org.jsoup.nodes.Document$QuirksMode valueOf(java.lang.String) -> valueOf
+org.jsoup.nodes.DocumentType -> org.jsoup.nodes.DocumentType:
+    30:30:java.lang.String nodeName() -> nodeName
+    35:41:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    45:45:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+org.jsoup.nodes.Element -> org.jsoup.nodes.Element:
+    org.jsoup.parser.Tag tag -> f
+    java.util.Set classNames -> g
+    58:58:java.lang.String nodeName() -> nodeName
+    67:67:java.lang.String tagName() -> tagName
+    78:80:org.jsoup.nodes.Element tagName(java.lang.String) -> tagName
+    89:89:org.jsoup.parser.Tag tag() -> tag
+    99:99:boolean isBlock() -> isBlock
+    108:109:java.lang.String id() -> id
+    119:120:org.jsoup.nodes.Element attr(java.lang.String,java.lang.String) -> attr
+    137:137:java.util.Map dataset() -> dataset
+    142:142:org.jsoup.nodes.Element parent() -> parent
+    150:152:org.jsoup.select.Elements parents() -> parents
+    156:161:void accumulateParents(org.jsoup.nodes.Element,org.jsoup.select.Elements) -> a
+    174:174:org.jsoup.nodes.Element child(int) -> child
+    187:192:org.jsoup.select.Elements children() -> children
+    212:217:java.util.List textNodes() -> textNodes
+    229:234:java.util.List dataNodes() -> dataNodes
+    255:255:org.jsoup.select.Elements select(java.lang.String) -> select
+    265:268:org.jsoup.nodes.Element appendChild(org.jsoup.nodes.Node) -> appendChild
+    278:281:org.jsoup.nodes.Element prependChild(org.jsoup.nodes.Node) -> prependChild
+    292:294:org.jsoup.nodes.Element appendElement(java.lang.String) -> appendElement
+    305:307:org.jsoup.nodes.Element prependElement(java.lang.String) -> prependElement
+    317:319:org.jsoup.nodes.Element appendText(java.lang.String) -> appendText
+    329:331:org.jsoup.nodes.Element prependText(java.lang.String) -> prependText
+    341:345:org.jsoup.nodes.Element append(java.lang.String) -> append
+    355:359:org.jsoup.nodes.Element prepend(java.lang.String) -> prepend
+    371:371:org.jsoup.nodes.Element before(java.lang.String) -> before
+    382:382:org.jsoup.nodes.Element before(org.jsoup.nodes.Node) -> before
+    394:394:org.jsoup.nodes.Element after(java.lang.String) -> after
+    405:405:org.jsoup.nodes.Element after(org.jsoup.nodes.Node) -> after
+    413:414:org.jsoup.nodes.Element empty() -> empty
+    425:425:org.jsoup.nodes.Element wrap(java.lang.String) -> wrap
+    434:442:org.jsoup.select.Elements siblingElements() -> siblingElements
+    454:461:org.jsoup.nodes.Element nextElementSibling() -> nextElementSibling
+    470:477:org.jsoup.nodes.Element previousElementSibling() -> previousElementSibling
+    486:487:org.jsoup.nodes.Element firstElementSibling() -> firstElementSibling
+    496:497:java.lang.Integer elementSiblingIndex() -> elementSiblingIndex
+    505:506:org.jsoup.nodes.Element lastElementSibling() -> lastElementSibling
+    510:518:java.lang.Integer indexInList(org.jsoup.nodes.Element,java.util.List) -> a
+    529:532:org.jsoup.select.Elements getElementsByTag(java.lang.String) -> getElementsByTag
+    545:551:org.jsoup.nodes.Element getElementById(java.lang.String) -> getElementById
+    566:568:org.jsoup.select.Elements getElementsByClass(java.lang.String) -> getElementsByClass
+    578:581:org.jsoup.select.Elements getElementsByAttribute(java.lang.String) -> getElementsByAttribute
+    591:594:org.jsoup.select.Elements getElementsByAttributeStarting(java.lang.String) -> getElementsByAttributeStarting
+    605:605:org.jsoup.select.Elements getElementsByAttributeValue(java.lang.String,java.lang.String) -> getElementsByAttributeValue
+    616:616:org.jsoup.select.Elements getElementsByAttributeValueNot(java.lang.String,java.lang.String) -> getElementsByAttributeValueNot
+    627:627:org.jsoup.select.Elements getElementsByAttributeValueStarting(java.lang.String,java.lang.String) -> getElementsByAttributeValueStarting
+    638:638:org.jsoup.select.Elements getElementsByAttributeValueEnding(java.lang.String,java.lang.String) -> getElementsByAttributeValueEnding
+    649:649:org.jsoup.select.Elements getElementsByAttributeValueContaining(java.lang.String,java.lang.String) -> getElementsByAttributeValueContaining
+    659:659:org.jsoup.select.Elements getElementsByAttributeValueMatching(java.lang.String,java.util.regex.Pattern) -> getElementsByAttributeValueMatching
+    672:676:org.jsoup.select.Elements getElementsByAttributeValueMatching(java.lang.String,java.lang.String) -> getElementsByAttributeValueMatching
+    685:685:org.jsoup.select.Elements getElementsByIndexLessThan(int) -> getElementsByIndexLessThan
+    694:694:org.jsoup.select.Elements getElementsByIndexGreaterThan(int) -> getElementsByIndexGreaterThan
+    703:703:org.jsoup.select.Elements getElementsByIndexEquals(int) -> getElementsByIndexEquals
+    714:714:org.jsoup.select.Elements getElementsContainingText(java.lang.String) -> getElementsContainingText
+    725:725:org.jsoup.select.Elements getElementsContainingOwnText(java.lang.String) -> getElementsContainingOwnText
+    735:735:org.jsoup.select.Elements getElementsMatchingText(java.util.regex.Pattern) -> getElementsMatchingText
+    747:751:org.jsoup.select.Elements getElementsMatchingText(java.lang.String) -> getElementsMatchingText
+    761:761:org.jsoup.select.Elements getElementsMatchingOwnText(java.util.regex.Pattern) -> getElementsMatchingOwnText
+    773:777:org.jsoup.select.Elements getElementsMatchingOwnText(java.lang.String) -> getElementsMatchingOwnText
+    786:786:org.jsoup.select.Elements getAllElements() -> getAllElements
+    799:801:java.lang.String text() -> text
+    805:818:void text(java.lang.StringBuilder) -> b
+    832:834:java.lang.String ownText() -> ownText
+    838:846:void ownText(java.lang.StringBuilder) -> c
+    849:857:void appendNormalisedText(java.lang.StringBuilder,org.jsoup.nodes.TextNode) -> a
+    860:862:void appendWhitespaceIfBr(org.jsoup.nodes.Element,java.lang.StringBuilder) -> a
+    865:865:boolean preserveWhitespace() -> a
+    874:880:org.jsoup.nodes.Element text(java.lang.String) -> text
+    888:899:boolean hasText() -> hasText
+    909:921:java.lang.String data() -> data
+    930:930:java.lang.String className() -> className
+    940:944:java.util.Set classNames() -> classNames
+    953:955:org.jsoup.nodes.Element classNames(java.util.Set) -> classNames
+    964:969:boolean hasClass(java.lang.String) -> hasClass
+    978:984:org.jsoup.nodes.Element addClass(java.lang.String) -> addClass
+    993:999:org.jsoup.nodes.Element removeClass(java.lang.String) -> removeClass
+    1008:1017:org.jsoup.nodes.Element toggleClass(java.lang.String) -> toggleClass
+    1025:1028:java.lang.String val() -> val
+    1037:1041:org.jsoup.nodes.Element val(java.lang.String) -> val
+    1045:1056:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    1059:1064:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+    1074:1076:java.lang.String html() -> html
+    1080:1082:void html(java.lang.StringBuilder) -> d
+    1091:1093:org.jsoup.nodes.Element html(java.lang.String) -> html
+    1097:1097:java.lang.String toString() -> toString
+    1102:1102:boolean equals(java.lang.Object) -> equals
+    1108:1110:int hashCode() -> hashCode
+    1115:1117:org.jsoup.nodes.Element clone() -> clone
+    24:24:org.jsoup.nodes.Node clone() -> clone
+    24:24:org.jsoup.nodes.Node wrap(java.lang.String) -> wrap
+    24:24:org.jsoup.nodes.Node after(org.jsoup.nodes.Node) -> after
+    24:24:org.jsoup.nodes.Node after(java.lang.String) -> after
+    24:24:org.jsoup.nodes.Node before(org.jsoup.nodes.Node) -> before
+    24:24:org.jsoup.nodes.Node before(java.lang.String) -> before
+    24:24:org.jsoup.nodes.Node parent() -> parent
+    24:24:org.jsoup.nodes.Node attr(java.lang.String,java.lang.String) -> attr
+    24:24:java.lang.Object clone() -> clone
+org.jsoup.nodes.Entities -> org.jsoup.nodes.Entities:
+    java.util.Map full -> a
+    java.util.Map xhtmlByVal -> b
+    java.util.Map base -> c
+    java.util.Map baseByVal -> d
+    java.util.Map fullByVal -> e
+    java.util.regex.Pattern unescapePattern -> f
+    java.util.regex.Pattern strictUnescapePattern -> g
+    java.lang.Object[][] xhtmlArray -> h
+    53:53:boolean isNamedEntity(java.lang.String) -> isNamedEntity
+    63:63:boolean isBaseNamedEntity(java.lang.String) -> isBaseNamedEntity
+    72:72:java.lang.Character getCharacterByName(java.lang.String) -> getCharacterByName
+    76:76:java.lang.String escape(java.lang.String,org.jsoup.nodes.Document$OutputSettings) -> a
+    80:93:java.lang.String escape(java.lang.String,java.nio.charset.CharsetEncoder,org.jsoup.nodes.Entities$EscapeMode) -> a
+    97:97:java.lang.String unescape(java.lang.String) -> a
+    107:107:java.lang.String unescape(java.lang.String,boolean) -> a
+    133:148:java.util.Map loadEntities(java.lang.String) -> b
+    152:165:java.util.Map toCharacterKey(java.util.Map) -> a
+    17:17:java.util.Map access$000() -> a
+    17:17:java.util.Map access$100() -> b
+    17:17:java.util.Map access$200() -> c
+org.jsoup.nodes.Entities$EscapeMode -> org.jsoup.nodes.Entities$EscapeMode:
+    org.jsoup.nodes.Entities$EscapeMode xhtml -> xhtml
+    org.jsoup.nodes.Entities$EscapeMode base -> base
+    org.jsoup.nodes.Entities$EscapeMode extended -> extended
+    java.util.Map map -> a
+    org.jsoup.nodes.Entities$EscapeMode[] $VALUES -> b
+    18:18:org.jsoup.nodes.Entities$EscapeMode[] values() -> values
+    18:18:org.jsoup.nodes.Entities$EscapeMode valueOf(java.lang.String) -> valueOf
+    33:33:java.util.Map getMap() -> getMap
+org.jsoup.nodes.Node -> org.jsoup.nodes.Node:
+    org.jsoup.nodes.Node parentNode -> a
+    java.util.List childNodes -> b
+    org.jsoup.nodes.Attributes attributes -> c
+    java.lang.String baseUri -> d
+    int siblingIndex -> e
+    java.lang.String nodeName() -> nodeName
+    71:77:java.lang.String attr(java.lang.String) -> attr
+    85:85:org.jsoup.nodes.Attributes attributes() -> attributes
+    95:96:org.jsoup.nodes.Node attr(java.lang.String,java.lang.String) -> attr
+    105:112:boolean hasAttr(java.lang.String) -> hasAttr
+    121:123:org.jsoup.nodes.Node removeAttr(java.lang.String) -> removeAttr
+    131:131:java.lang.String baseUri() -> baseUri
+    139:149:void setBaseUri(java.lang.String) -> setBaseUri
+    172:193:java.lang.String absUrl(java.lang.String) -> absUrl
+    204:204:org.jsoup.nodes.Node childNode(int) -> childNode
+    215:215:java.util.List childNodes() -> childNodes
+    219:219:org.jsoup.nodes.Node[] childNodesAsArray() -> b
+    227:227:org.jsoup.nodes.Node parent() -> parent
+    235:240:org.jsoup.nodes.Document ownerDocument() -> ownerDocument
+    247:249:void remove() -> remove
+    258:259:org.jsoup.nodes.Node before(java.lang.String) -> before
+    269:273:org.jsoup.nodes.Node before(org.jsoup.nodes.Node) -> before
+    283:284:org.jsoup.nodes.Node after(java.lang.String) -> after
+    294:298:org.jsoup.nodes.Node after(org.jsoup.nodes.Node) -> after
+    302:308:void addSiblingHtml(int,java.lang.String) -> a
+    316:337:org.jsoup.nodes.Node wrap(java.lang.String) -> wrap
+    354:361:org.jsoup.nodes.Node unwrap() -> unwrap
+    365:369:org.jsoup.nodes.Element getDeepChild(org.jsoup.nodes.Element) -> a
+    377:380:void replaceWith(org.jsoup.nodes.Node) -> replaceWith
+    383:386:void setParentNode(org.jsoup.nodes.Node) -> a
+    389:399:void replaceChild(org.jsoup.nodes.Node,org.jsoup.nodes.Node) -> a
+    402:407:void removeChild(org.jsoup.nodes.Node) -> b
+    411:416:void addChildren(org.jsoup.nodes.Node[]) -> a
+    419:426:void addChildren(int,org.jsoup.nodes.Node[]) -> a
+    429:432:void reparentChild(org.jsoup.nodes.Node) -> d
+    435:438:void reindexChildren() -> a
+    446:454:java.util.List siblingNodes() -> siblingNodes
+    462:471:org.jsoup.nodes.Node nextSibling() -> nextSibling
+    479:488:org.jsoup.nodes.Node previousSibling() -> previousSibling
+    498:498:int siblingIndex() -> siblingIndex
+    502:503:void setSiblingIndex(int) -> a
+    511:514:org.jsoup.nodes.Node traverse(org.jsoup.select.NodeVisitor) -> traverse
+    522:524:java.lang.String outerHtml() -> outerHtml
+    528:529:void outerHtml(java.lang.StringBuilder) -> a
+    533:533:org.jsoup.nodes.Document$OutputSettings getOutputSettings() -> c
+    void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+    545:545:java.lang.String toString() -> toString
+    549:550:void indent(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> c
+    554:556:boolean equals(java.lang.Object) -> equals
+    561:564:int hashCode() -> hashCode
+    577:577:org.jsoup.nodes.Node clone() -> clone
+    583:596:org.jsoup.nodes.Node doClone(org.jsoup.nodes.Node) -> c
+    19:19:java.lang.Object clone() -> clone
+org.jsoup.nodes.Node$1 -> org.jsoup.nodes.e:
+    java.lang.String val$baseUri -> a
+    org.jsoup.nodes.Node this$0 -> b
+    143:144:void head(org.jsoup.nodes.Node,int) -> head
+    147:147:void tail(org.jsoup.nodes.Node,int) -> tail
+org.jsoup.nodes.Node$OuterHtmlVisitor -> org.jsoup.nodes.f:
+    java.lang.StringBuilder accum -> a
+    org.jsoup.nodes.Document$OutputSettings out -> b
+    609:610:void head(org.jsoup.nodes.Node,int) -> head
+    613:615:void tail(org.jsoup.nodes.Node,int) -> tail
+org.jsoup.nodes.TextNode -> org.jsoup.nodes.TextNode:
+    java.lang.String text -> f
+    32:32:java.lang.String nodeName() -> nodeName
+    41:41:java.lang.String text() -> text
+    50:53:org.jsoup.nodes.TextNode text(java.lang.String) -> text
+    61:61:java.lang.String getWholeText() -> getWholeText
+    69:69:boolean isBlank() -> isBlank
+    79:89:org.jsoup.nodes.TextNode splitText(int) -> splitText
+    93:101:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    103:103:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+    106:106:java.lang.String toString() -> toString
+    115:116:org.jsoup.nodes.TextNode createFromEncoded(java.lang.String,java.lang.String) -> createFromEncoded
+    120:121:java.lang.String normaliseWhitespace(java.lang.String) -> a
+    125:125:java.lang.String stripLeadingWhitespace(java.lang.String) -> b
+    129:129:boolean lastCharIsWhitespace(java.lang.StringBuilder) -> b
+    134:138:void ensureAttributes() -> a
+    142:143:java.lang.String attr(java.lang.String) -> attr
+    148:149:org.jsoup.nodes.Attributes attributes() -> attributes
+    154:155:org.jsoup.nodes.Node attr(java.lang.String,java.lang.String) -> attr
+    160:161:boolean hasAttr(java.lang.String) -> hasAttr
+    166:167:org.jsoup.nodes.Node removeAttr(java.lang.String) -> removeAttr
+    172:173:java.lang.String absUrl(java.lang.String) -> absUrl
+org.jsoup.nodes.XmlDeclaration -> org.jsoup.nodes.XmlDeclaration:
+    boolean isProcessingInstruction -> f
+    24:24:java.lang.String nodeName() -> nodeName
+    32:32:java.lang.String getWholeDeclaration() -> getWholeDeclaration
+    36:41:void outerHtmlHead(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> a
+    43:43:void outerHtmlTail(java.lang.StringBuilder,int,org.jsoup.nodes.Document$OutputSettings) -> b
+    46:46:java.lang.String toString() -> toString
+org.jsoup.parser.CharacterReader -> org.jsoup.parser.a:
+    char[] input -> a
+    int length -> b
+    int pos -> c
+    int mark -> d
+    25:25:int pos() -> a
+    29:29:boolean isEmpty() -> b
+    33:33:char current() -> c
+    37:39:char consume() -> d
+    43:44:void unconsume() -> e
+    47:48:void advance() -> f
+    51:52:void mark() -> g
+    55:56:void rewindToMark() -> h
+    69:73:int nextIndexOf(char) -> a
+    84:97:int nextIndexOf(java.lang.CharSequence) -> a
+    101:107:java.lang.String consumeTo(char) -> b
+    112:118:java.lang.String consumeTo(java.lang.String) -> a
+    123:133:java.lang.String consumeToAny(char[]) -> a
+    137:139:java.lang.String consumeToEnd() -> i
+    143:152:java.lang.String consumeLetterSequence() -> j
+    156:172:java.lang.String consumeLetterThenDigitSequence() -> k
+    176:184:java.lang.String consumeHexSequence() -> l
+    188:196:java.lang.String consumeDigitSequence() -> m
+    200:200:boolean matches(char) -> c
+    205:212:boolean matches(java.lang.String) -> b
+    216:226:boolean matchesIgnoreCase(java.lang.String) -> c
+    230:238:boolean matchesAny(char[]) -> b
+    242:245:boolean matchesLetter() -> n
+    249:252:boolean matchesDigit() -> o
+    256:260:boolean matchConsume(java.lang.String) -> d
+    265:269:boolean matchConsumeIgnoreCase(java.lang.String) -> e
+    275:277:boolean containsIgnoreCase(java.lang.String) -> f
+    282:282:java.lang.String toString() -> toString
+org.jsoup.parser.HtmlTreeBuilder -> org.jsoup.parser.b:
+    org.jsoup.parser.HtmlTreeBuilderState state -> i
+    org.jsoup.parser.HtmlTreeBuilderState originalState -> j
+    boolean baseUriSetFromDoc -> k
+    org.jsoup.nodes.Element headElement -> l
+    org.jsoup.nodes.Element formElement -> m
+    org.jsoup.nodes.Element contextElement -> n
+    org.jsoup.helper.DescendableLinkedList formattingElements -> o
+    java.util.List pendingTableCharacters -> p
+    boolean framesetOk -> q
+    boolean fosterInserts -> r
+    boolean fragmentParsing -> s
+    boolean $assertionsDisabled -> a
+    36:37:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String,org.jsoup.parser.ParseErrorList) -> a
+    42:78:java.util.List parseFragment(java.lang.String,org.jsoup.nodes.Element,java.lang.String,org.jsoup.parser.ParseErrorList) -> a
+    83:84:boolean process(org.jsoup.parser.Token) -> a
+    88:89:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilderState) -> a
+    93:94:void transition(org.jsoup.parser.HtmlTreeBuilderState) -> a
+    97:97:org.jsoup.parser.HtmlTreeBuilderState state() -> a
+    101:102:void markInsertionMode() -> b
+    105:105:org.jsoup.parser.HtmlTreeBuilderState originalState() -> c
+    109:110:void framesetOk(boolean) -> a
+    113:113:boolean framesetOk() -> d
+    117:117:org.jsoup.nodes.Document getDocument() -> e
+    121:121:java.lang.String getBaseUri() -> f
+    125:134:void maybeSetBaseUri(org.jsoup.nodes.Element) -> a
+    137:137:boolean isFragmentParsing() -> g
+    141:143:void error(org.jsoup.parser.HtmlTreeBuilderState) -> b
+    148:156:org.jsoup.nodes.Element insert(org.jsoup.parser.Token$StartTag) -> a
+    160:162:org.jsoup.nodes.Element insert(java.lang.String) -> a
+    166:168:void insert(org.jsoup.nodes.Element) -> b
+    171:179:org.jsoup.nodes.Element insertEmpty(org.jsoup.parser.Token$StartTag) -> b
+    183:185:void insert(org.jsoup.parser.Token$Comment) -> a
+    190:195:void insert(org.jsoup.parser.Token$Character) -> a
+    199:205:void insertNode(org.jsoup.nodes.Node) -> b
+    209:213:org.jsoup.nodes.Element pop() -> h
+    217:218:void push(org.jsoup.nodes.Element) -> c
+    221:221:org.jsoup.helper.DescendableLinkedList getStack() -> i
+    225:225:boolean onStack(org.jsoup.nodes.Element) -> d
+    229:236:boolean isElementInQueue(org.jsoup.helper.DescendableLinkedList,org.jsoup.nodes.Element) -> a
+    240:247:org.jsoup.nodes.Element getFromStack(java.lang.String) -> b
+    251:259:boolean removeFromStack(org.jsoup.nodes.Element) -> e
+    263:273:void popStackToClose(java.lang.String) -> c
+    276:286:void popStackToClose(java.lang.String[]) -> a
+    289:298:void popStackToBefore(java.lang.String) -> d
+    301:302:void clearStackToTableContext() -> j
+    305:306:void clearStackToTableBodyContext() -> k
+    309:310:void clearStackToTableRowContext() -> l
+    313:321:void clearStackToContext(java.lang.String[]) -> c
+    324:332:org.jsoup.nodes.Element aboveOnStack(org.jsoup.nodes.Element) -> f
+    336:339:void insertOnStackAfter(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> a
+    342:343:void replaceOnStack(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> b
+    346:350:void replaceInQueue(java.util.LinkedList,org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> a
+    353:400:void resetInsertionMode() -> m
+    404:404:boolean inSpecificScope(java.lang.String,java.lang.String[],java.lang.String[]) -> a
+    408:420:boolean inSpecificScope(java.lang.String[],java.lang.String[],java.lang.String[]) -> a
+    424:424:boolean inScope(java.lang.String[]) -> b
+    428:428:boolean inScope(java.lang.String) -> e
+    432:432:boolean inScope(java.lang.String,java.lang.String[]) -> a
+    438:438:boolean inListItemScope(java.lang.String) -> f
+    442:442:boolean inButtonScope(java.lang.String) -> g
+    446:446:boolean inTableScope(java.lang.String) -> h
+    450:460:boolean inSelectScope(java.lang.String) -> i
+    464:465:void setHeadElement(org.jsoup.nodes.Element) -> g
+    468:468:org.jsoup.nodes.Element getHeadElement() -> n
+    472:472:boolean isFosterInserts() -> o
+    476:477:void setFosterInserts(boolean) -> b
+    480:480:org.jsoup.nodes.Element getFormElement() -> p
+    484:485:void setFormElement(org.jsoup.nodes.Element) -> h
+    488:489:void newPendingTableCharacters() -> q
+    492:492:java.util.List getPendingTableCharacters() -> r
+    509:512:void generateImpliedEndTags(java.lang.String) -> j
+    515:516:void generateImpliedEndTags() -> s
+    521:522:boolean isSpecial(org.jsoup.nodes.Element) -> i
+    534:550:void pushActiveFormattingElements(org.jsoup.nodes.Element) -> j
+    554:554:boolean isSameFormattingElement(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> d
+    561:596:void reconstructFormattingElements() -> t
+    599:605:void clearFormattingElementsToLastMarker() -> u
+    608:616:void removeFromActiveFormattingElements(org.jsoup.nodes.Element) -> k
+    619:619:boolean isInActiveFormattingElements(org.jsoup.nodes.Element) -> l
+    623:631:org.jsoup.nodes.Element getActiveFormattingElement(java.lang.String) -> k
+    635:636:void replaceActiveFormattingElement(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> c
+    639:640:void insertMarkerToFormattingElements() -> v
+    643:662:void insertInFosterParent(org.jsoup.nodes.Node) -> a
+    666:666:java.lang.String toString() -> toString
+org.jsoup.parser.HtmlTreeBuilderState -> org.jsoup.parser.c:
+    org.jsoup.parser.HtmlTreeBuilderState Initial -> a
+    org.jsoup.parser.HtmlTreeBuilderState BeforeHtml -> b
+    org.jsoup.parser.HtmlTreeBuilderState BeforeHead -> c
+    org.jsoup.parser.HtmlTreeBuilderState InHead -> d
+    org.jsoup.parser.HtmlTreeBuilderState InHeadNoscript -> e
+    org.jsoup.parser.HtmlTreeBuilderState AfterHead -> f
+    org.jsoup.parser.HtmlTreeBuilderState InBody -> g
+    org.jsoup.parser.HtmlTreeBuilderState Text -> h
+    org.jsoup.parser.HtmlTreeBuilderState InTable -> i
+    org.jsoup.parser.HtmlTreeBuilderState InTableText -> j
+    org.jsoup.parser.HtmlTreeBuilderState InCaption -> k
+    org.jsoup.parser.HtmlTreeBuilderState InColumnGroup -> l
+    org.jsoup.parser.HtmlTreeBuilderState InTableBody -> m
+    org.jsoup.parser.HtmlTreeBuilderState InRow -> n
+    org.jsoup.parser.HtmlTreeBuilderState InCell -> o
+    org.jsoup.parser.HtmlTreeBuilderState InSelect -> p
+    org.jsoup.parser.HtmlTreeBuilderState InSelectInTable -> q
+    org.jsoup.parser.HtmlTreeBuilderState AfterBody -> r
+    org.jsoup.parser.HtmlTreeBuilderState InFrameset -> s
+    org.jsoup.parser.HtmlTreeBuilderState AfterFrameset -> t
+    org.jsoup.parser.HtmlTreeBuilderState AfterAfterBody -> u
+    org.jsoup.parser.HtmlTreeBuilderState AfterAfterFrameset -> v
+    org.jsoup.parser.HtmlTreeBuilderState ForeignContent -> w
+    java.lang.String nullString -> x
+    org.jsoup.parser.HtmlTreeBuilderState[] $VALUES -> y
+    13:13:org.jsoup.parser.HtmlTreeBuilderState[] values() -> values
+    13:13:org.jsoup.parser.HtmlTreeBuilderState valueOf(java.lang.String) -> valueOf
+    boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    1456:1466:boolean isWhitespace(org.jsoup.parser.Token) -> b
+    1470:1474:void handleRcData(org.jsoup.parser.Token$StartTag,org.jsoup.parser.HtmlTreeBuilder) -> c
+    1477:1481:void handleRawtext(org.jsoup.parser.Token$StartTag,org.jsoup.parser.HtmlTreeBuilder) -> d
+    13:13:boolean access$100(org.jsoup.parser.Token) -> a
+    13:13:void access$200(org.jsoup.parser.Token$StartTag,org.jsoup.parser.HtmlTreeBuilder) -> a
+    13:13:void access$300(org.jsoup.parser.Token$StartTag,org.jsoup.parser.HtmlTreeBuilder) -> b
+    13:13:java.lang.String access$400() -> a
+org.jsoup.parser.HtmlTreeBuilderState$1 -> org.jsoup.parser.d:
+    16:34:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$10 -> org.jsoup.parser.e:
+    905:936:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$11 -> org.jsoup.parser.f:
+    941:971:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$12 -> org.jsoup.parser.g:
+    976:1019:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    1023:1026:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.TreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$13 -> org.jsoup.parser.h:
+    1031:1071:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    1075:1082:boolean exitTableBody(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+    1086:1086:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> c
+org.jsoup.parser.HtmlTreeBuilderState$14 -> org.jsoup.parser.i:
+    1091:1135:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    1139:1139:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+    1143:1147:boolean handleMissingTr(org.jsoup.parser.Token,org.jsoup.parser.TreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$15 -> org.jsoup.parser.j:
+    1152:1193:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    1197:1197:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+    1201:1205:void closeCell(org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$16 -> org.jsoup.parser.k:
+    1209:1287:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    1291:1292:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+org.jsoup.parser.HtmlTreeBuilderState$17 -> org.jsoup.parser.l:
+    1297:1309:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$18 -> org.jsoup.parser.m:
+    1315:1338:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$19 -> org.jsoup.parser.n:
+    1343:1384:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$2 -> org.jsoup.parser.o:
+    39:57:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    61:63:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+org.jsoup.parser.HtmlTreeBuilderState$20 -> org.jsoup.parser.p:
+    1389:1408:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$21 -> org.jsoup.parser.q:
+    1413:1424:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$22 -> org.jsoup.parser.r:
+    1429:1441:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$23 -> org.jsoup.parser.s:
+    1446:1446:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$24 -> org.jsoup.parser.t:
+    int[] $SwitchMap$org$jsoup$parser$Token$TokenType -> a
+org.jsoup.parser.HtmlTreeBuilderState$3 -> org.jsoup.parser.u:
+    68:91:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$4 -> org.jsoup.parser.v:
+    96:157:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    161:162:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.TreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$5 -> org.jsoup.parser.w:
+    167:185:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    189:191:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+org.jsoup.parser.HtmlTreeBuilderState$6 -> org.jsoup.parser.x:
+    196:236:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    240:242:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+org.jsoup.parser.HtmlTreeBuilderState$7 -> org.jsoup.parser.y:
+    247:760:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    764:782:boolean anyOtherEndTag(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+org.jsoup.parser.HtmlTreeBuilderState$8 -> org.jsoup.parser.z:
+    788:801:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+org.jsoup.parser.HtmlTreeBuilderState$9 -> org.jsoup.parser.aa:
+    806:887:boolean process(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> a
+    891:900:boolean anythingElse(org.jsoup.parser.Token,org.jsoup.parser.HtmlTreeBuilder) -> b
+org.jsoup.parser.ParseError -> org.jsoup.parser.ParseError:
+    int pos -> a
+    java.lang.String errorMsg -> b
+    25:25:java.lang.String getErrorMessage() -> getErrorMessage
+    33:33:int getPosition() -> getPosition
+    38:38:java.lang.String toString() -> toString
+org.jsoup.parser.ParseErrorList -> org.jsoup.parser.ab:
+    int maxSize -> a
+    20:20:boolean canAddError() -> a
+    28:28:org.jsoup.parser.ParseErrorList noTracking() -> b
+    32:32:org.jsoup.parser.ParseErrorList tracking(int) -> a
+org.jsoup.parser.Parser -> org.jsoup.parser.Parser:
+    org.jsoup.parser.TreeBuilder treeBuilder -> a
+    int maxErrors -> b
+    org.jsoup.parser.ParseErrorList errors -> c
+    29:31:org.jsoup.nodes.Document parseInput(java.lang.String,java.lang.String) -> parseInput
+    40:40:org.jsoup.parser.TreeBuilder getTreeBuilder() -> getTreeBuilder
+    49:50:org.jsoup.parser.Parser setTreeBuilder(org.jsoup.parser.TreeBuilder) -> setTreeBuilder
+    58:58:boolean isTrackErrors() -> isTrackErrors
+    67:68:org.jsoup.parser.Parser setTrackErrors(int) -> setTrackErrors
+    76:76:java.util.List getErrors() -> getErrors
+    89:90:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String) -> parse
+    104:105:java.util.List parseFragment(java.lang.String,org.jsoup.nodes.Element,java.lang.String) -> parseFragment
+    117:124:org.jsoup.nodes.Document parseBodyFragment(java.lang.String,java.lang.String) -> parseBodyFragment
+    134:135:java.lang.String unescapeEntities(java.lang.String,boolean) -> unescapeEntities
+    146:146:org.jsoup.nodes.Document parseBodyFragmentRelaxed(java.lang.String,java.lang.String) -> parseBodyFragmentRelaxed
+    157:157:org.jsoup.parser.Parser htmlParser() -> htmlParser
+    166:166:org.jsoup.parser.Parser xmlParser() -> xmlParser
+org.jsoup.parser.Tag -> org.jsoup.parser.Tag:
+    java.util.Map tags -> a
+    java.lang.String tagName -> b
+    boolean isBlock -> c
+    boolean formatAsBlock -> d
+    boolean canContainBlock -> e
+    boolean canContainInline -> f
+    boolean empty -> g
+    boolean selfClosing -> h
+    boolean preserveWhitespace -> i
+    java.lang.String[] blockTags -> j
+    java.lang.String[] inlineTags -> k
+    java.lang.String[] emptyTags -> l
+    java.lang.String[] formatAsInlineTags -> m
+    java.lang.String[] preserveWhitespaceTags -> n
+    35:35:java.lang.String getName() -> getName
+    47:62:org.jsoup.parser.Tag valueOf(java.lang.String) -> valueOf
+    71:71:boolean isBlock() -> isBlock
+    80:80:boolean formatAsBlock() -> formatAsBlock
+    89:89:boolean canContainBlock() -> canContainBlock
+    98:98:boolean isInline() -> isInline
+    107:107:boolean isData() -> isData
+    116:116:boolean isEmpty() -> isEmpty
+    125:125:boolean isSelfClosing() -> isSelfClosing
+    134:134:boolean isKnownTag() -> isKnownTag
+    144:144:boolean isKnownTag(java.lang.String) -> isKnownTag
+    153:153:boolean preserveWhitespace() -> preserveWhitespace
+    157:158:org.jsoup.parser.Tag setSelfClosing() -> a
+    163:177:boolean equals(java.lang.Object) -> equals
+    182:190:int hashCode() -> hashCode
+    194:194:java.lang.String toString() -> toString
+    259:260:void register(org.jsoup.parser.Tag) -> a
+org.jsoup.parser.Token -> org.jsoup.parser.ac:
+    org.jsoup.parser.Token$TokenType type -> a
+    17:17:java.lang.String tokenType() -> a
+    211:211:boolean isDoctype() -> b
+    215:215:org.jsoup.parser.Token$Doctype asDoctype() -> c
+    219:219:boolean isStartTag() -> d
+    223:223:org.jsoup.parser.Token$StartTag asStartTag() -> e
+    227:227:boolean isEndTag() -> f
+    231:231:org.jsoup.parser.Token$EndTag asEndTag() -> g
+    235:235:boolean isComment() -> h
+    239:239:org.jsoup.parser.Token$Comment asComment() -> i
+    243:243:boolean isCharacter() -> j
+    247:247:org.jsoup.parser.Token$Character asCharacter() -> k
+    251:251:boolean isEOF() -> l
+org.jsoup.parser.Token$1 -> org.jsoup.parser.ad:
+org.jsoup.parser.Token$Character -> org.jsoup.parser.ae:
+    java.lang.String data -> b
+    195:195:java.lang.String getData() -> m
+    200:200:java.lang.String toString() -> toString
+org.jsoup.parser.Token$Comment -> org.jsoup.parser.af:
+    java.lang.StringBuilder data -> b
+    177:177:java.lang.String getData() -> m
+    182:182:java.lang.String toString() -> toString
+org.jsoup.parser.Token$Doctype -> org.jsoup.parser.ag:
+    java.lang.StringBuilder name -> b
+    java.lang.StringBuilder publicIdentifier -> c
+    java.lang.StringBuilder systemIdentifier -> d
+    boolean forceQuirks -> e
+    31:31:java.lang.String getName() -> m
+    35:35:java.lang.String getPublicIdentifier() -> n
+    39:39:java.lang.String getSystemIdentifier() -> o
+    43:43:boolean isForceQuirks() -> p
+org.jsoup.parser.Token$EOF -> org.jsoup.parser.ah:
+org.jsoup.parser.Token$EndTag -> org.jsoup.parser.ai:
+    165:165:java.lang.String toString() -> toString
+org.jsoup.parser.Token$StartTag -> org.jsoup.parser.aj:
+    145:148:java.lang.String toString() -> toString
+org.jsoup.parser.Token$Tag -> org.jsoup.parser.ak:
+    java.lang.String tagName -> b
+    java.lang.String pendingAttributeName -> e
+    java.lang.StringBuilder pendingAttributeValue -> f
+    boolean selfClosing -> c
+    org.jsoup.nodes.Attributes attributes -> d
+    56:70:void newAttribute() -> m
+    74:78:void finaliseTag() -> n
+    81:82:java.lang.String name() -> o
+    86:87:org.jsoup.parser.Token$Tag name(java.lang.String) -> a
+    91:91:boolean isSelfClosing() -> p
+    96:96:org.jsoup.nodes.Attributes getAttributes() -> q
+    101:102:void appendTagName(java.lang.String) -> b
+    105:106:void appendTagName(char) -> a
+    109:110:void appendAttributeName(java.lang.String) -> c
+    113:114:void appendAttributeName(char) -> b
+    117:118:void appendAttributeValue(java.lang.String) -> d
+    121:122:void appendAttributeValue(char) -> c
+org.jsoup.parser.Token$TokenType -> org.jsoup.parser.al:
+    org.jsoup.parser.Token$TokenType Doctype -> a
+    org.jsoup.parser.Token$TokenType StartTag -> b
+    org.jsoup.parser.Token$TokenType EndTag -> c
+    org.jsoup.parser.Token$TokenType Comment -> d
+    org.jsoup.parser.Token$TokenType Character -> e
+    org.jsoup.parser.Token$TokenType EOF -> f
+    org.jsoup.parser.Token$TokenType[] $VALUES -> g
+    254:254:org.jsoup.parser.Token$TokenType[] values() -> values
+    254:254:org.jsoup.parser.Token$TokenType valueOf(java.lang.String) -> valueOf
+org.jsoup.parser.TokenQueue -> org.jsoup.parser.TokenQueue:
+    java.lang.String queue -> a
+    int pos -> b
+    31:31:boolean isEmpty() -> isEmpty
+    35:35:int remainingLength() -> a
+    43:43:char peek() -> peek
+    51:52:void addFirst(java.lang.Character) -> addFirst
+    60:62:void addFirst(java.lang.String) -> addFirst
+    70:70:boolean matches(java.lang.String) -> matches
+    79:79:boolean matchesCS(java.lang.String) -> matchesCS
+    89:93:boolean matchesAny(java.lang.String[]) -> matchesAny
+    97:104:boolean matchesAny(char[]) -> matchesAny
+    109:109:boolean matchesStartTag() -> matchesStartTag
+    119:123:boolean matchChomp(java.lang.String) -> matchChomp
+    132:132:boolean matchesWhitespace() -> matchesWhitespace
+    140:140:boolean matchesWord() -> matchesWord
+    147:148:void advance() -> advance
+    155:155:char consume() -> consume
+    166:173:void consume(java.lang.String) -> consume
+    181:187:java.lang.String consumeTo(java.lang.String) -> consumeTo
+    192:213:java.lang.String consumeToIgnoreCase(java.lang.String) -> consumeToIgnoreCase
+    224:230:java.lang.String consumeToAny(java.lang.String[]) -> consumeToAny
+    242:244:java.lang.String chompTo(java.lang.String) -> chompTo
+    248:250:java.lang.String chompToIgnoreCase(java.lang.String) -> chompToIgnoreCase
+    263:281:java.lang.String chompBalanced(char,char) -> chompBalanced
+    290:301:java.lang.String unescape(java.lang.String) -> unescape
+    308:313:boolean consumeWhitespace() -> consumeWhitespace
+    321:324:java.lang.String consumeWord() -> consumeWord
+    333:337:java.lang.String consumeTagName() -> consumeTagName
+    346:350:java.lang.String consumeElementSelector() -> consumeElementSelector
+    359:363:java.lang.String consumeCssIdentifier() -> consumeCssIdentifier
+    371:375:java.lang.String consumeAttributeKey() -> consumeAttributeKey
+    383:387:java.lang.String remainder() -> remainder
+    391:391:java.lang.String toString() -> toString
+org.jsoup.parser.Tokeniser -> org.jsoup.parser.am:
+    org.jsoup.parser.CharacterReader reader -> e
+    org.jsoup.parser.ParseErrorList errors -> f
+    org.jsoup.parser.TokeniserState state -> g
+    org.jsoup.parser.Token emitPending -> h
+    boolean isEmitPending -> i
+    java.lang.StringBuilder charBuffer -> j
+    java.lang.StringBuilder dataBuffer -> a
+    org.jsoup.parser.Token$Tag tagPending -> b
+    org.jsoup.parser.Token$Doctype doctypePending -> c
+    org.jsoup.parser.Token$Comment commentPending -> d
+    org.jsoup.parser.Token$StartTag lastStartTag -> k
+    boolean selfClosingFlagAcknowledged -> l
+    36:51:org.jsoup.parser.Token read() -> a
+    56:71:void emit(org.jsoup.parser.Token) -> a
+    76:77:void emit(java.lang.String) -> a
+    80:81:void emit(char) -> a
+    88:89:void transition(org.jsoup.parser.TokeniserState) -> a
+    92:94:void advanceTransition(org.jsoup.parser.TokeniserState) -> b
+    97:98:void acknowledgeSelfClosingFlag() -> b
+    101:153:java.lang.Character consumeCharacterReference(java.lang.Character,boolean) -> a
+    158:159:org.jsoup.parser.Token$Tag createTagPending(boolean) -> a
+    163:165:void emitTagPending() -> c
+    168:169:void createCommentPending() -> d
+    172:173:void emitCommentPending() -> e
+    176:177:void createDoctypePending() -> f
+    180:181:void emitDoctypePending() -> g
+    184:185:void createTempBuffer() -> h
+    188:190:boolean isAppropriateEndTagToken() -> i
+    194:194:java.lang.String appropriateEndTagName() -> j
+    198:200:void error(org.jsoup.parser.TokeniserState) -> c
+    203:205:void eofError(org.jsoup.parser.TokeniserState) -> d
+    208:210:void characterReferenceError(java.lang.String) -> b
+    213:215:void error(java.lang.String) -> c
+    230:242:java.lang.String unescapeEntities(boolean) -> b
+org.jsoup.parser.TokeniserState -> org.jsoup.parser.an:
+    org.jsoup.parser.TokeniserState Data -> a
+    org.jsoup.parser.TokeniserState CharacterReferenceInData -> b
+    org.jsoup.parser.TokeniserState Rcdata -> c
+    org.jsoup.parser.TokeniserState CharacterReferenceInRcdata -> d
+    org.jsoup.parser.TokeniserState Rawtext -> e
+    org.jsoup.parser.TokeniserState ScriptData -> f
+    org.jsoup.parser.TokeniserState PLAINTEXT -> g
+    org.jsoup.parser.TokeniserState TagOpen -> h
+    org.jsoup.parser.TokeniserState EndTagOpen -> i
+    org.jsoup.parser.TokeniserState TagName -> j
+    org.jsoup.parser.TokeniserState RcdataLessthanSign -> k
+    org.jsoup.parser.TokeniserState RCDATAEndTagOpen -> l
+    org.jsoup.parser.TokeniserState RCDATAEndTagName -> m
+    org.jsoup.parser.TokeniserState RawtextLessthanSign -> n
+    org.jsoup.parser.TokeniserState RawtextEndTagOpen -> o
+    org.jsoup.parser.TokeniserState RawtextEndTagName -> p
+    org.jsoup.parser.TokeniserState ScriptDataLessthanSign -> q
+    org.jsoup.parser.TokeniserState ScriptDataEndTagOpen -> r
+    org.jsoup.parser.TokeniserState ScriptDataEndTagName -> s
+    org.jsoup.parser.TokeniserState ScriptDataEscapeStart -> t
+    org.jsoup.parser.TokeniserState ScriptDataEscapeStartDash -> u
+    org.jsoup.parser.TokeniserState ScriptDataEscaped -> v
+    org.jsoup.parser.TokeniserState ScriptDataEscapedDash -> w
+    org.jsoup.parser.TokeniserState ScriptDataEscapedDashDash -> x
+    org.jsoup.parser.TokeniserState ScriptDataEscapedLessthanSign -> y
+    org.jsoup.parser.TokeniserState ScriptDataEscapedEndTagOpen -> z
+    org.jsoup.parser.TokeniserState ScriptDataEscapedEndTagName -> A
+    org.jsoup.parser.TokeniserState ScriptDataDoubleEscapeStart -> B
+    org.jsoup.parser.TokeniserState ScriptDataDoubleEscaped -> C
+    org.jsoup.parser.TokeniserState ScriptDataDoubleEscapedDash -> D
+    org.jsoup.parser.TokeniserState ScriptDataDoubleEscapedDashDash -> E
+    org.jsoup.parser.TokeniserState ScriptDataDoubleEscapedLessthanSign -> F
+    org.jsoup.parser.TokeniserState ScriptDataDoubleEscapeEnd -> G
+    org.jsoup.parser.TokeniserState BeforeAttributeName -> H
+    org.jsoup.parser.TokeniserState AttributeName -> I
+    org.jsoup.parser.TokeniserState AfterAttributeName -> J
+    org.jsoup.parser.TokeniserState BeforeAttributeValue -> K
+    org.jsoup.parser.TokeniserState AttributeValue_doubleQuoted -> L
+    org.jsoup.parser.TokeniserState AttributeValue_singleQuoted -> M
+    org.jsoup.parser.TokeniserState AttributeValue_unquoted -> N
+    org.jsoup.parser.TokeniserState AfterAttributeValue_quoted -> O
+    org.jsoup.parser.TokeniserState SelfClosingStartTag -> P
+    org.jsoup.parser.TokeniserState BogusComment -> Q
+    org.jsoup.parser.TokeniserState MarkupDeclarationOpen -> R
+    org.jsoup.parser.TokeniserState CommentStart -> S
+    org.jsoup.parser.TokeniserState CommentStartDash -> T
+    org.jsoup.parser.TokeniserState Comment -> U
+    org.jsoup.parser.TokeniserState CommentEndDash -> V
+    org.jsoup.parser.TokeniserState CommentEnd -> W
+    org.jsoup.parser.TokeniserState CommentEndBang -> X
+    org.jsoup.parser.TokeniserState Doctype -> Y
+    org.jsoup.parser.TokeniserState BeforeDoctypeName -> Z
+    org.jsoup.parser.TokeniserState DoctypeName -> aa
+    org.jsoup.parser.TokeniserState AfterDoctypeName -> ab
+    org.jsoup.parser.TokeniserState AfterDoctypePublicKeyword -> ac
+    org.jsoup.parser.TokeniserState BeforeDoctypePublicIdentifier -> ad
+    org.jsoup.parser.TokeniserState DoctypePublicIdentifier_doubleQuoted -> ae
+    org.jsoup.parser.TokeniserState DoctypePublicIdentifier_singleQuoted -> af
+    org.jsoup.parser.TokeniserState AfterDoctypePublicIdentifier -> ag
+    org.jsoup.parser.TokeniserState BetweenDoctypePublicAndSystemIdentifiers -> ah
+    org.jsoup.parser.TokeniserState AfterDoctypeSystemKeyword -> ai
+    org.jsoup.parser.TokeniserState BeforeDoctypeSystemIdentifier -> aj
+    org.jsoup.parser.TokeniserState DoctypeSystemIdentifier_doubleQuoted -> ak
+    org.jsoup.parser.TokeniserState DoctypeSystemIdentifier_singleQuoted -> al
+    org.jsoup.parser.TokeniserState AfterDoctypeSystemIdentifier -> am
+    org.jsoup.parser.TokeniserState BogusDoctype -> an
+    org.jsoup.parser.TokeniserState CdataSection -> ao
+    java.lang.String replacementStr -> ap
+    org.jsoup.parser.TokeniserState[] $VALUES -> aq
+    6:6:org.jsoup.parser.TokeniserState[] values() -> values
+    6:6:org.jsoup.parser.TokeniserState valueOf(java.lang.String) -> valueOf
+    void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+    6:6:java.lang.String access$100() -> a
+org.jsoup.parser.TokeniserState$1 -> org.jsoup.parser.ao:
+    10:29:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$10 -> org.jsoup.parser.ap:
+    185:211:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$11 -> org.jsoup.parser.aq:
+    216:230:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$12 -> org.jsoup.parser.ar:
+    234:243:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$13 -> org.jsoup.parser.as:
+    247:283:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+    286:288:void anythingElse(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> b
+org.jsoup.parser.TokeniserState$14 -> org.jsoup.parser.at:
+    292:299:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$15 -> org.jsoup.parser.au:
+    303:310:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$16 -> org.jsoup.parser.av:
+    314:344:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+    347:349:void anythingElse(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> b
+org.jsoup.parser.TokeniserState$17 -> org.jsoup.parser.aw:
+    353:367:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$18 -> org.jsoup.parser.ax:
+    371:379:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$19 -> org.jsoup.parser.ay:
+    383:414:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+    417:419:void anythingElse(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> b
+org.jsoup.parser.TokeniserState$2 -> org.jsoup.parser.az:
+    34:40:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$20 -> org.jsoup.parser.ba:
+    423:429:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$21 -> org.jsoup.parser.bb:
+    433:439:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$22 -> org.jsoup.parser.bc:
+    443:466:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$23 -> org.jsoup.parser.bd:
+    470:494:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$24 -> org.jsoup.parser.be:
+    498:525:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$25 -> org.jsoup.parser.bf:
+    529:541:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$26 -> org.jsoup.parser.bg:
+    545:554:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$27 -> org.jsoup.parser.bh:
+    558:590:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+    593:595:void anythingElse(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> b
+org.jsoup.parser.TokeniserState$28 -> org.jsoup.parser.bi:
+    599:625:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$29 -> org.jsoup.parser.bj:
+    629:652:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$3 -> org.jsoup.parser.bk:
+    45:65:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$30 -> org.jsoup.parser.bl:
+    656:679:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$31 -> org.jsoup.parser.bm:
+    683:709:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$32 -> org.jsoup.parser.bn:
+    713:720:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$33 -> org.jsoup.parser.bo:
+    724:750:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$34 -> org.jsoup.parser.bp:
+    755:794:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$35 -> org.jsoup.parser.bq:
+    799:836:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$36 -> org.jsoup.parser.br:
+    840:881:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$37 -> org.jsoup.parser.bs:
+    885:929:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$38 -> org.jsoup.parser.bt:
+    933:959:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$39 -> org.jsoup.parser.bu:
+    963:989:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$4 -> org.jsoup.parser.bv:
+    69:75:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$40 -> org.jsoup.parser.bw:
+    993:1036:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$41 -> org.jsoup.parser.bx:
+    1041:1067:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$42 -> org.jsoup.parser.by:
+    1071:1086:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$43 -> org.jsoup.parser.bz:
+    1092:1098:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$44 -> org.jsoup.parser.ca:
+    1102:1116:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$45 -> org.jsoup.parser.cb:
+    1120:1144:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$46 -> org.jsoup.parser.cc:
+    1148:1172:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$47 -> org.jsoup.parser.cd:
+    1176:1194:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$48 -> org.jsoup.parser.ce:
+    1198:1217:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$49 -> org.jsoup.parser.cf:
+    1221:1250:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$5 -> org.jsoup.parser.cg:
+    79:96:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$50 -> org.jsoup.parser.ch:
+    1254:1278:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$51 -> org.jsoup.parser.ci:
+    1282:1302:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$52 -> org.jsoup.parser.cj:
+    1306:1336:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$53 -> org.jsoup.parser.ck:
+    1340:1371:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$54 -> org.jsoup.parser.cl:
+    1375:1397:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$55 -> org.jsoup.parser.cm:
+    1401:1437:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$56 -> org.jsoup.parser.cn:
+    1441:1474:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$57 -> org.jsoup.parser.co:
+    1478:1502:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$58 -> org.jsoup.parser.cp:
+    1506:1530:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$59 -> org.jsoup.parser.cq:
+    1534:1568:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$6 -> org.jsoup.parser.cr:
+    100:117:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$60 -> org.jsoup.parser.cs:
+    1572:1605:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$61 -> org.jsoup.parser.ct:
+    1609:1645:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$62 -> org.jsoup.parser.cu:
+    1649:1682:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$63 -> org.jsoup.parser.cv:
+    1686:1710:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$64 -> org.jsoup.parser.cw:
+    1714:1738:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$65 -> org.jsoup.parser.cx:
+    1742:1765:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$66 -> org.jsoup.parser.cy:
+    1769:1783:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$67 -> org.jsoup.parser.cz:
+    1787:1791:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$7 -> org.jsoup.parser.da:
+    121:135:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$8 -> org.jsoup.parser.db:
+    140:161:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TokeniserState$9 -> org.jsoup.parser.dc:
+    165:179:void read(org.jsoup.parser.Tokeniser,org.jsoup.parser.CharacterReader) -> a
+org.jsoup.parser.TreeBuilder -> org.jsoup.parser.dd:
+    org.jsoup.parser.CharacterReader reader -> b
+    org.jsoup.parser.Tokeniser tokeniser -> c
+    org.jsoup.nodes.Document doc -> d
+    org.jsoup.helper.DescendableLinkedList stack -> e
+    java.lang.String baseUri -> f
+    org.jsoup.parser.Token currentToken -> g
+    org.jsoup.parser.ParseErrorList errors -> h
+    24:33:void initialiseParse(java.lang.String,java.lang.String,org.jsoup.parser.ParseErrorList) -> b
+    40:42:org.jsoup.nodes.Document parse(java.lang.String,java.lang.String,org.jsoup.parser.ParseErrorList) -> a
+    47:53:void runParser() -> w
+    boolean process(org.jsoup.parser.Token) -> a
+    58:58:org.jsoup.nodes.Element currentElement() -> x
+org.jsoup.parser.XmlTreeBuilder -> org.jsoup.parser.XmlTreeBuilder:
+    14:16:void initialiseParse(java.lang.String,java.lang.String,org.jsoup.parser.ParseErrorList) -> b
+    21:42:boolean process(org.jsoup.parser.Token) -> a
+    46:47:void insertNode(org.jsoup.nodes.Node) -> a
+    50:61:org.jsoup.nodes.Element insert(org.jsoup.parser.Token$StartTag) -> a
+    65:67:void insert(org.jsoup.parser.Token$Comment) -> a
+    70:72:void insert(org.jsoup.parser.Token$Character) -> a
+    75:77:void insert(org.jsoup.parser.Token$Doctype) -> a
+    86:110:void popStackToClose(org.jsoup.parser.Token$EndTag) -> a
+org.jsoup.parser.XmlTreeBuilder$1 -> org.jsoup.parser.de:
+    int[] $SwitchMap$org$jsoup$parser$Token$TokenType -> a
+org.jsoup.safety.Cleaner -> org.jsoup.safety.Cleaner:
+    org.jsoup.safety.Whitelist whitelist -> a
+    40:46:org.jsoup.nodes.Document clean(org.jsoup.nodes.Document) -> clean
+    60:64:boolean isValid(org.jsoup.nodes.Document) -> isValid
+    74:98:int copySafeNodes(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> a
+    102:117:org.jsoup.safety.Cleaner$ElementMeta createSafeElement(org.jsoup.nodes.Element) -> a
+org.jsoup.safety.Cleaner$ElementMeta -> org.jsoup.safety.a:
+    org.jsoup.nodes.Element el -> a
+    int numAttribsDiscarded -> b
+org.jsoup.safety.Whitelist -> org.jsoup.safety.Whitelist:
+    java.util.Set tagNames -> a
+    java.util.Map attributes -> b
+    java.util.Map enforcedAttributes -> c
+    java.util.Map protocols -> d
+    boolean preserveRelativeLinks -> e
+    63:63:org.jsoup.safety.Whitelist none() -> none
+    73:73:org.jsoup.safety.Whitelist simpleText() -> simpleText
+    90:90:org.jsoup.safety.Whitelist basic() -> basic
+    116:116:org.jsoup.safety.Whitelist basicWithImages() -> basicWithImages
+    133:133:org.jsoup.safety.Whitelist relaxed() -> relaxed
+    185:191:org.jsoup.safety.Whitelist addTags(java.lang.String[]) -> addTags
+    208:226:org.jsoup.safety.Whitelist addAttributes(java.lang.String,java.lang.String[]) -> addAttributes
+    242:259:org.jsoup.safety.Whitelist addEnforcedAttribute(java.lang.String,java.lang.String,java.lang.String) -> addEnforcedAttribute
+    277:278:org.jsoup.safety.Whitelist preserveRelativeLinks(boolean) -> preserveRelativeLinks
+    293:319:org.jsoup.safety.Whitelist addProtocols(java.lang.String,java.lang.String,java.lang.String[]) -> addProtocols
+    323:323:boolean isSafeTag(java.lang.String) -> a
+    327:342:boolean isSafeAttribute(java.lang.String,org.jsoup.nodes.Element,org.jsoup.nodes.Attribute) -> a
+    348:360:boolean testValidProtocol(org.jsoup.nodes.Element,org.jsoup.nodes.Attribute,java.util.Set) -> a
+    364:372:org.jsoup.nodes.Attributes getEnforcedAttributes(java.lang.String) -> b
+org.jsoup.safety.Whitelist$AttributeKey -> org.jsoup.safety.b:
+    393:393:org.jsoup.safety.Whitelist$AttributeKey valueOf(java.lang.String) -> a
+org.jsoup.safety.Whitelist$AttributeValue -> org.jsoup.safety.c:
+    403:403:org.jsoup.safety.Whitelist$AttributeValue valueOf(java.lang.String) -> a
+org.jsoup.safety.Whitelist$Protocol -> org.jsoup.safety.d:
+    413:413:org.jsoup.safety.Whitelist$Protocol valueOf(java.lang.String) -> a
+org.jsoup.safety.Whitelist$TagName -> org.jsoup.safety.e:
+    383:383:org.jsoup.safety.Whitelist$TagName valueOf(java.lang.String) -> a
+org.jsoup.safety.Whitelist$TypedValue -> org.jsoup.safety.f:
+    java.lang.String value -> a
+    427:430:int hashCode() -> hashCode
+    435:442:boolean equals(java.lang.Object) -> equals
+    447:447:java.lang.String toString() -> toString
+org.jsoup.select.Collector -> org.jsoup.select.Collector:
+    23:25:org.jsoup.select.Elements collect(org.jsoup.select.Evaluator,org.jsoup.nodes.Element) -> collect
+org.jsoup.select.Collector$Accumulator -> org.jsoup.select.a:
+    org.jsoup.nodes.Element root -> a
+    org.jsoup.select.Elements elements -> b
+    org.jsoup.select.Evaluator eval -> c
+    40:45:void head(org.jsoup.nodes.Node,int) -> head
+    49:49:void tail(org.jsoup.nodes.Node,int) -> tail
+org.jsoup.select.CombiningEvaluator -> org.jsoup.select.b:
+    java.util.List evaluators -> a
+    28:28:org.jsoup.select.Evaluator rightMostEvaluator() -> a
+    32:33:void replaceRightMostEvaluator(org.jsoup.select.Evaluator) -> a
+org.jsoup.select.CombiningEvaluator$And -> org.jsoup.select.c:
+    46:51:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    56:56:java.lang.String toString() -> toString
+org.jsoup.select.CombiningEvaluator$Or -> org.jsoup.select.d:
+    78:79:void add(org.jsoup.select.Evaluator) -> b
+    83:88:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    93:93:java.lang.String toString() -> toString
+org.jsoup.select.Elements -> org.jsoup.select.Elements:
+    java.util.List contents -> a
+    40:46:org.jsoup.select.Elements clone() -> clone
+    58:62:java.lang.String attr(java.lang.String) -> attr
+    71:75:boolean hasAttr(java.lang.String) -> hasAttr
+    85:88:org.jsoup.select.Elements attr(java.lang.String,java.lang.String) -> attr
+    97:100:org.jsoup.select.Elements removeAttr(java.lang.String) -> removeAttr
+    109:112:org.jsoup.select.Elements addClass(java.lang.String) -> addClass
+    121:124:org.jsoup.select.Elements removeClass(java.lang.String) -> removeClass
+    133:136:org.jsoup.select.Elements toggleClass(java.lang.String) -> toggleClass
+    145:149:boolean hasClass(java.lang.String) -> hasClass
+    158:161:java.lang.String val() -> val
+    170:172:org.jsoup.select.Elements val(java.lang.String) -> val
+    184:190:java.lang.String text() -> text
+    194:198:boolean hasText() -> hasText
+    208:214:java.lang.String html() -> html
+    224:230:java.lang.String outerHtml() -> outerHtml
+    240:240:java.lang.String toString() -> toString
+    251:254:org.jsoup.select.Elements tagName(java.lang.String) -> tagName
+    264:267:org.jsoup.select.Elements html(java.lang.String) -> html
+    277:280:org.jsoup.select.Elements prepend(java.lang.String) -> prepend
+    290:293:org.jsoup.select.Elements append(java.lang.String) -> append
+    303:306:org.jsoup.select.Elements before(java.lang.String) -> before
+    316:319:org.jsoup.select.Elements after(java.lang.String) -> after
+    332:336:org.jsoup.select.Elements wrap(java.lang.String) -> wrap
+    353:356:org.jsoup.select.Elements unwrap() -> unwrap
+    371:374:org.jsoup.select.Elements empty() -> empty
+    390:393:org.jsoup.select.Elements remove() -> remove
+    404:404:org.jsoup.select.Elements select(java.lang.String) -> select
+    418:419:org.jsoup.select.Elements not(java.lang.String) -> not
+    430:430:org.jsoup.select.Elements eq(int) -> eq
+    439:440:boolean is(java.lang.String) -> is
+    448:452:org.jsoup.select.Elements parents() -> parents
+    461:461:org.jsoup.nodes.Element first() -> first
+    469:469:org.jsoup.nodes.Element last() -> last
+    478:483:org.jsoup.select.Elements traverse(org.jsoup.select.NodeVisitor) -> traverse
+    487:487:int size() -> size
+    489:489:boolean isEmpty() -> isEmpty
+    491:491:boolean contains(java.lang.Object) -> contains
+    493:493:java.util.Iterator iterator() -> iterator
+    495:495:java.lang.Object[] toArray() -> toArray
+    497:497:java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    499:499:boolean add(org.jsoup.nodes.Element) -> add
+    501:501:boolean remove(java.lang.Object) -> remove
+    503:503:boolean containsAll(java.util.Collection) -> containsAll
+    505:505:boolean addAll(java.util.Collection) -> addAll
+    507:507:boolean addAll(int,java.util.Collection) -> addAll
+    509:509:boolean removeAll(java.util.Collection) -> removeAll
+    511:511:boolean retainAll(java.util.Collection) -> retainAll
+    513:513:void clear() -> clear
+    515:515:boolean equals(java.lang.Object) -> equals
+    517:517:int hashCode() -> hashCode
+    519:519:org.jsoup.nodes.Element get(int) -> get
+    521:521:org.jsoup.nodes.Element set(int,org.jsoup.nodes.Element) -> set
+    523:523:void add(int,org.jsoup.nodes.Element) -> add
+    525:525:org.jsoup.nodes.Element remove(int) -> remove
+    527:527:int indexOf(java.lang.Object) -> indexOf
+    529:529:int lastIndexOf(java.lang.Object) -> lastIndexOf
+    531:531:java.util.ListIterator listIterator() -> listIterator
+    533:533:java.util.ListIterator listIterator(int) -> listIterator
+    535:535:java.util.List subList(int,int) -> subList
+    15:15:java.lang.Object clone() -> clone
+    15:15:java.lang.Object remove(int) -> remove
+    15:15:void add(int,java.lang.Object) -> add
+    15:15:java.lang.Object set(int,java.lang.Object) -> set
+    15:15:java.lang.Object get(int) -> get
+    15:15:boolean add(java.lang.Object) -> add
+org.jsoup.select.Evaluator -> org.jsoup.select.Evaluator:
+    boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+org.jsoup.select.Evaluator$AllElements -> org.jsoup.select.Evaluator$AllElements:
+    287:287:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    292:292:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Attribute -> org.jsoup.select.Evaluator$Attribute:
+    java.lang.String key -> a
+    103:103:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    108:108:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeKeyPair -> org.jsoup.select.Evaluator$AttributeKeyPair:
+    java.lang.String key -> a
+    java.lang.String value -> b
+org.jsoup.select.Evaluator$AttributeStarting -> org.jsoup.select.Evaluator$AttributeStarting:
+    java.lang.String keyPrefix -> a
+    125:130:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    135:135:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValue -> org.jsoup.select.Evaluator$AttributeWithValue:
+    150:150:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    155:155:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueContaining -> org.jsoup.select.Evaluator$AttributeWithValueContaining:
+    230:230:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    235:235:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueEnding -> org.jsoup.select.Evaluator$AttributeWithValueEnding:
+    210:210:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    215:215:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueMatching -> org.jsoup.select.Evaluator$AttributeWithValueMatching:
+    java.lang.String key -> a
+    java.util.regex.Pattern pattern -> b
+    254:254:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    259:259:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueNot -> org.jsoup.select.Evaluator$AttributeWithValueNot:
+    170:170:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    175:175:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$AttributeWithValueStarting -> org.jsoup.select.Evaluator$AttributeWithValueStarting:
+    190:190:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    195:195:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Class -> org.jsoup.select.Evaluator$Class:
+    java.lang.String className -> a
+    81:81:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    86:86:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$ContainsOwnText -> org.jsoup.select.Evaluator$ContainsOwnText:
+    java.lang.String searchText -> a
+    402:402:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    407:407:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$ContainsText -> org.jsoup.select.Evaluator$ContainsText:
+    java.lang.String searchText -> a
+    381:381:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    386:386:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Id -> org.jsoup.select.Evaluator$Id:
+    java.lang.String id -> a
+    59:59:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    64:64:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IndexEquals -> org.jsoup.select.Evaluator$IndexEquals:
+    346:346:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    351:351:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IndexEvaluator -> org.jsoup.select.Evaluator$IndexEvaluator:
+    int index -> a
+org.jsoup.select.Evaluator$IndexGreaterThan -> org.jsoup.select.Evaluator$IndexGreaterThan:
+    326:326:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    331:331:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$IndexLessThan -> org.jsoup.select.Evaluator$IndexLessThan:
+    306:306:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    311:311:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Matches -> org.jsoup.select.Evaluator$Matches:
+    java.util.regex.Pattern pattern -> a
+    423:424:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    429:429:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$MatchesOwn -> org.jsoup.select.Evaluator$MatchesOwn:
+    java.util.regex.Pattern pattern -> a
+    445:446:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    451:451:java.lang.String toString() -> toString
+org.jsoup.select.Evaluator$Tag -> org.jsoup.select.Evaluator$Tag:
+    java.lang.String tagName -> a
+    38:38:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    43:43:java.lang.String toString() -> toString
+org.jsoup.select.NodeTraversor -> org.jsoup.select.NodeTraversor:
+    org.jsoup.select.NodeVisitor visitor -> a
+    26:46:void traverse(org.jsoup.nodes.Node) -> traverse
+org.jsoup.select.NodeVisitor -> org.jsoup.select.NodeVisitor:
+    void head(org.jsoup.nodes.Node,int) -> head
+    void tail(org.jsoup.nodes.Node,int) -> tail
+org.jsoup.select.QueryParser -> org.jsoup.select.e:
+    java.lang.String[] combinators -> a
+    org.jsoup.parser.TokenQueue tq -> b
+    java.lang.String query -> c
+    java.util.List evals -> d
+    36:37:org.jsoup.select.Evaluator parse(java.lang.String) -> a
+    45:70:org.jsoup.select.Evaluator parse() -> a
+    74:123:void combinator(char) -> a
+    126:137:java.lang.String consumeSubQuery() -> b
+    141:172:void findElements() -> c
+    175:178:void byId() -> d
+    181:184:void byClass() -> e
+    187:195:void byTag() -> f
+    198:229:void byAttribute() -> g
+    232:233:void allElements() -> h
+    237:238:void indexLessThan() -> i
+    241:242:void indexGreaterThan() -> j
+    245:246:void indexEquals() -> k
+    249:251:int consumeIndex() -> l
+    256:260:void has() -> m
+    264:271:void contains(boolean) -> a
+    275:283:void matches(boolean) -> b
+    287:292:void not() -> n
+org.jsoup.select.Selector -> org.jsoup.select.Selector:
+    org.jsoup.select.Evaluator evaluator -> a
+    org.jsoup.nodes.Element root -> b
+    79:79:org.jsoup.select.Elements select(java.lang.String,org.jsoup.nodes.Element) -> select
+    90:97:org.jsoup.select.Elements select(java.lang.String,java.lang.Iterable) -> select
+    101:101:org.jsoup.select.Elements select() -> a
+    106:118:org.jsoup.select.Elements filterOut(java.util.Collection,java.util.Collection) -> a
+org.jsoup.select.Selector$SelectorParseException -> org.jsoup.select.Selector$SelectorParseException:
+org.jsoup.select.StructuralEvaluator -> org.jsoup.select.f:
+    org.jsoup.select.Evaluator evaluator -> a
+org.jsoup.select.StructuralEvaluator$Has -> org.jsoup.select.g:
+    23:27:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    31:31:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$ImmediateParent -> org.jsoup.select.h:
+    78:82:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    86:86:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$ImmediatePreviousSibling -> org.jsoup.select.i:
+    121:125:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    129:129:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$Not -> org.jsoup.select.j:
+    41:41:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    45:45:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$Parent -> org.jsoup.select.k:
+    55:64:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    68:68:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$PreviousSibling -> org.jsoup.select.l:
+    96:107:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
+    111:111:java.lang.String toString() -> toString
+org.jsoup.select.StructuralEvaluator$Root -> org.jsoup.select.m:
+    13:13:boolean matches(org.jsoup.nodes.Element,org.jsoup.nodes.Element) -> matches
