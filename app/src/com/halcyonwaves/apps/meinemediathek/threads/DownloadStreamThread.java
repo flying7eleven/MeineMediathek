@@ -15,7 +15,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -25,7 +24,7 @@ import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
-public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
+public class DownloadStreamThread extends Thread {
 
 	private static final String TAG = "DownloadStreamThread";
 	private String downloadLink = null;
@@ -39,7 +38,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 	private Context threadContext = null;
 	private final int usedTimeoutInSeconds = 10;
 
-	public DownloadStreamAsyncTask( final Context context, final String downloadLink, final String movieTitle ) {
+	public DownloadStreamThread( final Context context, final String downloadLink, final String movieTitle ) {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
@@ -61,7 +60,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 	}
 
 	@Override
-	protected Void doInBackground( Void... params ) {
+	public void run() {
 		//
 		Thread.currentThread().setName( String.format( "StreamDownloadTask(%s)", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() ) );
 
@@ -75,7 +74,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 			final Document fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 			final Elements foundLinks = fetchedResults.select( "Ref[href]" );
 			for( final Element currentLink : foundLinks ) {
-				Log.v( DownloadStreamAsyncTask.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
+				Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
 				if( currentLink.attr( "href" ).startsWith( "mms://" ) ) {
 					extractedURL = currentLink.attr( "href" );
 					final String[] splittedURL = extractedURL.split( "/" );
@@ -93,7 +92,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 			}
 
 		} catch( final IOException e ) {
-			Log.e( DownloadStreamAsyncTask.TAG, "Failed to fetch the ASX file for parsing.", e );
+			Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
 		}
 
 		//
@@ -117,7 +116,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 			} else { // if the file is bigger than 100MB
 				downloadBuffer = new byte[ 1024 * 1024 * 1 ]; // use a 1MB buffer
 			}
-			Log.v( DownloadStreamAsyncTask.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
+			Log.v( DownloadStreamThread.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
 
 			// read the whole movie
 			int comReadB = 0;
@@ -144,7 +143,7 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 			mmsInputStream.close();
 
 		} catch( final IOException e ) {
-			Log.e( DownloadStreamAsyncTask.TAG, "Failed to fetch the movie file from the MMS stream.", e );
+			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
 		}
 
 		// ensure that the mediascanner sees the file we have added
@@ -154,8 +153,6 @@ public class DownloadStreamAsyncTask extends AsyncTask< Void, Void, Void > {
 		this.notificationBuilder.setContentText( "Download complete" ).setOngoing( false ).setProgress( 0, 0, false );
 		this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
-		//
-		return null;
 	}
 
 }

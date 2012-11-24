@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamAsyncTask;
+import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
 
 public class BackgroundDownloadService extends Service {
 
@@ -29,7 +29,7 @@ public class BackgroundDownloadService extends Service {
 		// TODO: this
 
 		// do the actual download in a separate thread
-		new DownloadStreamAsyncTask( this.getApplicationContext(), downlaodURL, episodeTitle ).execute();
+		new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle ).start();
 
 		//
 		return Service.START_STICKY;
