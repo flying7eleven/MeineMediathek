@@ -149,7 +149,7 @@ public class DownloadStreamThread extends Thread {
 		MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
 
 		// we finished download the movie, change the notification again
-		this.notificationBuilder.setContentText( "Download complete" ).setOngoing( false ).setProgress( 0, 0, false );
+		this.notificationBuilder.setContentText( "Download complete" ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 		this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 	}
