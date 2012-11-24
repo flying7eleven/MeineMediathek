@@ -2,9 +2,9 @@
 <changelog>
 <release version="0.0.2" versioncode="2" releasedate="2012-11-23">
 <change>Made all texts translatable</change>
-<change>An ongoing download can now be canceled</change>
 <change>Added a license agreement for the first start of the application</change>
 <change>The download buffer size will vary according to the estimated file size of the movie which should be downloaded</change>
+<change>Fixed a lot of bugs causing the application to crash</change>
 <change>Made the application available in the Google Play Store</change>
 </release>
 <release version="0.0.1" versioncode="1" releasedate="2012-11-20">

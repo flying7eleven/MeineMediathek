@@ -26,9 +26,9 @@ For building the application by yourself follow the following steps:
 ## Changelog
 ### Version 0.0.2 (Code: *2*, Released on: ***2012-11-23***) - [Changes][100]
 * Made all texts translatable
-* An ongoing download can now be canceled
 * Added a license agreement for the first start of the application
 * The download buffer size will vary according to the estimated file size of the movie which should be downloaded
+* Fixed a lot of bugs causing the application to crash
 * Made the application available in the Google Play Store
 
 ### Version 0.0.1 (Code: *1*, Released on: ***2012-11-20***)
