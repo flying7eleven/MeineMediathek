@@ -27,9 +27,9 @@ import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 public class DownloadStreamThread extends Thread {
 
 	private static final String TAG = "DownloadStreamThread";
+	private final UUID DOWNLOAD_NOTIFICATION_FILE_ID = UUID.randomUUID();
 	private String downloadLink = null;
 	private String movieTitle = null;
-	private UUID DOWNLOAD_NOTIFICATION_FILE_ID = UUID.randomUUID();
 
 	private NotificationCompat.Builder notificationBuilder = null;
 	private NotificationManager notificationManager = null;
@@ -54,8 +54,7 @@ public class DownloadStreamThread extends Thread {
 		final Intent notificationIntent = new Intent( context, ManageDownloadActivity.class );
 		notificationIntent.putExtra( "movieTitle", movieTitle );
 		notificationIntent.putExtra( "notificationDownloadId", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() );
-		final PendingIntent contentIntent = PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
-		//this.notificationBuilder.setContentIntent( contentIntent );
+		PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
 
 	}
 

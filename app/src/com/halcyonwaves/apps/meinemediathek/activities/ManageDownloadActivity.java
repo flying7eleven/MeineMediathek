@@ -11,8 +11,8 @@ import com.halcyonwaves.apps.meinemediathek.R;
 
 public class ManageDownloadActivity extends Activity {
 
-	private TextView movieTitle = null;
 	private Button cancelDownload = null;
+	private TextView movieTitle = null;
 
 	@Override
 	protected void onCreate( final Bundle savedInstanceState ) {
@@ -33,7 +33,7 @@ public class ManageDownloadActivity extends Activity {
 		this.cancelDownload.setOnClickListener( new OnClickListener() {
 
 			@Override
-			public void onClick( View v ) {
+			public void onClick( final View v ) {
 				// TODO: cancel the download
 				ManageDownloadActivity.this.finish();
 

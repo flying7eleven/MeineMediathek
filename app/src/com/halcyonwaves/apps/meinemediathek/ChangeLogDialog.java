@@ -100,6 +100,16 @@ public class ChangeLogDialog {
 		return _Result;
 	}
 
+	public void markDialogAsAlreadyDisplayed() {
+		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.rootActivity.getApplicationContext() );
+
+		//
+		Editor prefEditor = appPreferences.edit();
+		prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, this.getApplicationVersionCode() );
+		prefEditor.commit();
+		prefEditor = null;
+	}
+
 	private String parseChangelogReleaseTag( final XmlPullParser aXml ) throws XmlPullParserException, IOException {
 		String _Result = "<h1>Version " + aXml.getAttributeValue( null, "version" ) + "</h1><h2>Released on " + aXml.getAttributeValue( null, "releasedate" ) + "</h2><ul>";
 		int eventType = aXml.getEventType();
@@ -112,16 +122,6 @@ public class ChangeLogDialog {
 		}
 		_Result = _Result + "</ul>";
 		return _Result;
-	}
-
-	public void markDialogAsAlreadyDisplayed() {
-		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.rootActivity.getApplicationContext() );
-
-		//
-		Editor prefEditor = appPreferences.edit();
-		prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, this.getApplicationVersionCode() );
-		prefEditor.commit();
-		prefEditor = null;
 	}
 
 	public void show() {

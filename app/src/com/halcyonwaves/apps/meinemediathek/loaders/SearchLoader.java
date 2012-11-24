@@ -33,7 +33,7 @@ import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
-	
+
 	private static final String TAG = "SearchLoader";
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 
@@ -90,7 +90,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 		//
 		String oldForwardLink = "";
 		String currentForwardLink = SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword;
-		
+
 		// try to download the response of the webpage to the search query
 		try {
 			// create a list with the URLs we have to visit
