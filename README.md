@@ -24,6 +24,10 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
+### Version 0.0.3 (Code: *3*, Released on: ***2012-11-24***) - [Changes][101]
+* Changed the way the titles of the movies in the ZDF Mediathek are extracted
+* Fixed a bug which caused a crash while starting the app
+
 ### Version 0.0.2 (Code: *2*, Released on: ***2012-11-23***) - [Changes][100]
 * Made all texts translatable
 * Added a license agreement for the first start of the application
@@ -39,3 +43,4 @@ For building the application by yourself follow the following steps:
  [3]: http://developer.android.com/tools/sdk/ndk/index.html
  [4]: http://www.zdf.de/ZDFmediathek/hauptnavigation/startseite?flash=off
  [100]: https://github.com/thuetz/MeineMediathek/compare/v0.0.1...v0.0.2 
+ [101]: https://github.com/thuetz/MeineMediathek/compare/v0.0.2...v0.0.3 
