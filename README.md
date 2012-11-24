@@ -24,7 +24,7 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.0.2 (Code: *2*, Released on: ***2012-11-XX***) - [Changes][100]
+### Version 0.0.2 (Code: *2*, Released on: ***2012-11-23***) - [Changes][100]
 * Made all texts translatable
 * An ongoing download can now be canceled
 * Added a license agreement for the first start of the application
