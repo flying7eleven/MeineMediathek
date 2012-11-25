@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
+import com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread;
 
 public class BackgroundDownloadService extends Service {
 
@@ -33,9 +33,8 @@ public class BackgroundDownloadService extends Service {
 			// we have to check if the download was already started and skip the rest if it was
 			// TODO: this
 
-			// do the actual download in a separate thread
-			new DownloadStreamThread( this.getApplicationContext(), downlaodURL, episodeTitle ).start();
-
+			// start the thread which starts the executor for starting the download process with a given timeout
+			new DownloadThreadExecutorThread( this.getApplicationContext(), downlaodURL, episodeTitle ).start();
 		}
 
 		//
