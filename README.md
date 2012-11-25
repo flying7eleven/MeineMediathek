@@ -24,6 +24,10 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
+### Version 0.0.4 (Code: *4*, Released on: ***2012-11-25***) - [Changes][102]
+* The download thread has now a limited runtime of 120 Minutes
+* Added more debugging information to the bug report of some specific exceptions
+
 ### Version 0.0.3 (Code: *3*, Released on: ***2012-11-24***) - [Changes][101]
 * Added the missing German translation of the application
 * Changed the way the titles of the movies in the ZDF Mediathek are extracted
@@ -46,3 +50,4 @@ For building the application by yourself follow the following steps:
  [4]: http://www.zdf.de/ZDFmediathek/hauptnavigation/startseite?flash=off
  [100]: https://github.com/thuetz/MeineMediathek/compare/v0.0.1...v0.0.2 
  [101]: https://github.com/thuetz/MeineMediathek/compare/v0.0.2...v0.0.3 
+ [102]: https://github.com/thuetz/MeineMediathek/compare/v0.0.3...v0.0.4 

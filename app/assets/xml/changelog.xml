@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+<release version="0.0.4" versioncode="4" releasedate="2012-11-25">
+<change>The download thread has now a limited runtime of 120 Minutes</change>
+<change>Added more debugging information to the bug report of some specific exceptions</change>
+</release>
 <release version="0.0.3" versioncode="3" releasedate="2012-11-24">
 <change>Added the missing German translation of the application</change>
 <change>Changed the way the titles of the movies in the ZDF Mediathek are extracted</change>
