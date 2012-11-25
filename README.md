@@ -27,6 +27,7 @@ For building the application by yourself follow the following steps:
 ### Version 0.0.4 (Code: *4*, Released on: ***2012-11-25***) - [Changes][102]
 * The download thread has now a limited runtime of 120 Minutes
 * Added more debugging information to the bug report of some specific exceptions
+* Fixed a smaller bug when fetching the ASX descriptor from the ZDF Mediathek
 
 ### Version 0.0.3 (Code: *3*, Released on: ***2012-11-24***) - [Changes][101]
 * Added the missing German translation of the application
