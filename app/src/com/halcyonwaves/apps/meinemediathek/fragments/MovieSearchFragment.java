@@ -98,8 +98,14 @@ public class MovieSearchFragment extends Fragment {
 				}
 			} ).setCancelable( false );
 
+			// change the size of the message in the license agreement
+			AlertDialog askUserDialog = builder.create();
+			//TextView textView = (TextView) askUserDialog.findViewById( android.R.id.message );
+			//if( null != textView ) {
+			//	textView.setTextAppearance( this.getActivity(), android.R.attr.textAppearanceSmall );
+			//}
+
 			// show the dialog to the user
-			final AlertDialog askUserDialog = builder.create();
 			askUserDialog.show();
 
 			// be sure that the changelog dialog won't pop up during the next application start
