@@ -3,6 +3,8 @@ package com.halcyonwaves.apps.meinemediathek.threads;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.UUID;
 
 import org.acra.ACRA;
@@ -70,8 +72,25 @@ public class DownloadStreamThread extends Thread {
 
 		// the first step is to parse the ASX file and to get the MMS stream URL to download the movie
 		String extractedURL = "";
+		Document fetchedResults = null;
 		try {
-			final Document fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+
+			// try it two times to fetch the file (if the first time fails for a socket timeout)
+			try {
+				fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+			} catch( SocketTimeoutException e ) {
+				try {
+					fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				} catch( SocketTimeoutException innerE ) {
+					Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
+					ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
+					ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
+					ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile.getAbsolutePath() );
+					ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
+					ACRA.getErrorReporter().handleException( e );
+				}
+
+			}
 			final Elements foundLinks = fetchedResults.select( "Ref[href]" );
 			for( final Element currentLink : foundLinks ) {
 				Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
