@@ -66,6 +66,7 @@ com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_description_content
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_description_label
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_title_content
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_title_label
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_player_notice
 com.halcyonwaves.apps.meinemediathek.R$layout: int activity_home
 com.halcyonwaves.apps.meinemediathek.R$layout: int activity_managedownload
 com.halcyonwaves.apps.meinemediathek.R$layout: int activity_movieoverview
@@ -89,9 +90,11 @@ com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_license
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_timeout
 com.halcyonwaves.apps.meinemediathek.R$string: int et_hint_searchfortitle
 com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie
+com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_finished
 com.halcyonwaves.apps.meinemediathek.R$string: int not_title_download_of_movie
 com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_description
 com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_title
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_player_notice
 com.halcyonwaves.apps.meinemediathek.activities.HomeActivity
 com.halcyonwaves.apps.meinemediathek.activities.HomeActivity: HomeActivity()
 com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity

@@ -722,7 +722,7 @@ com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
     private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment:
     private static final java.lang.String TAG
-com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader:
+com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader:
     private static final java.lang.String BASE_SEARCH_URL
     private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
