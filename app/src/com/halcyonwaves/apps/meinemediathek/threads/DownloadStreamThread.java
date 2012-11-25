@@ -93,6 +93,7 @@ public class DownloadStreamThread extends Thread {
 
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
+			ACRA.getErrorReporter().handleException( e );
 		}
 
 		//
