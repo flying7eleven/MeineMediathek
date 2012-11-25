@@ -30,7 +30,7 @@ import android.util.Log;
 import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 
-public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
+public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
 
@@ -43,7 +43,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 	private boolean socketException = false;
 	private final int usedTimeoutInSeconds = 10;
 
-	public SearchLoader( final Context context, final String searchFor ) {
+	public ZDFSearchResultsLoader( final Context context, final String searchFor ) {
 		super( context );
 		this.searchFor = searchFor;
 	}
@@ -73,23 +73,23 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 	@Override
 	public List< SearchResultEntry > loadInBackground() {
 		// just write the search keyword into the logfile
-		Log.v( SearchLoader.TAG, "Starting to load data for the following search query: " + this.searchFor );
+		Log.v( ZDFSearchResultsLoader.TAG, "Starting to load data for the following search query: " + this.searchFor );
 
 		// be sure that the search keyword is well-formed
 		String preparedSearchKeyword = "";
 		try {
 			preparedSearchKeyword = URLEncoder.encode( this.searchFor, "utf-8" );
 		} catch( final UnsupportedEncodingException e ) {
-			Log.e( SearchLoader.TAG, "Failed to to a proper URL encoding of the search keywords.", e );
+			Log.e( ZDFSearchResultsLoader.TAG, "Failed to to a proper URL encoding of the search keywords.", e );
 		}
-		Log.v( SearchLoader.TAG, "The keywords were URL encoded and are now represented as: " + preparedSearchKeyword );
+		Log.v( ZDFSearchResultsLoader.TAG, "The keywords were URL encoded and are now represented as: " + preparedSearchKeyword );
 
 		// create the list we want to return
 		final List< SearchResultEntry > foundTitles = new ArrayList< SearchResultEntry >();
 
 		//
 		String oldForwardLink = "";
-		String currentForwardLink = SearchLoader.BASE_SEARCH_URL + preparedSearchKeyword;
+		String currentForwardLink = ZDFSearchResultsLoader.BASE_SEARCH_URL + preparedSearchKeyword;
 
 		// try to download the response of the webpage to the search query
 		try {
@@ -98,7 +98,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 			// loop throgh all search result pages
 			while( !oldForwardLink.equalsIgnoreCase( currentForwardLink ) ) {
-				Log.v( SearchLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
+				Log.v( ZDFSearchResultsLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
 				// query for the results and get a handle to the returned HTML code
 				final Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
@@ -117,7 +117,7 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
 			// remove link duplicates
 			final HashSet< String > uniqueURLs = new HashSet< String >( linksToVisit );
-			Log.v( SearchLoader.TAG, String.format( "Searching for links finished. After removing duplicates we end with %d movies pages to parse.", uniqueURLs.size() ) );
+			Log.v( ZDFSearchResultsLoader.TAG, String.format( "Searching for links finished. After removing duplicates we end with %d movies pages to parse.", uniqueURLs.size() ) );
 
 			// after we fetched the links for all of our episodes, start fetching information about the episodes
 			for( final String currentURL : uniqueURLs ) {
@@ -178,10 +178,10 @@ public class SearchLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 			}
 
 		} catch( final SocketTimeoutException e ) {
-			Log.e( SearchLoader.TAG, "Failed to fetch the search results as a socket timedout.", e );
+			Log.e( ZDFSearchResultsLoader.TAG, "Failed to fetch the search results as a socket timedout.", e );
 			this.socketException = true;
 		} catch( final IOException e ) {
-			Log.e( SearchLoader.TAG, "Failed to fetch the search results from the website.", e );
+			Log.e( ZDFSearchResultsLoader.TAG, "Failed to fetch the search results from the website.", e );
 		} catch( final ExceptionInInitializerError e ) {
 			ACRA.getErrorReporter().putCustomData( "rawSearchKeyword", this.searchFor );
 			ACRA.getErrorReporter().putCustomData( "preparedSearchKeyword", preparedSearchKeyword );

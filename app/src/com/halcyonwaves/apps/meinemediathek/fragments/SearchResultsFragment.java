@@ -18,7 +18,7 @@ import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
-import com.halcyonwaves.apps.meinemediathek.loaders.SearchLoader;
+import com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader;
 
 public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > > {
 
@@ -48,7 +48,7 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 		Log.v( SearchResultsFragment.TAG, "The user is searching for: " + searchFor );
 
 		// return the requested loader
-		return new SearchLoader( this.getActivity(), searchFor );
+		return new ZDFSearchResultsLoader( this.getActivity(), searchFor );
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 	@Override
 	public void onLoadFinished( final Loader< List< SearchResultEntry > > loader, final List< SearchResultEntry > data ) {
 		// if an socket exception occurred, show a message
-		if( ((SearchLoader) loader).socketTimeoutOccurred() ) {
+		if( ((ZDFSearchResultsLoader) loader).socketTimeoutOccurred() ) {
 			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
 			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_timeout ) );
 			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_timeout ) );
