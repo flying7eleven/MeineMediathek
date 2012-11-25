@@ -93,10 +93,18 @@ public class DownloadStreamThread extends Thread {
 
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
+			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
+			ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
+			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile.getAbsolutePath() );
+			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
 			ACRA.getErrorReporter().handleException( e );
 		}
 
 		//
+		byte[] downloadBuffer = null;
+		int movieFullLength = 0;
+		int comReadB = 0;
+		int readB = 0;
 		try {
 			final MMSInputStream mmsInputStream = new MMSInputStream( extractedURL );
 
@@ -104,12 +112,11 @@ public class DownloadStreamThread extends Thread {
 			final FileOutputStream outputStream = new FileOutputStream( this.outputFile );
 
 			// since we know the length of the full movie now, we can set the progress bar to a known state
-			final int movieFullLength = mmsInputStream.length();
+			movieFullLength = mmsInputStream.length();
 			this.notificationBuilder.setProgress( movieFullLength, 0, false );
 			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// select the buffer which is the best for the estimated file size
-			byte[] downloadBuffer = null;
 			if( movieFullLength < (1024 * 1024 * 10) ) { // if the file is smaller than 10 MB,
 				downloadBuffer = new byte[ 1024 * 128 ]; // use a 128k buffer
 			} else if( movieFullLength < (1024 * 1024 * 50) ) { // if the file is smaller than 50 MB,
@@ -122,10 +129,9 @@ public class DownloadStreamThread extends Thread {
 			Log.v( DownloadStreamThread.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
 
 			// read the whole movie
-			int comReadB = 0;
 			while( comReadB < movieFullLength ) {
 				// get a data chunk
-				final int readB = mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
+				readB = mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
 				if( readB <= 0 ) {
 					break;
 				}
@@ -147,6 +153,14 @@ public class DownloadStreamThread extends Thread {
 
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
+			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
+			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile.getAbsolutePath() );
+			ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
+			ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
+			ACRA.getErrorReporter().putCustomData( "movieFullLength", String.format( "%d", movieFullLength ) );
+			ACRA.getErrorReporter().putCustomData( "readBytesFromMovie", String.format( "%d", comReadB ) );
+			ACRA.getErrorReporter().putCustomData( "lastReadBytes", String.format( "%d", readB ) );
+			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
 			ACRA.getErrorReporter().handleException( e );
 		}
 
