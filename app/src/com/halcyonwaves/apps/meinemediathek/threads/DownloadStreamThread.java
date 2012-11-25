@@ -85,9 +85,9 @@ public class DownloadStreamThread extends Thread {
 					Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
 					ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
 					ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
-					ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile.getAbsolutePath() );
 					ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-					ACRA.getErrorReporter().handleException( e );
+					ACRA.getErrorReporter().putCustomData( "innerExceptionMessage", innerE.getMessage() );
+					ACRA.getErrorReporter().handleException( innerE );
 				}
 
 			}
@@ -114,7 +114,7 @@ public class DownloadStreamThread extends Thread {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
 			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
 			ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
-			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile.getAbsolutePath() );
+			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile != null ? this.outputFile.getAbsolutePath() : "" );
 			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
 			ACRA.getErrorReporter().handleException( e );
 		}
@@ -173,7 +173,7 @@ public class DownloadStreamThread extends Thread {
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
 			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
-			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile.getAbsolutePath() );
+			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile != null ? this.outputFile.getAbsolutePath() : "" );
 			ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
 			ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
 			ACRA.getErrorReporter().putCustomData( "movieFullLength", String.format( "%d", movieFullLength ) );
