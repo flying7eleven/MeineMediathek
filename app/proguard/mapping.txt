@@ -1035,7 +1035,7 @@ com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream -> com.halcyonwaves.apps
     139:139:int read(byte[],int,int) -> read
 com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService -> com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
     17:17:android.os.IBinder onBind(android.content.Intent) -> onBind
-    23:42:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+    23:41:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
 com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyonwaves.apps.meinemediathek.c.a:
     java.util.UUID DOWNLOAD_NOTIFICATION_FILE_ID -> a
     java.lang.String downloadLink -> b
@@ -1045,7 +1045,12 @@ com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyon
     java.io.File outputFile -> f
     android.content.Context threadContext -> g
     int usedTimeoutInSeconds -> h
-    65:160:void run() -> run
+    66:192:void run() -> run
+com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread -> com.halcyonwaves.apps.meinemediathek.c.b:
+    java.lang.String downloadLink -> a
+    java.lang.String movieTitle -> b
+    android.content.Context threadContext -> c
+    30:46:void run() -> run
 org.acra.ACRA -> org.acra.ACRA:
     boolean DEV_LOGGING -> DEV_LOGGING
     java.lang.String LOG_TAG -> LOG_TAG

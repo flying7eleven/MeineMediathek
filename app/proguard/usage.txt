@@ -734,6 +734,8 @@ com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
     private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread:
     private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread:
+    private static final int DOWNLOAD_TIMEOUT_IN_MINUTES
 org.acra.ACRAConfiguration:
     104:105:public void setAdditionalDropboxTags(java.lang.String[])
     112:113:public void setAdditionalSharedPreferences(java.lang.String[])
