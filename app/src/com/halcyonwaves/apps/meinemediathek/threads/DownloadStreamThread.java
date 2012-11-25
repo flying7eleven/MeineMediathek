@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+import org.acra.ACRA;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -109,9 +110,11 @@ public class DownloadStreamThread extends Thread {
 			// select the buffer which is the best for the estimated file size
 			byte[] downloadBuffer = null;
 			if( movieFullLength < (1024 * 1024 * 10) ) { // if the file is smaller than 10 MB,
+				downloadBuffer = new byte[ 1024 * 128 ]; // use a 128k buffer
+			} else if( movieFullLength < (1024 * 1024 * 50) ) { // if the file is smaller than 50 MB,
 				downloadBuffer = new byte[ 1024 * 256 ]; // use a 256k buffer
 			} else if( movieFullLength < (1024 * 1024 * 100) ) { // if the file is smaller than 100 MB,
-				downloadBuffer = new byte[ 1024 * 512 ]; // use a 512k buffer
+				downloadBuffer = new byte[ 1024 * 512 ]; // use a 512 buffer
 			} else { // if the file is bigger than 100MB
 				downloadBuffer = new byte[ 1024 * 1024 * 1 ]; // use a 1MB buffer
 			}
@@ -143,9 +146,10 @@ public class DownloadStreamThread extends Thread {
 
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
+			ACRA.getErrorReporter().handleException( e );
 		}
 
-		// ensure that the mediascanner sees the file we have added
+		// ensure that the media scanner sees the file we have added
 		MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
 
 		// we finished download the movie, change the notification again
