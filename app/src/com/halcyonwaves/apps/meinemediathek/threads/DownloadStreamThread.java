@@ -3,7 +3,6 @@ package com.halcyonwaves.apps.meinemediathek.threads;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.UUID;
 
@@ -78,10 +77,10 @@ public class DownloadStreamThread extends Thread {
 			// try it two times to fetch the file (if the first time fails for a socket timeout)
 			try {
 				fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
-			} catch( SocketTimeoutException e ) {
+			} catch( final SocketTimeoutException e ) {
 				try {
 					fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
-				} catch( SocketTimeoutException innerE ) {
+				} catch( final SocketTimeoutException innerE ) {
 					Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
 					ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
 					ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );

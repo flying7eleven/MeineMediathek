@@ -99,11 +99,11 @@ public class MovieSearchFragment extends Fragment {
 			} ).setCancelable( false );
 
 			// change the size of the message in the license agreement
-			AlertDialog askUserDialog = builder.create();
-			//TextView textView = (TextView) askUserDialog.findViewById( android.R.id.message );
-			//if( null != textView ) {
-			//	textView.setTextAppearance( this.getActivity(), android.R.attr.textAppearanceSmall );
-			//}
+			final AlertDialog askUserDialog = builder.create();
+			// TextView textView = (TextView) askUserDialog.findViewById( android.R.id.message );
+			// if( null != textView ) {
+			// textView.setTextAppearance( this.getActivity(), android.R.attr.textAppearanceSmall );
+			// }
 
 			// show the dialog to the user
 			askUserDialog.show();
