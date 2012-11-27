@@ -1,5 +1,5 @@
 # Meine Mediathek
-TODO
+This application was developed for the German Android users. It is intended to download movies from the *ZDF Medikathek* (which is a online movie platform). This is helpful for all users who planing to travel and have to access to the internet during this time.
 
 ## Download a pre-build version
 You can download a pre-build version of **Meine Mediathek** from the [Google Play][1] store.
