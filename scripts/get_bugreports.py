@@ -39,37 +39,32 @@ class BugReport(object):
 	def __str__( self ):
 		return ( "BugReport for v%s (Android %s)" % ( self._reportDict[ 'app_version_name' ][ 0 ], self._reportDict[ 'android_version' ][ 0 ] ) )
 
-	def getHTML( self ):
+	def getXML( self ):
 		# start the document
-		htmlCode = '<!DOCTYPE html><html><head><title>Bug Report for %s</title>' % self._reportDict[ 'app_version_name' ][ 0 ]
-		htmlCode += '<link href="bugReportStyle.css" rel="stylesheet" type="text/css">'
-		htmlCode += '</head><body>'
+		htmlCode = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet href="bugReport.xsl" type="text/xsl" ?>'
+		htmlCode += '<BugReport appVersion="%s" androidVersion="%s" bugReporter="%s">' % ( self._reportDict[ 'app_version_name' ][ 0 ], self._reportDict[ 'android_version' ][ 0 ], self._reporterAddress )	
 
 		#
-		htmlCode += '<h1>BugReport for v%s (Android %s)</h1>' % ( self._reportDict[ 'app_version_name' ][ 0 ], self._reportDict[ 'android_version' ][ 0 ] )
-		htmlCode += '<h2>Reported by: <a href="mailto:%s">%s</a></h2>' % ( self._reporterAddress, self._reporterAddress )
-
-		#
-		htmlCode += '<h3>Found exceptions:</h3><div class="foundExceptions">'
+		htmlCode += '<ExceptionList>'
 		for currentException in self._includedExceptions:
-			htmlCode += '<div class="exceptionName">%s</div>' % currentException
-		htmlCode += '</div><h3>Bugreport:</h3>'
+			htmlCode += '<Exception>%s</Exception>' % currentException
+		htmlCode += '</ExceptionList>'
 
 		# loop through all fields in the dictionary
+		htmlCode += '<AcraReport>'
 		for currentKey in self._reportDict.keys():
-			htmlCode += '<div class="bugReportEntry">'
-			htmlCode += '<div class="bugReportField">%s</div>' % currentKey
-			htmlCode += '<div class="bugReportContent">'
+			htmlCode += '<Entry id="%s" lines="%d">' % ( currentKey, len( self._reportDict[ currentKey ] ) )
 			for currentLine in self._reportDict[ currentKey ]:
-				htmlCode += '<div class="bugReportContentLine">%s</div>' % currentLine	
-			htmlCode += '</div></div>'
+				htmlCode += '%s' % currentLine
+			htmlCode += '</Entry>'
+		htmlCode += '</AcraReport>'
 
 		# close the HTML tags and return the generated code
-		htmlCode += '</body></html>'
+		htmlCode += '</BugReport>'
 		return htmlCode
 
-	def writeHTML( self, filename = 'bugreport.html' ):
-		htmlCode = self.getHTML()
+	def writeXML( self, filename = 'bugreport.xml' ):
+		htmlCode = self.getXML()
 		try:
 			outputFile = open( filename, 'w' )
 			outputFile.write( htmlCode )
@@ -117,7 +112,7 @@ if __name__ == '__main__':
 
 		#
 		bug = BugReport( bugReportContent, bugReportSender )
-		bug.writeHTML( 'bugreport_%04d.html' % i )
+		bug.writeXML( 'bugreport_%04d.xml' % i )
 
 		i += 1
 
