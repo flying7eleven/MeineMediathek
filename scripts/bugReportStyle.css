@@ -4,6 +4,20 @@ body {
 	font-weight:normal;
 }
 
+h1 {
+	display: inline;
+	font-weight:normal;
+}
+
+h2 {
+	font-weight:normal;
+}
+
+a {
+	text-decoration: none;
+	color: #555555;
+}
+
 div.bugReportEntry {
 	padding-bottom: 10px;
 }
