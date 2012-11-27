@@ -1,6 +1,5 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 
 import com.halcyonwaves.apps.meinemediathek.R;
 
-public class ManageDownloadActivity extends Activity {
+public class ManageDownloadActivity extends BaseActivity {
 
 	private Button cancelDownload = null;
 	private TextView movieTitle = null;

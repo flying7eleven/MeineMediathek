@@ -1,11 +1,10 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.halcyonwaves.apps.meinemediathek.R;
 
-public class SearchResultsActivity extends Activity {
+public class SearchResultsActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate( final Bundle savedInstanceState ) {
