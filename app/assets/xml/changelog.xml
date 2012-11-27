@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+<release version="0.0.5" versioncode="5" releasedate="2012-11-27">
+<change>Fixed an annoying bug which happened sometime while just starting the app</change>
+</release>
 <release version="0.0.4" versioncode="4" releasedate="2012-11-25">
 <change>The download thread has now a limited runtime of 120 Minutes</change>
 <change>Added more debugging information to the bug report of some specific exceptions</change>

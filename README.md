@@ -24,8 +24,8 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.0.5 (Code: *5*, Released on: ***2012-11-XX***) - [Changes][103]
-* Fixed some bugs which occurred occasionally
+### Version 0.0.5 (Code: *5*, Released on: ***2012-11-27***) - [Changes][103]
+* Fixed an annoying bug which happened sometime while just starting the app
 
 ### Version 0.0.4 (Code: *4*, Released on: ***2012-11-25***) - [Changes][102]
 * The download thread has now a limited runtime of 120 Minutes
