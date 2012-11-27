@@ -9,22 +9,33 @@ import java.util.concurrent.TimeoutException;
 import org.acra.ACRA;
 
 import android.content.Context;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 
 public class DownloadThreadExecutorThread extends Thread {
 
+	private final static String TAG = "DownloadThreadExecutorThread";
 	private final static int DOWNLOAD_TIMEOUT_IN_MINUTES = 120;
 	private String downloadLink = null;
 	private String movieTitle = null;
 	private Context threadContext = null;
+	private WakeLock usedWakelock = null;
 
 	public DownloadThreadExecutorThread( final Context context, final String downloadLink, final String movieTitle ) {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
+
+		//
+		PowerManager pm = (PowerManager) context.getSystemService( Context.POWER_SERVICE );
+		this.usedWakelock = pm.newWakeLock( PowerManager.PARTIAL_WAKE_LOCK, DownloadThreadExecutorThread.TAG );
 	}
 
 	@Override
 	public void run() {
+		// get a wake lock that we can download the complete file
+		this.usedWakelock.acquire();
+
 		// do the actual download in a separate thread
 		try {
 			final ExecutorService currentExecutor = Executors.newSingleThreadExecutor();
@@ -43,6 +54,9 @@ public class DownloadThreadExecutorThread extends Thread {
 			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", DownloadThreadExecutorThread.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
 			ACRA.getErrorReporter().handleException( e );
 		}
+
+		// release the acquired wake lock again
+		this.usedWakelock.release();
 	}
 
 }
