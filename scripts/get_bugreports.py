@@ -54,8 +54,11 @@ class BugReport(object):
 		htmlCode += '<AcraReport>'
 		for currentKey in self._reportDict.keys():
 			htmlCode += '<Entry id="%s" lines="%d">' % ( currentKey, len( self._reportDict[ currentKey ] ) )
-			for currentLine in self._reportDict[ currentKey ]:
-				htmlCode += '%s' % currentLine
+			if len( self._reportDict[ currentKey ] ) > 1:
+				for currentLine in self._reportDict[ currentKey ]:
+					htmlCode += '<Line>%s</Line>' % currentLine
+			else:
+				htmlCode += '%s' % self._reportDict[ currentKey ][ 0 ]
 			htmlCode += '</Entry>'
 		htmlCode += '</AcraReport>'
 
