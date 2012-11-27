@@ -7,8 +7,9 @@ emailAddressRegEx = re.compile( '[A-Za-z]+[A-Za-z0-9\\.\\_\\-]*\\@[A-Za-z0-9\\.\
 bugReportFieldId = re.compile( '([A-Z0-9\\_]{2,})\\=(.*)' )
 
 class BugReport(object):
-	def __init__( self, content ):
+	def __init__( self, content, reporter ):
 		self._reportDict = {}
+		self._reporterAddress = reporter
 		self._reportLines = content.splitlines()
 
 		#
@@ -36,6 +37,10 @@ class BugReport(object):
 		htmlCode = '<!DOCTYPE html><html><head><title>Bug Report for %s</title>' % self._reportDict[ 'app_version_name' ][ 0 ]
 		htmlCode += '<link href="bugReportStyle.css" rel="stylesheet" type="text/css">'
 		htmlCode += '</head><body>'
+
+		#
+		htmlCode += '<h1>BugReport for v%s (Android %s)</h1>' % ( self._reportDict[ 'app_version_name' ][ 0 ], self._reportDict[ 'android_version' ][ 0 ] )
+		htmlCode += '<h2>Reported by: <a href="mailto:%s">%s</a></h2>' % ( self._reporterAddress, self._reporterAddress )
 
 		# loop through all fields in the dictionary
 		for currentKey in self._reportDict.keys():
@@ -98,7 +103,7 @@ if __name__ == '__main__':
 		bugReportContent = get_first_text_block( parsedEmailMessage )
 
 		#
-		bug = BugReport( bugReportContent )
+		bug = BugReport( bugReportContent, bugReportSender )
 		bug.writeHTML( 'bugreport_%04d.html' % i )
 
 		i += 1
