@@ -24,6 +24,11 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
+### Version 0.1 (Code: *10*, Released on: ***2012-12-XX***) - [Changes][103]
+* Downloads are now cancelable
+* Added a preference screen for tweaking some settings
+* Fixed several bug which caused the application to crash
+
 ### Version 0.0.4 (Code: *4*, Released on: ***2012-11-25***) - [Changes][102]
 * The download thread has now a limited runtime of 120 Minutes
 * Added more debugging information to the bug report of some specific exceptions
@@ -52,3 +57,4 @@ For building the application by yourself follow the following steps:
  [100]: https://github.com/thuetz/MeineMediathek/compare/v0.0.1...v0.0.2 
  [101]: https://github.com/thuetz/MeineMediathek/compare/v0.0.2...v0.0.3 
  [102]: https://github.com/thuetz/MeineMediathek/compare/v0.0.3...v0.0.4 
+ [103]: https://github.com/thuetz/MeineMediathek/compare/v0.0.4...v0.1
