@@ -38,7 +38,6 @@ public class DownloadStreamThread extends Thread {
 	private File outputFile = null;
 
 	private Context threadContext = null;
-	private final int usedTimeoutInSeconds = 10;
 
 	public DownloadStreamThread( final Context context, final String downloadLink, final String movieTitle ) {
 		this.downloadLink = downloadLink;
@@ -82,10 +81,10 @@ public class DownloadStreamThread extends Thread {
 
 			// try it two times to fetch the file (if the first time fails for a socket timeout)
 			try {
-				fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
 			} catch( final SocketTimeoutException e ) {
 				try {
-					fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+					fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
 				} catch( final SocketTimeoutException innerE ) {
 					throw e;
 				}
@@ -110,14 +109,13 @@ public class DownloadStreamThread extends Thread {
 				}
 			}
 
+			//
 			final MMSInputStream mmsInputStream = new MMSInputStream( extractedURL );
-
-			// get a output stream
 			final FileOutputStream outputStream = new FileOutputStream( this.outputFile );
+			movieFullLength = mmsInputStream.length();
 
 			// since we know the length of the full movie now, we can set the progress bar to a known state
-			movieFullLength = mmsInputStream.length();
-			this.notificationBuilder.setProgress( movieFullLength, 0, false );
+			this.notificationBuilder.setProgress( 100, 0, false );
 			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// select the buffer which is the best for the estimated file size

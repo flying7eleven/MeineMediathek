@@ -41,7 +41,6 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 	private List< SearchResultEntry > searchResults = null;
 
 	private boolean socketException = false;
-	private final int usedTimeoutInSeconds = 10;
 
 	public ZDFSearchResultsLoader( final Context context, final String searchFor ) {
 		super( context );
@@ -101,7 +100,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 				Log.v( ZDFSearchResultsLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
 				// query for the results and get a handle to the returned HTML code
-				final Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				final Document fetchedResults = Jsoup.connect( currentForwardLink ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
 				final Elements foundLinks = fetchedResults.select( "a[href]" );
 				for( final Element currentLink : foundLinks ) {
 					if( currentLink.attr( "href" ).contains( "/ZDFmediathek/beitrag/video" ) ) {
@@ -123,7 +122,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 			for( final String currentURL : uniqueURLs ) {
 
 				// download the website for the selected URL
-				final Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
+				final Document currentEpisodeDoc = Jsoup.connect( currentURL ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
 
 				final Elements epoisodeTitle = currentEpisodeDoc.select( "h1.beitragHeadline" );
 				final Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );

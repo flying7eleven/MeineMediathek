@@ -13,6 +13,11 @@ public class Consts {
 	public static final int NOTIFICATION_DOWNLOADING_MOVIE = 1;
 
 	/**
+	 * This constant is used to tweak the socket timeout which should be used in the whole application.
+	 */
+	public static final int SOCKET_TIMEOUT_IN_SECONDS = 10;
+
+	/**
 	 * This preference key stores the application version code when the changelog was displayed the last time.
 	 */
 	public final static String PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME = "changelog.last_time_displayed";
