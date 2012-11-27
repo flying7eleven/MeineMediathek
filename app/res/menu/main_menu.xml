@@ -6,7 +6,7 @@
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_preferences"
         android:showAsAction="ifRoom"
-        android:title="Test"
+        android:title="@string/mnu_title_preferences"
         android:visible="true">
     </item>
 
