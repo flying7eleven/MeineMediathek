@@ -14,8 +14,8 @@ import android.os.PowerManager.WakeLock;
 
 public class DownloadThreadExecutorThread extends Thread {
 
-	private final static String TAG = "DownloadThreadExecutorThread";
 	private final static int DOWNLOAD_TIMEOUT_IN_MINUTES = 120;
+	private final static String TAG = "DownloadThreadExecutorThread";
 	private String downloadLink = null;
 	private String movieTitle = null;
 	private Context threadContext = null;
@@ -27,7 +27,7 @@ public class DownloadThreadExecutorThread extends Thread {
 		this.threadContext = context;
 
 		//
-		PowerManager pm = (PowerManager) context.getSystemService( Context.POWER_SERVICE );
+		final PowerManager pm = (PowerManager) context.getSystemService( Context.POWER_SERVICE );
 		this.usedWakelock = pm.newWakeLock( PowerManager.PARTIAL_WAKE_LOCK, DownloadThreadExecutorThread.TAG );
 	}
 

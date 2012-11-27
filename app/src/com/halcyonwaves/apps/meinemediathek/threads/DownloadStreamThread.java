@@ -65,14 +65,20 @@ public class DownloadStreamThread extends Thread {
 		//
 		Thread.currentThread().setName( String.format( "StreamDownloadTask(%s)", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() ) );
 
-		// since we currently don't know how big the file is, show a progress with an undefined state
-		this.notificationBuilder.setProgress( 100, 0, true );
-		this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
-
-		// the first step is to parse the ASX file and to get the MMS stream URL to download the movie
+		//
 		String extractedURL = "";
 		Document fetchedResults = null;
+		byte[] downloadBuffer = null;
+		boolean reachedDueToException = false;
+		int movieFullLength = 0;
+		int comReadB = 0;
+		int readB = 0;
+
 		try {
+
+			// since we currently don't know how big the file is, show a progress with an undefined state
+			this.notificationBuilder.setProgress( 100, 0, true );
+			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// try it two times to fetch the file (if the first time fails for a socket timeout)
 			try {
@@ -81,12 +87,7 @@ public class DownloadStreamThread extends Thread {
 				try {
 					fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( this.usedTimeoutInSeconds * 1000 ).get();
 				} catch( final SocketTimeoutException innerE ) {
-					Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
-					ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
-					ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
-					ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-					ACRA.getErrorReporter().putCustomData( "innerExceptionMessage", innerE.getMessage() );
-					ACRA.getErrorReporter().handleException( innerE );
+					throw e;
 				}
 
 			}
@@ -109,21 +110,6 @@ public class DownloadStreamThread extends Thread {
 				}
 			}
 
-		} catch( final IOException e ) {
-			Log.e( DownloadStreamThread.TAG, "Failed to fetch the ASX file for parsing.", e );
-			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
-			ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
-			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile != null ? this.outputFile.getAbsolutePath() : "" );
-			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-			ACRA.getErrorReporter().handleException( e );
-		}
-
-		//
-		byte[] downloadBuffer = null;
-		int movieFullLength = 0;
-		int comReadB = 0;
-		int readB = 0;
-		try {
 			final MMSInputStream mmsInputStream = new MMSInputStream( extractedURL );
 
 			// get a output stream
@@ -169,8 +155,12 @@ public class DownloadStreamThread extends Thread {
 			outputStream.close();
 			mmsInputStream.close();
 
+			// ensure that the media scanner sees the file we have added
+			MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
+
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
+			reachedDueToException = true;
 			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
 			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile != null ? this.outputFile.getAbsolutePath() : "" );
 			ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
@@ -180,15 +170,16 @@ public class DownloadStreamThread extends Thread {
 			ACRA.getErrorReporter().putCustomData( "lastReadBytes", String.format( "%d", readB ) );
 			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
 			ACRA.getErrorReporter().handleException( e );
+		} finally {
+			//
+			if( !reachedDueToException ) {
+				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
+			} else {
+				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_failed ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
+			}
+			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+
 		}
 
-		// ensure that the media scanner sees the file we have added
-		MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
-
-		// we finished download the movie, change the notification again
-		this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
-		this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
-
 	}
-
 }

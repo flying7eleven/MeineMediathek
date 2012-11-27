@@ -6,6 +6,7 @@
     <string name="not_title_download_of_movie">Lade %s herunter</string>
     <string name="not_desc_download_of_movie">Film wird heruntergeladen. Bitte warten&#8230;</string>
     <string name="not_desc_download_of_movie_finished">Download abgeschlossen!</string>
+    <string name="not_desc_download_of_movie_failed">Download fehlgeschlagen!</string>
     <string name="btn_download_movie">Film herunterladen</string>
     <string name="tv_movie_title">Titel:</string>
     <string name="tv_movie_description">Beschreibung:</string>
