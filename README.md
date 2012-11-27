@@ -27,6 +27,7 @@ For building the application by yourself follow the following steps:
 ### Version 0.1 (Code: *10*, Released on: ***2012-12-XX***) - [Changes][103]
 * Downloads are now cancelable
 * Added a preference screen for tweaking some settings
+* The device will now stay awake until all downloads finished
 * Fixed several bug which caused the application to crash
 
 ### Version 0.0.4 (Code: *4*, Released on: ***2012-11-25***) - [Changes][102]

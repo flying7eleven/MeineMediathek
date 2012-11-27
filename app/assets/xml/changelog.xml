@@ -3,6 +3,7 @@
 <release version="0.1" versioncode="10" releasedate="2012-12-XX">
 <change>Downloads are now cancelable</change>
 <change>Added a preference screen for tweaking some settings</change>
+<change>The device will now stay awake until all downloads finished</change>
 <change>Fixed several bug which caused the application to crash</change>
 </release>
 <release version="0.0.4" versioncode="4" releasedate="2012-11-25">
