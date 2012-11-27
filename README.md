@@ -24,7 +24,7 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.1 (Code: *10*, Released on: ***2012-12-XX***) - [Changes][103]
+### Version 0.1 (Code: *10*, Released on: ***2012-12-XX***) - [Changes][104]
 * Downloads are now cancelable
 * Added a preference screen for tweaking some settings
 * The device will now stay awake until all downloads finished
@@ -58,4 +58,4 @@ For building the application by yourself follow the following steps:
  [100]: https://github.com/thuetz/MeineMediathek/compare/v0.0.1...v0.0.2 
  [101]: https://github.com/thuetz/MeineMediathek/compare/v0.0.2...v0.0.3 
  [102]: https://github.com/thuetz/MeineMediathek/compare/v0.0.3...v0.0.4 
- [103]: https://github.com/thuetz/MeineMediathek/compare/v0.0.4...v0.1
+ [104]: https://github.com/thuetz/MeineMediathek/compare/v0.0.5...v0.1
