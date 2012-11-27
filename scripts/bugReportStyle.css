@@ -13,6 +13,11 @@ h2 {
 	font-weight:normal;
 }
 
+h3 {
+	font-weight:normal;
+	text-decoration: underline;
+}
+
 a {
 	text-decoration: none;
 	color: #555555;

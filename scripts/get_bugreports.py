@@ -5,12 +5,19 @@ import re
 
 emailAddressRegEx = re.compile( '[A-Za-z]+[A-Za-z0-9\\.\\_\\-]*\\@[A-Za-z0-9\\.\\_\\-]*\\.[a-zA-Z]{2,4}' )
 bugReportFieldId = re.compile( '([A-Z0-9\\_]{2,})\\=(.*)' )
+includedExceptionsRegEx = re.compile( '([\\.a-z]{0,}[A-Za-z]{1,}Exception)' )
 
 class BugReport(object):
 	def __init__( self, content, reporter ):
 		self._reportDict = {}
 		self._reporterAddress = reporter
 		self._reportLines = content.splitlines()
+		self._includedExceptions = []
+
+		#
+		for currentException in includedExceptionsRegEx.findall( content ):
+			self._includedExceptions.append( currentException )
+		self._includedExceptions = set( sorted( self._includedExceptions ) )
 
 		#
 		tmpKeyId = None
@@ -41,6 +48,12 @@ class BugReport(object):
 		#
 		htmlCode += '<h1>BugReport for v%s (Android %s)</h1>' % ( self._reportDict[ 'app_version_name' ][ 0 ], self._reportDict[ 'android_version' ][ 0 ] )
 		htmlCode += '<h2>Reported by: <a href="mailto:%s">%s</a></h2>' % ( self._reporterAddress, self._reporterAddress )
+
+		#
+		htmlCode += '<h3>Found exceptions:</h3><div class="foundExceptions">'
+		for currentException in self._includedExceptions:
+			htmlCode += '<div class="exceptionName">%s</div>' % currentException
+		htmlCode += '</div><h3>Bugreport:</h3>'
 
 		# loop through all fields in the dictionary
 		for currentKey in self._reportDict.keys():
