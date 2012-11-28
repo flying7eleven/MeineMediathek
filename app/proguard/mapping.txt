@@ -471,7 +471,71 @@ android.support.v4.app.NoSaveStateFrameLayout -> android.support.v4.app.aa:
     32:41:android.view.ViewGroup wrap(android.view.View) -> a
     53:54:void dispatchSaveInstanceState(android.util.SparseArray) -> dispatchSaveInstanceState
     61:62:void dispatchRestoreInstanceState(android.util.SparseArray) -> dispatchRestoreInstanceState
-android.support.v4.app.SuperNotCalledException -> android.support.v4.app.ab:
+android.support.v4.app.NotificationCompat -> android.support.v4.app.ab:
+    android.support.v4.app.NotificationCompat$NotificationCompatImpl IMPL -> a
+    34:34:android.support.v4.app.NotificationCompat$NotificationCompatImpl access$000() -> a
+android.support.v4.app.NotificationCompat$Action -> android.support.v4.app.ac:
+    int icon -> a
+    java.lang.CharSequence title -> b
+    android.app.PendingIntent actionIntent -> c
+android.support.v4.app.NotificationCompat$BigPictureStyle -> android.support.v4.app.ad:
+    android.graphics.Bitmap mPicture -> a
+android.support.v4.app.NotificationCompat$BigTextStyle -> android.support.v4.app.ae:
+    java.lang.CharSequence mBigText -> a
+android.support.v4.app.NotificationCompat$Builder -> android.support.v4.app.af:
+    android.content.Context mContext -> a
+    java.lang.CharSequence mContentTitle -> b
+    java.lang.CharSequence mContentText -> c
+    android.app.PendingIntent mContentIntent -> d
+    android.app.PendingIntent mFullScreenIntent -> e
+    android.widget.RemoteViews mTickerView -> f
+    android.graphics.Bitmap mLargeIcon -> g
+    java.lang.CharSequence mContentInfo -> h
+    int mNumber -> i
+    int mPriority -> j
+    boolean mUseChronometer -> k
+    android.support.v4.app.NotificationCompat$Style mStyle -> l
+    java.lang.CharSequence mSubText -> m
+    int mProgressMax -> n
+    int mProgress -> o
+    boolean mProgressIndeterminate -> p
+    java.util.ArrayList mActions -> q
+    android.app.Notification mNotification -> r
+    241:242:android.support.v4.app.NotificationCompat$Builder setSmallIcon(int) -> a
+    265:266:android.support.v4.app.NotificationCompat$Builder setContentTitle(java.lang.CharSequence) -> a
+    273:274:android.support.v4.app.NotificationCompat$Builder setContentText(java.lang.CharSequence) -> b
+    310:313:android.support.v4.app.NotificationCompat$Builder setProgress(int,int,boolean) -> a
+    455:456:android.support.v4.app.NotificationCompat$Builder setOngoing(boolean) -> a
+    498:503:void setFlag(int,boolean) -> a
+    562:562:android.app.Notification build() -> a
+android.support.v4.app.NotificationCompat$InboxStyle -> android.support.v4.app.ag:
+    java.util.ArrayList mTexts -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImpl -> android.support.v4.app.ah:
+    android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplBase -> android.support.v4.app.ai:
+    87:94:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplHoneycomb -> android.support.v4.app.aj:
+    100:100:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplIceCreamSandwich -> android.support.v4.app.ak:
+    108:108:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$NotificationCompatImplJellybean -> android.support.v4.app.al:
+    117:146:android.app.Notification build(android.support.v4.app.NotificationCompat$Builder) -> a
+android.support.v4.app.NotificationCompat$Style -> android.support.v4.app.am:
+    java.lang.CharSequence mBigContentTitle -> b
+    java.lang.CharSequence mSummaryText -> c
+    boolean mSummaryTextSet -> d
+android.support.v4.app.NotificationCompatHoneycomb -> android.support.v4.app.an:
+    30:52:android.app.Notification add(android.content.Context,android.app.Notification,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,android.widget.RemoteViews,int,android.app.PendingIntent,android.app.PendingIntent,android.graphics.Bitmap) -> a
+android.support.v4.app.NotificationCompatIceCreamSandwich -> android.support.v4.app.ao:
+    31:54:android.app.Notification add(android.content.Context,android.app.Notification,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,android.widget.RemoteViews,int,android.app.PendingIntent,android.app.PendingIntent,android.graphics.Bitmap,int,int,boolean) -> a
+android.support.v4.app.NotificationCompatJellybean -> android.support.v4.app.ap:
+    android.app.Notification$Builder b -> a
+    62:63:void addAction(int,java.lang.CharSequence,android.app.PendingIntent) -> a
+    67:73:void addBigTextStyle(java.lang.CharSequence,boolean,java.lang.CharSequence,java.lang.CharSequence) -> a
+    77:83:void addBigPictureStyle(java.lang.CharSequence,boolean,java.lang.CharSequence,android.graphics.Bitmap) -> a
+    87:95:void addInboxStyle(java.lang.CharSequence,boolean,java.lang.CharSequence,java.util.ArrayList) -> a
+    98:98:android.app.Notification build() -> a
+android.support.v4.app.SuperNotCalledException -> android.support.v4.app.aq:
 android.support.v4.content.Loader -> android.support.v4.a.a:
     int mId -> a
     android.support.v4.content.Loader$OnLoadCompleteListener mListener -> b
@@ -861,6 +925,132 @@ android.support.v4.widget.EdgeEffectCompatIcs -> android.support.v4.d.e:
     46:47:boolean onPull(java.lang.Object,float) -> a
     51:53:boolean onRelease(java.lang.Object) -> c
     62:62:boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint -> com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint:
+    60:62:void onCreate() -> onCreate
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog -> com.halcyonwaves.apps.meinemediathek.a:
+    android.app.Activity rootActivity -> a
+    46:49:java.lang.String getApplicationVersion() -> c
+    55:58:int getApplicationVersionCode() -> d
+    63:63:java.lang.String getChangelogStyleDefinition() -> e
+    67:100:java.lang.String getHtmlChangelog() -> f
+    104:111:void markDialogAsAlreadyDisplayed() -> a
+    114:124:java.lang.String parseChangelogReleaseTag(org.xmlpull.v1.XmlPullParser) -> a
+    128:159:void show() -> b
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog$1 -> com.halcyonwaves.apps.meinemediathek.b:
+    com.halcyonwaves.apps.meinemediathek.ChangeLogDialog this$0 -> a
+    154:155:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.SearchResultEntry -> com.halcyonwaves.apps.meinemediathek.c:
+    java.lang.String description -> a
+    java.lang.String downloadLink -> b
+    java.io.File previewImage -> c
+    java.lang.String title -> d
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity -> com.halcyonwaves.apps.meinemediathek.activities.HomeActivity:
+    12:14:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity -> com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity:
+    android.widget.Button cancelDownload -> a
+    android.widget.TextView movieTitle -> b
+    19:42:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity$1 -> com.halcyonwaves.apps.meinemediathek.activities.a:
+    com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity this$0 -> a
+    38:40:void onClick(android.view.View) -> onClick
+com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity -> com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity:
+    12:14:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity -> com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity:
+    12:14:void onCreate(android.os.Bundle) -> onCreate
+com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter -> com.halcyonwaves.apps.meinemediathek.a.a:
+    android.view.LayoutInflater mInflater -> a
+    30:41:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    45:49:void setData(java.util.List) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment -> com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment:
+    android.widget.Button btnDownloadMoview -> a
+    java.lang.String downloadLink -> b
+    android.widget.ImageView ivPreviewImage -> c
+    android.widget.TextView tvMovieDescription -> d
+    android.widget.TextView tvMovieTitle -> e
+    33:89:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    93:97:void startEpisodeDownload() -> a
+    92:92:void access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.a:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment this$0 -> a
+    57:85:void onClick(android.view.View) -> onClick
+    53:53:com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1$1 -> com.halcyonwaves.apps.meinemediathek.fragments.b:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 this$1 -> a
+    67:68:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1$2 -> com.halcyonwaves.apps.meinemediathek.fragments.c:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 this$1 -> a
+    74:74:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment -> com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
+    android.widget.Button btnSearch -> a
+    android.widget.EditText etTitleToSearchFor -> b
+    android.widget.TextView tvPlayerNotice -> c
+    42:122:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    36:36:android.widget.EditText access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment) -> a
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.d:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment this$0 -> a
+    57:60:void onClick(android.view.View) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$2 -> com.halcyonwaves.apps.meinemediathek.fragments.e:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment this$0 -> a
+    android.content.SharedPreferences val$appPreferences -> b
+    77:83:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$3 -> com.halcyonwaves.apps.meinemediathek.fragments.f:
+    com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment this$0 -> a
+    91:98:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment -> com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment:
+    com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter searchResultsAdapter -> a
+    30:41:void onActivityCreated(android.os.Bundle) -> onActivityCreated
+    47:51:android.content.Loader onCreateLoader(int,android.os.Bundle) -> onCreateLoader
+    56:68:void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
+    72:73:void onLoaderReset(android.content.Loader) -> onLoaderReset
+    78:100:void onLoadFinished(android.content.Loader,java.util.List) -> a
+    1:1:void onLoadFinished(android.content.Loader,java.lang.Object) -> onLoadFinished
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.g:
+    com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment this$0 -> a
+    88:88:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader -> com.halcyonwaves.apps.meinemediathek.b.a:
+    java.util.regex.Pattern PreviewImagePattern -> a
+    java.lang.String searchFor -> b
+    java.util.List searchResults -> c
+    boolean socketException -> d
+    int usedTimeoutInSeconds -> e
+    54:71:void deliverResult(java.util.List) -> a
+    76:194:java.util.List loadInBackground() -> a
+    199:199:void onReleaseResources(java.util.List) -> b
+    206:212:void onStartLoading() -> onStartLoading
+    215:215:boolean socketTimeoutOccurred() -> b
+    1:1:void deliverResult(java.lang.Object) -> deliverResult
+    1:1:java.lang.Object loadInBackground() -> loadInBackground
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream -> com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
+    boolean libLoaded -> a
+    int len -> b
+    int mms -> c
+    37:41:void ensureLibLoaded() -> b
+    105:106:void close() -> close
+    109:109:int length() -> a
+    void nativeClose(int) -> nativeClose
+    int nativeConnect(java.lang.String) -> nativeConnect
+    int nativeGetLength(int) -> nativeGetLength
+    int nativeRead(int,byte[],int,int) -> nativeRead
+    125:134:int read() -> read
+    139:139:int read(byte[],int,int) -> read
+com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService -> com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
+    17:17:android.os.IBinder onBind(android.content.Intent) -> onBind
+    24:46:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyonwaves.apps.meinemediathek.c.a:
+    java.util.UUID DOWNLOAD_NOTIFICATION_FILE_ID -> a
+    java.lang.String downloadLink -> b
+    java.lang.String movieTitle -> c
+    android.support.v4.app.NotificationCompat$Builder notificationBuilder -> d
+    android.app.NotificationManager notificationManager -> e
+    java.io.File outputFile -> f
+    android.content.Context threadContext -> g
+    int usedTimeoutInSeconds -> h
+    66:192:void run() -> run
+com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread -> com.halcyonwaves.apps.meinemediathek.c.b:
+    java.lang.String downloadLink -> a
+    java.lang.String movieTitle -> b
+    android.content.Context threadContext -> c
+    30:46:void run() -> run
 org.acra.ACRA -> org.acra.ACRA:
     boolean DEV_LOGGING -> DEV_LOGGING
     java.lang.String LOG_TAG -> LOG_TAG
@@ -1027,6 +1217,7 @@ org.acra.ErrorReporter -> org.acra.ErrorReporter:
     java.lang.Throwable unhandledThrowable -> i
     boolean toastWaitEnded -> j
     164:165:void addCustomData(java.lang.String,java.lang.String) -> addCustomData
+    189:189:java.lang.String putCustomData(java.lang.String,java.lang.String) -> a
     225:226:void addReportSender(org.acra.sender.ReportSender) -> a
     261:262:void removeAllReportSenders() -> a
     272:274:void setReportSender(org.acra.sender.ReportSender) -> b
@@ -1038,6 +1229,7 @@ org.acra.ErrorReporter -> org.acra.ErrorReporter:
     389:390:void deletePendingReports() -> b
     400:468:void checkReportsOnApplicationStart() -> c
     480:482:void deletePendingNonApprovedReports(boolean) -> b
+    509:510:void handleException(java.lang.Throwable) -> a
     531:670:void handleException(java.lang.Throwable,org.acra.ReportingInteractionMode,boolean,boolean) -> a
     681:686:void notifyDialog(java.lang.String) -> a
     703:729:void notifySendReport(java.lang.String) -> b

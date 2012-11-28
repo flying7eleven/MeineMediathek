@@ -223,21 +223,64 @@ android.support.v4.app.NavUtils$NavUtilsImpl
 android.support.v4.app.NavUtils$NavUtilsImplBase
 android.support.v4.app.NavUtils$NavUtilsImplJB
 android.support.v4.app.NavUtilsJB
-android.support.v4.app.NotificationCompat
-android.support.v4.app.NotificationCompat$Action
-android.support.v4.app.NotificationCompat$BigPictureStyle
-android.support.v4.app.NotificationCompat$BigTextStyle
-android.support.v4.app.NotificationCompat$Builder
-android.support.v4.app.NotificationCompat$InboxStyle
-android.support.v4.app.NotificationCompat$NotificationCompatImpl
-android.support.v4.app.NotificationCompat$NotificationCompatImplBase
-android.support.v4.app.NotificationCompat$NotificationCompatImplHoneycomb
-android.support.v4.app.NotificationCompat$NotificationCompatImplIceCreamSandwich
-android.support.v4.app.NotificationCompat$NotificationCompatImplJellybean
-android.support.v4.app.NotificationCompat$Style
-android.support.v4.app.NotificationCompatHoneycomb
-android.support.v4.app.NotificationCompatIceCreamSandwich
-android.support.v4.app.NotificationCompatJellybean
+android.support.v4.app.NotificationCompat:
+    public static final int FLAG_HIGH_PRIORITY
+    public static final int PRIORITY_DEFAULT
+    public static final int PRIORITY_LOW
+    public static final int PRIORITY_MIN
+    public static final int PRIORITY_HIGH
+    public static final int PRIORITY_MAX
+    34:761:public NotificationCompat()
+android.support.v4.app.NotificationCompat$Action:
+    766:770:public NotificationCompat$Action(int,java.lang.CharSequence,android.app.PendingIntent)
+android.support.v4.app.NotificationCompat$BigPictureStyle:
+    618:620:public NotificationCompat$BigPictureStyle(android.support.v4.app.NotificationCompat$Builder)
+    627:628:public android.support.v4.app.NotificationCompat$BigPictureStyle setBigContentTitle(java.lang.CharSequence)
+    635:637:public android.support.v4.app.NotificationCompat$BigPictureStyle setSummaryText(java.lang.CharSequence)
+    644:645:public android.support.v4.app.NotificationCompat$BigPictureStyle bigPicture(android.graphics.Bitmap)
+android.support.v4.app.NotificationCompat$BigTextStyle:
+    672:674:public NotificationCompat$BigTextStyle(android.support.v4.app.NotificationCompat$Builder)
+    681:682:public android.support.v4.app.NotificationCompat$BigTextStyle setBigContentTitle(java.lang.CharSequence)
+    689:691:public android.support.v4.app.NotificationCompat$BigTextStyle setSummaryText(java.lang.CharSequence)
+    699:700:public android.support.v4.app.NotificationCompat$BigTextStyle bigText(java.lang.CharSequence)
+android.support.v4.app.NotificationCompat$Builder:
+    213:214:public android.support.v4.app.NotificationCompat$Builder setWhen(long)
+    229:230:public android.support.v4.app.NotificationCompat$Builder setUsesChronometer(boolean)
+    256:258:public android.support.v4.app.NotificationCompat$Builder setSmallIcon(int,int)
+    283:284:public android.support.v4.app.NotificationCompat$Builder setSubText(java.lang.CharSequence)
+    293:294:public android.support.v4.app.NotificationCompat$Builder setNumber(int)
+    301:302:public android.support.v4.app.NotificationCompat$Builder setContentInfo(java.lang.CharSequence)
+    320:321:public android.support.v4.app.NotificationCompat$Builder setContent(android.widget.RemoteViews)
+    333:334:public android.support.v4.app.NotificationCompat$Builder setContentIntent(android.app.PendingIntent)
+    345:346:public android.support.v4.app.NotificationCompat$Builder setDeleteIntent(android.app.PendingIntent)
+    363:365:public android.support.v4.app.NotificationCompat$Builder setFullScreenIntent(android.app.PendingIntent,boolean)
+    373:374:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence)
+    383:385:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence,android.widget.RemoteViews)
+    392:393:public android.support.v4.app.NotificationCompat$Builder setLargeIcon(android.graphics.Bitmap)
+    400:402:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri)
+    412:414:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri,int)
+    424:425:public android.support.v4.app.NotificationCompat$Builder setVibrate(long[])
+    434:440:public android.support.v4.app.NotificationCompat$Builder setLights(int,int,int)
+    464:465:public android.support.v4.app.NotificationCompat$Builder setOnlyAlertOnce(boolean)
+    475:476:public android.support.v4.app.NotificationCompat$Builder setAutoCancel(boolean)
+    490:494:public android.support.v4.app.NotificationCompat$Builder setDefaults(int)
+    517:518:public android.support.v4.app.NotificationCompat$Builder setPriority(int)
+    530:531:public android.support.v4.app.NotificationCompat$Builder addAction(int,java.lang.CharSequence,android.app.PendingIntent)
+    540:546:public android.support.v4.app.NotificationCompat$Builder setStyle(android.support.v4.app.NotificationCompat$Style)
+    554:554:public android.app.Notification getNotification()
+android.support.v4.app.NotificationCompat$InboxStyle:
+    730:732:public NotificationCompat$InboxStyle(android.support.v4.app.NotificationCompat$Builder)
+    739:740:public android.support.v4.app.NotificationCompat$InboxStyle setBigContentTitle(java.lang.CharSequence)
+    747:749:public android.support.v4.app.NotificationCompat$InboxStyle setSummaryText(java.lang.CharSequence)
+    756:757:public android.support.v4.app.NotificationCompat$InboxStyle addLine(java.lang.CharSequence)
+android.support.v4.app.NotificationCompat$Style:
+    android.support.v4.app.NotificationCompat$Builder mBuilder
+    578:584:public void setBuilder(android.support.v4.app.NotificationCompat$Builder)
+    587:591:public android.app.Notification build()
+android.support.v4.app.NotificationCompatHoneycomb:
+    25:25:NotificationCompatHoneycomb()
+android.support.v4.app.NotificationCompatIceCreamSandwich:
+    25:25:NotificationCompatIceCreamSandwich()
 android.support.v4.app.ServiceCompat
 android.support.v4.app.ShareCompat
 android.support.v4.app.ShareCompat$IntentBuilder
@@ -665,6 +708,34 @@ android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBri
 android.support.v4.widget.SimpleCursorAdapter
 android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
 android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+com.halcyonwaves.apps.meinemediathek.BuildConfig
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.Consts
+com.halcyonwaves.apps.meinemediathek.R
+com.halcyonwaves.apps.meinemediathek.R$attr
+com.halcyonwaves.apps.meinemediathek.R$drawable
+com.halcyonwaves.apps.meinemediathek.R$id
+com.halcyonwaves.apps.meinemediathek.R$layout
+com.halcyonwaves.apps.meinemediathek.R$string
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader:
+    private static final java.lang.String BASE_SEARCH_URL
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
+    private static final java.lang.String CHARSET_NAME_UNICODE
+    private static final java.lang.String LOG
+    51:59:private static byte[] string2unicode(java.lang.String)
+    72:78:private static java.lang.String unicode2string(byte[])
+com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread:
+    private static final int DOWNLOAD_TIMEOUT_IN_MINUTES
 org.acra.ACRAConfiguration:
     104:105:public void setAdditionalDropboxTags(java.lang.String[])
     112:113:public void setAdditionalSharedPreferences(java.lang.String[])
@@ -748,13 +819,11 @@ org.acra.CrashReportPersister:
     private static final java.lang.String LINE_SEPARATOR
 org.acra.ErrorReporter:
     151:151:public static org.acra.ErrorReporter getInstance()
-    189:189:public java.lang.String putCustomData(java.lang.String,java.lang.String)
     202:202:public java.lang.String removeCustomData(java.lang.String)
     215:215:public java.lang.String getCustomData(java.lang.String)
     236:237:public void removeReportSender(org.acra.sender.ReportSender)
     246:253:public void removeReportSenders(java.lang.Class)
     496:497:public void handleException(java.lang.Throwable,boolean)
-    509:510:public void handleException(java.lang.Throwable)
 org.acra.collector.Compatibility:
     29:29:Compatibility()
 org.acra.collector.ConfigurationCollector:
