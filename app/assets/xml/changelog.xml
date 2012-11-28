@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+<release version="0.0.6" versioncode="6" releasedate="2012-11-28">
+<change>Fixed a bug which caused the application to crash immediately after starting it (this time always :()</change>
+</release>
 <release version="0.0.5" versioncode="5" releasedate="2012-11-27">
 <change>Fixed an annoying bug which happened sometime while just starting the app</change>
 </release>
