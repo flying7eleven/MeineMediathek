@@ -5,6 +5,9 @@
 <change>Added a preference screen for tweaking some settings</change>
 <change>The device will now stay awake until all downloads finished</change>
 <change>Fixed several bug which caused the application to crash</change>
+<release version="0.0.6" versioncode="6" releasedate="2012-11-28">
+<change>Fixed a bug which caused the application to crash immediately after starting it (this time always :()</change>
+</release>
 <release version="0.0.5" versioncode="5" releasedate="2012-11-27">
 <change>Fixed an annoying bug which happened sometime while just starting the app</change>
 </release>
