@@ -18,6 +18,11 @@ public class Consts {
 	public static final int SOCKET_TIMEOUT_IN_SECONDS = 10;
 
 	/**
+	 * This constant describes the time in minutes until a download thread gets terminated forcefully.
+	 */
+	public static final int DOWNLOAD_TIMEOUT_IN_MINUTES = 120;
+
+	/**
 	 * This preference key stores the application version code when the changelog was displayed the last time.
 	 */
 	public final static String PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME = "changelog.last_time_displayed";

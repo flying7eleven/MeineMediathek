@@ -8,13 +8,14 @@ import java.util.concurrent.TimeoutException;
 
 import org.acra.ACRA;
 
+import com.halcyonwaves.apps.meinemediathek.Consts;
+
 import android.content.Context;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 
 public class DownloadThreadExecutorThread extends Thread {
 
-	private final static int DOWNLOAD_TIMEOUT_IN_MINUTES = 120;
 	private final static String TAG = "DownloadThreadExecutorThread";
 	private String downloadLink = null;
 	private String movieTitle = null;
@@ -39,19 +40,19 @@ public class DownloadThreadExecutorThread extends Thread {
 		// do the actual download in a separate thread
 		try {
 			final ExecutorService currentExecutor = Executors.newSingleThreadExecutor();
-			currentExecutor.submit( new DownloadStreamThread( this.threadContext, this.downloadLink, this.movieTitle ) ).get( DownloadThreadExecutorThread.DOWNLOAD_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES );
+			currentExecutor.submit( new DownloadStreamThread( this.threadContext, this.downloadLink, this.movieTitle ) ).get( Consts.DOWNLOAD_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES );
 			currentExecutor.shutdown();
 		} catch( final InterruptedException e ) {
 			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", DownloadThreadExecutorThread.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
+			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", Consts.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
 			ACRA.getErrorReporter().handleException( e );
 		} catch( final TimeoutException e ) {
 			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", DownloadThreadExecutorThread.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
+			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", Consts.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
 			ACRA.getErrorReporter().handleException( e );
 		} catch( final ExecutionException e ) {
 			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", DownloadThreadExecutorThread.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
+			ACRA.getErrorReporter().putCustomData( "threadExecutionTimeoutInMinutes", String.format( "%d", Consts.DOWNLOAD_TIMEOUT_IN_MINUTES ) );
 			ACRA.getErrorReporter().handleException( e );
 		}
 
