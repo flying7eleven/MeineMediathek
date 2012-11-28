@@ -1,5 +1,7 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
+import org.acra.ACRA;
+
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -12,7 +14,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.Messenger;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -133,9 +137,22 @@ public class MovieOverviewFragment extends Fragment {
 	}
 
 	private void startEpisodeDownload() {
-		final Intent serviceIntent = new Intent( this.getActivity(), BackgroundDownloadService.class );
-		serviceIntent.putExtra( "downloadLink", this.downloadLink );
-		serviceIntent.putExtra( "movieTitle", this.tvMovieTitle.getText().toString() );
-		this.getActivity().startService( serviceIntent );
+		// prepare the information we want to send to the service
+		Bundle downloadExtras = new Bundle();
+		downloadExtras.putString( "downloadLink", this.downloadLink );
+		downloadExtras.putString( "movieTitle", this.tvMovieTitle.getText().toString() );
+		
+		// prepare the download request
+		Message downloadRequest = new Message();
+		downloadRequest.setData( downloadExtras );
+		downloadRequest.what = BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD;
+		downloadRequest.replyTo = this.serviceMessanger;
+		
+		// send the download request
+		try {
+			this.serviceMessanger.send( downloadRequest );
+		} catch( RemoteException e ) {
+			ACRA.getErrorReporter().handleException( e );
+		}
 	}
 }

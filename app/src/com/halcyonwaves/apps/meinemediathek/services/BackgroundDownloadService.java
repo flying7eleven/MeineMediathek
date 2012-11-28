@@ -28,12 +28,12 @@ public class BackgroundDownloadService extends Service {
 	/**
 	 * This message is used to request to start a new download.
 	 */
-	private static final int SERVICE_MSG_INITIATE_DOWNLOAD = 1;
+	public static final int SERVICE_MSG_INITIATE_DOWNLOAD = 1;
 
 	/**
 	 * This message is used to request to cancel a running download.
 	 */
-	private static final int SERVICE_MSG_CANCEL_DOWNLOAD = 2;
+	public static final int SERVICE_MSG_CANCEL_DOWNLOAD = 2;
 
 	/**
 	 * This is the messager which is used to communicate with this service.
