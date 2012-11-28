@@ -2,13 +2,20 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +34,30 @@ public class MovieOverviewFragment extends Fragment {
 	private ImageView ivPreviewImage = null;
 	private TextView tvMovieDescription = null;
 	private TextView tvMovieTitle = null;
+
+	private static final String TAG = "MovieOverviewFragment";
+
+	private Messenger serviceMessanger = null;
+	private final ServiceConnection serviceConnection = new ServiceConnection() {
+
+		public void onServiceConnected( final ComponentName className, final IBinder service ) {
+			MovieOverviewFragment.this.serviceMessanger = new Messenger( service );
+			Log.d( MovieOverviewFragment.TAG, "Conntected to download service" );
+		}
+
+		public void onServiceDisconnected( final ComponentName className ) {
+			MovieOverviewFragment.this.serviceMessanger = null;
+			Log.d( MovieOverviewFragment.TAG, "Disconnected from download service" );
+		}
+	};
+
+	private void doBindService() {
+		this.getActivity().bindService( new Intent( this.getActivity(), BackgroundDownloadService.class ), this.serviceConnection, Context.BIND_AUTO_CREATE );
+	}
+
+	private void doUnbindService() {
+		this.getActivity().unbindService( this.serviceConnection );
+	}
 
 	@Override
 	public View onCreateView( final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState ) {
