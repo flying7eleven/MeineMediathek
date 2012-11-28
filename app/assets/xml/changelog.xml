@@ -5,6 +5,8 @@
 <change>Added a preference screen for tweaking some settings</change>
 <change>The device will now stay awake until all downloads finished</change>
 <change>Fixed several bug which caused the application to crash</change>
+<release version="0.0.5" versioncode="5" releasedate="2012-11-27">
+<change>Fixed an annoying bug which happened sometime while just starting the app</change>
 </release>
 <release version="0.0.4" versioncode="4" releasedate="2012-11-25">
 <change>The download thread has now a limited runtime of 120 Minutes</change>
