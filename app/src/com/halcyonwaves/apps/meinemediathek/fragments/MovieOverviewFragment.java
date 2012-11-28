@@ -12,9 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.Message;
 import android.os.Messenger;
-import android.os.RemoteException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,11 +50,22 @@ public class MovieOverviewFragment extends Fragment {
 	};
 
 	private void doBindService() {
-		this.getActivity().bindService( new Intent( this.getActivity(), BackgroundDownloadService.class ), this.serviceConnection, Context.BIND_AUTO_CREATE );
+		if( null == this.serviceMessanger ) {
+			this.getActivity().bindService( new Intent( this.getActivity(), BackgroundDownloadService.class ), this.serviceConnection, Context.BIND_AUTO_CREATE );
+		}
 	}
 
 	private void doUnbindService() {
-		this.getActivity().unbindService( this.serviceConnection );
+		if( null != this.serviceMessanger ) {
+			this.getActivity().unbindService( this.serviceConnection );
+			this.serviceMessanger = null; // we have to do this because the onServiceDisconnected method gets just called if the service was killed
+		}
+	}
+	
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		this.doUnbindService();
 	}
 
 	@Override
@@ -116,6 +125,9 @@ public class MovieOverviewFragment extends Fragment {
 			}
 		} );
 
+		// be sure that we are connected to the download service
+		this.doBindService();
+		
 		// return the created view
 		return v;
 	}
