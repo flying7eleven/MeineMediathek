@@ -26,6 +26,7 @@ For building the application by yourself follow the following steps:
 ## Changelog
 ### Version 0.0.7 (Code: *7*, Released on: ***2012-11-XX***) - [Changes][105]
 * Fixed a bug which caused a infinite loop while parsing the search results
+* The application will now show a message if no results were found
 
 ### Version 0.0.6 (Code: *6*, Released on: ***2012-11-28***) - [Changes][104]
 * Fixed a bug which caused the application to crash immediately after starting it (this time always :()
