@@ -32,10 +32,11 @@ import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 
 public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultEntry > > {
 
-	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&sucheText=";
+	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&offset=0&sucheText=";
 
 	private static final String TAG = "SearchLoader";
 	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
+	private final Pattern OffsetPattern = Pattern.compile( "offset\\=(\\d*)" );
 
 	private String searchFor = null;
 	private List< SearchResultEntry > searchResults = null;
@@ -50,7 +51,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 	@Override
 	public void deliverResult( final List< SearchResultEntry > results ) {
-		// a async query came in while the loader is stopped. We don't need the result.
+		// an asynchronous query came in while the loader is stopped. We don't need the result.
 		if( this.isReset() ) {
 			if( results != null ) {
 				this.onReleaseResources( results );
@@ -72,7 +73,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 	@Override
 	public List< SearchResultEntry > loadInBackground() {
-		// just write the search keyword into the logfile
+		// just write the search keyword into the log file
 		Log.v( ZDFSearchResultsLoader.TAG, "Starting to load data for the following search query: " + this.searchFor );
 
 		// be sure that the search keyword is well-formed
@@ -88,7 +89,8 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 		final List< SearchResultEntry > foundTitles = new ArrayList< SearchResultEntry >();
 
 		//
-		String oldForwardLink = "";
+		int currentOffset = -1;
+		int nextOffset = 0;
 		String currentForwardLink = ZDFSearchResultsLoader.BASE_SEARCH_URL + preparedSearchKeyword;
 
 		// try to download the response of the webpage to the search query
@@ -96,8 +98,8 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 			// create a list with the URLs we have to visit
 			final List< String > linksToVisit = new ArrayList< String >();
 
-			// loop throgh all search result pages
-			while( !oldForwardLink.equalsIgnoreCase( currentForwardLink ) ) {
+			// loop through all search result pages
+			while( nextOffset > currentOffset ) {
 				Log.v( ZDFSearchResultsLoader.TAG, String.format( "Starting to parse new search results page. Currently we have %d links grabbed.", linksToVisit.size() ) );
 
 				// query for the results and get a handle to the returned HTML code
@@ -109,10 +111,20 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 					}
 				}
 
-				// we have to check if there are more pages, and if there are more, we have to collect the links too
+				// get the link which brings us to the next page of the search results
 				final Elements forwardLink = fetchedResults.select( "a[href].forward" );
-				oldForwardLink = new String( currentForwardLink );
 				currentForwardLink = new String( forwardLink.attr( "abs:href" ) );
+
+				// check if the page with the next search results is a new page we haven't visit until now
+				final Matcher nextOffsetMatcher = this.OffsetPattern.matcher( currentForwardLink );
+				if( nextOffsetMatcher.find() ) {
+					currentOffset = nextOffset;
+					try {
+						nextOffset = Integer.parseInt( nextOffsetMatcher.group( 1 ) );
+					} catch( final NumberFormatException e ) {
+						Log.w( ZDFSearchResultsLoader.TAG, "Failed to parse the offset for the next results page. The parsed content was: " + nextOffsetMatcher.group( 1 ) );
+					}
+				}
 			}
 
 			// remove link duplicates
@@ -185,7 +197,8 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 		} catch( final ExceptionInInitializerError e ) {
 			ACRA.getErrorReporter().putCustomData( "rawSearchKeyword", this.searchFor );
 			ACRA.getErrorReporter().putCustomData( "preparedSearchKeyword", preparedSearchKeyword );
-			ACRA.getErrorReporter().putCustomData( "oldForwardLink", oldForwardLink );
+			ACRA.getErrorReporter().putCustomData( "nextOffset", String.format( "%d", currentOffset ) );
+			ACRA.getErrorReporter().putCustomData( "nextOffset", String.format( "%d", nextOffset ) );
 			ACRA.getErrorReporter().putCustomData( "currentForwardLink", currentForwardLink );
 			ACRA.getErrorReporter().handleException( e );
 		}
