@@ -88,8 +88,8 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 			alertDialogBuilder.create().show();
 		}
 
-		//
-		if( data.size() <= 0 ) {
+		// if there were no results tell it to the user
+		if( !((ZDFSearchResultsLoader) loader).socketTimeoutOccurred() && data.size() <= 0 ) {
 			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
 			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_noresults ) );
 			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_noresults ) );
