@@ -66,4 +66,4 @@ For building the application by yourself follow the following steps:
  [102]: https://github.com/thuetz/MeineMediathek/compare/v0.0.3...v0.0.4 
  [103]: https://github.com/thuetz/MeineMediathek/compare/v0.0.4...v0.0.5 
  [104]: https://github.com/thuetz/MeineMediathek/compare/v0.0.5...v0.0.6
- [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.6...v0.1
+ [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.7...v0.1
