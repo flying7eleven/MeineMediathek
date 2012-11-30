@@ -41,6 +41,11 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 	}
 
 	@Override
+	public void onClick( final DialogInterface dialog, final int which ) {
+		this.getActivity().finish();
+	}
+
+	@Override
 	public Loader< List< SearchResultEntry > > onCreateLoader( final int id, final Bundle args ) {
 
 		// get the supplied information from the intent which started this fragment
@@ -99,10 +104,5 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 		} else {
 			this.setListShownNoAnimation( true );
 		}
-	}
-
-	@Override
-	public void onClick( DialogInterface dialog, int which ) {
-		this.getActivity().finish();
 	}
 }

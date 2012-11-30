@@ -35,8 +35,8 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 	private final static String BASE_SEARCH_URL = "http://www.zdf.de/ZDFmediathek/suche?flash=off&offset=0&sucheText=";
 
 	private static final String TAG = "SearchLoader";
-	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 	private final Pattern OffsetPattern = Pattern.compile( "offset\\=(\\d*)" );
+	private final Pattern PreviewImagePattern = Pattern.compile( "contentblob\\/(\\d*)" );
 
 	private String searchFor = null;
 	private List< SearchResultEntry > searchResults = null;
