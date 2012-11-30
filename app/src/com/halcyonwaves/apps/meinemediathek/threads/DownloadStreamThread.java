@@ -45,7 +45,9 @@ public class DownloadStreamThread extends Thread {
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
 
-		this.outputFile = context.getExternalFilesDir( Environment.DIRECTORY_MOVIES );
+		// be sure that the output directory we are trying to use exists
+		this.outputFile = new File( Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_MOVIES ), "MeineMediathek" );
+		this.outputFile.mkdirs();
 
 		// prepare the notification for the download
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
