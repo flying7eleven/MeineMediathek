@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
-<release version="0.0.7" versioncode="7" releasedate="2012-11-XX">
-<change>Fixed a bug which caused a infinite loop while parsing the search results</change>
+<release version="0.0.7" versioncode="7" releasedate="2012-11-30">
+<change>Fixed a bug which caused an infinite loop while parsing the search results</change>
 <change>The application will now show a message if no results were found</change>
 <change>The downloaded movies will now be stored in the public movies directory of the current user (the preview pictures will remain in the private directory of the application)</change>
 </release>

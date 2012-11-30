@@ -24,8 +24,8 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.0.7 (Code: *7*, Released on: ***2012-11-XX***) - [Changes][105]
-* Fixed a bug which caused a infinite loop while parsing the search results
+### Version 0.0.7 (Code: *7*, Released on: ***2012-11-30***) - [Changes][105]
+* Fixed a bug which caused an infinite loop while parsing the search results
 * The application will now show a message if no results were found
 * The downloaded movies will now be stored in the public movies directory of the current user (the preview pictures will remain in the private directory of the application)
 
