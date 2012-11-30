@@ -22,5 +22,7 @@
     <string name="dlg_title_appcrash">Absturz</string>
     <string name="dlg_msg_appcrash">Entschuldigen Sie, aber es scheint ein Fehler in der Anwendung vorhanden zu sein, der zum Absturz dieser geführt hat. Bitte helfen Sie mir den Fehler zu beheben und senden Sie mir Informationen zu um diesen aufzufinden.\n\nMöchten Sie mir diese Informationen per Email senden?</string>
     <string name="tv_player_notice">Bitte beachten Sie, dass der Standardplayer von Android evtl. nicht in der Lage ist die heruntergeladenen Filme abzuspielen. Wir empfehlen die Verwendung des <a href="market://details?id=com.inisoft.mediaplayer.a">DICE Players</a> oder des <a href="market://details?id=org.videolan.vlc.betav7neon">VLC Players</a> aus dem Google Play Store, um sich Ihre Downloads anzusehen.</string>
-
+    <string name="dlg_title_noresults">Keine Ergebnisse</string>
+    <string name="dlg_msg_noresults">Leider konnten für die von Ihnen gewählten Suchbegriffe keine Ergebnisse gefunden werden.</string>
+    
 </resources>

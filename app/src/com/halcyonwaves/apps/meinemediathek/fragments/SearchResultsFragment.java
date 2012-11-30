@@ -20,7 +20,7 @@ import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
 import com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader;
 
-public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > > {
+public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > >, OnClickListener {
 
 	private final static String TAG = "SearchResultsFragment";
 	private SearchResultsAdapter searchResultsAdapter = null;
@@ -79,14 +79,16 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
 			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_timeout ) );
 			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_timeout ) );
-			alertDialogBuilder.setPositiveButton( android.R.string.ok, new OnClickListener() {
+			alertDialogBuilder.setPositiveButton( android.R.string.ok, this );
+			alertDialogBuilder.create().show();
+		}
 
-				@Override
-				public void onClick( final DialogInterface dialog, final int which ) {
-					// nothing to do here
-
-				}
-			} );
+		//
+		if( data.size() <= 0 ) {
+			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
+			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_noresults ) );
+			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_noresults ) );
+			alertDialogBuilder.setPositiveButton( android.R.string.ok, this );
 			alertDialogBuilder.create().show();
 		}
 
@@ -97,5 +99,10 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 		} else {
 			this.setListShownNoAnimation( true );
 		}
+	}
+
+	@Override
+	public void onClick( DialogInterface dialog, int which ) {
+		this.getActivity().finish();
 	}
 }
