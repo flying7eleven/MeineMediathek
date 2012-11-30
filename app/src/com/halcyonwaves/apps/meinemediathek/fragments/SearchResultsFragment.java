@@ -20,7 +20,7 @@ import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter;
 import com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader;
 
-public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > > {
+public class SearchResultsFragment extends ListFragment implements LoaderCallbacks< List< SearchResultEntry > >, OnClickListener {
 
 	private final static String TAG = "SearchResultsFragment";
 	private SearchResultsAdapter searchResultsAdapter = null;
@@ -38,6 +38,11 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 
 		// prepare the loader. Either re-connect with an existing one, or start a new one.
 		this.getLoaderManager().initLoader( 0, this.getActivity().getIntent().getExtras(), this );
+	}
+
+	@Override
+	public void onClick( final DialogInterface dialog, final int which ) {
+		this.getActivity().finish();
 	}
 
 	@Override
@@ -79,14 +84,16 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
 			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_timeout ) );
 			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_timeout ) );
-			alertDialogBuilder.setPositiveButton( android.R.string.ok, new OnClickListener() {
+			alertDialogBuilder.setPositiveButton( android.R.string.ok, this );
+			alertDialogBuilder.create().show();
+		}
 
-				@Override
-				public void onClick( final DialogInterface dialog, final int which ) {
-					// nothing to do here
-
-				}
-			} );
+		// if there were no results tell it to the user
+		if( !((ZDFSearchResultsLoader) loader).socketTimeoutOccurred() && data.size() <= 0 ) {
+			final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this.getActivity() );
+			alertDialogBuilder.setTitle( this.getString( R.string.dlg_title_noresults ) );
+			alertDialogBuilder.setMessage( this.getString( R.string.dlg_msg_noresults ) );
+			alertDialogBuilder.setPositiveButton( android.R.string.ok, this );
 			alertDialogBuilder.create().show();
 		}
 

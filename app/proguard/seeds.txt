@@ -85,10 +85,12 @@ com.halcyonwaves.apps.meinemediathek.R$string: int btn_search
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_appcrash
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_download_on_mobile
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_license
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_noresults
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_timeout
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_appcrash
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_download_on_mobile
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_license
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_noresults
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_timeout
 com.halcyonwaves.apps.meinemediathek.R$string: int et_hint_searchfortitle
 com.halcyonwaves.apps.meinemediathek.R$string: int mnu_title_preferences

@@ -1011,24 +1011,23 @@ com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment$3 -> com.halc
 com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment -> com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment:
     com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter searchResultsAdapter -> a
     30:41:void onActivityCreated(android.os.Bundle) -> onActivityCreated
-    47:51:android.content.Loader onCreateLoader(int,android.os.Bundle) -> onCreateLoader
-    56:68:void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
-    72:73:void onLoaderReset(android.content.Loader) -> onLoaderReset
-    78:100:void onLoadFinished(android.content.Loader,java.util.List) -> a
+    45:46:void onClick(android.content.DialogInterface,int) -> onClick
+    52:56:android.content.Loader onCreateLoader(int,android.os.Bundle) -> onCreateLoader
+    61:73:void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
+    77:78:void onLoaderReset(android.content.Loader) -> onLoaderReset
+    83:107:void onLoadFinished(android.content.Loader,java.util.List) -> a
     1:1:void onLoadFinished(android.content.Loader,java.lang.Object) -> onLoadFinished
-com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.h:
-    com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment this$0 -> a
-    88:88:void onClick(android.content.DialogInterface,int) -> onClick
 com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader -> com.halcyonwaves.apps.meinemediathek.b.a:
-    java.util.regex.Pattern PreviewImagePattern -> a
-    java.lang.String searchFor -> b
-    java.util.List searchResults -> c
-    boolean socketException -> d
-    53:70:void deliverResult(java.util.List) -> a
-    75:193:java.util.List loadInBackground() -> a
-    198:198:void onReleaseResources(java.util.List) -> b
-    205:211:void onStartLoading() -> onStartLoading
-    214:214:boolean socketTimeoutOccurred() -> b
+    java.util.regex.Pattern OffsetPattern -> a
+    java.util.regex.Pattern PreviewImagePattern -> b
+    java.lang.String searchFor -> c
+    java.util.List searchResults -> d
+    boolean socketException -> e
+    54:71:void deliverResult(java.util.List) -> a
+    76:206:java.util.List loadInBackground() -> a
+    211:211:void onReleaseResources(java.util.List) -> b
+    218:224:void onStartLoading() -> onStartLoading
+    227:227:boolean socketTimeoutOccurred() -> b
     1:1:void deliverResult(java.lang.Object) -> deliverResult
     1:1:java.lang.Object loadInBackground() -> loadInBackground
 com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream -> com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
@@ -1059,7 +1058,7 @@ com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyon
     android.app.NotificationManager notificationManager -> e
     java.io.File outputFile -> f
     android.content.Context threadContext -> g
-    65:182:void run() -> run
+    67:184:void run() -> run
 com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread -> com.halcyonwaves.apps.meinemediathek.c.b:
     java.lang.String downloadLink -> a
     java.lang.String movieTitle -> b

@@ -30,6 +30,11 @@ For building the application by yourself follow the following steps:
 * The device will now stay awake until all downloads finished
 * Fixed several bug which caused the application to crash
 
+### Version 0.0.7 (Code: *7*, Released on: ***2012-11-30***) - [Changes][105]
+* Fixed a bug which caused an infinite loop while parsing the search results
+* The application will now show a message if no results were found
+* The downloaded movies will now be stored in the public movies directory of the current user (the preview pictures will remain in the private directory of the application)
+
 ### Version 0.0.6 (Code: *6*, Released on: ***2012-11-28***) - [Changes][104]
 * Fixed a bug which caused the application to crash immediately after starting it (this time always :()
 
@@ -66,4 +71,5 @@ For building the application by yourself follow the following steps:
  [102]: https://github.com/thuetz/MeineMediathek/compare/v0.0.3...v0.0.4 
  [103]: https://github.com/thuetz/MeineMediathek/compare/v0.0.4...v0.0.5 
  [104]: https://github.com/thuetz/MeineMediathek/compare/v0.0.5...v0.0.6
+ [105]: https://github.com/thuetz/MeineMediathek/compare/v0.0.6...v0.0.7
  [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.7...v0.1
