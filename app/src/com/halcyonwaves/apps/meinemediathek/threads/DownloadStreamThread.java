@@ -24,6 +24,7 @@ import android.util.Log;
 import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity;
+import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 public class DownloadStreamThread extends Thread {
@@ -52,6 +53,12 @@ public class DownloadStreamThread extends Thread {
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
 		this.notificationBuilder = new NotificationCompat.Builder( context );
 		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) ).setContentText( context.getString( R.string.not_desc_download_of_movie ) ).setSmallIcon( android.R.drawable.stat_sys_download ).setOngoing( true );
+
+		// define what should happen if the user clicks on the notification item
+		Intent intent = new Intent( this.threadContext, MovieOverviewActivity.class );
+		// intent.putExtra("yourpackage.notifyId", id);
+		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, 1, intent, 0 );
+		this.notificationBuilder.setContentIntent( contentIntent );
 
 		// tell the notification what to do if it gets pressed
 		final Intent notificationIntent = new Intent( context, ManageDownloadActivity.class );
