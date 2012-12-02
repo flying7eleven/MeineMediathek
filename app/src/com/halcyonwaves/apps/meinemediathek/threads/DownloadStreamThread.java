@@ -33,12 +33,12 @@ import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 public class DownloadStreamThread extends Thread {
 
 	private static final String TAG = "DownloadStreamThread";
-	private final UUID DOWNLOAD_NOTIFICATION_FILE_ID = UUID.randomUUID();
 	private String downloadLink = null;
 	private String movieTitle = null;
 
 	private NotificationCompat.Builder notificationBuilder = null;
 	private NotificationManager notificationManager = null;
+	private String uniqueThreadId = "";
 	private File outputFile = null;
 	private WakeLock downloadWakeLock = null;
 
@@ -48,6 +48,7 @@ public class DownloadStreamThread extends Thread {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
+		this.uniqueThreadId = uniqueThreadId;
 
 		// try to obtain a wake lock object
 		final PowerManager pm = (PowerManager) context.getSystemService( Context.POWER_SERVICE );
@@ -63,26 +64,19 @@ public class DownloadStreamThread extends Thread {
 		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) ).setContentText( context.getString( R.string.not_desc_download_of_movie ) ).setSmallIcon( android.R.drawable.stat_sys_download ).setOngoing( true );
 
 		// define what should happen if the user clicks on the notification item
-		Intent intent = new Intent( this.threadContext, MovieOverviewActivity.class );
-		// intent.putExtra("yourpackage.notifyId", id);
-		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, 1, intent, 0 );
+		Intent intent = new Intent( this.threadContext, ManageDownloadActivity.class );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, movieTitle );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, movieDescription );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, moviePreviewImagePath );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, uniqueThreadId );
+		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
 		this.notificationBuilder.setContentIntent( contentIntent );
-
-		// tell the notification what to do if it gets pressed
-		final Intent notificationIntent = new Intent( context, ManageDownloadActivity.class );
-		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, movieTitle );
-		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, movieDescription );
-		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, moviePreviewImagePath );
-		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, uniqueThreadId );
-		notificationIntent.putExtra( "notificationDownloadId", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() );
-		PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
-
 	}
 
 	@Override
 	public void run() {
 		//
-		Thread.currentThread().setName( String.format( "StreamDownloadTask(%s)", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() ) );
+		Thread.currentThread().setName( String.format( "StreamDownloadTask(%s)", this.uniqueThreadId ) );
 
 		//
 		String extractedURL = "";
@@ -94,13 +88,13 @@ public class DownloadStreamThread extends Thread {
 		int readB = 0;
 
 		try {
-			
+
 			// be sure that the device will not sleep while we try to download our movie
 			this.downloadWakeLock.acquire();
 
 			// since we currently don't know how big the file is, show a progress with an undefined state
 			this.notificationBuilder.setProgress( 100, 0, true );
-			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+			this.notificationManager.notify( this.uniqueThreadId, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// try it two times to fetch the file (if the first time fails for a socket timeout)
 			try {
@@ -139,7 +133,7 @@ public class DownloadStreamThread extends Thread {
 
 			// since we know the length of the full movie now, we can set the progress bar to a known state
 			this.notificationBuilder.setProgress( 100, 0, false );
-			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+			this.notificationManager.notify( this.uniqueThreadId, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 			// select the buffer which is the best for the estimated file size
 			if( movieFullLength < (1024 * 1024 * 10) ) { // if the file is smaller than 10 MB,
@@ -167,7 +161,7 @@ public class DownloadStreamThread extends Thread {
 
 				// update the notification bar entry
 				this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
-				this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+				this.notificationManager.notify( this.uniqueThreadId, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 			}
 
 			// close all opened streams
@@ -194,14 +188,14 @@ public class DownloadStreamThread extends Thread {
 		} finally {
 			// be sure that we ALWAYS release the wake lock
 			this.downloadWakeLock.release();
-			
+
 			// ensure that the notification item can be removed if we finished or crashed
 			if( !reachedDueToException ) {
 				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 			} else {
 				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_failed ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 			}
-			this.notificationManager.notify( this.DOWNLOAD_NOTIFICATION_FILE_ID.toString(), Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
+			this.notificationManager.notify( this.uniqueThreadId, Consts.NOTIFICATION_DOWNLOADING_MOVIE, this.notificationBuilder.build() );
 
 		}
 

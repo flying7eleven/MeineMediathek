@@ -6,12 +6,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 
 public class ManageDownloadActivity extends BaseActivity {
 
 	private Button cancelDownload = null;
 	private TextView movieTitle = null;
+	private TextView movieDescription = null;
 
 	@Override
 	protected void onCreate( final Bundle savedInstanceState ) {
@@ -25,7 +27,11 @@ public class ManageDownloadActivity extends BaseActivity {
 
 		//
 		this.movieTitle = (TextView) this.findViewById( R.id.tv_movie_title_content );
-		this.movieTitle.setText( intentExtras.getString( "movieTitle" ) );
+		this.movieTitle.setText( intentExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE ) );
+		
+		//
+		this.movieDescription = (TextView) this.findViewById( R.id.tv_movie_description_content );
+		this.movieDescription.setText( intentExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION ) );
 
 		//
 		this.cancelDownload = (Button) this.findViewById( R.id.btn_cancel_download );

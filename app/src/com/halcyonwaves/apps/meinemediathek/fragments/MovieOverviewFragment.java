@@ -147,6 +147,7 @@ public class MovieOverviewFragment extends Fragment {
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK, this.downloadLink );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, this.previewImagePath );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_TITLE, this.tvMovieTitle.getText().toString() );
+		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, this.tvMovieDescription.getText().toString() );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.uniqueId );
 
 		// prepare the download request
