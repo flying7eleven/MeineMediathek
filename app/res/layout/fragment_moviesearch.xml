@@ -15,11 +15,19 @@
         <requestFocus />
     </EditText>
 
+    <Spinner
+        android:id="@+id/sp_content_provider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_searchfortitle"
+        android:layout_centerHorizontal="true"
+        android:entries="@array/sp_content_provider" />
+
     <Button
         android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_searchfortitle"
+        android:layout_below="@id/sp_content_provider"
         android:text="@string/btn_search" />
 
     <RelativeLayout

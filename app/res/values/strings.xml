@@ -25,5 +25,8 @@
     <string name="mnu_title_preferences">Preferences</string>
     <string name="dlg_title_noresults">Nothing found</string>
     <string name="dlg_msg_noresults">Unfortunately there were no results with the keywords you used for your search.</string>
-
+    <string-array name="sp_content_provider">
+        <item>ZDF Mediathek</item>
+    </string-array>
+    
 </resources>
