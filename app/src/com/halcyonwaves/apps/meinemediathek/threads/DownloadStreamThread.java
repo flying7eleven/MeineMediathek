@@ -18,6 +18,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -37,6 +39,7 @@ public class DownloadStreamThread extends Thread {
 	private NotificationCompat.Builder notificationBuilder = null;
 	private NotificationManager notificationManager = null;
 	private File outputFile = null;
+	private WakeLock downloadWakeLock = null;
 
 	private Context threadContext = null;
 
@@ -44,6 +47,10 @@ public class DownloadStreamThread extends Thread {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
+
+		// try to obtain a wake lock object
+		final PowerManager pm = (PowerManager) context.getSystemService( Context.POWER_SERVICE );
+		this.downloadWakeLock = pm.newWakeLock( PowerManager.PARTIAL_WAKE_LOCK, String.format( "%s(%s)", DownloadStreamThread.TAG, movieTitle ) );
 
 		// be sure that the output directory we are trying to use exists
 		this.outputFile = new File( Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_MOVIES ), "MeineMediathek" );
@@ -83,6 +90,9 @@ public class DownloadStreamThread extends Thread {
 		int readB = 0;
 
 		try {
+			
+			// be sure that the device will not sleep while we try to download our movie
+			this.downloadWakeLock.acquire();
 
 			// since we currently don't know how big the file is, show a progress with an undefined state
 			this.notificationBuilder.setProgress( 100, 0, true );
@@ -178,7 +188,10 @@ public class DownloadStreamThread extends Thread {
 			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
 			ACRA.getErrorReporter().handleException( e );
 		} finally {
-			//
+			// be sure that we ALWAYS release the wake lock
+			this.downloadWakeLock.release();
+			
+			// ensure that the notification item can be removed if we finished or crashed
 			if( !reachedDueToException ) {
 				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 			} else {
