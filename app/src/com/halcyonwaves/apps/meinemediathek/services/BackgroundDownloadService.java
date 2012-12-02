@@ -67,10 +67,12 @@ public class BackgroundDownloadService extends Service {
 					final String episodeTitle = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE );
 					final String downlaodURL = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
 					final String uniqueId = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
+					final String moviePreviewImage = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
+					final String movieDescription = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION );
 
 					// start the download
 					if( !BackgroundDownloadService.this.managedThreads.containsKey( uniqueId ) ) {
-						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), downlaodURL, episodeTitle );
+						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), downlaodURL, episodeTitle, movieDescription, moviePreviewImage, uniqueId );
 						BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
 						downloadThread.start();
 						Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );

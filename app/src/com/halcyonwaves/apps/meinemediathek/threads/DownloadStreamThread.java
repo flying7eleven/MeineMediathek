@@ -21,6 +21,7 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
+import android.text.method.MovementMethod;
 import android.util.Log;
 
 import com.halcyonwaves.apps.meinemediathek.Consts;
@@ -43,7 +44,7 @@ public class DownloadStreamThread extends Thread {
 
 	private Context threadContext = null;
 
-	public DownloadStreamThread( final Context context, final String downloadLink, final String movieTitle ) {
+	public DownloadStreamThread( final Context context, final String downloadLink, final String movieTitle, final String movieDescription, final String moviePreviewImagePath, final String uniqueThreadId ) {
 		this.downloadLink = downloadLink;
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
@@ -69,7 +70,10 @@ public class DownloadStreamThread extends Thread {
 
 		// tell the notification what to do if it gets pressed
 		final Intent notificationIntent = new Intent( context, ManageDownloadActivity.class );
-		notificationIntent.putExtra( "movieTitle", movieTitle );
+		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, movieTitle );
+		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, movieDescription );
+		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, moviePreviewImagePath );
+		notificationIntent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, uniqueThreadId );
 		notificationIntent.putExtra( "notificationDownloadId", this.DOWNLOAD_NOTIFICATION_FILE_ID.toString() );
 		PendingIntent.getActivity( context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT );
 
