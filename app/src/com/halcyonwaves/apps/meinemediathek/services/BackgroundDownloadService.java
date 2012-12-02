@@ -72,7 +72,7 @@ public class BackgroundDownloadService extends Service {
 					if( !BackgroundDownloadService.this.managedThreads.containsKey( uniqueId ) ) {
 						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), downlaodURL, episodeTitle );
 						BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
-						downloadThread.run();
+						downloadThread.start();
 						Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
 					} else {
 						Log.d( BackgroundDownloadService.TAG, "Not starting a new download thread because the following URL is already queued:" + downlaodURL );
