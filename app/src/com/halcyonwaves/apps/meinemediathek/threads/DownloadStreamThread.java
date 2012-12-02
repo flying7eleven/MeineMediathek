@@ -58,11 +58,6 @@ public class DownloadStreamThread extends Thread {
 		this.outputFile = new File( Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_MOVIES ), "MeineMediathek" );
 		this.outputFile.mkdirs();
 
-		// prepare the notification for the download
-		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
-		this.notificationBuilder = new NotificationCompat.Builder( context );
-		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) ).setContentText( context.getString( R.string.not_desc_download_of_movie ) ).setSmallIcon( android.R.drawable.stat_sys_download ).setOngoing( true );
-
 		// define what should happen if the user clicks on the notification item
 		Intent intent = new Intent( this.threadContext, ManageDownloadActivity.class );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, movieTitle );
@@ -70,7 +65,16 @@ public class DownloadStreamThread extends Thread {
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, moviePreviewImagePath );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, uniqueThreadId );
 		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
+
+		// prepare the notification for the download
+		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
+		this.notificationBuilder = new NotificationCompat.Builder( context );
+		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) );
+		this.notificationBuilder.setContentText( context.getString( R.string.not_desc_download_of_movie ) );
+		this.notificationBuilder.setSmallIcon( android.R.drawable.stat_sys_download );
+		this.notificationBuilder.setOngoing( true );
 		this.notificationBuilder.setContentIntent( contentIntent );
+
 	}
 
 	@Override
