@@ -89,7 +89,7 @@ public class MovieOverviewFragment extends Fragment {
 		this.btnDownloadMoview = (Button) v.findViewById( R.id.btn_download_movie );
 
 		// fetch some information we want to use later
-		this.downloadLink = passedInformation.getString( "downloadLink" );
+		this.downloadLink = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
 		this.previewImagePath = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
 		this.uniqueId = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 
