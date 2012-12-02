@@ -7,6 +7,12 @@ public class Consts {
 	 */
 	public final static String DESKTOP_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30";
 
+	public static final String EXTRA_NAME_MOVIE_TITLE = "title2";
+	public static final String EXTRA_NAME_MOVIE_DESCRIPTION = "description2";
+	public static final String EXTRA_NAME_MOVIE_DOWNLOADLINK = "downloadlinkg2";
+	public static final String EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH = "previewimagepath2";
+	public static final String EXTRA_NAME_MOVIE_UNIQUE_ID = "uniqueid2";
+
 	/**
 	 * This constant is used to identify notifications which are used to show a onging download of a movie.
 	 */
