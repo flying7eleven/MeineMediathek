@@ -1,5 +1,9 @@
 package com.halcyonwaves.apps.meinemediathek.services;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +13,8 @@ import android.os.Message;
 import android.os.Messenger;
 import android.util.Log;
 
-import com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread;
+import com.halcyonwaves.apps.meinemediathek.Consts;
+import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
 
 /**
  * This class describes a service which is responsible for all movie downloads of the
@@ -41,6 +46,11 @@ public class BackgroundDownloadService extends Service {
 	private final Messenger serviceMessenger = new Messenger( new IncomingHandler() );
 
 	/**
+	 * This map is used to store all running threads which are managed my this service.
+	 */
+	private Map< UUID, Thread > managedThreads = new HashMap< UUID, Thread >();
+
+	/**
 	 * 
 	 * @author Tim Huetz
 	 */
@@ -52,16 +62,21 @@ public class BackgroundDownloadService extends Service {
 				case BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD:
 					// get the additional data send with the download request
 					final Bundle suppliedExtras = msg.getData();
-					
-					// get some required information to starting the download
-					final String episodeTitle = suppliedExtras.getString( "movieTitle" );
-					final String downlaodURL = suppliedExtras.getString( "downloadLink" );
-					
-					// start the download
-					Log.d( BackgroundDownloadService.TAG, "Service started with request to download following URL: " + downlaodURL );
-					new DownloadThreadExecutorThread( BackgroundDownloadService.this.getApplicationContext(), downlaodURL, episodeTitle ).start();
 
-					// TODO: rest
+					// get some required information to starting the download
+					final String episodeTitle = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE );
+					final String downlaodURL = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
+					final UUID uniqueId = UUID.fromString( suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID ) );
+
+					// start the download
+					if( !BackgroundDownloadService.this.managedThreads.containsKey( uniqueId ) ) {
+						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), downlaodURL, episodeTitle );
+						BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
+						downloadThread.run();
+						Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
+					} else {
+						Log.d( BackgroundDownloadService.TAG, "Not starting a new download thread because the following URL is already queued:" + downlaodURL );
+					}
 					break;
 				case BackgroundDownloadService.SERVICE_MSG_CANCEL_DOWNLOAD:
 					break; // TODO: this

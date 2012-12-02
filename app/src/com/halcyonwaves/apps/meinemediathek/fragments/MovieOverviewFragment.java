@@ -38,6 +38,7 @@ public class MovieOverviewFragment extends Fragment {
 	private TextView tvMovieDescription = null;
 	private TextView tvMovieTitle = null;
 	private String previewImagePath = "";
+	private String uniqueId = "";
 
 	private static final String TAG = "MovieOverviewFragment";
 
@@ -67,7 +68,7 @@ public class MovieOverviewFragment extends Fragment {
 			this.serviceMessanger = null; // we have to do this because the onServiceDisconnected method gets just called if the service was killed
 		}
 	}
-	
+
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
@@ -90,6 +91,7 @@ public class MovieOverviewFragment extends Fragment {
 		// fetch some information we want to use later
 		this.downloadLink = passedInformation.getString( "downloadLink" );
 		this.previewImagePath = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
+		this.uniqueId = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 
 		// set the content for all of the fetched controls
 		this.tvMovieTitle.setText( passedInformation.getString( Consts.EXTRA_NAME_MOVIE_TITLE ) );
@@ -134,7 +136,7 @@ public class MovieOverviewFragment extends Fragment {
 
 		// be sure that we are connected to the download service
 		this.doBindService();
-		
+
 		// return the created view
 		return v;
 	}
@@ -145,13 +147,14 @@ public class MovieOverviewFragment extends Fragment {
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK, this.downloadLink );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, this.previewImagePath );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_TITLE, this.tvMovieTitle.getText().toString() );
-		
+		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.uniqueId );
+
 		// prepare the download request
 		Message downloadRequest = new Message();
 		downloadRequest.setData( downloadExtras );
 		downloadRequest.what = BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD;
 		downloadRequest.replyTo = this.serviceMessanger;
-		
+
 		// send the download request
 		try {
 			this.serviceMessanger.send( downloadRequest );
