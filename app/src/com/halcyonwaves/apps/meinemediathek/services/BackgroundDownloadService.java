@@ -48,7 +48,7 @@ public class BackgroundDownloadService extends Service {
 	/**
 	 * This map is used to store all running threads which are managed my this service.
 	 */
-	private Map< UUID, Thread > managedThreads = new HashMap< UUID, Thread >();
+	private Map< String, Thread > managedThreads = new HashMap< String, Thread >();
 
 	/**
 	 * 
@@ -66,7 +66,7 @@ public class BackgroundDownloadService extends Service {
 					// get some required information to starting the download
 					final String episodeTitle = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE );
 					final String downlaodURL = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
-					final UUID uniqueId = UUID.fromString( suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID ) );
+					final String uniqueId = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 
 					// start the download
 					if( !BackgroundDownloadService.this.managedThreads.containsKey( uniqueId ) ) {
