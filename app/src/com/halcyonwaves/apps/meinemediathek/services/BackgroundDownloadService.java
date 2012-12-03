@@ -114,7 +114,13 @@ public class BackgroundDownloadService extends Service {
 	}
 
 	private void cleanupFinishedThreads() {
-		// TODO: implement this
+		for( int currentThreadId : this.managedThreads.keySet() ) {
+			if( null != this.managedThreads.get( currentThreadId ) ) {
+				if( !this.managedThreads.get( currentThreadId ).isAlive() ) {
+					this.managedThreads.remove( currentThreadId );
+				}
+			}
+		}
 	}
 
 	/**
