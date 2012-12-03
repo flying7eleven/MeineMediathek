@@ -42,32 +42,32 @@ public class DownloadStreamThread extends Thread {
 	 * The tag which is used to identify the class in logging calls.â
 	 */
 	private static final String TAG = "DownloadStreamThread";
-	
+
 	/**
 	 * The link to the file which should be downloaded.
 	 */
 	private String downloadLink = null;
-	
+
 	/**
 	 * The notification builder which is used to construct the download notification.
 	 */
 	private NotificationCompat.Builder notificationBuilder = null;
-	
+
 	/**
 	 * A handle to the Android notification manager to show our notification.
 	 */
 	private NotificationManager notificationManager = null;
-	
+
 	/**
 	 * The handle to the output file for the downloaded movie.
 	 */
 	private File outputFile = null;
-	
+
 	/**
 	 * The wake lock which is used to prevent the device from falling asleep during the downloading process.
 	 */
 	private WakeLock downloadWakeLock = null;
-	
+
 	/**
 	 * The notification id which is used for the current download process.
 	 */
@@ -230,9 +230,16 @@ public class DownloadStreamThread extends Thread {
 				}
 			}
 
-			// ensure that the media scanner sees the file we have added
+			// otherwise check the file size and then ensure that the media scanner sees the file we have added
 			else {
-				MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
+				// if the size of the downloaded file is not the same as the expected size, delete the file and notify the user
+				if( movieFullLength != this.outputFile.length() ) {
+					this.outputFile.delete();
+					reachedDueToException = true;
+				} else {
+					// tell the media scanner about the new file
+					MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
+				}
 			}
 
 		} catch( final IOException e ) {
