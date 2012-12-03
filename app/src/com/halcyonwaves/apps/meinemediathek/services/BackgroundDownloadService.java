@@ -51,7 +51,7 @@ public class BackgroundDownloadService extends Service {
 	/**
 	 * This map is used to store all running threads which are managed my this service.
 	 */
-	private Map< Integer, Thread > managedThreads = new HashMap< Integer, Thread >();
+	private Map< Integer, Thread > managedThreads = null;
 
 	/**
 	 * 
@@ -77,14 +77,10 @@ public class BackgroundDownloadService extends Service {
 					final String movieDescription = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION );
 
 					// start the download
-					if( !BackgroundDownloadService.this.managedThreads.containsKey( uniqueId ) ) {
-						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription, moviePreviewImage );
-						BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
-						downloadThread.start();
-						Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
-					} else {
-						Log.d( BackgroundDownloadService.TAG, "Not starting a new download thread because the following URL is already queued:" + downlaodURL );
-					}
+					Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription, moviePreviewImage );
+					BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
+					downloadThread.start();
+					Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
 					break;
 				case BackgroundDownloadService.SERVICE_MSG_CANCEL_DOWNLOAD:
 					// first of all do some cleanup operations
@@ -99,12 +95,17 @@ public class BackgroundDownloadService extends Service {
 
 					// if we still have a thread with this id, interrupt it
 					if( BackgroundDownloadService.this.managedThreads.containsKey( requestedCancelId ) ) {
+						Log.v( BackgroundDownloadService.TAG, String.format( "Found the thread for the requested interruption in the internal map." ) );
 						Thread threadToCancel = BackgroundDownloadService.this.managedThreads.remove( requestedCancelId );
 						if( null != threadToCancel ) {
+							Log.v( BackgroundDownloadService.TAG, String.format( "The found thread seems to be a valid object." ) );
 							if( threadToCancel.isAlive() ) {
 								threadToCancel.interrupt();
+								Log.v( BackgroundDownloadService.TAG, String.format( "Send interruption request to the download thread with the supplied id." ) );
 							}
 						}
+					} else {
+						Log.w( BackgroundDownloadService.TAG, String.format( "Cannot find the requested thread in the internal list. Canceling the cancel request (list length: %d)!", BackgroundDownloadService.this.managedThreads.keySet().size() ) );
 					}
 					break;
 				default:
@@ -118,6 +119,7 @@ public class BackgroundDownloadService extends Service {
 			if( null != this.managedThreads.get( currentThreadId ) ) {
 				if( !this.managedThreads.get( currentThreadId ).isAlive() ) {
 					this.managedThreads.remove( currentThreadId );
+					Log.v( BackgroundDownloadService.TAG, String.format( "Removed thread %d from internal list because it was not alive anymore.", currentThreadId ) );
 				}
 			}
 		}
@@ -137,6 +139,7 @@ public class BackgroundDownloadService extends Service {
 	@Override
 	public int onStartCommand( final Intent intent, final int flags, final int startid ) {
 		Log.v( BackgroundDownloadService.TAG, "The background downloading services was started with the following id: " + startid );
+		this.managedThreads = new HashMap< Integer, Thread >();
 		return Service.START_STICKY;
 	}
 

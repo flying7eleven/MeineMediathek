@@ -2,10 +2,14 @@ package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +31,7 @@ import com.halcyonwaves.apps.meinemediathek.ChangeLogDialog;
 import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity;
+import com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService;
 
 public class MovieSearchFragment extends Fragment {
 
@@ -36,10 +41,32 @@ public class MovieSearchFragment extends Fragment {
 	private EditText etTitleToSearchFor = null;
 	private TextView tvPlayerNotice = null;
 
+	private boolean isServiceRunning( final String serviceName ) {
+		Log.v( MovieSearchFragment.TAG, "Checking if the monitoring service is running or not..." );
+		boolean serviceRunning = false;
+		final ActivityManager am = (ActivityManager) this.getActivity().getApplicationContext().getSystemService( Context.ACTIVITY_SERVICE );
+		final List< ActivityManager.RunningServiceInfo > l = am.getRunningServices( 50 );
+		final Iterator< ActivityManager.RunningServiceInfo > i = l.iterator();
+		while( i.hasNext() ) {
+			final ActivityManager.RunningServiceInfo runningServiceInfo = i.next();
+
+			if( runningServiceInfo.service.getClassName().equals( serviceName ) && runningServiceInfo.started ) {
+				serviceRunning = true;
+			}
+		}
+		return serviceRunning;
+	}
+
 	@Override
 	public View onCreateView( final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState ) {
 		// get the basic view layout from the application resources
 		final View v = inflater.inflate( R.layout.fragment_moviesearch, container );
+
+		// check if the service is running, if not start it
+		if( !this.isServiceRunning( BackgroundDownloadService.class.getName() ) ) {
+			Log.v( MovieSearchFragment.TAG, "Background download service is not running, starting it..." );
+			this.getActivity().getApplicationContext().startService( new Intent( this.getActivity().getApplicationContext(), BackgroundDownloadService.class ) );
+		}
 
 		// get the handles to the controls we have to access
 		this.btnSearch = (Button) v.findViewById( R.id.btn_search );
