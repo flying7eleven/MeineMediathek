@@ -72,14 +72,14 @@ public class MovieOverviewFragment extends Fragment {
 		}
 	}
 
-	private int getNextNotificationId() {
+	private synchronized int getNextNotificationId() {
 		// get the preferences of the application
 		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.getActivity().getApplicationContext() );
 		
 		// get the next notification id and store the current value in the settings file
 		int nextNotificationId = appPreferences.getInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, 0 ) + 1;
 		Editor prefEditor = appPreferences.edit();
-		prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, nextNotificationId );
+		prefEditor.putInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, nextNotificationId );
 		if( !prefEditor.commit() ) {
 			Log.e( MovieOverviewFragment.TAG, "Failed to store the last used notification id in the application preferences." );
 		}

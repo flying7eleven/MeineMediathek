@@ -106,8 +106,7 @@ public class BackgroundDownloadService extends Service {
 							}
 						}
 					}
-
-					break; // TODO: this
+					break;
 				default:
 					super.handleMessage( msg );
 			}
