@@ -28,6 +28,7 @@ For building the application by yourself follow the following steps:
 * Downloads are now cancelable
 * Added a preference screen for tweaking some settings
 * The device will now stay awake until all downloads finished
+* Removed the English translation, the application is now German by default
 * Fixed several bug which caused the application to crash
 
 ### Version 0.0.7 (Code: *7*, Released on: ***2012-11-30***) - [Changes][105]
