@@ -63,6 +63,9 @@ public class BackgroundDownloadService extends Service {
 		public void handleMessage( final Message msg ) {
 			switch( msg.what ) {
 				case BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD:
+					// first of all do some cleanup operations
+					BackgroundDownloadService.this.cleanupFinishedThreads();
+					
 					// get the additional data send with the download request
 					final Bundle suppliedExtras = msg.getData();
 
@@ -84,11 +87,24 @@ public class BackgroundDownloadService extends Service {
 					}
 					break;
 				case BackgroundDownloadService.SERVICE_MSG_CANCEL_DOWNLOAD:
+					// first of all do some cleanup operations
+					BackgroundDownloadService.this.cleanupFinishedThreads();
+					
+					// get the additional data send with the cancel request
+					final Bundle suppliedCancelExtras = msg.getData();
+					
+					// just log that we want to cancel now
+					Log.v( BackgroundDownloadService.TAG, String.format( "The user requested to cancel the download with the unique id %d.", suppliedCancelExtras.getInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID ) ) );
+					
 					break; // TODO: this
 				default:
 					super.handleMessage( msg );
 			}
 		}
+	}
+	
+	private void cleanupFinishedThreads() {
+		// TODO: implement this
 	}
 
 	/**
