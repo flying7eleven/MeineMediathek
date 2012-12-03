@@ -49,7 +49,7 @@ public class DownloadStreamThread extends Thread {
 		this.movieTitle = movieTitle;
 		this.threadContext = context;
 		this.notificationId = notificationId;
-		
+
 		// just log the used notification id
 		Log.v( DownloadStreamThread.TAG, "Using the following notification id for the next download: " + this.notificationId );
 
@@ -155,7 +155,7 @@ public class DownloadStreamThread extends Thread {
 			Log.v( DownloadStreamThread.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
 
 			// read the whole movie
-			while( comReadB < movieFullLength ) {
+			while( comReadB < movieFullLength && !this.isInterrupted() ) {
 				// get a data chunk
 				readB = mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
 				if( readB <= 0 ) {
@@ -177,8 +177,19 @@ public class DownloadStreamThread extends Thread {
 			outputStream.close();
 			mmsInputStream.close();
 
+			// if the thread was interrupted, delete the downloaded stuff again
+			if( this.isInterrupted() ) {
+				if( this.outputFile.delete() ) {
+					Log.v( DownloadStreamThread.TAG, "Deleted file which was created before the download thread was interrupted!" );
+				} else {
+					Log.w( DownloadStreamThread.TAG, "Failed to delete the file which was created before the download thread was interrupted!" );
+				}
+			}
+
 			// ensure that the media scanner sees the file we have added
-			MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
+			else {
+				MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
+			}
 
 		} catch( final IOException e ) {
 			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
@@ -198,7 +209,11 @@ public class DownloadStreamThread extends Thread {
 
 			// ensure that the notification item can be removed if we finished or crashed
 			if( !reachedDueToException ) {
-				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
+				if( !this.isInterrupted() ) {
+					this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
+				} else {
+					this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_canceled ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
+				}
 			} else {
 				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_failed ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 			}
