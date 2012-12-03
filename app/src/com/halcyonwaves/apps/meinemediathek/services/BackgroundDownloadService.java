@@ -52,7 +52,7 @@ public class BackgroundDownloadService extends Service {
 	 * This map is used to store all running threads which are managed my this service.
 	 */
 	private Map< Integer, Thread > managedThreads = new HashMap< Integer, Thread >();
-	
+
 	/**
 	 * 
 	 * @author Tim Huetz
@@ -65,7 +65,7 @@ public class BackgroundDownloadService extends Service {
 				case BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD:
 					// first of all do some cleanup operations
 					BackgroundDownloadService.this.cleanupFinishedThreads();
-					
+
 					// get the additional data send with the download request
 					final Bundle suppliedExtras = msg.getData();
 
@@ -89,20 +89,31 @@ public class BackgroundDownloadService extends Service {
 				case BackgroundDownloadService.SERVICE_MSG_CANCEL_DOWNLOAD:
 					// first of all do some cleanup operations
 					BackgroundDownloadService.this.cleanupFinishedThreads();
-					
+
 					// get the additional data send with the cancel request
 					final Bundle suppliedCancelExtras = msg.getData();
-					
+
 					// just log that we want to cancel now
-					Log.v( BackgroundDownloadService.TAG, String.format( "The user requested to cancel the download with the unique id %d.", suppliedCancelExtras.getInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID ) ) );
-					
+					final int requestedCancelId = suppliedCancelExtras.getInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
+					Log.v( BackgroundDownloadService.TAG, String.format( "The user requested to cancel the download with the unique id %d.", requestedCancelId ) );
+
+					// if we still have a thread with this id, interrupt it
+					if( BackgroundDownloadService.this.managedThreads.containsKey( requestedCancelId ) ) {
+						Thread threadToCancel = BackgroundDownloadService.this.managedThreads.remove( requestedCancelId );
+						if( null != threadToCancel ) {
+							if( threadToCancel.isAlive() ) {
+								threadToCancel.interrupt();
+							}
+						}
+					}
+
 					break; // TODO: this
 				default:
 					super.handleMessage( msg );
 			}
 		}
 	}
-	
+
 	private void cleanupFinishedThreads() {
 		// TODO: implement this
 	}
