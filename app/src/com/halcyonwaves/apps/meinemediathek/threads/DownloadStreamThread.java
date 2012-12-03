@@ -203,6 +203,7 @@ public class DownloadStreamThread extends Thread {
 				// get a data chunk
 				readB = mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
 				if( readB <= 0 ) {
+					Log.v( DownloadStreamThread.TAG, "The last read request returned with 0 bytes, it seems that we finished!" );
 					break;
 				}
 
@@ -233,7 +234,9 @@ public class DownloadStreamThread extends Thread {
 			// otherwise check the file size and then ensure that the media scanner sees the file we have added
 			else {
 				// if the size of the downloaded file is not the same as the expected size, delete the file and notify the user
-				if( movieFullLength != this.outputFile.length() ) {
+				// it can happen that the actual file size is bigger than the expected size (TODO: why?)
+				if( /*movieFullLength > this.outputFile.length() ||*/ this.outputFile.length() != comReadB ) {
+					Log.w( DownloadStreamThread.TAG, String.format( "The downloaded file has a size of %d bytes and %d bytes were received, but we expected %d bytes. Deleting file again!", this.outputFile.length(), comReadB, movieFullLength ) );
 					this.outputFile.delete();
 					reachedDueToException = true;
 				} else {
