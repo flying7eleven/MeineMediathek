@@ -66,7 +66,7 @@ public class DownloadStreamThread extends Thread {
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, movieTitle );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, movieDescription );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.notificationId );
-		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
+		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, this.notificationId, intent, PendingIntent.FLAG_ONE_SHOT );
 
 		// prepare the notification for the download
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
