@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,6 +19,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +72,22 @@ public class MovieOverviewFragment extends Fragment {
 		}
 	}
 
+	private int getNextNotificationId() {
+		// get the preferences of the application
+		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.getActivity().getApplicationContext() );
+		
+		// get the next notification id and store the current value in the settings file
+		int nextNotificationId = appPreferences.getInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, 0 ) + 1;
+		Editor prefEditor = appPreferences.edit();
+		prefEditor.putInt( Consts.PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME, nextNotificationId );
+		if( !prefEditor.commit() ) {
+			Log.e( MovieOverviewFragment.TAG, "Failed to store the last used notification id in the application preferences." );
+		}
+		
+		// return the next notification id which can be used
+		return nextNotificationId;
+	}
+	
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
@@ -148,7 +167,7 @@ public class MovieOverviewFragment extends Fragment {
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, this.previewImagePath );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_TITLE, this.tvMovieTitle.getText().toString() );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, this.tvMovieDescription.getText().toString() );
-		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.uniqueId );
+		downloadExtras.putInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.getNextNotificationId() );
 
 		// prepare the download request
 		Message downloadRequest = new Message();

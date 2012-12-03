@@ -6,11 +6,14 @@ import java.util.UUID;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.halcyonwaves.apps.meinemediathek.Consts;
@@ -48,8 +51,8 @@ public class BackgroundDownloadService extends Service {
 	/**
 	 * This map is used to store all running threads which are managed my this service.
 	 */
-	private Map< String, Thread > managedThreads = new HashMap< String, Thread >();
-
+	private Map< Integer, Thread > managedThreads = new HashMap< Integer, Thread >();
+	
 	/**
 	 * 
 	 * @author Tim Huetz
@@ -66,13 +69,13 @@ public class BackgroundDownloadService extends Service {
 					// get some required information to starting the download
 					final String episodeTitle = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE );
 					final String downlaodURL = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
-					final String uniqueId = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
+					final int uniqueId = suppliedExtras.getInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 					final String moviePreviewImage = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
 					final String movieDescription = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION );
 
 					// start the download
 					if( !BackgroundDownloadService.this.managedThreads.containsKey( uniqueId ) ) {
-						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), downlaodURL, episodeTitle, movieDescription, moviePreviewImage, uniqueId );
+						Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription, moviePreviewImage );
 						BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
 						downloadThread.start();
 						Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
@@ -101,6 +104,7 @@ public class BackgroundDownloadService extends Service {
 	 */
 	@Override
 	public int onStartCommand( final Intent intent, final int flags, final int startid ) {
+		Log.v( BackgroundDownloadService.TAG, "The background downloading services was started with the following id: " + startid );
 		return Service.START_STICKY;
 	}
 

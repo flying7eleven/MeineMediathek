@@ -37,4 +37,9 @@ public class Consts {
 	 * This preference key stores the time when the user accepted the license (for legal purposes).
 	 */
 	public final static String PREFERENCE_LICENSE_AGREEMENT_TIME = "license.accepted.time";
+	
+	/**
+	 *
+	 */
+	public final static String PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID = "download.notification.last_id";
 }
