@@ -1,12 +1,16 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
+import org.acra.ACRA;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.Messenger;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,9 +26,10 @@ public class ManageDownloadActivity extends BaseActivity {
 	private Button cancelDownload = null;
 	private TextView movieTitle = null;
 	private TextView movieDescription = null;
+	private int cancelId = -1;
 
 	private static final String TAG = "ManageDownloadActivity";
-	
+
 	private Messenger serviceMessanger = null;
 	private final ServiceConnection serviceConnection = new ServiceConnection() {
 
@@ -51,7 +56,7 @@ public class ManageDownloadActivity extends BaseActivity {
 			this.serviceMessanger = null; // we have to do this because the onServiceDisconnected method gets just called if the service was killed
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -61,7 +66,7 @@ public class ManageDownloadActivity extends BaseActivity {
 	@Override
 	protected void onCreate( final Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
-		
+
 		// bind to the download service
 		this.doBindService();
 
@@ -70,11 +75,12 @@ public class ManageDownloadActivity extends BaseActivity {
 
 		//
 		final Bundle intentExtras = this.getIntent().getExtras();
+		this.cancelId = intentExtras.getInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 
 		//
 		this.movieTitle = (TextView) this.findViewById( R.id.tv_movie_title_content );
 		this.movieTitle.setText( intentExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE ) );
-		
+
 		//
 		this.movieDescription = (TextView) this.findViewById( R.id.tv_movie_description_content );
 		this.movieDescription.setText( intentExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION ) );
@@ -85,7 +91,24 @@ public class ManageDownloadActivity extends BaseActivity {
 
 			@Override
 			public void onClick( final View v ) {
-				// TODO: cancel the download
+				// prepare the information we want to send to the service
+				Bundle downloadExtras = new Bundle();
+				downloadExtras.putInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, ManageDownloadActivity.this.cancelId );
+
+				// prepare the download request
+				Message downloadRequest = new Message();
+				downloadRequest.setData( downloadExtras );
+				downloadRequest.what = BackgroundDownloadService.SERVICE_MSG_CANCEL_DOWNLOAD;
+				downloadRequest.replyTo = ManageDownloadActivity.this.serviceMessanger;
+
+				// send the download request
+				try {
+					ManageDownloadActivity.this.serviceMessanger.send( downloadRequest );
+				} catch( RemoteException e ) {
+					ACRA.getErrorReporter().handleException( e );
+				}
+
+				// close the dialog because we send the cancel request to the service
 				ManageDownloadActivity.this.finish();
 
 			}
