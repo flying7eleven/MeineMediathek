@@ -30,23 +30,65 @@ import com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity;
 import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
+/**
+ * This class is used to process a download request of a movie. Its a generalized class
+ * and can be used for downloading a movie from any supported content provider.â
+ * 
+ * @author Tim Huetz
+ */
 public class DownloadStreamThread extends Thread {
 
+	/**
+	 * The tag which is used to identify the class in logging calls.â
+	 */
 	private static final String TAG = "DownloadStreamThread";
+	
+	/**
+	 * The link to the file which should be downloaded.
+	 */
 	private String downloadLink = null;
-	private String movieTitle = null;
-
+	
+	/**
+	 * The notification builder which is used to construct the download notification.
+	 */
 	private NotificationCompat.Builder notificationBuilder = null;
+	
+	/**
+	 * A handle to the Android notification manager to show our notification.
+	 */
 	private NotificationManager notificationManager = null;
+	
+	/**
+	 * The handle to the output file for the downloaded movie.
+	 */
 	private File outputFile = null;
+	
+	/**
+	 * The wake lock which is used to prevent the device from falling asleep during the downloading process.
+	 */
 	private WakeLock downloadWakeLock = null;
+	
+	/**
+	 * The notification id which is used for the current download process.
+	 */
 	private int notificationId = -1;
 
+	/**
+	 * The context in which the thread was created.
+	 */
 	private Context threadContext = null;
 
-	public DownloadStreamThread( final Context context, int notificationId, final String downloadLink, final String movieTitle, final String movieDescription, final String moviePreviewImagePath ) {
+	/**
+	 * Constructor for the download thread.
+	 * 
+	 * @param context The context in which the thread was created.
+	 * @param notificationId The id which should be used for the notification (must be unique).
+	 * @param downloadLink The link to the file which should be downloaded.
+	 * @param movieTitle The title of the movie to download (displayed in the notification).
+	 * @param movieDescription The description of the movie (will be displayed in the cancel dialog).
+	 */
+	public DownloadStreamThread( final Context context, int notificationId, final String downloadLink, final String movieTitle, final String movieDescription ) {
 		this.downloadLink = downloadLink;
-		this.movieTitle = movieTitle;
 		this.threadContext = context;
 		this.notificationId = notificationId;
 
@@ -71,7 +113,7 @@ public class DownloadStreamThread extends Thread {
 		// prepare the notification for the download
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
 		this.notificationBuilder = new NotificationCompat.Builder( context );
-		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), this.movieTitle ) );
+		this.notificationBuilder.setContentTitle( String.format( context.getString( R.string.not_title_download_of_movie ), movieTitle ) );
 		this.notificationBuilder.setContentText( context.getString( R.string.not_desc_download_of_movie ) );
 		this.notificationBuilder.setSmallIcon( android.R.drawable.stat_sys_download );
 		this.notificationBuilder.setOngoing( true );
@@ -79,6 +121,9 @@ public class DownloadStreamThread extends Thread {
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void run() {
 		//

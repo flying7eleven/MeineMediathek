@@ -77,7 +77,7 @@ public class BackgroundDownloadService extends Service {
 					final String movieDescription = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION );
 
 					// start the download
-					Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription, moviePreviewImage );
+					Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription );
 					BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
 					downloadThread.start();
 					Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
