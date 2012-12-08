@@ -251,7 +251,6 @@ android.support.v4.app.NotificationCompat$Builder:
     293:294:public android.support.v4.app.NotificationCompat$Builder setNumber(int)
     301:302:public android.support.v4.app.NotificationCompat$Builder setContentInfo(java.lang.CharSequence)
     320:321:public android.support.v4.app.NotificationCompat$Builder setContent(android.widget.RemoteViews)
-    333:334:public android.support.v4.app.NotificationCompat$Builder setContentIntent(android.app.PendingIntent)
     345:346:public android.support.v4.app.NotificationCompat$Builder setDeleteIntent(android.app.PendingIntent)
     363:365:public android.support.v4.app.NotificationCompat$Builder setFullScreenIntent(android.app.PendingIntent,boolean)
     373:374:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence)
@@ -719,6 +718,8 @@ com.halcyonwaves.apps.meinemediathek.R$id
 com.halcyonwaves.apps.meinemediathek.R$layout
 com.halcyonwaves.apps.meinemediathek.R$menu
 com.halcyonwaves.apps.meinemediathek.R$string
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity:
+    private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment:
     private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
@@ -738,8 +739,6 @@ com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
     public static final int SERVICE_MSG_INITIATE_DOWNLOAD
     public static final int SERVICE_MSG_CANCEL_DOWNLOAD
 com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread:
-    private static final java.lang.String TAG
-com.halcyonwaves.apps.meinemediathek.threads.DownloadThreadExecutorThread:
     private static final java.lang.String TAG
 org.acra.ACRAConfiguration:
     104:105:public void setAdditionalDropboxTags(java.lang.String[])

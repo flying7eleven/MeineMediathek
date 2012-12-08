@@ -1,32 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Meine Mediathek</string>
-    <string name="btn_search">Search</string>
-    <string name="not_title_download_of_movie">Downloading %s</string>
-    <string name="not_desc_download_of_movie">Downloading movie. Please wait&#8230;</string>
-    <string name="not_desc_download_of_movie_finished">Download complete!</string>
-    <string name="not_desc_download_of_movie_failed">Download failed!</string>
-    <string name="btn_download_movie">Download movie</string>
-    <string name="tv_movie_title">Title:</string>
-    <string name="tv_movie_description">Description:</string>
-    <string name="et_hint_searchfortitle">Search for movie title</string>
-    <string name="btn_agree">Agree</string>
-    <string name="btn_disagree">Disagree</string>
-    <string name="btn_cancel_download">Cancel download</string>
-    <string name="dlg_title_download_on_mobile">Are you sure?</string>
-    <string name="dlg_msg_download_on_mobile">You are currently not using a WiFi connection. When downloading using a cellular connection high costs may be charged by your provider.\n\nDo you really want to download this file using a cellular connection?</string>
-    <string name="dlg_title_license">License</string>
-    <string name="dlg_msg_license">This application was developed to support people watching their favorite  movies from the ZDF Mediathek while they have no internet access. It was NOT developed to download copy protected material and it is not intended to do so.\n\nThe content is provided by a third-party and you have to fulfill their license to be allowed to download their content.\n\nIf you agree to use this app without trying to violate someone\'s rights you are free to use it, otherwise go back to the Google Play Store and uninstall this app.</string>
-    <string name="dlg_title_timeout">Timeout</string>
-    <string name="dlg_msg_timeout">There was a request time out while fetching information from the content provider. Most of the time it will work if you go back and try it again.</string>
-    <string name="dlg_title_appcrash">The app crashed</string>
-    <string name="dlg_msg_appcrash">Sorry, but it seems that there is a bug in the application which caused it to crash right now. Please help me fix this bug as soon as possible by sending me a crash report which (hopefully) helps me to locate the bug.\n\nWould you like to send me a bug report (via email)?</string>
-    <string name="tv_player_notice">Please note that the default media player of Android may not be able to play the downloaded movies. We suggest using the  <a href="market://details?id=com.inisoft.mediaplayer.a">DICE Player</a> or the <a href="market://details?id=org.videolan.vlc.betav7neon">VLC Player</a> from the Google Play Store for viewing your downloaded movies.</string>
-    <string name="mnu_title_preferences">Preferences</string>
-    <string name="dlg_title_noresults">Nothing found</string>
-    <string name="dlg_msg_noresults">Unfortunately there were no results with the keywords you used for your search.</string>
-    <string-array name="sp_content_provider">
-        <item>ZDF Mediathek</item>
-    </string-array>
-    
+    <string name="btn_search">Suchen</string>
+    <string name="not_title_download_of_movie">Lade %s herunter</string>
+    <string name="not_desc_download_of_movie">Film wird heruntergeladen. Bitte warten&#8230;</string>
+    <string name="not_desc_download_of_movie_finished">Download abgeschlossen!</string>
+    <string name="not_desc_download_of_movie_failed">Download fehlgeschlagen!</string>
+    <string name="not_desc_download_of_movie_canceled">Download abgebrochen!</string>
+    <string name="btn_download_movie">Film herunterladen</string>
+    <string name="tv_movie_title">Titel:</string>
+    <string name="tv_movie_description">Beschreibung:</string>
+    <string name="et_hint_searchfortitle">Nach einem Filmtitel suchen</string>
+    <string name="btn_agree">Zustimmen</string>
+    <string name="btn_disagree">Ablehnen</string>
+    <string name="btn_cancel_download">Download abbrechen</string>
+    <string name="dlg_title_download_on_mobile">Sind Sie sicher?</string>
+    <string name="dlg_msg_download_on_mobile">Sie verwenden aktuell keine WLAN Verbindung. Wenn Sie die Filme über ihre mobile Datenverbindung herunterladen, können hohe Kosten entstehen.\n\nWollen Sie den Film wirklich über die mobile Datenverbindung herunterladen?</string>
+    <string name="dlg_title_license">Lizenz</string>
+    <string name="dlg_msg_license">Diese Anwendung wurde für den Zweck entwickelt, ihre Lieblingsfilme aus der ZDF Mediathek herunterladen und diese später ohne Internetzugriff anschauen zu können. Diese Anwendung wurde NICHT dazu entwicklet kopiergeschütztes Material herunterzuladen.\n\nDer Inhalt wird durch eine dritte Person bereitgestellt und Sie haben deren Lizenzen und Ansprüche zu erfüllen, um die Filme herunterladen zu dürfen.\n\nWenn Sie den oben genannten Bedingungen zustimmen und erklären niemanem Schaden zuzuführen, dürfen Sie die Anwendung gerne benutzen. Andernfalls begeben Sie sich bitte zurück in den Play Store und deinstallieren Sie diese Anwendung.</string>
+    <string name="dlg_title_timeout">Zeitüberschreitung</string>
+    <string name="dlg_msg_timeout">Bei der Anfrage nach Informationen zu ihrer Suche ist eine Zeitüberschreitung aufgetreten. Meist kann dies dadurch behoben werden, dass Sie zurückgehen und es erneut versuchen.</string>
+    <string name="dlg_title_appcrash">Absturz</string>
+    <string name="dlg_msg_appcrash">Entschuldigen Sie, aber es scheint ein Fehler in der Anwendung vorhanden zu sein, der zum Absturz dieser geführt hat. Bitte helfen Sie mir den Fehler zu beheben und senden Sie mir Informationen zu um diesen aufzufinden.\n\nMöchten Sie mir diese Informationen per Email senden?</string>
+    <string name="tv_player_notice">Bitte beachten Sie, dass der Standardplayer von Android evtl. nicht in der Lage ist die heruntergeladenen Filme abzuspielen. Wir empfehlen die Verwendung des <a href="market://details?id=com.inisoft.mediaplayer.a">DICE Players</a> oder des <a href="market://details?id=org.videolan.vlc.betav7neon">VLC Players</a> aus dem Google Play Store, um sich Ihre Downloads anzusehen.</string>
+    <string name="mnu_title_preferences">Einstellungen</string>
+    <string name="dlg_title_noresults">Keine Ergebnisse</string>
+    <string name="dlg_msg_noresults">Leider konnten für die von Ihnen gewählten Suchbegriffe keine Ergebnisse gefunden werden.</string>
+    <string name="mnu_title_bugreport">Fehlerbericht senden</string>
+
 </resources>

@@ -59,6 +59,7 @@ com.halcyonwaves.apps.meinemediathek.R$id: int fragment_searchresults
 com.halcyonwaves.apps.meinemediathek.R$id: int item1
 com.halcyonwaves.apps.meinemediathek.R$id: int iv_episode_image
 com.halcyonwaves.apps.meinemediathek.R$id: int iv_movie_preview_image
+com.halcyonwaves.apps.meinemediathek.R$id: int mnu_send_bugreport
 com.halcyonwaves.apps.meinemediathek.R$id: int tableRow1
 com.halcyonwaves.apps.meinemediathek.R$id: int tableRow2
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_episode_description
@@ -93,8 +94,10 @@ com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_license
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_noresults
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_timeout
 com.halcyonwaves.apps.meinemediathek.R$string: int et_hint_searchfortitle
+com.halcyonwaves.apps.meinemediathek.R$string: int mnu_title_bugreport
 com.halcyonwaves.apps.meinemediathek.R$string: int mnu_title_preferences
 com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie
+com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_canceled
 com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_failed
 com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_finished
 com.halcyonwaves.apps.meinemediathek.R$string: int not_title_download_of_movie

@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,6 +19,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +29,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService;
 
@@ -36,6 +40,8 @@ public class MovieOverviewFragment extends Fragment {
 	private ImageView ivPreviewImage = null;
 	private TextView tvMovieDescription = null;
 	private TextView tvMovieTitle = null;
+	private String previewImagePath = "";
+	private String uniqueId = "";
 
 	private static final String TAG = "MovieOverviewFragment";
 
@@ -65,6 +71,22 @@ public class MovieOverviewFragment extends Fragment {
 			this.serviceMessanger = null; // we have to do this because the onServiceDisconnected method gets just called if the service was killed
 		}
 	}
+
+	private synchronized int getNextNotificationId() {
+		// get the preferences of the application
+		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.getActivity().getApplicationContext() );
+		
+		// get the next notification id and store the current value in the settings file
+		int nextNotificationId = appPreferences.getInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, 0 ) + 1;
+		Editor prefEditor = appPreferences.edit();
+		prefEditor.putInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, nextNotificationId );
+		if( !prefEditor.commit() ) {
+			Log.e( MovieOverviewFragment.TAG, "Failed to store the last used notification id in the application preferences." );
+		}
+		
+		// return the next notification id which can be used
+		return nextNotificationId;
+	}
 	
 	@Override
 	public void onDestroyView() {
@@ -85,13 +107,15 @@ public class MovieOverviewFragment extends Fragment {
 		this.ivPreviewImage = (ImageView) v.findViewById( R.id.iv_movie_preview_image );
 		this.btnDownloadMoview = (Button) v.findViewById( R.id.btn_download_movie );
 
-		// set the download link we want to use
-		this.downloadLink = passedInformation.getString( "downloadLink" );
+		// fetch some information we want to use later
+		this.downloadLink = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
+		this.previewImagePath = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
+		this.uniqueId = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 
 		// set the content for all of the fetched controls
-		this.tvMovieTitle.setText( passedInformation.getString( "title" ) );
-		this.tvMovieDescription.setText( passedInformation.getString( "description" ) );
-		this.ivPreviewImage.setImageBitmap( BitmapFactory.decodeFile( passedInformation.getString( "previewImage" ) ) );
+		this.tvMovieTitle.setText( passedInformation.getString( Consts.EXTRA_NAME_MOVIE_TITLE ) );
+		this.tvMovieDescription.setText( passedInformation.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION ) );
+		this.ivPreviewImage.setImageBitmap( BitmapFactory.decodeFile( this.previewImagePath ) );
 
 		// tell the button what to do as soon as it gets clicked
 		this.btnDownloadMoview.setOnClickListener( new OnClickListener() {
@@ -131,7 +155,7 @@ public class MovieOverviewFragment extends Fragment {
 
 		// be sure that we are connected to the download service
 		this.doBindService();
-		
+
 		// return the created view
 		return v;
 	}
@@ -139,15 +163,18 @@ public class MovieOverviewFragment extends Fragment {
 	private void startEpisodeDownload() {
 		// prepare the information we want to send to the service
 		Bundle downloadExtras = new Bundle();
-		downloadExtras.putString( "downloadLink", this.downloadLink );
-		downloadExtras.putString( "movieTitle", this.tvMovieTitle.getText().toString() );
-		
+		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK, this.downloadLink );
+		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, this.previewImagePath );
+		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_TITLE, this.tvMovieTitle.getText().toString() );
+		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, this.tvMovieDescription.getText().toString() );
+		downloadExtras.putInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.getNextNotificationId() );
+
 		// prepare the download request
 		Message downloadRequest = new Message();
 		downloadRequest.setData( downloadExtras );
 		downloadRequest.what = BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD;
 		downloadRequest.replyTo = this.serviceMessanger;
-		
+
 		// send the download request
 		try {
 			this.serviceMessanger.send( downloadRequest );

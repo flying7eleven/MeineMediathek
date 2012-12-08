@@ -1,6 +1,7 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
 import java.util.List;
+import java.util.UUID;
 
 import android.app.AlertDialog;
 import android.app.ListFragment;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.SearchResultEntry;
 import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
@@ -65,10 +67,11 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 
 		// open the activity which shows the details about the selected entry
 		final Intent intent = new Intent( SearchResultsFragment.this.getActivity(), MovieOverviewActivity.class );
-		intent.putExtra( "title", selectedResults.title );
-		intent.putExtra( "description", selectedResults.description );
-		intent.putExtra( "downloadLink", selectedResults.downloadLink );
-		intent.putExtra( "previewImage", selectedResults.previewImage.getAbsolutePath() );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, selectedResults.title );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, selectedResults.description );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK, selectedResults.downloadLink );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, selectedResults.previewImage.getAbsolutePath() );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, UUID.randomUUID().toString() );
 		SearchResultsFragment.this.startActivity( intent );
 	}
 
