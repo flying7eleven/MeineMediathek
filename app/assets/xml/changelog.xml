@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
-<release version="0.1" versioncode="10" releasedate="2012-12-XX">
+<release version="0.1" versioncode="10" releasedate="2012-12-08">
 <change>Downloads are now cancelable</change>
-<change>Added a preference screen for tweaking some settings</change>
+<change>Prepared the code to handle custom user settings</change>
 <change>The device will now stay awake until all downloads finished</change>
 <change>Removed the English translation, the application is now German by default</change>
 <change>Fixed several bug which caused the application to crash</change>

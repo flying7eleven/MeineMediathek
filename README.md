@@ -24,9 +24,9 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.1 (Code: *10*, Released on: ***2012-12-XX***) - [Changes][110]
+### Version 0.1 (Code: *10*, Released on: ***2012-12-08***) - [Changes][110]
 * Downloads are now cancelable
-* Added a preference screen for tweaking some settings
+* Prepared the code to handle custom user settings
 * The device will now stay awake until all downloads finished
 * Removed the English translation, the application is now German by default
 * Fixed several bug which caused the application to crash
