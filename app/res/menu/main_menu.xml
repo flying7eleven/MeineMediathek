@@ -7,7 +7,7 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:showAsAction="ifRoom"
         android:title="@string/mnu_title_preferences"
-        android:visible="true">
+        android:visible="false">
     </item>
     <item
         android:id="@+id/mnu_send_bugreport"
