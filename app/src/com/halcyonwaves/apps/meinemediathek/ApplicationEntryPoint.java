@@ -64,6 +64,11 @@ import android.content.pm.Signature;
 	},
 	mode = ReportingInteractionMode.DIALOG,
 	sendReportsInDevMode = false,
+	logcatArguments = {
+			"-t",
+			"500",
+			"-v",
+			"time" },
 	resDialogTitle = R.string.dlg_title_appcrash,
 	resDialogText = R.string.dlg_msg_appcrash )
 public class ApplicationEntryPoint extends Application {
