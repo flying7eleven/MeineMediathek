@@ -79,6 +79,16 @@ public class DownloadStreamThread extends Thread {
 	private Context threadContext = null;
 
 	/**
+	 * The actual download thread.
+	 */
+	private Thread actualDownloadThread = null;
+
+	/**
+	 * 
+	 */
+	private MMSInputStream mmsInputStream = null;
+
+	/**
 	 * Constructor for the download thread.
 	 * 
 	 * @param context The context in which the thread was created.
@@ -126,154 +136,192 @@ public class DownloadStreamThread extends Thread {
 	 */
 	@Override
 	public void run() {
-		//
+		// give the download thread a name
 		Thread.currentThread().setName( String.format( "StreamDownloadTask(%s)", this.notificationId ) );
 
-		//
-		String extractedURL = "";
-		Document fetchedResults = null;
-		byte[] downloadBuffer = null;
-		boolean reachedDueToException = false;
-		int movieFullLength = 0;
-		int comReadB = 0;
-		int readB = 0;
+		// create the thread which does the actual downloading
+		this.actualDownloadThread = new Thread() {
 
-		try {
+			@Override
+			public void run() {
+				//
+				String extractedURL = "";
+				Document fetchedResults = null;
+				byte[] downloadBuffer = null;
+				boolean reachedDueToException = false;
+				int movieFullLength = 0;
+				int comReadB = 0;
+				int readB = 0;
 
-			// be sure that the device will not sleep while we try to download our movie
-			this.downloadWakeLock.acquire();
-
-			// since we currently don't know how big the file is, show a progress with an undefined state
-			this.notificationBuilder.setProgress( 100, 0, true );
-			this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + this.notificationId, this.notificationBuilder.build() );
-
-			// try it two times to fetch the file (if the first time fails for a socket timeout)
-			try {
-				fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
-			} catch( final SocketTimeoutException e ) {
 				try {
-					fetchedResults = Jsoup.connect( this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
-				} catch( final SocketTimeoutException innerE ) {
-					throw e;
-				}
 
-			}
-			final Elements foundLinks = fetchedResults.select( "Ref[href]" );
-			for( final Element currentLink : foundLinks ) {
-				Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
-				if( currentLink.attr( "href" ).startsWith( "mms://" ) ) {
-					extractedURL = currentLink.attr( "href" );
-					final String[] splittedURL = extractedURL.split( "/" );
-					if( splittedURL.length > 0 ) {
-						if( splittedURL[ splittedURL.length - 1 ].endsWith( "wmv" ) ) {
-							this.outputFile = new File( this.outputFile, splittedURL[ splittedURL.length - 1 ] );
+					// be sure that the device will not sleep while we try to download our movie
+					DownloadStreamThread.this.downloadWakeLock.acquire();
+
+					// since we currently don't know how big the file is, show a progress with an undefined state
+					DownloadStreamThread.this.notificationBuilder.setProgress( 100, 0, true );
+					DownloadStreamThread.this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + DownloadStreamThread.this.notificationId, DownloadStreamThread.this.notificationBuilder.build() );
+
+					// try it two times to fetch the file (if the first time fails for a socket timeout)
+					try {
+						fetchedResults = Jsoup.connect( DownloadStreamThread.this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
+					} catch( final SocketTimeoutException e ) {
+						try {
+							fetchedResults = Jsoup.connect( DownloadStreamThread.this.downloadLink ).ignoreContentType( true ).userAgent( Consts.DESKTOP_USER_AGENT ).timeout( Consts.SOCKET_TIMEOUT_IN_SECONDS * 1000 ).get();
+						} catch( final SocketTimeoutException innerE ) {
+							throw e;
+						}
+
+					}
+					final Elements foundLinks = fetchedResults.select( "Ref[href]" );
+					for( final Element currentLink : foundLinks ) {
+						Log.v( DownloadStreamThread.TAG, "Found a media link inside the ASX file: " + currentLink.attr( "href" ) );
+						if( currentLink.attr( "href" ).startsWith( "mms://" ) ) {
+							extractedURL = currentLink.attr( "href" );
+							final String[] splittedURL = extractedURL.split( "/" );
+							if( splittedURL.length > 0 ) {
+								if( splittedURL[ splittedURL.length - 1 ].endsWith( "wmv" ) ) {
+									DownloadStreamThread.this.outputFile = new File( DownloadStreamThread.this.outputFile, splittedURL[ splittedURL.length - 1 ] );
+								} else {
+									DownloadStreamThread.this.outputFile = new File( DownloadStreamThread.this.outputFile, "test.wmv" );
+								}
+							} else {
+								DownloadStreamThread.this.outputFile = new File( DownloadStreamThread.this.outputFile, "test.wmv" );
+							}
+							break;
+						}
+					}
+
+					//
+					DownloadStreamThread.this.mmsInputStream = new MMSInputStream( extractedURL );
+					final FileOutputStream outputStream = new FileOutputStream( DownloadStreamThread.this.outputFile );
+					movieFullLength = DownloadStreamThread.this.mmsInputStream.length();
+
+					// since we know the length of the full movie now, we can set the progress bar to a known state
+					DownloadStreamThread.this.notificationBuilder.setProgress( 100, 0, false );
+					DownloadStreamThread.this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + DownloadStreamThread.this.notificationId, DownloadStreamThread.this.notificationBuilder.build() );
+
+					// select the buffer which is the best for the estimated file size
+					if( movieFullLength < (1024 * 1024 * 10) ) { // if the file is smaller than 10 MB,
+						downloadBuffer = new byte[ 1024 * 128 ]; // use a 128k buffer
+					} else if( movieFullLength < (1024 * 1024 * 50) ) { // if the file is smaller than 50 MB,
+						downloadBuffer = new byte[ 1024 * 256 ]; // use a 256k buffer
+					} else if( movieFullLength < (1024 * 1024 * 100) ) { // if the file is smaller than 100 MB,
+						downloadBuffer = new byte[ 1024 * 512 ]; // use a 512 buffer
+					} else { // if the file is bigger than 100MB
+						downloadBuffer = new byte[ 1024 * 1024 * 1 ]; // use a 1MB buffer
+					}
+					Log.v( DownloadStreamThread.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
+
+					// read the whole movie
+					while( comReadB < movieFullLength && !this.isInterrupted() ) {
+						// get a data chunk
+						readB = DownloadStreamThread.this.mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
+						if( readB <= 0 ) {
+							Log.v( DownloadStreamThread.TAG, "The last read request returned with 0 bytes, it seems that we finished!" );
+							break;
+						}
+
+						// write the data chunk into the output file
+						outputStream.write( downloadBuffer, 0, readB );
+						comReadB += readB;
+
+						// update the notification bar entry
+						DownloadStreamThread.this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
+						DownloadStreamThread.this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + DownloadStreamThread.this.notificationId, DownloadStreamThread.this.notificationBuilder.build() );
+					}
+
+					// close all opened streams
+					downloadBuffer = null;
+					outputStream.flush();
+					outputStream.close();
+					DownloadStreamThread.this.mmsInputStream.close();
+					DownloadStreamThread.this.mmsInputStream = null;
+
+					// if the thread was interrupted, delete the downloaded stuff again
+					if( this.isInterrupted() ) {
+						if( DownloadStreamThread.this.outputFile.delete() ) {
+							Log.v( DownloadStreamThread.TAG, "Deleted file which was created before the download thread was interrupted!" );
 						} else {
-							this.outputFile = new File( this.outputFile, "test.wmv" );
+							Log.w( DownloadStreamThread.TAG, "Failed to delete the file which was created before the download thread was interrupted!" );
+						}
+					}
+
+					// otherwise check the file size and then ensure that the media scanner sees the file we have added
+					else {
+						// if the size of the downloaded file is not the same as the expected size, delete the file and notify the user
+						// it can happen that the actual file size is bigger than the expected size (TODO: why?)
+						if( /* movieFullLength > DownloadStreamThread.this.outputFile.length() || */DownloadStreamThread.this.outputFile.length() != comReadB ) {
+							Log.w( DownloadStreamThread.TAG, String.format( "The downloaded file has a size of %d bytes and %d bytes were received, but we expected %d bytes. Deleting file again!", DownloadStreamThread.this.outputFile.length(), comReadB, movieFullLength ) );
+							DownloadStreamThread.this.outputFile.delete();
+							reachedDueToException = true;
+						} else {
+							// tell the media scanner about the new file
+							MediaScannerConnection.scanFile( DownloadStreamThread.this.threadContext, new String[] { DownloadStreamThread.this.outputFile.getAbsolutePath() }, null, null );
+						}
+					}
+
+				} catch( final IOException e ) {
+					Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
+					reachedDueToException = true;
+					ACRA.getErrorReporter().putCustomData( "downloadLink", DownloadStreamThread.this.downloadLink );
+					ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", DownloadStreamThread.this.outputFile != null ? DownloadStreamThread.this.outputFile.getAbsolutePath() : "" );
+					ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
+					ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
+					ACRA.getErrorReporter().putCustomData( "movieFullLength", String.format( "%d", movieFullLength ) );
+					ACRA.getErrorReporter().putCustomData( "readBytesFromMovie", String.format( "%d", comReadB ) );
+					ACRA.getErrorReporter().putCustomData( "lastReadBytes", String.format( "%d", readB ) );
+					ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
+					ACRA.getErrorReporter().handleException( e );
+				} finally {
+					// be sure that we ALWAYS release the wake lock
+					DownloadStreamThread.this.downloadWakeLock.release();
+
+					// ensure that the notification item can be removed if we finished or crashed
+					if( !reachedDueToException ) {
+						if( !this.isInterrupted() ) {
+							DownloadStreamThread.this.notificationBuilder.setContentText( DownloadStreamThread.this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
+						} else {
+							DownloadStreamThread.this.notificationBuilder.setContentText( DownloadStreamThread.this.threadContext.getString( R.string.not_desc_download_of_movie_canceled ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 						}
 					} else {
-						this.outputFile = new File( this.outputFile, "test.wmv" );
+						DownloadStreamThread.this.notificationBuilder.setContentText( DownloadStreamThread.this.threadContext.getString( R.string.not_desc_download_of_movie_failed ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
 					}
-					break;
-				}
-			}
+					DownloadStreamThread.this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + DownloadStreamThread.this.notificationId, DownloadStreamThread.this.notificationBuilder.build() );
 
-			//
-			final MMSInputStream mmsInputStream = new MMSInputStream( extractedURL );
-			final FileOutputStream outputStream = new FileOutputStream( this.outputFile );
-			movieFullLength = mmsInputStream.length();
-
-			// since we know the length of the full movie now, we can set the progress bar to a known state
-			this.notificationBuilder.setProgress( 100, 0, false );
-			this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + this.notificationId, this.notificationBuilder.build() );
-
-			// select the buffer which is the best for the estimated file size
-			if( movieFullLength < (1024 * 1024 * 10) ) { // if the file is smaller than 10 MB,
-				downloadBuffer = new byte[ 1024 * 128 ]; // use a 128k buffer
-			} else if( movieFullLength < (1024 * 1024 * 50) ) { // if the file is smaller than 50 MB,
-				downloadBuffer = new byte[ 1024 * 256 ]; // use a 256k buffer
-			} else if( movieFullLength < (1024 * 1024 * 100) ) { // if the file is smaller than 100 MB,
-				downloadBuffer = new byte[ 1024 * 512 ]; // use a 512 buffer
-			} else { // if the file is bigger than 100MB
-				downloadBuffer = new byte[ 1024 * 1024 * 1 ]; // use a 1MB buffer
-			}
-			Log.v( DownloadStreamThread.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
-
-			// read the whole movie
-			while( comReadB < movieFullLength && !this.isInterrupted() ) {
-				// get a data chunk
-				readB = mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
-				if( readB <= 0 ) {
-					Log.v( DownloadStreamThread.TAG, "The last read request returned with 0 bytes, it seems that we finished!" );
-					break;
 				}
 
-				// write the data chunk into the output file
-				outputStream.write( downloadBuffer, 0, readB );
-				comReadB += readB;
-
-				// update the notification bar entry
-				this.notificationBuilder.setProgress( movieFullLength, comReadB, false );
-				this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + this.notificationId, this.notificationBuilder.build() );
 			}
+		};
 
-			// close all opened streams
-			downloadBuffer = null;
-			outputStream.flush();
-			outputStream.close();
-			mmsInputStream.close();
+		// run the actual download thread
+		this.actualDownloadThread.start();
 
-			// if the thread was interrupted, delete the downloaded stuff again
-			if( this.isInterrupted() ) {
-				if( this.outputFile.delete() ) {
-					Log.v( DownloadStreamThread.TAG, "Deleted file which was created before the download thread was interrupted!" );
-				} else {
-					Log.w( DownloadStreamThread.TAG, "Failed to delete the file which was created before the download thread was interrupted!" );
-				}
+		// wait some time and check if our thread was interrupted, if so, terminate the actual
+		// downlaod thread and return
+		while( !this.isInterrupted() && this.actualDownloadThread.isAlive() ) {
+			//Log.v( DownloadStreamThread.TAG, "RUNNING LOOP!" );
+
+			// wait for a while (until the download finished or we get to our max. waiting time)
+			try {
+				this.actualDownloadThread.join( 1000 );
+			} catch( InterruptedException e ) {
+				this.actualDownloadThread.interrupt();
+				/*try {
+					Log.v( DownloadStreamThread.TAG, "Waiting for the download thread to terminate gracefully..." );
+					this.actualDownloadThread.join( 5000 );
+					Log.v( DownloadStreamThread.TAG, "Sending forceful termation request to the download thread..." );
+					this.mmsInputStream.close();
+				} catch( IOException innerEx ) {
+					// this is allowed to happen because we try to close any blocking call
+					Log.v( DownloadStreamThread.TAG, "Socket was forcefully closed!" );
+				} catch( InterruptedException innerEx ) {
+					// this is allowed to happen because we try to close any blocking call
+					Log.v( DownloadStreamThread.TAG, "Thread already terminated gracefully!" );
+				} catch( Exception innerEx ) {
+					Log.w( DownloadStreamThread.TAG, "Thread already terminated gracefully!!!!!!!!!!!!!!" );
+				}*/
 			}
-
-			// otherwise check the file size and then ensure that the media scanner sees the file we have added
-			else {
-				// if the size of the downloaded file is not the same as the expected size, delete the file and notify the user
-				// it can happen that the actual file size is bigger than the expected size (TODO: why?)
-				if( /*movieFullLength > this.outputFile.length() ||*/ this.outputFile.length() != comReadB ) {
-					Log.w( DownloadStreamThread.TAG, String.format( "The downloaded file has a size of %d bytes and %d bytes were received, but we expected %d bytes. Deleting file again!", this.outputFile.length(), comReadB, movieFullLength ) );
-					this.outputFile.delete();
-					reachedDueToException = true;
-				} else {
-					// tell the media scanner about the new file
-					MediaScannerConnection.scanFile( this.threadContext, new String[] { this.outputFile.getAbsolutePath() }, null, null );
-				}
-			}
-
-		} catch( final IOException e ) {
-			Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
-			reachedDueToException = true;
-			ACRA.getErrorReporter().putCustomData( "downloadLink", this.downloadLink );
-			ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", this.outputFile != null ? this.outputFile.getAbsolutePath() : "" );
-			ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
-			ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
-			ACRA.getErrorReporter().putCustomData( "movieFullLength", String.format( "%d", movieFullLength ) );
-			ACRA.getErrorReporter().putCustomData( "readBytesFromMovie", String.format( "%d", comReadB ) );
-			ACRA.getErrorReporter().putCustomData( "lastReadBytes", String.format( "%d", readB ) );
-			ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-			ACRA.getErrorReporter().handleException( e );
-		} finally {
-			// be sure that we ALWAYS release the wake lock
-			this.downloadWakeLock.release();
-
-			// ensure that the notification item can be removed if we finished or crashed
-			if( !reachedDueToException ) {
-				if( !this.isInterrupted() ) {
-					this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_finished ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
-				} else {
-					this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_canceled ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
-				}
-			} else {
-				this.notificationBuilder.setContentText( this.threadContext.getString( R.string.not_desc_download_of_movie_failed ) ).setSmallIcon( android.R.drawable.stat_sys_download_done ).setOngoing( false ).setProgress( 0, 0, false );
-			}
-			this.notificationManager.notify( DownloadStreamThread.TAG, Consts.NOTIFICATION_DOWNLOADING_MOVIE + this.notificationId, this.notificationBuilder.build() );
-
 		}
-
 	}
 }
