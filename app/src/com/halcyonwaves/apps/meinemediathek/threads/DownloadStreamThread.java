@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.UUID;
 
 import org.acra.ACRA;
 import org.jsoup.Jsoup;
@@ -21,13 +20,11 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
-import android.text.method.MovementMethod;
 import android.util.Log;
 
 import com.halcyonwaves.apps.meinemediathek.Consts;
 import com.halcyonwaves.apps.meinemediathek.R;
 import com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity;
-import com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity;
 import com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream;
 
 /**
@@ -44,14 +41,34 @@ public class DownloadStreamThread extends Thread {
 	private static final String TAG = "DownloadStreamThread";
 
 	/**
+	 * The actual download thread.
+	 */
+	private Thread actualDownloadThread = null;
+
+	/**
 	 * The link to the file which should be downloaded.
 	 */
 	private String downloadLink = null;
 
 	/**
+	 * The wake lock which is used to prevent the device from falling asleep during the downloading process.
+	 */
+	private WakeLock downloadWakeLock = null;
+
+	/**
+	 * 
+	 */
+	private MMSInputStream mmsInputStream = null;
+
+	/**
 	 * The notification builder which is used to construct the download notification.
 	 */
 	private NotificationCompat.Builder notificationBuilder = null;
+
+	/**
+	 * The notification id which is used for the current download process.
+	 */
+	private int notificationId = -1;
 
 	/**
 	 * A handle to the Android notification manager to show our notification.
@@ -64,29 +81,9 @@ public class DownloadStreamThread extends Thread {
 	private File outputFile = null;
 
 	/**
-	 * The wake lock which is used to prevent the device from falling asleep during the downloading process.
-	 */
-	private WakeLock downloadWakeLock = null;
-
-	/**
-	 * The notification id which is used for the current download process.
-	 */
-	private int notificationId = -1;
-
-	/**
 	 * The context in which the thread was created.
 	 */
 	private Context threadContext = null;
-
-	/**
-	 * The actual download thread.
-	 */
-	private Thread actualDownloadThread = null;
-
-	/**
-	 * 
-	 */
-	private MMSInputStream mmsInputStream = null;
 
 	/**
 	 * Constructor for the download thread.
@@ -97,7 +94,7 @@ public class DownloadStreamThread extends Thread {
 	 * @param movieTitle The title of the movie to download (displayed in the notification).
 	 * @param movieDescription The description of the movie (will be displayed in the cancel dialog).
 	 */
-	public DownloadStreamThread( final Context context, int notificationId, final String downloadLink, final String movieTitle, final String movieDescription ) {
+	public DownloadStreamThread( final Context context, final int notificationId, final String downloadLink, final String movieTitle, final String movieDescription ) {
 		this.downloadLink = downloadLink;
 		this.threadContext = context;
 		this.notificationId = notificationId;
@@ -114,11 +111,11 @@ public class DownloadStreamThread extends Thread {
 		this.outputFile.mkdirs();
 
 		// define what should happen if the user clicks on the notification item
-		Intent intent = new Intent( this.threadContext, ManageDownloadActivity.class );
+		final Intent intent = new Intent( this.threadContext, ManageDownloadActivity.class );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_TITLE, movieTitle );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, movieDescription );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.notificationId );
-		PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, this.notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT );
+		final PendingIntent contentIntent = PendingIntent.getActivity( this.threadContext, this.notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT );
 
 		// prepare the notification for the download
 		this.notificationManager = (NotificationManager) context.getSystemService( Context.NOTIFICATION_SERVICE );
@@ -214,7 +211,7 @@ public class DownloadStreamThread extends Thread {
 					Log.v( DownloadStreamThread.TAG, String.format( "Selected a download buffer size of %d bytes", downloadBuffer.length ) );
 
 					// read the whole movie
-					while( comReadB < movieFullLength && !this.isInterrupted() ) {
+					while( (comReadB < movieFullLength) && !this.isInterrupted() ) {
 						// get a data chunk
 						readB = DownloadStreamThread.this.mmsInputStream.read( downloadBuffer, 0, downloadBuffer.length );
 						if( readB <= 0 ) {
@@ -300,27 +297,16 @@ public class DownloadStreamThread extends Thread {
 		// wait some time and check if our thread was interrupted, if so, terminate the actual
 		// downlaod thread and return
 		while( !this.isInterrupted() && this.actualDownloadThread.isAlive() ) {
-			//Log.v( DownloadStreamThread.TAG, "RUNNING LOOP!" );
+			// Log.v( DownloadStreamThread.TAG, "RUNNING LOOP!" );
 
 			// wait for a while (until the download finished or we get to our max. waiting time)
 			try {
 				this.actualDownloadThread.join( 1000 );
-			} catch( InterruptedException e ) {
+			} catch( final InterruptedException e ) {
 				this.actualDownloadThread.interrupt();
-				/*try {
-					Log.v( DownloadStreamThread.TAG, "Waiting for the download thread to terminate gracefully..." );
-					this.actualDownloadThread.join( 5000 );
-					Log.v( DownloadStreamThread.TAG, "Sending forceful termation request to the download thread..." );
-					this.mmsInputStream.close();
-				} catch( IOException innerEx ) {
-					// this is allowed to happen because we try to close any blocking call
-					Log.v( DownloadStreamThread.TAG, "Socket was forcefully closed!" );
-				} catch( InterruptedException innerEx ) {
-					// this is allowed to happen because we try to close any blocking call
-					Log.v( DownloadStreamThread.TAG, "Thread already terminated gracefully!" );
-				} catch( Exception innerEx ) {
-					Log.w( DownloadStreamThread.TAG, "Thread already terminated gracefully!!!!!!!!!!!!!!" );
-				}*/
+				/*
+				 * try { Log.v( DownloadStreamThread.TAG, "Waiting for the download thread to terminate gracefully..." ); this.actualDownloadThread.join( 5000 ); Log.v( DownloadStreamThread.TAG, "Sending forceful termation request to the download thread..." ); this.mmsInputStream.close(); } catch( IOException innerEx ) { // this is allowed to happen because we try to close any blocking call Log.v( DownloadStreamThread.TAG, "Socket was forcefully closed!" ); } catch( InterruptedException innerEx ) { // this is allowed to happen because we try to close any blocking call Log.v( DownloadStreamThread.TAG, "Thread already terminated gracefully!" ); } catch( Exception innerEx ) { Log.w( DownloadStreamThread.TAG, "Thread already terminated gracefully!!!!!!!!!!!!!!" ); }
+				 */
 			}
 		}
 	}

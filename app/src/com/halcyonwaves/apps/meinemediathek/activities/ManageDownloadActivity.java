@@ -23,26 +23,28 @@ import com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService;
 
 public class ManageDownloadActivity extends BaseActivity {
 
-	private Button cancelDownload = null;
-	private TextView movieTitle = null;
-	private TextView movieDescription = null;
-	private int cancelId = -1;
-
 	private static final String TAG = "ManageDownloadActivity";
+	private Button cancelDownload = null;
+	private int cancelId = -1;
+	private TextView movieDescription = null;
 
-	private Messenger serviceMessanger = null;
+	private TextView movieTitle = null;
+
 	private final ServiceConnection serviceConnection = new ServiceConnection() {
 
+		@Override
 		public void onServiceConnected( final ComponentName className, final IBinder service ) {
 			ManageDownloadActivity.this.serviceMessanger = new Messenger( service );
 			Log.d( ManageDownloadActivity.TAG, "Conntected to download service" );
 		}
 
+		@Override
 		public void onServiceDisconnected( final ComponentName className ) {
 			ManageDownloadActivity.this.serviceMessanger = null;
 			Log.d( ManageDownloadActivity.TAG, "Disconnected from download service" );
 		}
 	};
+	private Messenger serviceMessanger = null;
 
 	private void doBindService() {
 		if( null == this.serviceMessanger ) {
@@ -55,12 +57,6 @@ public class ManageDownloadActivity extends BaseActivity {
 			this.unbindService( this.serviceConnection );
 			this.serviceMessanger = null; // we have to do this because the onServiceDisconnected method gets just called if the service was killed
 		}
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		this.doUnbindService();
 	}
 
 	@Override
@@ -92,11 +88,11 @@ public class ManageDownloadActivity extends BaseActivity {
 			@Override
 			public void onClick( final View v ) {
 				// prepare the information we want to send to the service
-				Bundle downloadExtras = new Bundle();
+				final Bundle downloadExtras = new Bundle();
 				downloadExtras.putInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, ManageDownloadActivity.this.cancelId );
 
 				// prepare the download request
-				Message downloadRequest = new Message();
+				final Message downloadRequest = new Message();
 				downloadRequest.setData( downloadExtras );
 				downloadRequest.what = BackgroundDownloadService.SERVICE_MSG_CANCEL_DOWNLOAD;
 				downloadRequest.replyTo = ManageDownloadActivity.this.serviceMessanger;
@@ -104,7 +100,7 @@ public class ManageDownloadActivity extends BaseActivity {
 				// send the download request
 				try {
 					ManageDownloadActivity.this.serviceMessanger.send( downloadRequest );
-				} catch( RemoteException e ) {
+				} catch( final RemoteException e ) {
 					ACRA.getErrorReporter().handleException( e );
 				}
 
@@ -113,6 +109,12 @@ public class ManageDownloadActivity extends BaseActivity {
 
 			}
 		} );
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		this.doUnbindService();
 	}
 
 }

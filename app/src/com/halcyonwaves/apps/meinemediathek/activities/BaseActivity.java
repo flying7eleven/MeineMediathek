@@ -20,7 +20,7 @@ public abstract class BaseActivity extends Activity {
 
 		// if this is a debug build, add an option to send a custom bug report
 		if( ApplicationEntryPoint.isApplicationDebuggable( this.getApplicationContext() ) ) {
-			final MenuItem bugreportMenu = (MenuItem) menu.findItem( R.id.mnu_send_bugreport );
+			final MenuItem bugreportMenu = menu.findItem( R.id.mnu_send_bugreport );
 			if( null != bugreportMenu ) {
 				bugreportMenu.setVisible( true );
 			}
@@ -29,9 +29,9 @@ public abstract class BaseActivity extends Activity {
 		// we succeeded
 		return true;
 	}
-	
+
 	@Override
-	public boolean onMenuItemSelected( int featureId, MenuItem item ) {
+	public boolean onMenuItemSelected( final int featureId, final MenuItem item ) {
 		switch( item.getItemId() ) {
 			case R.id.mnu_send_bugreport:
 				ACRA.getErrorReporter().handleException( null );
