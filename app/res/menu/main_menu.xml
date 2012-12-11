@@ -16,5 +16,12 @@
         android:showAsAction="ifRoom"
         android:title="@string/mnu_title_bugreport"
         android:visible="false"/>
+    <item
+        android:id="@+id/mnu_test_download"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_report_image"
+        android:showAsAction="ifRoom"
+        android:title="@string/mnu_title_test_download"
+        android:visible="false"/>
 
 </menu>

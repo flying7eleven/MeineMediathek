@@ -28,6 +28,7 @@
     <string name="dlg_title_noresults">Keine Ergebnisse</string>
     <string name="dlg_msg_noresults">Leider konnten für die von Ihnen gewählten Suchbegriffe keine Ergebnisse gefunden werden.</string>
     <string name="mnu_title_bugreport">Fehlerbericht senden</string>
+    <string name="mnu_title_test_download">Test Download</string>
     <!--
     <string name="sp_itm_content_provider_ard">ARD Mediathek</string>
     <string name="sp_itm_content_provider_wdr">WDR Mediathek</string>

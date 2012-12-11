@@ -21,6 +21,10 @@ public abstract class BaseActivity extends Activity {
 		// if this is a debug build, add an option to send a custom bug report
 		if( ApplicationEntryPoint.isApplicationDebuggable( this.getApplicationContext() ) ) {
 			final MenuItem bugreportMenu = menu.findItem( R.id.mnu_send_bugreport );
+			final MenuItem testDownloadMenu = menu.findItem( R.id.mnu_test_download );
+			if( null != testDownloadMenu ) {
+				testDownloadMenu.setVisible( true );
+			}
 			if( null != bugreportMenu ) {
 				bugreportMenu.setVisible( true );
 			}
