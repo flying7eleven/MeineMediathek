@@ -24,6 +24,10 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
+### Version 0.2 (Code: *20*, Veröffentlicht am: ***2013-XX-XX***) - [Changes][120]
+* Unterstützung für das RTMP Protokoll hinzugefügt (für eine spätere Unterstützung der ARD und WDR Mediathek)
+* Benutzeroberfläche überarbeitet
+
 ### Version 0.1 (Code: *10*, Released on: ***2012-12-08***) - [Changes][110]
 * Downloads are now cancelable
 * Prepared the code to handle custom user settings
@@ -74,3 +78,4 @@ For building the application by yourself follow the following steps:
  [104]: https://github.com/thuetz/MeineMediathek/compare/v0.0.5...v0.0.6
  [105]: https://github.com/thuetz/MeineMediathek/compare/v0.0.6...v0.0.7
  [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.7...v0.1
+ [120]: https://github.com/thuetz/MeineMediathek/compare/v0.1...v0.2
