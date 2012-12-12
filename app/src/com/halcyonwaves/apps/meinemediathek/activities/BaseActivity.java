@@ -1,5 +1,6 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.acra.ACRA;
@@ -45,9 +46,17 @@ public abstract class BaseActivity extends Activity {
 				break;
 			case R.id.mnu_test_download:
 				try {
-					RTMPInputStream testStream = new RTMPInputStream( "rtmp://vod.daserste.de/ardfs/videoportal/mediathek/Reportage+Dokumentation/c_280000/280346/format348285.mp4" );
-					testStream.getDurationInMs();
-					testStream.read();
+					final String filename = getFilesDir() + "/test.mp4";
+					FileOutputStream fostream = new FileOutputStream( filename );
+					RTMPInputStream testStream = new RTMPInputStream( "rtmp://gffstream.fcod.llnwd.net/a792/e2/CMS2010/mdb/9/94998/shorttrackrobertseifertmiterstemdeutscheneinzelsieg2_830270.mp4" );
+					int bread = 0;
+					byte[] buffer = new byte[ 4096 ];
+					while( 0 < (bread = testStream.read( buffer, 0, 4096 )) ) {
+						fostream.write( buffer, 0, bread );
+					}
+					buffer = null;
+					fostream.flush();
+					fostream.close();
 					testStream.close();
 				} catch( final IOException e ) {
 					// do nothing, just a test
