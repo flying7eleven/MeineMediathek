@@ -32,6 +32,12 @@
 #include "rtmp_sys.h"
 #include "log.h"
 
+#define ANDROID_LOG_MODULE "rtmp.c[native]"
+
+#include <jni.h>
+#include <string.h>
+#include "../android-log.h"
+
 #ifdef CRYPTO
 #ifdef USE_POLARSSL
 #include <polarssl/havege.h>
@@ -984,6 +990,7 @@ RTMP_Connect1(RTMP *r, RTMPPacket *cp)
 	}
 #else
       RTMP_Log(RTMP_LOGERROR, "%s, no SSL/TLS support", __FUNCTION__);
+      ALOG_TRACE( "RTMP_Connect1() failed because no SSL/TLS support is available!" );
       RTMP_Close(r);
       return FALSE;
 
@@ -999,15 +1006,18 @@ RTMP_Connect1(RTMP *r, RTMPPacket *cp)
 	{
 	  r->m_msgCounter = 0;
 	  RTMP_Log(RTMP_LOGDEBUG, "%s, Could not connect for handshake", __FUNCTION__);
+	  ALOG_TRACE( "RTMP_Connect1() Could not connect for handshake!" );
 	  RTMP_Close(r);
 	  return 0;
 	}
       r->m_msgCounter = 0;
     }
   RTMP_Log(RTMP_LOGDEBUG, "%s, ... connected, handshaking", __FUNCTION__);
+  ALOG_TRACE( "RTMP_Connect1() Connected, handshacking now..." );
   if (!HandShake(r, TRUE))
     {
       RTMP_Log(RTMP_LOGERROR, "%s, handshake failed.", __FUNCTION__);
+      ALOG_TRACE( "RTMP_Connect1() Handshake failed!" );
       RTMP_Close(r);
       return FALSE;
     }
@@ -1016,9 +1026,11 @@ RTMP_Connect1(RTMP *r, RTMPPacket *cp)
   if (!SendConnectPacket(r, cp))
     {
       RTMP_Log(RTMP_LOGERROR, "%s, RTMP connect failed.", __FUNCTION__);
+      ALOG_TRACE( "RTMP_Connect1() RTMP connect failed!" );
       RTMP_Close(r);
       return FALSE;
     }
+  ALOG_TRACE( "RTMP_Connect1() Connection succeeded!" );  
   return TRUE;
 }
 
@@ -1026,8 +1038,10 @@ int
 RTMP_Connect(RTMP *r, RTMPPacket *cp)
 {
   struct sockaddr_in service;
-  if (!r->Link.hostname.av_len)
+  if (!r->Link.hostname.av_len) {
+  	ALOG_TRACE( "RTMP_Connect() r->Link.hostname.av_len='%d'", r->Link.hostname.av_len );
     return FALSE;
+  }
 
   memset(&service, 0, sizeof(struct sockaddr_in));
   service.sin_family = AF_INET;
@@ -1035,21 +1049,28 @@ RTMP_Connect(RTMP *r, RTMPPacket *cp)
   if (r->Link.socksport)
     {
       /* Connect via SOCKS */
-      if (!add_addr_info(&service, &r->Link.sockshost, r->Link.socksport))
-	return FALSE;
+      if (!add_addr_info(&service, &r->Link.sockshost, r->Link.socksport)) {
+      	ALOG_TRACE( "RTMP_Connect() add_addr_info(...) failed" );
+		return FALSE;
+      }
     }
   else
     {
       /* Connect directly */
-      if (!add_addr_info(&service, &r->Link.hostname, r->Link.port))
-	return FALSE;
+      if (!add_addr_info(&service, &r->Link.hostname, r->Link.port)) {
+      	ALOG_TRACE( "RTMP_Connect() add_addr_info(...) failed" );
+		return FALSE;
+      }
     }
 
-  if (!RTMP_Connect0(r, (struct sockaddr *)&service))
+  if (!RTMP_Connect0(r, (struct sockaddr *)&service)) {
+   	ALOG_TRACE( "RTMP_Connect() RTMP_Connect0(...) failed" );
     return FALSE;
+  }
 
   r->m_bSendCounter = TRUE;
 
+  ALOG_TRACE( "RTMP_Connect() Handing over to RTMP_Connect1(...)" );
   return RTMP_Connect1(r, cp);
 }
 
@@ -1107,13 +1128,16 @@ RTMP_ConnectStream(RTMP *r, int seekTime)
     {
       if (RTMPPacket_IsReady(&packet))
 	{
-	  if (!packet.m_nBodySize)
+		ALOG_TRACE( "RTMP_ConnectStream() Received a packet (type 0x%X) with a body size of %d bytes.", packet.m_packetType, packet.m_nBodySize );
+	  if (!packet.m_nBodySize) {
 	    continue;
+	  }
 	  if ((packet.m_packetType == RTMP_PACKET_TYPE_AUDIO) ||
 	      (packet.m_packetType == RTMP_PACKET_TYPE_VIDEO) ||
 	      (packet.m_packetType == RTMP_PACKET_TYPE_INFO))
 	    {
 	      RTMP_Log(RTMP_LOGWARNING, "Received FLV packet before play()! Ignoring.");
+          ALOG_WARN( "RTMP_ConnectStream() Received FLV packet before play()" );
 	      RTMPPacket_Free(&packet);
 	      continue;
 	    }
@@ -1123,6 +1147,7 @@ RTMP_ConnectStream(RTMP *r, int seekTime)
 	}
     }
 
+  ALOG_TRACE( "RTMP_ConnectStream() Returning with playing flag set to %d.", r->m_bPlaying );
   return r->m_bPlaying;
 }
 
@@ -1516,17 +1541,22 @@ WriteN(RTMP *r, const char *buffer, int n)
     {
       int nBytes;
 
-      if (r->Link.protocol & RTMP_FEATURE_HTTP)
+      if (r->Link.protocol & RTMP_FEATURE_HTTP) {
         nBytes = HTTP_Post(r, RTMPT_SEND, ptr, n);
-      else
+        ALOG_TRACE( "WriteN() Wrote %d bytes using HTTP_Post(...)!", nBytes );
+      }
+      else {
         nBytes = RTMPSockBuf_Send(&r->m_sb, ptr, n);
+        ALOG_TRACE( "WriteN() Wrote %d bytes using RTMPSockBuf_Send(...)!", nBytes );
       /*RTMP_Log(RTMP_LOGDEBUG, "%s: %d\n", __FUNCTION__, nBytes); */
+      }
 
       if (nBytes < 0)
 	{
 	  int sockerr = GetSockError();
 	  RTMP_Log(RTMP_LOGERROR, "%s, RTMP send error %d (%d bytes)", __FUNCTION__,
 	      sockerr, n);
+	  ALOG_ERROR( "WriteN() RTMP send error %d (%d bytes)!", sockerr, n );
 
 	  if (sockerr == EINTR && !RTMP_ctrlC)
 	    continue;
@@ -2917,6 +2947,7 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
     {
       RTMP_Log(RTMP_LOGWARNING, "%s, Sanity failed. no string method in invoke packet",
 	  __FUNCTION__);
+	  ALOG_WARN( "HandleInvoke() Sanity failed. No string method in invoked packet!" );
       return 0;
     }
 
@@ -2924,6 +2955,7 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
   if (nRes < 0)
     {
       RTMP_Log(RTMP_LOGERROR, "%s, error decoding invoke packet", __FUNCTION__);
+      ALOG_ERROR( "HandleInvoke() Error decoding invoke packet!" );
       return 0;
     }
 
@@ -2931,6 +2963,7 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
   AMFProp_GetString(AMF_GetProp(&obj, NULL, 0), &method);
   txn = AMFProp_GetNumber(AMF_GetProp(&obj, NULL, 1));
   RTMP_Log(RTMP_LOGDEBUG, "%s, server invoking <%s>", __FUNCTION__, method.av_val);
+  ALOG_TRACE( "HandleInvoke() Server invoking <%s>!", method.av_val );
 
   if (AVMATCH(&method, &av__result))
     {
@@ -2947,11 +2980,13 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
       if (!methodInvoked.av_val) {
         RTMP_Log(RTMP_LOGDEBUG, "%s, received result id %f without matching request",
 	  __FUNCTION__, txn);
+	  ALOG_DEBUG( "HandleInvoke() Received result id %f without matching request!", txn );
 	goto leave;
       }
 
       RTMP_Log(RTMP_LOGDEBUG, "%s, received result for method call <%s>", __FUNCTION__,
 	  methodInvoked.av_val);
+	  ALOG_TRACE( "HandleInvoke() Received result for method call <%s>!", methodInvoked.av_val );
 
       if (AVMATCH(&methodInvoked, &av_connect))
 	{
@@ -3086,15 +3121,18 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
       else
         {
           RTMP_Log(RTMP_LOGERROR, "rtmp server sent error");
+          ALOG_ERROR( "HandleInvoke() RTMP Server sent error!" );
         }
       free(methodInvoked.av_val);
 #else
       RTMP_Log(RTMP_LOGERROR, "rtmp server sent error");
+      ALOG_ERROR( "HandleInvoke() RTMP Server sent error!" );
 #endif
     }
   else if (AVMATCH(&method, &av_close))
     {
       RTMP_Log(RTMP_LOGERROR, "rtmp server requested close");
+      ALOG_WARN( "HandleInvoke() RTMP Server requested close!" );
       RTMP_Close(r);
 #ifdef CRYPTO
       if ((r->Link.protocol & RTMP_FEATURE_WRITE) &&
@@ -3122,6 +3160,7 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
       AMFProp_GetString(AMF_GetProp(&obj2, &av_level, -1), &level);
 
       RTMP_Log(RTMP_LOGDEBUG, "%s, onStatus: %s", __FUNCTION__, code.av_val);
+      ALOG_TRACE( "HandleInvoke() onStatus: %s!", code.av_val );
       if (AVMATCH(&code, &av_NetStream_Failed)
 	  || AVMATCH(&code, &av_NetStream_Play_Failed)
 	  || AVMATCH(&code, &av_NetStream_Play_StreamNotFound)
@@ -3130,6 +3169,7 @@ HandleInvoke(RTMP *r, const char *body, unsigned int nBodySize)
 	  r->m_stream_id = -1;
 	  RTMP_Close(r);
 	  RTMP_Log(RTMP_LOGERROR, "Closing connection: %s", code.av_val);
+	  ALOG_ERROR( "HandleInvoke() Closing connection: %s!", code.av_val );
 	}
 
       else if (AVMATCH(&code, &av_NetStream_Play_Start)
@@ -3358,6 +3398,7 @@ HandleChangeChunkSize(RTMP *r, const RTMPPacket *packet)
       r->m_inChunkSize = AMF_DecodeInt32(packet->m_body);
       RTMP_Log(RTMP_LOGDEBUG, "%s, received: chunk size change to %d", __FUNCTION__,
 	  r->m_inChunkSize);
+	  ALOG_TRACE( "HandleChangeChunkSize() received: chunk size change to %d", r->m_inChunkSize );
     }
 }
 
@@ -3380,6 +3421,7 @@ HandleCtrl(RTMP *r, const RTMPPacket *packet)
     nType = AMF_DecodeInt16(packet->m_body);
   RTMP_Log(RTMP_LOGDEBUG, "%s, received ctrl. type: %d, len: %d", __FUNCTION__, nType,
       packet->m_nBodySize);
+  ALOG_TRACE( "HandleCtrl() received ctrl. type: %d, len: %d", nType, packet->m_nBodySize );
   /*RTMP_LogHex(packet.m_body, packet.m_nBodySize); */
 
   if (packet->m_nBodySize >= 6)
@@ -3518,6 +3560,7 @@ HandleServerBW(RTMP *r, const RTMPPacket *packet)
 {
   r->m_nServerBW = AMF_DecodeInt32(packet->m_body);
   RTMP_Log(RTMP_LOGDEBUG, "%s: server BW = %d", __FUNCTION__, r->m_nServerBW);
+  ALOG_TRACE( "HandleServerBW() Server BW = %d", r->m_nServerBW );
 }
 
 static void
@@ -3530,6 +3573,7 @@ HandleClientBW(RTMP *r, const RTMPPacket *packet)
     r->m_nClientBW2 = -1;
   RTMP_Log(RTMP_LOGDEBUG, "%s: client BW = %d %d", __FUNCTION__, r->m_nClientBW,
       r->m_nClientBW2);
+  ALOG_TRACE( "HandleClientBW() Client BW = %d %d", r->m_nClientBW, r->m_nClientBW2 );
 }
 
 static int
@@ -3568,6 +3612,7 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
   if (ReadN(r, (char *)hbuf, 1) == 0)
     {
       RTMP_Log(RTMP_LOGERROR, "%s, failed to read RTMP packet header", __FUNCTION__);
+      ALOG_ERROR( "RTMP_ReadPacket() Failed to read RTMP packet header!" );
       return FALSE;
     }
 
@@ -3580,6 +3625,7 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
 	{
 	  RTMP_Log(RTMP_LOGERROR, "%s, failed to read RTMP packet header 2nd byte",
 	      __FUNCTION__);
+	  ALOG_ERROR( "RTMP_ReadPacket() Failed to read RTMP packet headers 2nd byte!" );
 	  return FALSE;
 	}
       packet->m_nChannel = hbuf[1];
@@ -3591,8 +3637,9 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
       int tmp;
       if (ReadN(r, (char *)&hbuf[1], 2) != 2)
 	{
-	  RTMP_Log(RTMP_LOGERROR, "%s, failed to read RTMP packet header 3nd byte",
+	  RTMP_Log(RTMP_LOGERROR, "%s, failed to read RTMP packet header 3rd byte",
 	      __FUNCTION__);
+	  ALOG_ERROR( "RTMP_ReadPacket() Failed to read RTMP packet headers 3rd byte!" );
 	  return FALSE;
 	}
       tmp = (hbuf[2] << 8) + hbuf[1];
@@ -3639,6 +3686,7 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
     {
       RTMP_Log(RTMP_LOGERROR, "%s, failed to read RTMP packet header. type: %x",
 	  __FUNCTION__, (unsigned int)hbuf[0]);
+	  ALOG_ERROR( "RTMP_ReadPacket() Failed to read RTMP packet header. Type: %x!",  (unsigned int)hbuf[0] );
       return FALSE;
     }
 
@@ -3670,6 +3718,7 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
 	    {
 	      RTMP_Log(RTMP_LOGERROR, "%s, failed to read extended timestamp",
 		  __FUNCTION__);
+		  ALOG_ERROR( "RTMP_ReadPacket() Failed to read extended timestamp!" );
 	      return FALSE;
 	    }
 	  packet->m_nTimeStamp = AMF_DecodeInt32(header + nSize);
@@ -3684,6 +3733,7 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
       if (!RTMPPacket_Alloc(packet, packet->m_nBodySize))
 	{
 	  RTMP_Log(RTMP_LOGDEBUG, "%s, failed to allocate packet", __FUNCTION__);
+	  ALOG_ERROR( "RTMP_ReadPacket() Failed to allocate packet!" );
 	  return FALSE;
 	}
       didAlloc = TRUE;
@@ -3708,6 +3758,7 @@ RTMP_ReadPacket(RTMP *r, RTMPPacket *packet)
     {
       RTMP_Log(RTMP_LOGERROR, "%s, failed to read RTMP packet body. len: %u",
 	  __FUNCTION__, packet->m_nBodySize);
+	  ALOG_ERROR( "RTMP_ReadPacket() Failed to read RTMP packet body! Its length was %d", packet->m_nBodySize );
       return FALSE;
     }
 
@@ -3916,6 +3967,7 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue)
         free(r->m_vecChannelsOut);
         r->m_vecChannelsOut = NULL;
         r->m_channelsAllocatedOut = 0;
+        ALOG_ERROR( "RTMP_SendPacket() Failed to allocate the memory for the RTMPPacket" );
         return FALSE;
       }
       r->m_vecChannelsOut = packets;
@@ -3942,6 +3994,7 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue)
     {
       RTMP_Log(RTMP_LOGERROR, "sanity failed!! trying to send header of type: 0x%02x.",
 	  (unsigned char)packet->m_headerType);
+	  ALOG_ERROR( "RTMP_SendPacket() Sanity Failed! Trying to send header of type: 0x%02x!", (unsigned char)packet->m_headerType );
       return FALSE;
     }
 
@@ -4029,8 +4082,10 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue)
         {
 	  tlen = chunks * (cSize + 1) + nSize + hSize;
 	  tbuf = malloc(tlen);
-	  if (!tbuf)
+	  if (!tbuf) {
+	    ALOG_ERROR( "RTMP_SendPacket() Failed to allocate a buffer for the chunks!" );
 	    return FALSE;
+	  }
 	  toff = tbuf;
 	}
     }
@@ -4051,8 +4106,10 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue)
       else
         {
 	  wrote = WriteN(r, header, nChunkSize + hSize);
-	  if (!wrote)
+	  if (!wrote) {
+	  	ALOG_ERROR( "RTMP_SendPacket() Failed to write %d bytes using WriteN(…)!", nChunkSize + hSize );
 	    return FALSE;
+	  }
 	}
       nSize -= nChunkSize;
       buffer += nChunkSize;
@@ -4082,8 +4139,10 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue)
       int wrote = WriteN(r, tbuf, toff-tbuf);
       free(tbuf);
       tbuf = NULL;
-      if (!wrote)
+      if (!wrote) {
+      	ALOG_ERROR( "RTMP_SendPacket() Failed to write %d bytes using WriteN(...)!", wrote );
         return FALSE;
+      }
     }
 
   /* we invoked a remote method */
