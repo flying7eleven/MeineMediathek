@@ -1,5 +1,7 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
+import java.io.IOException;
+
 import org.acra.ACRA;
 
 import android.app.Activity;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 
 import com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint;
 import com.halcyonwaves.apps.meinemediathek.R;
+import com.halcyonwaves.apps.meinemediathek.ndk.RTMPInputStream;
 
 public abstract class BaseActivity extends Activity {
 
@@ -39,6 +42,15 @@ public abstract class BaseActivity extends Activity {
 		switch( item.getItemId() ) {
 			case R.id.mnu_send_bugreport:
 				ACRA.getErrorReporter().handleException( null );
+				break;
+			case R.id.mnu_test_download:
+				try {
+					RTMPInputStream testStream = new RTMPInputStream( "rtmp://vod.daserste.de/ardfs/videoportal/mediathek/Reportage+Dokumentation/c_280000/280346/format348285.mp4" );
+					testStream.getDurationInMs();
+					testStream.close();
+				} catch( final IOException e ) {
+					// do nothing, just a test
+				}
 				break;
 		}
 		return true;
