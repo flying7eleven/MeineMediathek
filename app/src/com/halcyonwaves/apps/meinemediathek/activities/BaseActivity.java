@@ -45,8 +45,9 @@ public abstract class BaseActivity extends Activity {
 				break;
 			case R.id.mnu_test_download:
 				try {
-					RTMPInputStream testStream = new RTMPInputStream( "rtmp://vod.daserste.de/ardfs/videoportal/mediathek/Reportage+Dokumentation/c_280000/280346/format348285.mp4" );
+					RTMPInputStream testStream = new RTMPInputStream( "rtmp://vod.daserste.de/ardfs/videoportal/mediathek/Report+M%FCnchen/c_280000/281896/format350420.mp4" );
 					testStream.getDurationInMs();
+					testStream.read();
 					testStream.close();
 				} catch( final IOException e ) {
 					// do nothing, just a test

@@ -20,6 +20,9 @@ public class RTMPInputStream extends InputStream {
 	 */
 	private static boolean libLoaded = false;
 
+	/**
+	 * 
+	 */
 	private int rtmpHandle = 0;
 
 	/**
@@ -44,6 +47,17 @@ public class RTMPInputStream extends InputStream {
 	 * @throws IOException
 	 */
 	private native void nativeCloseStream( int rtmpHandle ) throws IOException;
+
+	/**
+	 * 
+	 * @param rtmpHandle
+	 * @param bytes
+	 * @param offset
+	 * @param len
+	 * @return
+	 * @throws IOException
+	 */
+	private native int nativeReadStream( int rtmpHandle, byte[] bytes, int offset, int len ) throws IOException;
 
 	/**
 	 * 
@@ -85,12 +99,29 @@ public class RTMPInputStream extends InputStream {
 	}
 
 	/**
+	 * Please do not use this method because its very inefficient.
 	 * 
 	 * @see java.io.InputStream#read()
 	 */
 	@Override
 	public int read() throws IOException {
-		// TODO Auto-generated method stub
-		return 0;
+		final byte[] buf = new byte[ 1 ];
+
+		int n;
+		while( (n = this.read( buf, 0, 1 )) == 0 ) {
+		}
+
+		if( n == 1 ) {
+			return (buf[ 0 ]) & 0xff;
+		}
+		return n;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public int read( final byte[] b, final int off, final int len ) throws IOException {
+		return this.nativeReadStream( this.rtmpHandle, b, off, len );
 	}
 }
