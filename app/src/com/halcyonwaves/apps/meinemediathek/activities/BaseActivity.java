@@ -3,6 +3,7 @@ package com.halcyonwaves.apps.meinemediathek.activities;
 import org.acra.ACRA;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,13 +30,17 @@ public abstract class BaseActivity extends Activity {
 		// we succeeded
 		return true;
 	}
-	
+
 	@Override
 	public boolean onMenuItemSelected( int featureId, MenuItem item ) {
 		switch( item.getItemId() ) {
+			case R.id.mnu_preferences:
+				final Intent myIntent = new Intent( BaseActivity.this, SettingsActivity.class );
+				BaseActivity.this.startActivity( myIntent );
+				return true;
 			case R.id.mnu_send_bugreport:
 				ACRA.getErrorReporter().handleException( null );
-				break;
+				return true;
 		}
 		return true;
 	}

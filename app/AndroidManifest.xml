@@ -35,6 +35,7 @@
         </activity>
         <activity android:name=".activities.SearchResultsActivity" />
         <activity android:name=".activities.MovieOverviewActivity" />
+        <activity android:name=".activities.SettingsActivity" />
         <activity
             android:name=".activities.ManageDownloadActivity"
             android:excludeFromRecents="true"

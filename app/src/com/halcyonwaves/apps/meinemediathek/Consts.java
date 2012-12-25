@@ -24,6 +24,11 @@ public class Consts {
 	public static final int SOCKET_TIMEOUT_IN_SECONDS = 10;
 
 	/**
+	 *  This preference key is used to determine if the movie images should be pre-loaded or not.
+	 */
+	public final static String PREFERENCE_PRELOAD_MOVIE_IMAGES = "download.preload.images";
+	
+	/**
 	 * This preference key stores the application version code when the changelog was displayed the last time.
 	 */
 	public final static String PREFERENCE_CHANGELOG_DISPLAYED_LAST_TIME = "changelog.last_time_displayed";
