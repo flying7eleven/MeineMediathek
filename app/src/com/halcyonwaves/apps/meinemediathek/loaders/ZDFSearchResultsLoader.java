@@ -45,17 +45,12 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 	private boolean socketException = false;
 
-	private boolean preloadImages = true;
-
 	public ZDFSearchResultsLoader( final Context context, final String searchFor ) {
 		super( context );
 		this.searchFor = searchFor;
 
 		// get the preferences of the application
 		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( context.getApplicationContext() );
-
-		// check if the images should be pre-loaded or not
-		this.preloadImages = appPreferences.getBoolean( Consts.PREFERENCE_PRELOAD_MOVIE_IMAGES, true );
 	}
 
 	@Override
@@ -159,46 +154,41 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 						break;
 					}
 				}
-				
+
 				//
 				File pictureFile = null;
 
-				// just preload the images if we should do that
-				if( this.preloadImages ) {
+				// extract the unique name for the episode preview image
+				String episodeImageName = "preview_000000.jpg"; // TODO
+				final Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
+				if( eposiodeImagePreviewNameMatcher.find() ) {
+					episodeImageName = "preview_" + eposiodeImagePreviewNameMatcher.group( 1 ) + ".jpg";
+				} else {
+					episodeImageName = UUID.randomUUID().toString() + ".jpg";
+				}
 
-					// extract the unique name for the episode preview image
-					String episodeImageName = "preview_000000.jpg"; // TODO
-					final Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
-					if( eposiodeImagePreviewNameMatcher.find() ) {
-						episodeImageName = "preview_" + eposiodeImagePreviewNameMatcher.group( 1 ) + ".jpg";
-					} else {
-						episodeImageName = UUID.randomUUID().toString() + ".jpg";
+				// combine the extracted episode image name with the storage path
+				final File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
+				pictureFile = new File( storagePath, episodeImageName );
+
+				// just download the preview image if it is not already cached
+				if( !pictureFile.exists() ) {
+					final FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
+
+					final URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
+					final URLConnection imageUrlConnection = imageUrl.openConnection();
+					imageUrlConnection.setRequestProperty( "User-Agent", Consts.DESKTOP_USER_AGENT );
+					final BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
+
+					final byte[] buf = new byte[ 1024 ];
+					int n = 0;
+					while( (n = in.read( buf )) >= 0 ) {
+						pictureOutputStream.write( buf, 0, n );
 					}
 
-					// combine the extracted episode image name with the storage path
-					final File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
-					pictureFile = new File( storagePath, episodeImageName );
-
-					// just download the preview image if it is not already cached
-					if( !pictureFile.exists() ) {
-						final FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
-
-						final URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
-						final URLConnection imageUrlConnection = imageUrl.openConnection();
-						imageUrlConnection.setRequestProperty( "User-Agent", Consts.DESKTOP_USER_AGENT );
-						final BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );
-
-						final byte[] buf = new byte[ 1024 ];
-						int n = 0;
-						while( (n = in.read( buf )) >= 0 ) {
-							pictureOutputStream.write( buf, 0, n );
-						}
-
-						pictureOutputStream.flush();
-						pictureOutputStream.close();
-						in.close();
-					}
-
+					pictureOutputStream.flush();
+					pictureOutputStream.close();
+					in.close();
 				}
 
 				// add all extracted information to our result entry representation
