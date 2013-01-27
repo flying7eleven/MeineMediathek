@@ -34,10 +34,10 @@ public abstract class BaseActivity extends Activity {
 	@Override
 	public boolean onMenuItemSelected( int featureId, MenuItem item ) {
 		switch( item.getItemId() ) {
-			case R.id.mnu_preferences:
+			/*case R.id.mnu_preferences:
 				final Intent myIntent = new Intent( BaseActivity.this, SettingsActivity.class );
 				BaseActivity.this.startActivity( myIntent );
-				return true;
+				return true;*/
 			case R.id.mnu_send_bugreport:
 				ACRA.getErrorReporter().handleException( null );
 				return true;
