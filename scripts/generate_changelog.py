@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8 :
 import re
 import markdown2
 from bs4 import BeautifulSoup as soup
@@ -11,6 +12,10 @@ changelogMarkdownIdRegEx = re.compile( '\#\#\ Changelog' )
 versionNumberRegEx = re.compile( 'Version (\d\.\d\.?\d?)' )
 versionCodeRegEx = re.compile( 'Code: \<em\>(\d*)' )
 releaseDateRegEx = re.compile( 'Released on\: \<strong\>\<em\>(\d\d\d\d\-(\d\d|XX)-(\d\d|XX))' )
+
+def escape( string ):
+	return string.replace( u'ö', 'oe' ).replace( u'ü', 'ue' ).replace( u'ä', 'ae' ).replace( u'Ö', 'Oe' ).replace( u'Ü', 'Ue' ).replace( u'Ä', 'Ae' )
+#	return string.replace( u'ö', '&ouml;' ).replace( u'ü', '&uuml;' ).replace( u'ä', '&auml;' ).replace( u'Ö', '&Ouml;' ).replace( u'Ü', '&Uuml;' ).replace( u'Ä', '&Auml;' )
 
 if __name__ == '__main__':
 	# setup the argument parser and do the parsing
@@ -50,7 +55,7 @@ if __name__ == '__main__':
 	for currentRelease in range( 0, len( foundVersionNumbers ) ):
 		xmlChangelog += '<release version="%s" versioncode="%s" releasedate="%s">\n' % ( foundVersionNumbers[ currentRelease ], foundVersionCodes[ currentRelease ], foundReleaseDates[ currentRelease ][ 0 ] )
 		for currentEntry in foundChangeLists[ currentRelease ].find_all( 'li' ):
-			xmlChangelog += '<change>%s</change>\n' % ( ''.join( currentEntry.findAll( text = True ) ) )
+			xmlChangelog += '<change>%s</change>\n' % ( escape( ''.join( currentEntry.findAll( text = True ) ) ) )
 		xmlChangelog += '</release>\n'
 
 	# write the XML file

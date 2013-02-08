@@ -138,8 +138,14 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 				final Elements epoisodeTitle = currentEpisodeDoc.select( "h1.beitragHeadline" );
 				final Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
-				final Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
+				//final Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
+				final Elements styleDefBackgroundImage = currentEpisodeDoc.select( "style" );
 				final Elements downloadLinks = currentEpisodeDoc.select( "a[href]" );
+				
+				//
+				String syledef = styleDefBackgroundImage.html();
+				String episodeImage = "http://www.zdf.de" + syledef.replaceAll( "[\\s{}\\w\\#]*background-image:\\surl\\((\\/ZDFmediathek/.*)\\)[\\s\\w:;{}]*", "$1" );
+				Log.v( ZDFSearchResultsLoader.TAG, "Image download URL: " + episodeImage );
 
 				// try to extract the first ASX link
 				String downloadLinkText = "";
@@ -152,7 +158,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 				// extract the unique name for the episode preview image
 				String episodeImageName = "preview_000000.jpg"; // TODO
-				final Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
+				final Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage );
 				if( eposiodeImagePreviewNameMatcher.find() ) {
 					episodeImageName = "preview_" + eposiodeImagePreviewNameMatcher.group( 1 ) + ".jpg";
 				} else {
@@ -167,7 +173,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 				if( !pictureFile.exists() ) {
 					final FileOutputStream pictureOutputStream = new FileOutputStream( pictureFile );
 
-					final URL imageUrl = new URL( episodeImage.first().attr( "abs:src" ) );
+					final URL imageUrl = new URL( episodeImage );
 					final URLConnection imageUrlConnection = imageUrl.openConnection();
 					imageUrlConnection.setRequestProperty( "User-Agent", Consts.DESKTOP_USER_AGENT );
 					final BufferedInputStream in = new BufferedInputStream( imageUrlConnection.getInputStream() );

@@ -1046,10 +1046,10 @@ com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader -> com.halcy
     java.util.List searchResults -> d
     boolean socketException -> e
     54:71:void deliverResult(java.util.List) -> a
-    76:206:java.util.List loadInBackground() -> a
-    211:211:void onReleaseResources(java.util.List) -> b
-    218:224:void onStartLoading() -> onStartLoading
-    227:227:boolean socketTimeoutOccurred() -> b
+    76:212:java.util.List loadInBackground() -> a
+    217:217:void onReleaseResources(java.util.List) -> b
+    224:230:void onStartLoading() -> onStartLoading
+    233:233:boolean socketTimeoutOccurred() -> b
     1:1:void deliverResult(java.lang.Object) -> deliverResult
     1:1:java.lang.Object loadInBackground() -> loadInBackground
 com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream -> com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
