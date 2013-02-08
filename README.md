@@ -24,6 +24,9 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
+### Version 0.1.1 (Code: *11*, Released on: ***2013-02-08***) - [Changes][111]
+* Es ist nun möglich Backups der Daten von Meine Mediathek über Backupanwendungen (wie. z.B. [Carbon][CarbonBackup]) durchzuführen
+
 ### Version 0.1 (Code: *10*, Released on: ***2012-12-08***) - [Changes][110]
 * Downloads are now cancelable
 * Prepared the code to handle custom user settings
@@ -63,6 +66,7 @@ For building the application by yourself follow the following steps:
 ### Version 0.0.1 (Code: *1*, Released on: ***2012-11-20***)
 * First version which is able to download a stream from [ZDF Mediathek][4]
 
+ [CarbonBackup]: https://play.google.com/store/apps/details?id=com.koushikdutta.backup
  [1]: https://play.google.com/store/apps/details?id=com.halcyonwaves.apps.meinemediathek
  [2]: http://www.eclipse.org/
  [3]: http://developer.android.com/tools/sdk/ndk/index.html
@@ -74,3 +78,4 @@ For building the application by yourself follow the following steps:
  [104]: https://github.com/thuetz/MeineMediathek/compare/v0.0.5...v0.0.6
  [105]: https://github.com/thuetz/MeineMediathek/compare/v0.0.6...v0.0.7
  [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.7...v0.1
+ [110]: https://github.com/thuetz/MeineMediathek/compare/v0.1...v0.1.1
