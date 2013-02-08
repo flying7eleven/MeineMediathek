@@ -19,7 +19,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
-import android.preference.PreferenceManager;
 
 @ReportsCrashes(
 	formKey = "",
@@ -103,9 +102,6 @@ public class ApplicationEntryPoint extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
-		// set the default values for the preferences
-		PreferenceManager.setDefaultValues( this, R.xml.app_prefs, false );
 
 		// ensure that ACRA can be used for bug tracking
 		ACRA.init( this );

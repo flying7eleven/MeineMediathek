@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
         android:mode="twoLine"
-        android:id="@+id/ll_inner_layout_search_results"
         android:orientation="vertical" >
 
         <TextView

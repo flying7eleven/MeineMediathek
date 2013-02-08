@@ -24,9 +24,7 @@ import org.jsoup.select.Elements;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.halcyonwaves.apps.meinemediathek.Consts;
@@ -48,9 +46,6 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 	public ZDFSearchResultsLoader( final Context context, final String searchFor ) {
 		super( context );
 		this.searchFor = searchFor;
-
-		// get the preferences of the application
-		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( context.getApplicationContext() );
 	}
 
 	@Override
@@ -155,9 +150,6 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 					}
 				}
 
-				//
-				File pictureFile = null;
-
 				// extract the unique name for the episode preview image
 				String episodeImageName = "preview_000000.jpg"; // TODO
 				final Matcher eposiodeImagePreviewNameMatcher = this.PreviewImagePattern.matcher( episodeImage.attr( "src" ) );
@@ -169,7 +161,7 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 				// combine the extracted episode image name with the storage path
 				final File storagePath = this.getContext().getExternalFilesDir( Environment.DIRECTORY_PICTURES );
-				pictureFile = new File( storagePath, episodeImageName );
+				final File pictureFile = new File( storagePath, episodeImageName );
 
 				// just download the preview image if it is not already cached
 				if( !pictureFile.exists() ) {

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <!--
     <item
-        android:id="@+id/mnu_preferences"
+        android:id="@+id/item1"
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_preferences"
         android:showAsAction="ifRoom"
         android:title="@string/mnu_title_preferences"
-        android:visible="true">
+        android:visible="false">
     </item>
-    -->
     <item
         android:id="@+id/mnu_send_bugreport"
         android:enabled="true"
