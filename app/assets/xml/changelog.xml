@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+<release version="0.1.1" versioncode="11" releasedate="2013-02-08">
+<change>Es wurde ein Fehler behoben, der dazu fuehrte das jede Suche mit einem Anwendungsabsturz endete (danke fuer die Bugreports per Email)</change>
+<change>Es ist nun moeglich Backups der Daten von Meine Mediathek ueber Backupanwendungen (wie. z.B. Carbon) durchzufuehren</change>
+</release>
 <release version="0.1" versioncode="10" releasedate="2012-12-08">
 <change>Downloads are now cancelable</change>
 <change>Prepared the code to handle custom user settings</change>

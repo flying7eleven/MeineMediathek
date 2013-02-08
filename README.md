@@ -25,6 +25,7 @@ For building the application by yourself follow the following steps:
 
 ## Changelog
 ### Version 0.1.1 (Code: *11*, Released on: ***2013-02-08***) - [Changes][111]
+* Es wurde ein Fehler behoben, der dazu führte das jede Suche mit einem Anwendungsabsturz endete (danke für die Bugreports per Email)
 * Es ist nun möglich Backups der Daten von Meine Mediathek über Backupanwendungen (wie. z.B. [Carbon][CarbonBackup]) durchzuführen
 
 ### Version 0.1 (Code: *10*, Released on: ***2012-12-08***) - [Changes][110]
