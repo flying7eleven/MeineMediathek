@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+<release version="0.1.2" versioncode="12" releasedate="2013-03-01">
+<change>Bei Filmen die der FSK unterliegen, kann es vorkommen das diese nur zu bestimmten Zeiten verfuegbar sind. Ein Warnhinweis wurde hinzugefuegt der dies anzeigt</change>
+<change>Ein Bewertungsbutton wurde zum "Aenderungen seit der letzten Version" Dialog hinzugefuegt</change>
+</release>
 <release version="0.1.1" versioncode="11" releasedate="2013-02-08">
 <change>Es wurde ein Fehler behoben, der dazu fuehrte das jede Suche mit einem Anwendungsabsturz endete (danke fuer die Bugreports per Email)</change>
 <change>Es ist nun moeglich Backups der Daten von Meine Mediathek ueber Backupanwendungen (wie. z.B. Carbon) durchzufuehren</change>
