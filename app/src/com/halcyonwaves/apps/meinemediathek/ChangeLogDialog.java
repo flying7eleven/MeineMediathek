@@ -11,10 +11,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.webkit.WebView;
@@ -147,7 +149,19 @@ public class ChangeLogDialog {
 			// Create webview and load html
 			final WebView _WebView = new WebView( this.rootActivity );
 			_WebView.loadData( convertedHtmlChangelog, "text/html", "utf-8" );
-			final AlertDialog.Builder builder = new AlertDialog.Builder( this.rootActivity ).setTitle( changelogDialogTitle ).setView( _WebView ).setPositiveButton( _Close, new Dialog.OnClickListener() {
+			final AlertDialog.Builder builder = new AlertDialog.Builder( this.rootActivity ).setTitle( changelogDialogTitle ).setView( _WebView ).setPositiveButton( R.string.btn_rate_app, new Dialog.OnClickListener() {
+
+				@Override
+				public void onClick( final DialogInterface dialogInterface, final int i ) {
+					final String appName = "com.halcyonwaves.apps.meinemediathek";
+					try {
+					    ChangeLogDialog.this.rootActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+appName)));
+					} catch (android.content.ActivityNotFoundException anfe) {
+						ChangeLogDialog.this.rootActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+appName)));
+					}
+					dialogInterface.dismiss();
+				}
+			} ).setNeutralButton( _Close, new Dialog.OnClickListener() {
 
 				@Override
 				public void onClick( final DialogInterface dialogInterface, final int i ) {

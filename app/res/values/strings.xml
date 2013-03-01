@@ -28,5 +28,5 @@
     <string name="dlg_title_noresults">Keine Ergebnisse</string>
     <string name="dlg_msg_noresults">Leider konnten für die von Ihnen gewählten Suchbegriffe keine Ergebnisse gefunden werden.</string>
     <string name="mnu_title_bugreport">Fehlerbericht senden</string>
-
+    <string name="btn_rate_app">App bewerten</string>
 </resources>
