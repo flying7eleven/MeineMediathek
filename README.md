@@ -25,8 +25,10 @@ For building the application by yourself follow the following steps:
 
 ## Changelog
 ### Version 0.2 (Code: *20*, Veröffentlicht am: ***2013-XX-XX***) - [Changes][120]
-* Unterstützung für das RTMP Protokoll hinzugefügt (für eine spätere Unterstützung der ARD und WDR Mediathek)
-* Benutzeroberfläche überarbeitet
+* Die Anwendung wurde von Grund auf neu entwickelt und programmiert
+* Vollständige Unterstützung von Smartphones aller Auflösungen sowie 7'' und 10'' Tablets
+* Schnellere Suche als bei der Vorversion
+* Integration von Google+ Diensten (Nutzung wird nicht erzwungen)
 
 ### Version 0.1.1 (Code: *11*, Released on: ***2013-02-08***) - [Changes][111]
 * Es wurde ein Fehler behoben, der dazu führte das jede Suche mit einem Anwendungsabsturz endete (danke für die Bugreports per Email)
