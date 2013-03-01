@@ -26,6 +26,7 @@ For building the application by yourself follow the following steps:
 ## Changelog
 ### Version 0.1.2 (Code: *12*, Released on: ***2013-03-01***) - [Changes][112]
 * Bei Filmen die der FSK unterliegen, kann es vorkommen das diese nur zu bestimmten Zeiten verfügbar sind. Ein Warnhinweis wurde hinzugefügt der dies anzeigt
+* Kleinere Geschwindigkeitsverbesserungen der Suche (bei vielen Suchergebnissen leider noch relativ langsam)
 * Ein Bewertungsbutton wurde zum "Änderungen seit der letzten Version" Dialog hinzugefügt
 
 ### Version 0.1.1 (Code: *11*, Released on: ***2013-02-08***) - [Changes][111]
@@ -83,4 +84,5 @@ For building the application by yourself follow the following steps:
  [104]: https://github.com/thuetz/MeineMediathek/compare/v0.0.5...v0.0.6
  [105]: https://github.com/thuetz/MeineMediathek/compare/v0.0.6...v0.0.7
  [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.7...v0.1
- [110]: https://github.com/thuetz/MeineMediathek/compare/v0.1...v0.1.1
+ [111]: https://github.com/thuetz/MeineMediathek/compare/v0.1...v0.1.1
+ [112]: https://github.com/thuetz/MeineMediathek/compare/v0.1.1...v0.1.2
