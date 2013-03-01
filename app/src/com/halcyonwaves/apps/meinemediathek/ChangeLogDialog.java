@@ -156,7 +156,7 @@ public class ChangeLogDialog {
 					final String appName = "com.halcyonwaves.apps.meinemediathek";
 					try {
 						ChangeLogDialog.this.rootActivity.startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( "market://details?id=" + appName ) ) );
-					} catch( android.content.ActivityNotFoundException anfe ) {
+					} catch( final android.content.ActivityNotFoundException anfe ) {
 						ChangeLogDialog.this.rootActivity.startActivity( new Intent( Intent.ACTION_VIEW, Uri.parse( "http://play.google.com/store/apps/details?id=" + appName ) ) );
 					}
 					dialogInterface.dismiss();

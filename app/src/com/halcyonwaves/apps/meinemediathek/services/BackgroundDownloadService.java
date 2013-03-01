@@ -2,18 +2,14 @@ package com.halcyonwaves.apps.meinemediathek.services;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.halcyonwaves.apps.meinemediathek.Consts;
@@ -27,31 +23,6 @@ import com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread;
  * @author Tim Huetz
  */
 public class BackgroundDownloadService extends Service {
-
-	/**
-	 * This tag is used for all logging messages of this service.
-	 */
-	private static final String TAG = "BackgroundDownloadService";
-
-	/**
-	 * This message is used to request to start a new download.
-	 */
-	public static final int SERVICE_MSG_INITIATE_DOWNLOAD = 1;
-
-	/**
-	 * This message is used to request to cancel a running download.
-	 */
-	public static final int SERVICE_MSG_CANCEL_DOWNLOAD = 2;
-
-	/**
-	 * This is the messager which is used to communicate with this service.
-	 */
-	private final Messenger serviceMessenger = new Messenger( new IncomingHandler() );
-
-	/**
-	 * This map is used to store all running threads which are managed my this service.
-	 */
-	private Map< Integer, Thread > managedThreads = null;
 
 	/**
 	 * 
@@ -73,11 +44,11 @@ public class BackgroundDownloadService extends Service {
 					final String episodeTitle = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_TITLE );
 					final String downlaodURL = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
 					final int uniqueId = suppliedExtras.getInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
-					final String moviePreviewImage = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
+					suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
 					final String movieDescription = suppliedExtras.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION );
 
 					// start the download
-					Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription );
+					final Thread downloadThread = new DownloadStreamThread( BackgroundDownloadService.this.getApplicationContext(), uniqueId, downlaodURL, episodeTitle, movieDescription );
 					BackgroundDownloadService.this.managedThreads.put( uniqueId, downloadThread );
 					downloadThread.start();
 					Log.d( BackgroundDownloadService.TAG, "The background downloader servies started a thread trying to download the following URL: " + downlaodURL );
@@ -96,7 +67,7 @@ public class BackgroundDownloadService extends Service {
 					// if we still have a thread with this id, interrupt it
 					if( BackgroundDownloadService.this.managedThreads.containsKey( requestedCancelId ) ) {
 						Log.v( BackgroundDownloadService.TAG, String.format( "Found the thread for the requested interruption in the internal map." ) );
-						Thread threadToCancel = BackgroundDownloadService.this.managedThreads.remove( requestedCancelId );
+						final Thread threadToCancel = BackgroundDownloadService.this.managedThreads.remove( requestedCancelId );
 						if( null != threadToCancel ) {
 							Log.v( BackgroundDownloadService.TAG, String.format( "The found thread seems to be a valid object." ) );
 							if( threadToCancel.isAlive() ) {
@@ -114,8 +85,33 @@ public class BackgroundDownloadService extends Service {
 		}
 	}
 
+	/**
+	 * This message is used to request to cancel a running download.
+	 */
+	public static final int SERVICE_MSG_CANCEL_DOWNLOAD = 2;
+
+	/**
+	 * This message is used to request to start a new download.
+	 */
+	public static final int SERVICE_MSG_INITIATE_DOWNLOAD = 1;
+
+	/**
+	 * This tag is used for all logging messages of this service.
+	 */
+	private static final String TAG = "BackgroundDownloadService";
+
+	/**
+	 * This map is used to store all running threads which are managed my this service.
+	 */
+	private Map< Integer, Thread > managedThreads = null;
+
+	/**
+	 * This is the messager which is used to communicate with this service.
+	 */
+	private final Messenger serviceMessenger = new Messenger( new IncomingHandler() );
+
 	private void cleanupFinishedThreads() {
-		for( int currentThreadId : this.managedThreads.keySet() ) {
+		for( final int currentThreadId : this.managedThreads.keySet() ) {
 			if( null != this.managedThreads.get( currentThreadId ) ) {
 				if( !this.managedThreads.get( currentThreadId ).isAlive() ) {
 					this.managedThreads.remove( currentThreadId );

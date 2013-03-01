@@ -6,9 +6,9 @@ public class SearchResultEntry {
 
 	public final String description;
 	public final String downloadLink;
+	public final boolean isCurrentlyFskRestricted;
 	public final File previewImage;
 	public final String title;
-	public final boolean isCurrentlyFskRestricted;
 
 	public SearchResultEntry( final String title, final String description, final File previewImage, final String downloadLink ) {
 		this.title = title;

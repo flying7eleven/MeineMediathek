@@ -35,28 +35,30 @@ import com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService;
 
 public class MovieOverviewFragment extends Fragment {
 
+	private static final String TAG = "MovieOverviewFragment";
 	private Button btnDownloadMoview = null;
 	private String downloadLink = "";
-	private ImageView ivPreviewImage = null;
-	private TextView tvMovieDescription = null;
-	private TextView tvMovieTitle = null;
 	private boolean fskRestricted = false;
+	private ImageView ivPreviewImage = null;
 	private String previewImagePath = "";
-	private static final String TAG = "MovieOverviewFragment";
-
-	private Messenger serviceMessanger = null;
 	private final ServiceConnection serviceConnection = new ServiceConnection() {
 
+		@Override
 		public void onServiceConnected( final ComponentName className, final IBinder service ) {
 			MovieOverviewFragment.this.serviceMessanger = new Messenger( service );
 			Log.d( MovieOverviewFragment.TAG, "Conntected to download service" );
 		}
 
+		@Override
 		public void onServiceDisconnected( final ComponentName className ) {
 			MovieOverviewFragment.this.serviceMessanger = null;
 			Log.d( MovieOverviewFragment.TAG, "Disconnected from download service" );
 		}
 	};
+	private Messenger serviceMessanger = null;
+
+	private TextView tvMovieDescription = null;
+	private TextView tvMovieTitle = null;
 
 	private void doBindService() {
 		if( null == this.serviceMessanger ) {
@@ -76,8 +78,8 @@ public class MovieOverviewFragment extends Fragment {
 		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.getActivity().getApplicationContext() );
 
 		// get the next notification id and store the current value in the settings file
-		int nextNotificationId = appPreferences.getInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, 0 ) + 1;
-		Editor prefEditor = appPreferences.edit();
+		final int nextNotificationId = appPreferences.getInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, 0 ) + 1;
+		final Editor prefEditor = appPreferences.edit();
 		prefEditor.putInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, nextNotificationId );
 		if( !prefEditor.commit() ) {
 			Log.e( MovieOverviewFragment.TAG, "Failed to store the last used notification id in the application preferences." );
@@ -85,12 +87,6 @@ public class MovieOverviewFragment extends Fragment {
 
 		// return the next notification id which can be used
 		return nextNotificationId;
-	}
-
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		this.doUnbindService();
 	}
 
 	@Override
@@ -172,9 +168,15 @@ public class MovieOverviewFragment extends Fragment {
 		return v;
 	}
 
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		this.doUnbindService();
+	}
+
 	private void startEpisodeDownload() {
 		// prepare the information we want to send to the service
-		Bundle downloadExtras = new Bundle();
+		final Bundle downloadExtras = new Bundle();
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK, this.downloadLink );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, this.previewImagePath );
 		downloadExtras.putString( Consts.EXTRA_NAME_MOVIE_TITLE, this.tvMovieTitle.getText().toString() );
@@ -182,7 +184,7 @@ public class MovieOverviewFragment extends Fragment {
 		downloadExtras.putInt( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, this.getNextNotificationId() );
 
 		// prepare the download request
-		Message downloadRequest = new Message();
+		final Message downloadRequest = new Message();
 		downloadRequest.setData( downloadExtras );
 		downloadRequest.what = BackgroundDownloadService.SERVICE_MSG_INITIATE_DOWNLOAD;
 		downloadRequest.replyTo = this.serviceMessanger;
@@ -190,7 +192,7 @@ public class MovieOverviewFragment extends Fragment {
 		// send the download request
 		try {
 			this.serviceMessanger.send( downloadRequest );
-		} catch( RemoteException e ) {
+		} catch( final RemoteException e ) {
 			ACRA.getErrorReporter().handleException( e );
 		}
 	}

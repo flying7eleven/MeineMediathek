@@ -138,13 +138,13 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 
 				final Elements epoisodeTitle = currentEpisodeDoc.select( "h1.beitragHeadline" );
 				final Elements episodeDescription = currentEpisodeDoc.select( "div.beitrag > p.kurztext" );
-				//final Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
+				// final Elements episodeImage = currentEpisodeDoc.select( "div.beitrag > img" );
 				final Elements styleDefBackgroundImage = currentEpisodeDoc.select( "style" );
 				final Elements downloadLinks = currentEpisodeDoc.select( "a[href]" );
-				
+
 				//
-				String syledef = styleDefBackgroundImage.html();
-				String episodeImage = "http://www.zdf.de" + syledef.replaceAll( "[\\s{}\\w\\#]*background-image:\\surl\\((\\/ZDFmediathek/.*)\\)[\\s\\w:;{}]*", "$1" );
+				final String syledef = styleDefBackgroundImage.html();
+				final String episodeImage = "http://www.zdf.de" + syledef.replaceAll( "[\\s{}\\w\\#]*background-image:\\surl\\((\\/ZDFmediathek/.*)\\)[\\s\\w:;{}]*", "$1" );
 				Log.v( ZDFSearchResultsLoader.TAG, "Image download URL: " + episodeImage );
 
 				// try to extract the first ASX link
