@@ -8,11 +8,17 @@ public class SearchResultEntry {
 	public final String downloadLink;
 	public final File previewImage;
 	public final String title;
+	public final boolean isCurrentlyFskRestricted;
 
 	public SearchResultEntry( final String title, final String description, final File previewImage, final String downloadLink ) {
 		this.title = title;
 		this.description = description;
 		this.previewImage = previewImage;
 		this.downloadLink = downloadLink;
+		if( downloadLink.toLowerCase().contains( "hinweis_fsk" ) ) {
+			this.isCurrentlyFskRestricted = true;
+		} else {
+			this.isCurrentlyFskRestricted = false;
+		}
 	}
 }

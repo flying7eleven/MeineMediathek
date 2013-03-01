@@ -11,10 +11,11 @@ public class Consts {
 	public static final String EXTRA_NAME_MOVIE_DESCRIPTION = "description2";
 	public static final String EXTRA_NAME_MOVIE_DOWNLOADLINK = "downloadlinkg2";
 	public static final String EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH = "previewimagepath2";
+	public static final String EXTRA_NAME_MOVIE_FSK_RESTRICTED = "fskrestricted2";
 	public static final String EXTRA_NAME_MOVIE_UNIQUE_ID = "uniqueid2";
 
 	/**
-	 * This constant is used to identify notifications which are used to show a onging download of a movie.
+	 * This constant is used to identify notifications which are used to show a ongoing download of a movie.
 	 */
 	public static final int NOTIFICATION_DOWNLOADING_MOVIE = 1;
 

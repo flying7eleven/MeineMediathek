@@ -40,9 +40,8 @@ public class MovieOverviewFragment extends Fragment {
 	private ImageView ivPreviewImage = null;
 	private TextView tvMovieDescription = null;
 	private TextView tvMovieTitle = null;
+	private boolean fskRestricted = false;
 	private String previewImagePath = "";
-	private String uniqueId = "";
-
 	private static final String TAG = "MovieOverviewFragment";
 
 	private Messenger serviceMessanger = null;
@@ -75,7 +74,7 @@ public class MovieOverviewFragment extends Fragment {
 	private synchronized int getNextNotificationId() {
 		// get the preferences of the application
 		final SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences( this.getActivity().getApplicationContext() );
-		
+
 		// get the next notification id and store the current value in the settings file
 		int nextNotificationId = appPreferences.getInt( Consts.PREFERENCE_DOWNLOAD_NOTIFICATION_LAST_ID, 0 ) + 1;
 		Editor prefEditor = appPreferences.edit();
@@ -83,11 +82,11 @@ public class MovieOverviewFragment extends Fragment {
 		if( !prefEditor.commit() ) {
 			Log.e( MovieOverviewFragment.TAG, "Failed to store the last used notification id in the application preferences." );
 		}
-		
+
 		// return the next notification id which can be used
 		return nextNotificationId;
 	}
-	
+
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
@@ -110,12 +109,16 @@ public class MovieOverviewFragment extends Fragment {
 		// fetch some information we want to use later
 		this.downloadLink = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK );
 		this.previewImagePath = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH );
-		this.uniqueId = passedInformation.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
+		this.fskRestricted = passedInformation.getBoolean( Consts.EXTRA_NAME_MOVIE_FSK_RESTRICTED );
+		passedInformation.getString( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID );
 
 		// set the content for all of the fetched controls
 		this.tvMovieTitle.setText( passedInformation.getString( Consts.EXTRA_NAME_MOVIE_TITLE ) );
 		this.tvMovieDescription.setText( passedInformation.getString( Consts.EXTRA_NAME_MOVIE_DESCRIPTION ) );
 		this.ivPreviewImage.setImageBitmap( BitmapFactory.decodeFile( this.previewImagePath ) );
+
+		// by default the download is not allowed
+		this.btnDownloadMoview.setEnabled( false );
 
 		// tell the button what to do as soon as it gets clicked
 		this.btnDownloadMoview.setOnClickListener( new OnClickListener() {
@@ -155,6 +158,15 @@ public class MovieOverviewFragment extends Fragment {
 
 		// be sure that we are connected to the download service
 		this.doBindService();
+
+		// if the movie is not FSK restricted, allow the download
+		if( !this.fskRestricted ) {
+			this.btnDownloadMoview.setEnabled( true );
+			final TextView warningTitle = (TextView) v.findViewById( R.id.tv_movie_fsk_restriction_warning_title );
+			final TextView warningText = (TextView) v.findViewById( R.id.tv_movie_fsk_restriction_warning_text );
+			warningTitle.setVisibility( View.GONE );
+			warningText.setVisibility( View.GONE );
+		}
 
 		// return the created view
 		return v;

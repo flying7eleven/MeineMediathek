@@ -71,6 +71,7 @@ public class SearchResultsFragment extends ListFragment implements LoaderCallbac
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DESCRIPTION, selectedResults.description );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_DOWNLOADLINK, selectedResults.downloadLink );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_PRVIEWIMAGEPATH, selectedResults.previewImage.getAbsolutePath() );
+		intent.putExtra( Consts.EXTRA_NAME_MOVIE_FSK_RESTRICTED, selectedResults.isCurrentlyFskRestricted );
 		intent.putExtra( Consts.EXTRA_NAME_MOVIE_UNIQUE_ID, UUID.randomUUID().toString() );
 		SearchResultsFragment.this.startActivity( intent );
 	}
