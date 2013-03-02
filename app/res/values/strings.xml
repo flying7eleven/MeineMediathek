@@ -30,5 +30,6 @@
     <string name="mnu_title_bugreport">Fehlerbericht senden</string>
     <string name="btn_rate_app">App bewerten</string>
     <string name="tv_movie_fsk_restriction_warning_title">Warnung:</string>
-    <string name="tv_movie_fsk_restriction_warning_text">Der von Ihnen gewählte Film steht unter FSK Restriktionen und kann nur zu bestimmten Uhrzeiten in Deutschland heruntergeladen werden. Sie befindenn sich aktuell außerhalb dieser gültigen Uhrzeit und können den Film leider nicht herunterladen.</string>
+    <string name="tv_movie_fsk_restriction_warning_text">Der von Ihnen gewählte Film steht unter Restriktionen der FSK und kann nur zu bestimmten Uhrzeiten in Deutschland heruntergeladen werden. Sie befinden sich aktuell außerhalb dieser gültigen Uhrzeit und können den Film leider nicht herunterladen.</string>
+
 </resources>

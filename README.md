@@ -24,10 +24,10 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.1.2 (Code: *12*, Released on: ***2013-03-01***) - [Changes][112]
-* Bei Filmen die der FSK unterliegen, kann es vorkommen das diese nur zu bestimmten Zeiten verfügbar sind. Ein Warnhinweis wurde hinzugefügt der dies anzeigt
+### Version 0.1.2 (Code: *12*, Released on: ***2013-03-XX***) - [Changes][112]
+* Bei Filmen, die Restriktionen der FSK unterliegen, kann es vorkommen, dass diese nur zu bestimmten Zeiten verfügbar sind. Ein Warnhinweis wurde hinzugefügt, der dies anzeigt.
 * Kleinere Geschwindigkeitsverbesserungen der Suche (bei vielen Suchergebnissen leider noch relativ langsam)
-* Ein Bewertungsbutton wurde zum "Änderungen seit der letzten Version" Dialog hinzugefügt
+* Ein Bewertungsbutton wurde zum "Änderungen seit der letzten Version" Dialog hinzugefügt.
 
 ### Version 0.1.1 (Code: *11*, Released on: ***2013-02-08***) - [Changes][111]
 * Es wurde ein Fehler behoben, der dazu führte das jede Suche mit einem Anwendungsabsturz endete (danke für die Bugreports per Email)
