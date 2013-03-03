@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
-<release version="0.1.2" versioncode="12" releasedate="2013-03-XX">
+<release version="0.1.3" versioncode="13" releasedate="2013-03-02">
 <change>Bei Filmen, die Restriktionen der FSK unterliegen, kann es vorkommen, dass diese nur zu bestimmten Zeiten verfuegbar sind. Ein Warnhinweis wurde hinzugefuegt, der dies anzeigt.</change>
 <change>Kleinere Geschwindigkeitsverbesserungen der Suche (bei vielen Suchergebnissen leider noch relativ langsam)</change>
 <change>Ein Bewertungsbutton wurde zum "Aenderungen seit der letzten Version" Dialog hinzugefuegt.</change>
