@@ -926,53 +926,215 @@ android.support.v4.widget.EdgeEffectCompatIcs -> android.support.v4.d.e:
     46:47:boolean onPull(java.lang.Object,float) -> a
     51:53:boolean onRelease(java.lang.Object) -> c
     62:62:boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+com.google.android.vending.licensing.AESObfuscator -> com.a.a.a.a.a:
+    byte[] IV -> a
+    javax.crypto.Cipher mEncryptor -> b
+    javax.crypto.Cipher mDecryptor -> c
+    73:82:java.lang.String obfuscate(java.lang.String,java.lang.String) -> a
+    87:107:java.lang.String unobfuscate(java.lang.String,java.lang.String) -> b
+com.google.android.vending.licensing.DeviceLimiter -> com.a.a.a.a.b:
+    int isDeviceAllowed(java.lang.String) -> a
+com.google.android.vending.licensing.ILicenseResultListener -> com.a.a.a.a.c:
+    void verifyLicense(int,java.lang.String,java.lang.String) -> a
+com.google.android.vending.licensing.ILicenseResultListener$Stub -> com.a.a.a.a.d:
+    29:36:com.google.android.vending.licensing.ILicenseResultListener asInterface(android.os.IBinder) -> a
+    40:40:android.os.IBinder asBinder() -> asBinder
+    44:64:boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
+com.google.android.vending.licensing.ILicenseResultListener$Stub$Proxy -> com.a.a.a.a.e:
+    android.os.IBinder mRemote -> a
+    75:75:android.os.IBinder asBinder() -> asBinder
+    83:94:void verifyLicense(int,java.lang.String,java.lang.String) -> a
+com.google.android.vending.licensing.ILicensingService -> com.a.a.a.a.f:
+    void checkLicense(long,java.lang.String,com.google.android.vending.licensing.ILicenseResultListener) -> a
+com.google.android.vending.licensing.ILicensingService$Stub -> com.a.a.a.a.g:
+    29:36:com.google.android.vending.licensing.ILicensingService asInterface(android.os.IBinder) -> a
+    44:64:boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
+com.google.android.vending.licensing.ILicensingService$Stub$Proxy -> com.a.a.a.a.h:
+    android.os.IBinder mRemote -> a
+    75:75:android.os.IBinder asBinder() -> asBinder
+    83:94:void checkLicense(long,java.lang.String,com.google.android.vending.licensing.ILicenseResultListener) -> a
+com.google.android.vending.licensing.LicenseChecker -> com.a.a.a.a.i:
+    java.security.SecureRandom RANDOM -> a
+    com.google.android.vending.licensing.ILicensingService mService -> b
+    java.security.PublicKey mPublicKey -> c
+    android.content.Context mContext -> d
+    com.google.android.vending.licensing.Policy mPolicy -> e
+    android.os.Handler mHandler -> f
+    java.lang.String mPackageName -> g
+    java.lang.String mVersionCode -> h
+    java.util.Set mChecksInProgress -> i
+    java.util.Queue mPendingChecks -> j
+    109:121:java.security.PublicKey generatePublicKey(java.lang.String) -> a
+    139:173:void checkAccess(com.google.android.vending.licensing.LicenseCheckerCallback) -> a
+    177:189:void runChecks() -> b
+    192:196:void finishCheck(com.google.android.vending.licensing.LicenseValidator) -> a
+    277:279:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    285:287:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    294:301:void handleServiceConnectionError(com.google.android.vending.licensing.LicenseValidator) -> b
+    305:315:void cleanupService() -> c
+    326:328:void onDestroy() -> a
+    332:332:int generateNonce() -> d
+    344:348:java.lang.String getVersionCode(android.content.Context,java.lang.String) -> a
+    293:293:void access$0(com.google.android.vending.licensing.LicenseChecker,com.google.android.vending.licensing.LicenseValidator) -> a
+    191:191:void access$1(com.google.android.vending.licensing.LicenseChecker,com.google.android.vending.licensing.LicenseValidator) -> b
+    77:77:android.os.Handler access$2(com.google.android.vending.licensing.LicenseChecker) -> a
+    80:80:java.util.Set access$3(com.google.android.vending.licensing.LicenseChecker) -> b
+    70:70:java.security.PublicKey access$4(com.google.android.vending.licensing.LicenseChecker) -> c
+com.google.android.vending.licensing.LicenseChecker$ResultListener -> com.a.a.a.a.j:
+    com.google.android.vending.licensing.LicenseValidator mValidator -> b
+    java.lang.Runnable mOnTimeout -> c
+    com.google.android.vending.licensing.LicenseChecker this$0 -> a
+    222:263:void verifyLicense(int,java.lang.String,java.lang.String) -> a
+    266:268:void startTimeout() -> a
+    271:273:void clearTimeout() -> b
+    199:199:com.google.android.vending.licensing.LicenseValidator access$0(com.google.android.vending.licensing.LicenseChecker$ResultListener) -> a
+    270:270:void access$1(com.google.android.vending.licensing.LicenseChecker$ResultListener) -> b
+    198:198:com.google.android.vending.licensing.LicenseChecker access$2(com.google.android.vending.licensing.LicenseChecker$ResultListener) -> c
+com.google.android.vending.licensing.LicenseChecker$ResultListener$1 -> com.a.a.a.a.k:
+    com.google.android.vending.licensing.LicenseChecker$ResultListener this$1 -> a
+    206:209:void run() -> run
+com.google.android.vending.licensing.LicenseChecker$ResultListener$2 -> com.a.a.a.a.l:
+    com.google.android.vending.licensing.LicenseChecker$ResultListener this$1 -> a
+    int val$responseCode -> b
+    java.lang.String val$signedData -> c
+    java.lang.String val$signature -> d
+    224:261:void run() -> run
+com.google.android.vending.licensing.LicenseCheckerCallback -> com.a.a.a.a.m:
+    void allow(int) -> a
+    void dontAllow(int) -> b
+    void applicationError(int) -> c
+com.google.android.vending.licensing.LicenseValidator -> com.a.a.a.a.n:
+    com.google.android.vending.licensing.Policy mPolicy -> a
+    com.google.android.vending.licensing.LicenseCheckerCallback mCallback -> b
+    int mNonce -> c
+    java.lang.String mPackageName -> d
+    java.lang.String mVersionCode -> e
+    com.google.android.vending.licensing.DeviceLimiter mDeviceLimiter -> f
+    68:68:com.google.android.vending.licensing.LicenseCheckerCallback getCallback() -> a
+    72:72:int getNonce() -> b
+    76:76:java.lang.String getPackageName() -> c
+    90:196:void verify(java.security.PublicKey,int,java.lang.String,java.lang.String) -> a
+    206:215:void handleResponse(int,com.google.android.vending.licensing.ResponseData) -> a
+    218:219:void handleApplicationError(int) -> a
+    222:223:void handleInvalidResponse() -> d
+com.google.android.vending.licensing.NullDeviceLimiter -> com.a.a.a.a.o:
+    30:30:int isDeviceAllowed(java.lang.String) -> a
+com.google.android.vending.licensing.Obfuscator -> com.a.a.a.a.p:
+    java.lang.String obfuscate(java.lang.String,java.lang.String) -> a
+    java.lang.String unobfuscate(java.lang.String,java.lang.String) -> b
+com.google.android.vending.licensing.Policy -> com.a.a.a.a.q:
+    void processServerResponse(int,com.google.android.vending.licensing.ResponseData) -> a
+    boolean allowAccess() -> a
+com.google.android.vending.licensing.PreferenceObfuscator -> com.a.a.a.a.r:
+    android.content.SharedPreferences mPreferences -> a
+    com.google.android.vending.licensing.Obfuscator mObfuscator -> b
+    android.content.SharedPreferences$Editor mEditor -> c
+    46:51:void putString(java.lang.String,java.lang.String) -> a
+    55:68:java.lang.String getString(java.lang.String,java.lang.String) -> b
+    72:76:void commit() -> a
+com.google.android.vending.licensing.ResponseData -> com.a.a.a.a.s:
+    int responseCode -> a
+    int nonce -> b
+    java.lang.String packageName -> c
+    java.lang.String versionCode -> d
+    java.lang.String userId -> e
+    long timestamp -> f
+    java.lang.String extra -> g
+    46:71:com.google.android.vending.licensing.ResponseData parse(java.lang.String) -> a
+    76:76:java.lang.String toString() -> toString
+com.google.android.vending.licensing.ServerManagedPolicy -> com.a.a.a.a.t:
+    long mValidityTimestamp -> a
+    long mRetryUntil -> b
+    long mMaxRetries -> c
+    long mRetryCount -> d
+    long mLastResponseTime -> e
+    int mLastResponse -> f
+    com.google.android.vending.licensing.PreferenceObfuscator mPreferences -> g
+    105:127:void processServerResponse(int,com.google.android.vending.licensing.ResponseData) -> a
+    137:140:void setLastResponse(int) -> a
+    149:151:void setRetryCount(long) -> a
+    167:177:void setValidityTimestamp(java.lang.String) -> a
+    193:203:void setRetryUntil(java.lang.String) -> b
+    219:229:void setMaxRetries(java.lang.String) -> c
+    246:259:boolean allowAccess() -> a
+    263:273:java.util.Map decodeExtras(java.lang.String) -> d
+com.google.android.vending.licensing.ValidationException -> com.a.a.a.a.u:
+com.google.android.vending.licensing.util.Base64 -> com.a.a.a.a.a.a:
+    byte[] ALPHABET -> b
+    byte[] WEBSAFE_ALPHABET -> c
+    byte[] DECODABET -> d
+    byte[] WEBSAFE_DECODABET -> e
+    boolean $assertionsDisabled -> a
+    210:234:byte[] encode3to4(byte[],int,int,byte[],int,byte[]) -> a
+    247:247:java.lang.String encode(byte[]) -> a
+    274:286:java.lang.String encode(byte[],int,int,byte[],boolean) -> a
+    301:345:byte[] encode(byte[],int,int,byte[],int) -> a
+    378:406:int decode4to3(byte[],int,byte[],int,byte[]) -> a
+    419:420:byte[] decode(java.lang.String) -> a
+    474:474:byte[] decode(byte[],int,int) -> a
+    504:568:byte[] decode(byte[],int,int,byte[]) -> a
+com.google.android.vending.licensing.util.Base64DecoderException -> com.a.a.a.a.a.b:
 com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint -> com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint:
     javax.security.auth.x500.X500Principal DEBUG_DN -> a
-    79:99:boolean isApplicationDebuggable(android.content.Context) -> a
+    78:99:boolean isApplicationDebuggable(android.content.Context) -> a
     104:108:void onCreate() -> onCreate
 com.halcyonwaves.apps.meinemediathek.ChangeLogDialog -> com.halcyonwaves.apps.meinemediathek.a:
     android.app.Activity rootActivity -> a
-    46:49:java.lang.String getApplicationVersion() -> c
-    55:58:int getApplicationVersionCode() -> d
-    63:63:java.lang.String getChangelogStyleDefinition() -> e
-    67:100:java.lang.String getHtmlChangelog() -> f
-    104:111:void markDialogAsAlreadyDisplayed() -> a
-    114:124:java.lang.String parseChangelogReleaseTag(org.xmlpull.v1.XmlPullParser) -> a
-    128:159:void show() -> b
+    48:51:java.lang.String getApplicationVersion() -> c
+    57:60:int getApplicationVersionCode() -> d
+    65:65:java.lang.String getChangelogStyleDefinition() -> e
+    69:102:java.lang.String getHtmlChangelog() -> f
+    106:113:void markDialogAsAlreadyDisplayed() -> a
+    116:126:java.lang.String parseChangelogReleaseTag(org.xmlpull.v1.XmlPullParser) -> a
+    130:173:void show() -> b
+    40:40:android.app.Activity access$0(com.halcyonwaves.apps.meinemediathek.ChangeLogDialog) -> a
 com.halcyonwaves.apps.meinemediathek.ChangeLogDialog$1 -> com.halcyonwaves.apps.meinemediathek.b:
     com.halcyonwaves.apps.meinemediathek.ChangeLogDialog this$0 -> a
-    154:155:void onClick(android.content.DialogInterface,int) -> onClick
-com.halcyonwaves.apps.meinemediathek.SearchResultEntry -> com.halcyonwaves.apps.meinemediathek.c:
+    156:163:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog$2 -> com.halcyonwaves.apps.meinemediathek.c:
+    com.halcyonwaves.apps.meinemediathek.ChangeLogDialog this$0 -> a
+    168:169:void onClick(android.content.DialogInterface,int) -> onClick
+com.halcyonwaves.apps.meinemediathek.SearchResultEntry -> com.halcyonwaves.apps.meinemediathek.d:
     java.lang.String description -> a
     java.lang.String downloadLink -> b
-    java.io.File previewImage -> c
-    java.lang.String title -> d
+    boolean isCurrentlyFskRestricted -> c
+    java.io.File previewImage -> d
+    java.lang.String title -> e
 com.halcyonwaves.apps.meinemediathek.activities.BaseActivity -> com.halcyonwaves.apps.meinemediathek.activities.a:
     18:30:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
     35:40:boolean onMenuItemSelected(int,android.view.MenuItem) -> onMenuItemSelected
 com.halcyonwaves.apps.meinemediathek.activities.HomeActivity -> com.halcyonwaves.apps.meinemediathek.activities.HomeActivity:
-    11:13:void onCreate(android.os.Bundle) -> onCreate
+    android.os.Handler mHandler -> a
+    com.halcyonwaves.apps.meinemediathek.activities.HomeActivity$MyLicenseCheckerCallback mLicenseCheckerCallback -> b
+    com.google.android.vending.licensing.LicenseChecker mChecker -> c
+    70:85:void onCreate(android.os.Bundle) -> onCreate
+    89:91:void onDestroy() -> onDestroy
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity$MyLicenseCheckerCallback -> com.halcyonwaves.apps.meinemediathek.activities.b:
+    com.halcyonwaves.apps.meinemediathek.activities.HomeActivity this$0 -> a
+    27:31:void allow(int) -> a
+    34:51:void dontAllow(int) -> b
+    55:65:void applicationError(int) -> c
 com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity -> com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity:
     android.widget.Button cancelDownload -> a
-    android.widget.TextView movieTitle -> b
+    int cancelId -> b
     android.widget.TextView movieDescription -> c
-    int cancelId -> d
-    android.os.Messenger serviceMessanger -> e
-    android.content.ServiceConnection serviceConnection -> f
-    48:51:void doBindService() -> a
-    54:58:void doUnbindService() -> b
-    62:64:void onDestroy() -> onDestroy
-    68:116:void onCreate(android.os.Bundle) -> onCreate
-    33:33:void access$0(com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity,android.os.Messenger) -> a
-    29:29:int access$1(com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity) -> a
-    33:33:android.os.Messenger access$2(com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity) -> b
-com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity$1 -> com.halcyonwaves.apps.meinemediathek.activities.b:
+    android.widget.TextView movieTitle -> d
+    android.content.ServiceConnection serviceConnection -> e
+    android.os.Messenger serviceMessanger -> f
+    50:53:void doBindService() -> a
+    56:60:void doUnbindService() -> b
+    64:112:void onCreate(android.os.Bundle) -> onCreate
+    116:118:void onDestroy() -> onDestroy
+    47:47:void access$0(com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity,android.os.Messenger) -> a
+    28:28:int access$1(com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity) -> a
+    47:47:android.os.Messenger access$2(com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity) -> b
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity$1 -> com.halcyonwaves.apps.meinemediathek.activities.c:
     com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity this$0 -> a
     37:39:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-    42:44:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
-com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity$2 -> com.halcyonwaves.apps.meinemediathek.activities.c:
+    43:45:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity$2 -> com.halcyonwaves.apps.meinemediathek.activities.d:
     com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity this$0 -> a
-    95:114:void onClick(android.view.View) -> onClick
+    91:110:void onClick(android.view.View) -> onClick
 com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity -> com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity:
     11:13:void onCreate(android.os.Bundle) -> onCreate
 com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity -> com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity:
@@ -984,35 +1146,35 @@ com.halcyonwaves.apps.meinemediathek.adapter.SearchResultsAdapter -> com.halcyon
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment -> com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment:
     android.widget.Button btnDownloadMoview -> a
     java.lang.String downloadLink -> b
-    android.widget.ImageView ivPreviewImage -> c
-    android.widget.TextView tvMovieDescription -> d
-    android.widget.TextView tvMovieTitle -> e
-    java.lang.String previewImagePath -> f
-    java.lang.String uniqueId -> g
-    android.os.Messenger serviceMessanger -> h
-    android.content.ServiceConnection serviceConnection -> i
-    63:66:void doBindService() -> a
-    69:73:void doUnbindService() -> b
-    77:88:int getNextNotificationId() -> c
-    93:95:void onDestroyView() -> onDestroyView
-    99:160:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    165:184:void startEpisodeDownload() -> d
-    48:48:void access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment,android.os.Messenger) -> a
-    163:163:void access$1(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment) -> a
+    boolean fskRestricted -> c
+    android.widget.ImageView ivPreviewImage -> d
+    java.lang.String previewImagePath -> e
+    android.content.ServiceConnection serviceConnection -> f
+    android.os.Messenger serviceMessanger -> g
+    android.widget.TextView tvMovieDescription -> h
+    android.widget.TextView tvMovieTitle -> i
+    64:67:void doBindService() -> a
+    70:74:void doUnbindService() -> b
+    78:89:int getNextNotificationId() -> c
+    94:168:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    173:175:void onDestroyView() -> onDestroyView
+    179:198:void startEpisodeDownload() -> d
+    58:58:void access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment,android.os.Messenger) -> a
+    177:177:void access$1(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment) -> a
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$1 -> com.halcyonwaves.apps.meinemediathek.fragments.a:
     com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment this$0 -> a
-    52:54:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-    57:59:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    48:50:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    54:56:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2 -> com.halcyonwaves.apps.meinemediathek.fragments.b:
     com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment this$0 -> a
-    125:153:void onClick(android.view.View) -> onClick
-    121:121:com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2) -> a
+    124:152:void onClick(android.view.View) -> onClick
+    120:120:com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment access$0(com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2) -> a
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2$1 -> com.halcyonwaves.apps.meinemediathek.fragments.c:
     com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2 this$1 -> a
-    135:136:void onClick(android.content.DialogInterface,int) -> onClick
+    134:135:void onClick(android.content.DialogInterface,int) -> onClick
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2$2 -> com.halcyonwaves.apps.meinemediathek.fragments.d:
     com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment$2 this$1 -> a
-    142:142:void onClick(android.content.DialogInterface,int) -> onClick
+    141:141:void onClick(android.content.DialogInterface,int) -> onClick
 com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment -> com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
     android.widget.Button btnSearch -> a
     android.widget.EditText etTitleToSearchFor -> b
@@ -1035,9 +1197,9 @@ com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment -> com.halc
     32:43:void onActivityCreated(android.os.Bundle) -> onActivityCreated
     47:48:void onClick(android.content.DialogInterface,int) -> onClick
     54:58:android.content.Loader onCreateLoader(int,android.os.Bundle) -> onCreateLoader
-    63:76:void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
-    80:81:void onLoaderReset(android.content.Loader) -> onLoaderReset
-    86:110:void onLoadFinished(android.content.Loader,java.util.List) -> a
+    63:77:void onListItemClick(android.widget.ListView,android.view.View,int,long) -> onListItemClick
+    81:82:void onLoaderReset(android.content.Loader) -> onLoaderReset
+    87:111:void onLoadFinished(android.content.Loader,java.util.List) -> a
     1:1:void onLoadFinished(android.content.Loader,java.lang.Object) -> onLoadFinished
 com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader -> com.halcyonwaves.apps.meinemediathek.b.a:
     java.util.regex.Pattern OffsetPattern -> a
@@ -1065,41 +1227,43 @@ com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream -> com.halcyonwaves.apps
     int nativeRead(int,byte[],int,int) -> nativeRead
     125:134:int read() -> read
     139:139:int read(byte[],int,int) -> read
+com.halcyonwaves.apps.meinemediathek.security.KeyConstants -> com.halcyonwaves.apps.meinemediathek.c.a:
+    byte[] SALT -> a
 com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService -> com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
-    android.os.Messenger serviceMessenger -> a
-    java.util.Map managedThreads -> b
-    118:126:void cleanupFinishedThreads() -> a
-    133:133:android.os.IBinder onBind(android.content.Intent) -> onBind
-    141:143:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-    117:117:void access$0(com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService) -> a
-    54:54:java.util.Map access$1(com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService) -> b
+    java.util.Map managedThreads -> a
+    android.os.Messenger serviceMessenger -> b
+    114:122:void cleanupFinishedThreads() -> a
+    129:129:android.os.IBinder onBind(android.content.Intent) -> onBind
+    137:139:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+    113:113:void access$0(com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService) -> a
+    106:106:java.util.Map access$1(com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService) -> b
 com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService$IncomingHandler -> com.halcyonwaves.apps.meinemediathek.services.a:
     com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService this$0 -> a
-    64:114:void handleMessage(android.os.Message) -> handleMessage
-com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyonwaves.apps.meinemediathek.c.a:
-    java.lang.String downloadLink -> a
-    android.support.v4.app.NotificationCompat$Builder notificationBuilder -> b
-    android.app.NotificationManager notificationManager -> c
-    java.io.File outputFile -> d
-    android.os.PowerManager$WakeLock downloadWakeLock -> e
+    35:85:void handleMessage(android.os.Message) -> handleMessage
+com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread -> com.halcyonwaves.apps.meinemediathek.d.a:
+    java.lang.Thread actualDownloadThread -> a
+    java.lang.String downloadLink -> b
+    android.os.PowerManager$WakeLock downloadWakeLock -> c
+    com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream mmsInputStream -> d
+    android.support.v4.app.NotificationCompat$Builder notificationBuilder -> e
     int notificationId -> f
-    android.content.Context threadContext -> g
-    java.lang.Thread actualDownloadThread -> h
-    com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream mmsInputStream -> i
-    140:326:void run() -> run
-    69:69:android.os.PowerManager$WakeLock access$0(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> a
-    54:54:android.support.v4.app.NotificationCompat$Builder access$1(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> b
-    79:79:android.content.Context access$2(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> c
-    59:59:android.app.NotificationManager access$3(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> d
-    74:74:int access$4(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> e
-    49:49:java.lang.String access$5(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> f
-    64:64:java.io.File access$6(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> g
-    64:64:void access$7(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread,java.io.File) -> a
-    89:89:void access$8(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread,com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream) -> a
-    89:89:com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream access$9(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> h
-com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread$1 -> com.halcyonwaves.apps.meinemediathek.c.b:
+    android.app.NotificationManager notificationManager -> g
+    java.io.File outputFile -> h
+    android.content.Context threadContext -> i
+    137:312:void run() -> run
+    56:56:android.os.PowerManager$WakeLock access$0(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> a
+    66:66:android.support.v4.app.NotificationCompat$Builder access$1(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> b
+    86:86:android.content.Context access$2(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> c
+    76:76:android.app.NotificationManager access$3(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> d
+    71:71:int access$4(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> e
+    51:51:java.lang.String access$5(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> f
+    81:81:java.io.File access$6(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> g
+    81:81:void access$7(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread,java.io.File) -> a
+    61:61:void access$8(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread,com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream) -> a
+    61:61:com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream access$9(com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread) -> h
+com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread$1 -> com.halcyonwaves.apps.meinemediathek.d.b:
     com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread this$0 -> a
-    148:294:void run() -> run
+    145:291:void run() -> run
 org.acra.ACRA -> org.acra.ACRA:
     boolean DEV_LOGGING -> DEV_LOGGING
     java.lang.String LOG_TAG -> LOG_TAG

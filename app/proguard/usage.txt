@@ -707,6 +707,92 @@ android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBri
 android.support.v4.widget.SimpleCursorAdapter
 android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
 android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+com.google.android.vending.licensing.AESObfuscator:
+    private static final java.lang.String UTF8
+    private static final java.lang.String KEYGEN_ALGORITHM
+    private static final java.lang.String CIPHER_ALGORITHM
+    private static final java.lang.String header
+com.google.android.vending.licensing.APKExpansionPolicy
+com.google.android.vending.licensing.ILicenseResultListener$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_verifyLicense
+com.google.android.vending.licensing.ILicenseResultListener$Stub$Proxy:
+    79:79:public java.lang.String getInterfaceDescriptor()
+com.google.android.vending.licensing.ILicensingService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_checkLicense
+    19:22:public ILicensingService$Stub()
+    40:40:public android.os.IBinder asBinder()
+com.google.android.vending.licensing.ILicensingService$Stub$Proxy:
+    79:79:public java.lang.String getInterfaceDescriptor()
+com.google.android.vending.licensing.LicenseChecker:
+    private static final java.lang.String TAG
+    private static final java.lang.String KEY_FACTORY_ALGORITHM
+    private static final int TIMEOUT_MS
+    private static final boolean DEBUG_LICENSE_ERROR
+com.google.android.vending.licensing.LicenseChecker$ResultListener:
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
+com.google.android.vending.licensing.LicenseCheckerCallback:
+    public static final int ERROR_INVALID_PACKAGE_NAME
+    public static final int ERROR_NON_MATCHING_UID
+    public static final int ERROR_NOT_MARKET_MANAGED
+    public static final int ERROR_CHECK_IN_PROGRESS
+    public static final int ERROR_INVALID_PUBLIC_KEY
+    public static final int ERROR_MISSING_PERMISSION
+com.google.android.vending.licensing.LicenseValidator:
+    private static final java.lang.String TAG
+    private static final int LICENSED
+    private static final int NOT_LICENSED
+    private static final int LICENSED_OLD_KEY
+    private static final int ERROR_NOT_MARKET_MANAGED
+    private static final int ERROR_SERVER_FAILURE
+    private static final int ERROR_OVER_QUOTA
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
+    private static final java.lang.String SIGNATURE_ALGORITHM
+com.google.android.vending.licensing.Policy:
+    public static final int LICENSED
+    public static final int NOT_LICENSED
+    public static final int RETRY
+com.google.android.vending.licensing.PreferenceObfuscator:
+    private static final java.lang.String TAG
+com.google.android.vending.licensing.ServerManagedPolicy:
+    private static final java.lang.String TAG
+    private static final java.lang.String PREFS_FILE
+    private static final java.lang.String PREF_LAST_RESPONSE
+    private static final java.lang.String PREF_VALIDITY_TIMESTAMP
+    private static final java.lang.String PREF_RETRY_UNTIL
+    private static final java.lang.String PREF_MAX_RETRIES
+    private static final java.lang.String PREF_RETRY_COUNT
+    private static final java.lang.String DEFAULT_VALIDITY_TIMESTAMP
+    private static final java.lang.String DEFAULT_RETRY_UNTIL
+    private static final java.lang.String DEFAULT_MAX_RETRIES
+    private static final java.lang.String DEFAULT_RETRY_COUNT
+    private static final long MILLIS_PER_MINUTE
+    154:154:public long getRetryCount()
+    180:180:public long getValidityTimestamp()
+    206:206:public long getRetryUntil()
+    232:232:public long getMaxRetries()
+com.google.android.vending.licensing.StrictPolicy
+com.google.android.vending.licensing.ValidationException:
+    private static final long serialVersionUID
+com.google.android.vending.licensing.util.Base64:
+    public static final boolean ENCODE
+    public static final boolean DECODE
+    private static final byte EQUALS_SIGN
+    private static final byte NEW_LINE
+    private static final byte WHITE_SPACE_ENC
+    private static final byte EQUALS_SIGN_ENC
+    258:258:public static java.lang.String encodeWebSafe(byte[],boolean)
+    431:432:public static byte[] decodeWebSafe(java.lang.String)
+    445:445:public static byte[] decode(byte[])
+    458:458:public static byte[] decodeWebSafe(byte[])
+    489:489:public static byte[] decodeWebSafe(byte[],int,int)
+com.google.android.vending.licensing.util.Base64DecoderException:
+    private static final long serialVersionUID
 com.halcyonwaves.apps.meinemediathek.BuildConfig
 com.halcyonwaves.apps.meinemediathek.ChangeLogDialog:
     private static final java.lang.String TAG
@@ -718,6 +804,8 @@ com.halcyonwaves.apps.meinemediathek.R$id
 com.halcyonwaves.apps.meinemediathek.R$layout
 com.halcyonwaves.apps.meinemediathek.R$menu
 com.halcyonwaves.apps.meinemediathek.R$string
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity:
+    private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity:
     private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment:
@@ -734,10 +822,14 @@ com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
     private static final java.lang.String LOG
     51:59:private static byte[] string2unicode(java.lang.String)
     72:78:private static java.lang.String unicode2string(byte[])
+com.halcyonwaves.apps.meinemediathek.security.KeyConstants:
+    public static final boolean isOpenSource
+    public static final java.lang.String BASE64_PUBLIC_KEY
+    10:10:public KeyConstants()
 com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
-    private static final java.lang.String TAG
-    public static final int SERVICE_MSG_INITIATE_DOWNLOAD
     public static final int SERVICE_MSG_CANCEL_DOWNLOAD
+    public static final int SERVICE_MSG_INITIATE_DOWNLOAD
+    private static final java.lang.String TAG
 com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread:
     private static final java.lang.String TAG
 org.acra.ACRAConfiguration:

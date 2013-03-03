@@ -66,6 +66,8 @@ com.halcyonwaves.apps.meinemediathek.R$id: int tv_episode_description
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_episode_title
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_description_content
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_description_label
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_fsk_restriction_warning_text
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_fsk_restriction_warning_title
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_title_content
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_title_label
 com.halcyonwaves.apps.meinemediathek.R$id: int tv_player_notice
@@ -82,6 +84,7 @@ com.halcyonwaves.apps.meinemediathek.R$string: int btn_agree
 com.halcyonwaves.apps.meinemediathek.R$string: int btn_cancel_download
 com.halcyonwaves.apps.meinemediathek.R$string: int btn_disagree
 com.halcyonwaves.apps.meinemediathek.R$string: int btn_download_movie
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_rate_app
 com.halcyonwaves.apps.meinemediathek.R$string: int btn_search
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_appcrash
 com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_download_on_mobile
@@ -102,6 +105,8 @@ com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_fa
 com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_finished
 com.halcyonwaves.apps.meinemediathek.R$string: int not_title_download_of_movie
 com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_description
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_fsk_restriction_warning_text
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_fsk_restriction_warning_title
 com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_title
 com.halcyonwaves.apps.meinemediathek.R$string: int tv_player_notice
 com.halcyonwaves.apps.meinemediathek.activities.BaseActivity: BaseActivity()
