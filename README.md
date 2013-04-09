@@ -26,6 +26,7 @@ For building the application by yourself follow the following steps:
 ## Changelog
 ### Version 0.2 (Code: *20*, Veröffentlicht am: ***2013-XX-XX***) - [Changes][120]
 * Die Anwendung wurde von Grund auf neu entwickelt und programmiert
+* Neues Layout der Suchergebnisse
 * Vollständige Unterstützung von Smartphones aller Auflösungen sowie 7'' und 10'' Tablets
 * Schnellere Suche als bei der Vorversion
 * Integration von Google+ Diensten (Nutzung wird nicht erzwungen)
