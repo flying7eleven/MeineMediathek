@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 
-import org.acra.ACRA;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -261,15 +260,15 @@ public class DownloadStreamThread extends Thread {
 				} catch( final IOException e ) {
 					Log.e( DownloadStreamThread.TAG, "Failed to fetch the movie file from the MMS stream.", e );
 					reachedDueToException = true;
-					ACRA.getErrorReporter().putCustomData( "downloadLink", DownloadStreamThread.this.downloadLink );
-					ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", DownloadStreamThread.this.outputFile != null ? DownloadStreamThread.this.outputFile.getAbsolutePath() : "" );
-					ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
-					ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
-					ACRA.getErrorReporter().putCustomData( "movieFullLength", String.format( "%d", movieFullLength ) );
-					ACRA.getErrorReporter().putCustomData( "readBytesFromMovie", String.format( "%d", comReadB ) );
-					ACRA.getErrorReporter().putCustomData( "lastReadBytes", String.format( "%d", readB ) );
-					ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
-					ACRA.getErrorReporter().handleException( e );
+					// TODO: ACRA.getErrorReporter().putCustomData( "downloadLink", DownloadStreamThread.this.downloadLink );
+					// TODO: ACRA.getErrorReporter().putCustomData( "outputFileAbsolutePath", DownloadStreamThread.this.outputFile != null ? DownloadStreamThread.this.outputFile.getAbsolutePath() : "" );
+					// TODO: ACRA.getErrorReporter().putCustomData( "downloadBufferSize", String.format( "%d", downloadBuffer.length ) );
+					// TODO: ACRA.getErrorReporter().putCustomData( "extractedURL", extractedURL );
+					// TODO: ACRA.getErrorReporter().putCustomData( "movieFullLength", String.format( "%d", movieFullLength ) );
+					// TODO: ACRA.getErrorReporter().putCustomData( "readBytesFromMovie", String.format( "%d", comReadB ) );
+					// TODO: ACRA.getErrorReporter().putCustomData( "lastReadBytes", String.format( "%d", readB ) );
+					// TODO: ACRA.getErrorReporter().putCustomData( "exceptionMessage", e.getMessage() );
+					// TODO: ACRA.getErrorReporter().handleException( e );
 				} finally {
 					// be sure that we ALWAYS release the wake lock
 					DownloadStreamThread.this.downloadWakeLock.release();

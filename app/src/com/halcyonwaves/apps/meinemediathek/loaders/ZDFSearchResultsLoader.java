@@ -16,7 +16,6 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.acra.ACRA;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -200,12 +199,12 @@ public class ZDFSearchResultsLoader extends AsyncTaskLoader< List< SearchResultE
 		} catch( final IOException e ) {
 			Log.e( ZDFSearchResultsLoader.TAG, "Failed to fetch the search results from the website.", e );
 		} catch( final ExceptionInInitializerError e ) {
-			ACRA.getErrorReporter().putCustomData( "rawSearchKeyword", this.searchFor );
-			ACRA.getErrorReporter().putCustomData( "preparedSearchKeyword", preparedSearchKeyword );
-			ACRA.getErrorReporter().putCustomData( "nextOffset", String.format( "%d", currentOffset ) );
-			ACRA.getErrorReporter().putCustomData( "nextOffset", String.format( "%d", nextOffset ) );
-			ACRA.getErrorReporter().putCustomData( "currentForwardLink", currentForwardLink );
-			ACRA.getErrorReporter().handleException( e );
+			// TODO: ACRA.getErrorReporter().putCustomData( "rawSearchKeyword", this.searchFor );
+			// TODO: ACRA.getErrorReporter().putCustomData( "preparedSearchKeyword", preparedSearchKeyword );
+			// TODO: ACRA.getErrorReporter().putCustomData( "nextOffset", String.format( "%d", currentOffset ) );
+			// TODO: ACRA.getErrorReporter().putCustomData( "nextOffset", String.format( "%d", nextOffset ) );
+			// TODO: ACRA.getErrorReporter().putCustomData( "currentForwardLink", currentForwardLink );
+			// TODO: ACRA.getErrorReporter().handleException( e );
 		}
 
 		// return the list of found items

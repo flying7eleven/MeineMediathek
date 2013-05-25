@@ -1,7 +1,5 @@
 package com.halcyonwaves.apps.meinemediathek.fragments;
 
-import org.acra.ACRA;
-
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -193,7 +191,7 @@ public class MovieOverviewFragment extends Fragment {
 		try {
 			this.serviceMessanger.send( downloadRequest );
 		} catch( final RemoteException e ) {
-			ACRA.getErrorReporter().handleException( e );
+			// TODO: ACRA.getErrorReporter().handleException( e );
 		}
 	}
 }

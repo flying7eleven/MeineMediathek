@@ -1,7 +1,5 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
-import org.acra.ACRA;
-
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +32,7 @@ public abstract class BaseActivity extends Activity {
 	public boolean onMenuItemSelected( final int featureId, final MenuItem item ) {
 		switch( item.getItemId() ) {
 			case R.id.mnu_send_bugreport:
-				ACRA.getErrorReporter().handleException( null );
+				// TODO: ACRA.getErrorReporter().handleException( null );
 				break;
 		}
 		return true;

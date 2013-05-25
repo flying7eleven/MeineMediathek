@@ -1,7 +1,5 @@
 package com.halcyonwaves.apps.meinemediathek.activities;
 
-import org.acra.ACRA;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -101,7 +99,7 @@ public class ManageDownloadActivity extends BaseActivity {
 				try {
 					ManageDownloadActivity.this.serviceMessanger.send( downloadRequest );
 				} catch( final RemoteException e ) {
-					ACRA.getErrorReporter().handleException( e );
+					// TODO: ACRA.getErrorReporter().handleException( e );
 				}
 
 				// close the dialog because we send the cancel request to the service
