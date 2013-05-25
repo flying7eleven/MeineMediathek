@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+<release version="0.1.4" versioncode="21" releasedate="2013-05-26">
+<change>Kleinere Anpassungen und Fehlerbehebungen</change>
+</release>
 <release version="0.1.4" versioncode="14" releasedate="2013-03-26">
 <change>Die Vorschaubilder fuer die Videos werden nun nachgeladen und zwischengespeichert (fuer eine schnellere Suche)</change>
 </release>
