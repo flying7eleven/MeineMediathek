@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.halcyonwaves.apps.meinemediathek"
     android:installLocation="auto"
-    android:versionCode="13"
-    android:versionName="0.1.3" >
+    android:versionCode="21"
+    android:versionName="0.1.5" >
 
     <uses-sdk
         android:minSdkVersion="15"
