@@ -11,6 +11,9 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 #
+-libraryjars libs/jsoup-1.7.1.jar
+
+#
 -keep public class * extends android.app.Application
 
 # a rule prevending jsoup to crash
