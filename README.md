@@ -24,11 +24,8 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.1.4 (Code: *21*, Released on: ***2013-05-26***) - [Changes][121]
+### Version 0.1.4 (Code: *14*, Released on: ***2013-05-26***) - [Changes][121]
 * Kleinere Anpassungen und Fehlerbehebungen
-
-### Version 0.1.4 (Code: *14*, Released on: ***2013-03-26***) - [Changes][114]
-* Die Vorschaubilder für die Videos werden nun nachgeladen und zwischengespeichert (für eine schnellere Suche)
 
 ### Version 0.1.3 (Code: *13*, Released on: ***2013-03-02***) - [Changes][113]
 * Bei Filmen, die Restriktionen der FSK unterliegen, kann es vorkommen, dass diese nur zu bestimmten Zeiten verfügbar sind. Ein Warnhinweis wurde hinzugefügt, der dies anzeigt.
@@ -92,5 +89,4 @@ For building the application by yourself follow the following steps:
  [110]: https://github.com/thuetz/MeineMediathek/compare/v0.0.7...v0.1
  [111]: https://github.com/thuetz/MeineMediathek/compare/v0.1...v0.1.1
  [113]: https://github.com/thuetz/MeineMediathek/compare/v0.1.1...v0.1.3
- [114]: https://github.com/thuetz/MeineMediathek/compare/v0.1.3...v0.1.4
- [121]: https://github.com/thuetz/MeineMediathek/compare/v0.1.4...v0.1.5
+ [121]: https://github.com/thuetz/MeineMediathek/compare/v0.1.3...v0.1.4
