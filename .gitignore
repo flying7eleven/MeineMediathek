@@ -19,6 +19,7 @@ obj/
 *abi*/
 x86/
 mips/
+app/.apt_generated
 
 # Local configuration file (sdk path, etc)
 local.properties
