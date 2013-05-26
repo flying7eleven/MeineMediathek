@@ -24,9 +24,9 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.2 (Code: *20*, Veröffentlicht am: ***2013-XX-XX***) - [Changes][120]
-* Unterstützung für das RTMP Protokoll hinzugefügt (für eine spätere Unterstützung der ARD und WDR Mediathek)
-* Benutzeroberfläche überarbeitet
+### Version 0.2 (Code: *22*, Veröffentlicht am: ***2013-05-26***) - [Changes][120]
+* Vorbereitungen für die Unterstützung weiterer Mediatheken
+* Kleinere Fehlerbehebungen
 
 ### Version 0.1.1 (Code: *11*, Released on: ***2013-02-08***) - [Changes][111]
 * Es wurde ein Fehler behoben, der dazu führte das jede Suche mit einem Anwendungsabsturz endete (danke für die Bugreports per Email)
