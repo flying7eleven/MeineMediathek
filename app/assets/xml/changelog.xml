@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+<release version="0.1.4" versioncode="22" releasedate="2013-05-26">
+<change>Kleinere Anpassungen und Fehlerbehebungen</change>
+</release>
+<release version="0.1.3" versioncode="13" releasedate="2013-03-02">
+<change>Bei Filmen, die Restriktionen der FSK unterliegen, kann es vorkommen, dass diese nur zu bestimmten Zeiten verfuegbar sind. Ein Warnhinweis wurde hinzugefuegt, der dies anzeigt.</change>
+<change>Kleinere Geschwindigkeitsverbesserungen der Suche (bei vielen Suchergebnissen leider noch relativ langsam)</change>
+<change>Ein Bewertungsbutton wurde zum "Aenderungen seit der letzten Version" Dialog hinzugefuegt.</change>
+</release>
+<release version="0.1.1" versioncode="11" releasedate="2013-02-08">
+<change>Es wurde ein Fehler behoben, der dazu fuehrte das jede Suche mit einem Anwendungsabsturz endete (danke fuer die Bugreports per Email)</change>
+<change>Es ist nun moeglich Backups der Daten von Meine Mediathek ueber Backupanwendungen (wie. z.B. Carbon) durchzufuehren</change>
+</release>
+<release version="0.1" versioncode="10" releasedate="2012-12-08">
+<change>Downloads are now cancelable</change>
+<change>Prepared the code to handle custom user settings</change>
+<change>The device will now stay awake until all downloads finished</change>
+<change>Removed the English translation, the application is now German by default</change>
+<change>Fixed several bug which caused the application to crash</change>
+</release>
+<release version="0.0.7" versioncode="7" releasedate="2012-11-30">
+<change>Fixed a bug which caused an infinite loop while parsing the search results</change>
+<change>The application will now show a message if no results were found</change>
+<change>The downloaded movies will now be stored in the public movies directory of the current user (the preview pictures will remain in the private directory of the application)</change>
+</release>
+<release version="0.0.6" versioncode="6" releasedate="2012-11-28">
+<change>Fixed a bug which caused the application to crash immediately after starting it (this time always :()</change>
+</release>
+<release version="0.0.5" versioncode="5" releasedate="2012-11-27">
+<change>Fixed an annoying bug which happened sometime while just starting the app</change>
+</release>
+<release version="0.0.4" versioncode="4" releasedate="2012-11-25">
+<change>The download thread has now a limited runtime of 120 Minutes</change>
+<change>Added more debugging information to the bug report of some specific exceptions</change>
+<change>Fixed a smaller bug when fetching the ASX descriptor from the ZDF Mediathek</change>
+</release>
+<release version="0.0.3" versioncode="3" releasedate="2012-11-24">
+<change>Added the missing German translation of the application</change>
+<change>Changed the way the titles of the movies in the ZDF Mediathek are extracted</change>
+<change>The notification indicator will now stop moving as soon as the download was finished</change>
+<change>Fixed a bug which caused a crash while starting the app</change>
+</release>
+<release version="0.0.2" versioncode="2" releasedate="2012-11-23">
+<change>Made all texts translatable</change>
+<change>Added a license agreement for the first start of the application</change>
+<change>The download buffer size will vary according to the estimated file size of the movie which should be downloaded</change>
+<change>Fixed a lot of bugs causing the application to crash</change>
+<change>Made the application available in the Google Play Store</change>
+</release>
+<release version="0.0.1" versioncode="1" releasedate="2012-11-20">
+<change>First version which is able to download a stream from ZDF Mediathek</change>
+</release>
+</changelog>

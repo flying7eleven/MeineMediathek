@@ -1,0 +1,86 @@
+com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint
+com.halcyonwaves.apps.meinemediathek.ApplicationEntryPoint: ApplicationEntryPoint()
+com.halcyonwaves.apps.meinemediathek.R$drawable: int episode_preview_image_placeholder
+com.halcyonwaves.apps.meinemediathek.R$drawable: int ic_launcher
+com.halcyonwaves.apps.meinemediathek.R$id: int btn_cancel_download
+com.halcyonwaves.apps.meinemediathek.R$id: int btn_download_movie
+com.halcyonwaves.apps.meinemediathek.R$id: int btn_search
+com.halcyonwaves.apps.meinemediathek.R$id: int et_searchfortitle
+com.halcyonwaves.apps.meinemediathek.R$id: int fragment_movieoverview
+com.halcyonwaves.apps.meinemediathek.R$id: int fragment_moviesearch
+com.halcyonwaves.apps.meinemediathek.R$id: int fragment_searchresults
+com.halcyonwaves.apps.meinemediathek.R$id: int item1
+com.halcyonwaves.apps.meinemediathek.R$id: int iv_episode_image
+com.halcyonwaves.apps.meinemediathek.R$id: int iv_movie_preview_image
+com.halcyonwaves.apps.meinemediathek.R$id: int mnu_send_bugreport
+com.halcyonwaves.apps.meinemediathek.R$id: int tableRow1
+com.halcyonwaves.apps.meinemediathek.R$id: int tableRow2
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_episode_description
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_episode_title
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_description_content
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_description_label
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_fsk_restriction_warning_text
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_fsk_restriction_warning_title
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_title_content
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_movie_title_label
+com.halcyonwaves.apps.meinemediathek.R$id: int tv_player_notice
+com.halcyonwaves.apps.meinemediathek.R$layout: int activity_home
+com.halcyonwaves.apps.meinemediathek.R$layout: int activity_managedownload
+com.halcyonwaves.apps.meinemediathek.R$layout: int activity_movieoverview
+com.halcyonwaves.apps.meinemediathek.R$layout: int activity_searchresults
+com.halcyonwaves.apps.meinemediathek.R$layout: int fragment_movieoverview
+com.halcyonwaves.apps.meinemediathek.R$layout: int fragment_moviesearch
+com.halcyonwaves.apps.meinemediathek.R$layout: int lvr_searchresults
+com.halcyonwaves.apps.meinemediathek.R$menu: int main_menu
+com.halcyonwaves.apps.meinemediathek.R$string: int app_name
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_agree
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_cancel_download
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_disagree
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_download_movie
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_rate_app
+com.halcyonwaves.apps.meinemediathek.R$string: int btn_search
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_appcrash
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_download_on_mobile
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_license
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_noresults
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_msg_timeout
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_appcrash
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_download_on_mobile
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_license
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_noresults
+com.halcyonwaves.apps.meinemediathek.R$string: int dlg_title_timeout
+com.halcyonwaves.apps.meinemediathek.R$string: int et_hint_searchfortitle
+com.halcyonwaves.apps.meinemediathek.R$string: int mnu_title_bugreport
+com.halcyonwaves.apps.meinemediathek.R$string: int mnu_title_preferences
+com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie
+com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_canceled
+com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_failed
+com.halcyonwaves.apps.meinemediathek.R$string: int not_desc_download_of_movie_finished
+com.halcyonwaves.apps.meinemediathek.R$string: int not_title_download_of_movie
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_description
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_fsk_restriction_warning_text
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_fsk_restriction_warning_title
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_movie_title
+com.halcyonwaves.apps.meinemediathek.R$string: int tv_player_notice
+com.halcyonwaves.apps.meinemediathek.activities.BaseActivity: BaseActivity()
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity: HomeActivity()
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity: ManageDownloadActivity()
+com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity
+com.halcyonwaves.apps.meinemediathek.activities.MovieOverviewActivity: MovieOverviewActivity()
+com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity
+com.halcyonwaves.apps.meinemediathek.activities.SearchResultsActivity: SearchResultsActivity()
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment: MovieOverviewFragment()
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment: MovieSearchFragment()
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment: SearchResultsFragment()
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream: void nativeClose(int)
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream: int nativeConnect(java.lang.String)
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream: int nativeGetLength(int)
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream: int nativeRead(int,byte[],int,int)
+com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService
+com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService: BackgroundDownloadService()

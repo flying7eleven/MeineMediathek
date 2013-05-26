@@ -1,0 +1,117 @@
+com.google.android.vending.licensing.AESObfuscator
+com.google.android.vending.licensing.APKExpansionPolicy
+com.google.android.vending.licensing.ILicenseResultListener$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_verifyLicense
+com.google.android.vending.licensing.ILicenseResultListener$Stub$Proxy:
+    79:79:public java.lang.String getInterfaceDescriptor()
+com.google.android.vending.licensing.ILicensingService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_checkLicense
+    19:22:public ILicensingService$Stub()
+    40:40:public android.os.IBinder asBinder()
+com.google.android.vending.licensing.ILicensingService$Stub$Proxy:
+    79:79:public java.lang.String getInterfaceDescriptor()
+com.google.android.vending.licensing.LicenseChecker:
+    private static final java.lang.String TAG
+    private static final java.lang.String KEY_FACTORY_ALGORITHM
+    private static final int TIMEOUT_MS
+    private static final boolean DEBUG_LICENSE_ERROR
+    private final java.lang.String mPackageName
+    private final java.lang.String mVersionCode
+    89:98:public LicenseChecker(android.content.Context,com.google.android.vending.licensing.Policy,java.lang.String)
+    109:121:private static java.security.PublicKey generatePublicKey(java.lang.String)
+    139:173:public synchronized void checkAccess(com.google.android.vending.licensing.LicenseCheckerCallback)
+    332:332:private int generateNonce()
+    344:348:private static java.lang.String getVersionCode(android.content.Context,java.lang.String)
+com.google.android.vending.licensing.LicenseChecker$ResultListener:
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
+com.google.android.vending.licensing.LicenseCheckerCallback:
+    public static final int ERROR_INVALID_PACKAGE_NAME
+    public static final int ERROR_NON_MATCHING_UID
+    public static final int ERROR_NOT_MARKET_MANAGED
+    public static final int ERROR_CHECK_IN_PROGRESS
+    public static final int ERROR_INVALID_PUBLIC_KEY
+    public static final int ERROR_MISSING_PERMISSION
+com.google.android.vending.licensing.LicenseValidator:
+    private static final java.lang.String TAG
+    private static final int LICENSED
+    private static final int NOT_LICENSED
+    private static final int LICENSED_OLD_KEY
+    private static final int ERROR_NOT_MARKET_MANAGED
+    private static final int ERROR_SERVER_FAILURE
+    private static final int ERROR_OVER_QUOTA
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
+    private static final java.lang.String SIGNATURE_ALGORITHM
+    57:65:LicenseValidator(com.google.android.vending.licensing.Policy,com.google.android.vending.licensing.DeviceLimiter,com.google.android.vending.licensing.LicenseCheckerCallback,int,java.lang.String,java.lang.String)
+com.google.android.vending.licensing.NullDeviceLimiter
+com.google.android.vending.licensing.Obfuscator
+com.google.android.vending.licensing.Policy:
+    public static final int LICENSED
+    public static final int NOT_LICENSED
+    public static final int RETRY
+com.google.android.vending.licensing.PreferenceObfuscator
+com.google.android.vending.licensing.ServerManagedPolicy
+com.google.android.vending.licensing.StrictPolicy
+com.google.android.vending.licensing.ValidationException
+com.google.android.vending.licensing.util.Base64:
+    public static final boolean ENCODE
+    public static final boolean DECODE
+    private static final byte EQUALS_SIGN
+    private static final byte NEW_LINE
+    private static final byte WHITE_SPACE_ENC
+    private static final byte EQUALS_SIGN_ENC
+    210:234:private static byte[] encode3to4(byte[],int,int,byte[],int,byte[])
+    247:247:public static java.lang.String encode(byte[])
+    258:258:public static java.lang.String encodeWebSafe(byte[],boolean)
+    274:286:public static java.lang.String encode(byte[],int,int,byte[],boolean)
+    301:345:public static byte[] encode(byte[],int,int,byte[],int)
+    431:432:public static byte[] decodeWebSafe(java.lang.String)
+    445:445:public static byte[] decode(byte[])
+    458:458:public static byte[] decodeWebSafe(byte[])
+    489:489:public static byte[] decodeWebSafe(byte[],int,int)
+com.google.android.vending.licensing.util.Base64DecoderException:
+    private static final long serialVersionUID
+com.halcyonwaves.apps.meinemediathek.BuildConfig
+com.halcyonwaves.apps.meinemediathek.ChangeLogDialog:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.Consts
+com.halcyonwaves.apps.meinemediathek.R
+com.halcyonwaves.apps.meinemediathek.R$attr
+com.halcyonwaves.apps.meinemediathek.R$drawable
+com.halcyonwaves.apps.meinemediathek.R$id
+com.halcyonwaves.apps.meinemediathek.R$layout
+com.halcyonwaves.apps.meinemediathek.R$menu
+com.halcyonwaves.apps.meinemediathek.R$string
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity:
+    private static final java.lang.String TAG
+    private android.os.Handler mHandler
+    private com.halcyonwaves.apps.meinemediathek.activities.HomeActivity$MyLicenseCheckerCallback mLicenseCheckerCallback
+com.halcyonwaves.apps.meinemediathek.activities.HomeActivity$MyLicenseCheckerCallback
+com.halcyonwaves.apps.meinemediathek.activities.ManageDownloadActivity:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.fragments.MovieOverviewFragment:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.fragments.MovieSearchFragment:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.fragments.SearchResultsFragment:
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.loaders.ZDFSearchResultsLoader:
+    private static final java.lang.String BASE_SEARCH_URL
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.ndk.MMSInputStream:
+    private static final java.lang.String CHARSET_NAME_UNICODE
+    private static final java.lang.String LOG
+    51:59:private static byte[] string2unicode(java.lang.String)
+    72:78:private static java.lang.String unicode2string(byte[])
+com.halcyonwaves.apps.meinemediathek.security.KeyConstants
+com.halcyonwaves.apps.meinemediathek.services.BackgroundDownloadService:
+    public static final int SERVICE_MSG_CANCEL_DOWNLOAD
+    public static final int SERVICE_MSG_INITIATE_DOWNLOAD
+    private static final java.lang.String TAG
+com.halcyonwaves.apps.meinemediathek.threads.DownloadStreamThread:
+    private static final java.lang.String TAG

@@ -52,3 +52,6 @@ local.properties
 *.un~
 Session.vim
 *~
+
+#
+KeyConstants.java
