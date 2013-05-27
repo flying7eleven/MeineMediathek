@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/23/trunk/jni/libmms/src
+END
+uri.c
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/23/trunk/jni/libmms/src/uri.c
+END
+bswap.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/23/trunk/jni/libmms/src/bswap.h
+END
+mms.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/23/trunk/jni/libmms/src/mms.h
+END
+mms-common-funcs.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/23/trunk/jni/libmms/src/mms-common-funcs.h
+END
+uri.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/23/trunk/jni/libmms/src/uri.h
+END
+mmsh.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/23/trunk/jni/libmms/src/mmsh.c
+END
+mmsx.c
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/23/trunk/jni/libmms/src/mmsx.c
+END
+mms_config.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/23/trunk/jni/libmms/src/mms_config.h
+END
+mms-common.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/23/trunk/jni/libmms/src/mms-common.h
+END
+asfheader.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/23/trunk/jni/libmms/src/asfheader.h
+END
+mmsio.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/23/trunk/jni/libmms/src/mmsio.h
+END
+mmsh.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/23/trunk/jni/libmms/src/mmsh.h
+END
+mmsx.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/23/trunk/jni/libmms/src/mmsx.h
+END
+mms.c
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/23/trunk/jni/libmms/src/mms.c
+END
