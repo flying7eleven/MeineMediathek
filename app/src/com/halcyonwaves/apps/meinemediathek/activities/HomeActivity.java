@@ -87,6 +87,8 @@ public class HomeActivity extends BaseActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		this.mChecker.onDestroy();
+        if( null != this.mChecker ) {
+		    this.mChecker.onDestroy();
+        }
 	}
 }
