@@ -24,7 +24,7 @@ For building the application by yourself follow the following steps:
   5. Build the application :)
 
 ## Changelog
-### Version 0.1.4 (Code: *23*, Released on: ***2013-05-27***) - [Changes][121]
+### Version 0.1.4 (Code: *24*, Released on: ***2013-05-27***) - [Changes][121]
 * Kleinere Anpassungen und Fehlerbehebungen
 
 ### Version 0.1.3 (Code: *13*, Released on: ***2013-03-02***) - [Changes][113]
